@@ -16,6 +16,8 @@ cc.creativecomputing.math.CCVecMath;                - same as CCVecMath. On Dema
 GL:
 cc.creativecomputing.graphics.CCDrawMode;
 cc.creativecomputing.graphics.CCGraphics;
+cc.creativecomputing.graphics.shader.CCCGShader;
+cc.creativecomputing.graphics.shader.CCShaderTexture;
 
 CG:
 com.jogamp.opengl.cg.CGparameter;
