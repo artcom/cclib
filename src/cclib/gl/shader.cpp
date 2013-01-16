@@ -1,6 +1,6 @@
 
 #include "shader.h"
-#include "../Exception.h"
+#include "Exception.h" 
 
 using namespace cclib;
 
@@ -38,7 +38,7 @@ Shader::Shader(const std::vector<std::string> & vertexShaderFiles,
     _isFragmentShaderSupported = glewIsSupported("GL_ARB_fragment_shader");
     
     if (!_isFragmentShaderSupported || !_isFragmentShaderSupported) {
-        throw Exception("Shaders are not supported by your hardware.");
+        throw cclib::Exception("Shaders are not supported by your hardware.");
     }
     
     _vertexEntry = vertexEntry;
@@ -111,7 +111,6 @@ Shader::loadShader(const std::string & entry, CGprofile profile, const std::vect
 #warning "check that!"
     // cgGLSetContextOptimalOptions(cg_context, profile);
     cgSetAutoCompile(cg_context, CG_COMPILE_MANUAL);
-
     std::string shaderSource = combineSources(programs);
 
     CGprogram program = cgCreateProgram(
@@ -139,6 +138,6 @@ Shader::checkError(const std::string & message) {
             errorString = errorString + cgGetLastListing(cg_context);
         }
         
-        throw new Exception(errorString + std::string("\n ") + std::string(cgGetErrorString(error)));
+        throw cclib::Exception(errorString + std::string("\n ") + std::string(cgGetErrorString(error)));
     }		
 }
