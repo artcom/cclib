@@ -43,7 +43,6 @@ Shader::Shader(const std::vector<std::string> & vertexShaderFiles,
     
     _vertexEntry = vertexEntry;
     _fragmentEntry = fragmentEntry;
-
     initShader();
 
     if (!vertexShaderFiles.empty()) {

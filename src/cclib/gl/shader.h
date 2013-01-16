@@ -31,6 +31,8 @@ class Shader {
         
         
         virtual ~Shader() {};
+        static std::string combineSources(const std::vector<std::string> & shaders);
+
    
     private:
         void initShader();
@@ -38,8 +40,6 @@ class Shader {
         void loadFragmentShader(const std::vector<std::string> & fragmentPrograms);
         CGprogram loadShader(const std::string & entry, CGprofile profile, const std::vector<std::string> & fragmentPrograms);
         
-        static std::string combineSources(const std::vector<std::string> & shaders);
-
         void checkError(const std::string & message);
 
         Shader(const std::vector<std::string> & vertexShaderFiles, 

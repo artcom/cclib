@@ -19,6 +19,15 @@ else()
     include_directories(${GLEW_INCLUDE_PATH})
 endif()
 
+# look for GLFW
+find_package(GLFW)
+if(NOT GLFW_LIBRARIES)
+    message(ERROR " GLFW could not be found.")
+else()
+    message(STATUS "GLFW found here: ${GLFW_LIBRARIES}")
+    include_directories(${GLFW_INCLUDE_DIR})
+endif()
+
 # look for Cg
 find_package(Cg)
 if(NOT Cg_FOUND)
@@ -69,15 +78,19 @@ install(TARGETS ${CCLIB_NAME} DESTINATION bin)
 
 # install(FILES ${HEADERS} DESTINATION include/${CCLIB_NAME})
 
-set(BUILD_LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}) # ${CCLIB_NAME} 
+set(TEST_LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Cg_LIBRARIES} ${GLEW_LIBRARY} ${GLFW_LIBRARIES}) # ${CCLIB_NAME} 
 
 # XXX add automatic test detection
 
 add_executable(vec2 test/vec2.tst.cpp)
-target_link_libraries(vec2 ${CCLIB_NAME} ${BUILD_LIBRARIES})
+target_link_libraries(vec2 ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_test(vec2 vec2) 
 
 add_executable(vec3 test/vec3.tst.cpp)
-target_link_libraries(vec3 ${CCLIB_NAME} ${BUILD_LIBRARIES})
+target_link_libraries(vec3 ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_test(vec3 vec3) 
+
+add_executable(shader_test test/shader.tst.cpp)
+target_link_libraries(shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
+add_test(shader_test shader_test) 
 
