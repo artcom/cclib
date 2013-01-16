@@ -17,6 +17,9 @@
 #include <Cg/cg.h>		// Cg Header
 #include <Cg/cgGL.h>
 
+#include <math/vec2.h>
+#include <math/vec3.h>
+
 namespace cclib {
 
 class Shader {
@@ -24,15 +27,41 @@ class Shader {
     public:
         typedef std::tr1::shared_ptr<Shader> Ptr;
         static Ptr createShader(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
-                const std::string & vertexEntry = "", const std::string & fragmentEntry = ""); 
+                const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
         
         static Ptr createShader(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
-                const std::string & vertexEntry = "", const std::string & fragmentEntry = ""); 
+                const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
         
         
         virtual ~Shader() {};
         static std::string combineSources(const std::vector<std::string> & shaders);
 
+        void load();
+        void start();
+        void end();
+        
+        void destroy();
+        void finalize();
+
+        CGprogram vertexProgram();
+        CGprogram fragmentProgram();
+        
+        CGparameter vertexParameter(const std::string & name);
+        CGparameter fragmentParameter(const std::string & name);
+
+        CGparameter createFragmentParameter(const std::string & typestring);
+        CGparameter createVertexParameter(const std::string & typestring);
+	
+        void parameter(CGparameter parameter, const int & value);
+        void parameter(const CGparameter parameter, const float & value);
+        void parameter(const CGparameter parameter, const float & v1, const float & v2);
+        void parameter(const CGparameter parameter, const float & v1, const float & v2, const float & v3);
+        void parameter(const CGparameter parameter, const float & v1, const float & v2, const float & v3, const float & v4);
+        void parameter(const CGparameter & parameter, const Vector3f & vector);
+        void parameter(const CGparameter & parameter, const bool & value);
+        void parameter(const CGparameter & parameter, const Vector2f & vector);
+        
+        void texture(const CGparameter parameter, int textureID);
    
     private:
         void initShader();
@@ -47,10 +76,6 @@ class Shader {
                 const std::string & vertexEntry = "", 
                 const std::string & fragmentEntry = "" );
 
-        bool _isVertexShaderEnabled, _isVertexShaderSupported;
-        bool _isFragmentShaderEnabled, _isFragmentShaderSupported;
-        
-
         std::string _vertexEntry;
         std::string _fragmentEntry;
         
@@ -64,68 +89,8 @@ class Shader {
         // std::vectorList<CCCGShaderListener> _myListener = new ArrayList<CCCGShaderListener>();
 	    // Set<CGparameter> _myUsedTextureParameters = new HashSet<CGparameter>();
 
+        std::vector<CGparameter> _usedTextureParameters;
 };
-
-#if 0
-
-public CCShader(
-		final String[]theVertexShaderFile, 
-		final String theVertexEntry, final String[] theFragmentShaderFile, 
-		final String theFragmentEntry
-	) {
-		GL gl = CCGraphics.currentGL();
-		String extensions = gl.glGetString(GL.GL_EXTENSIONS);
-		
-		_myIsVertexShaderSupported = extensions.indexOf("GL_ARB_vertex_shader") != -1;
-		_myIsFragmentShaderSupported = extensions.indexOf("GL_ARB_fragment_shader") != -1;
-		
-		_myVertexEntry = theVertexEntry;
-		_myFragmentEntry = theFragmentEntry;
-		
-		initShader();
-		
-		if(theVertexShaderFile != null && theVertexShaderFile[0] != null)loadVertexShader(theVertexShaderFile);
-		if(theFragmentShaderFile != null && theFragmentShaderFile[0] != null)loadFragmentShader(theFragmentShaderFile);
-	}
-	/Users/sebastianh/artcom-git/aramco/cclib/src/cclib/stringified_shaders/sort/distancesort.fp.cpp
-	/**
-	 * Takes the given files and merges them to one String. 
-	 * This method is used to combine the different shader sources and get rid of the includes
-	 * inside the shader files.
-	 * @param theFiles
-	 * @return
-	 */
-	protected String buildSource(final String...theFiles) {
-		StringBuffer myBuffer = new StringBuffer();
-		
-		for(String myFile:theFiles) {
-			for(String myLine:CCIOUtil.loadStrings(myFile)) {
-				myBuffer.append(myLine);
-				myBuffer.append("\n");
-			}
-		}
-		
-		return myBuffer.toString();
-	}
-	
-	/**
-	 * Overwrite this method for initialization steps that have to be done
-	 * before loading and binding the shaders
-	 */
-	public abstract void initShader();
-
-	public abstract void loadVertexShader(final String...theFiles);
-
-	public abstract void loadFragmentShader(final String...theFile);
-
-	public abstract void load();
-
-	public abstract void start();
-
-	public abstract void end();
-}
-
-#endif // 0 
 
 }; // namespace
 
