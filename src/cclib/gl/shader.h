@@ -52,11 +52,11 @@ class Shader {
         CGparameter createFragmentParameter(const std::string & typestring);
         CGparameter createVertexParameter(const std::string & typestring);
 	
-        void parameter(CGparameter parameter, const int & value);
-        void parameter(const CGparameter parameter, const float & value);
-        void parameter(const CGparameter parameter, const float & v1, const float & v2);
-        void parameter(const CGparameter parameter, const float & v1, const float & v2, const float & v3);
-        void parameter(const CGparameter parameter, const float & v1, const float & v2, const float & v3, const float & v4);
+        void parameter(const CGparameter & parameter, const int & value);
+        void parameter(const CGparameter & parameter, const float & value);
+        void parameter(const CGparameter & parameter, const float & v1, const float & v2);
+        void parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3);
+        void parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3, const float & v4);
         void parameter(const CGparameter & parameter, const Vector3f & vector);
         void parameter(const CGparameter & parameter, const bool & value);
         void parameter(const CGparameter & parameter, const Vector2f & vector);

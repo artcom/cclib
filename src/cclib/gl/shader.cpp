@@ -37,8 +37,6 @@ Shader::Shader(const std::vector<std::string> & vertexShaderFiles,
         throw cclib::Exception("Shaders are not supported by your hardware.");
     }
     
-    // _vertexEntry = vertexEntry;
-    // _fragmentEntry = fragmentEntry;
     initShader();
 
     if (!vertexShaderFiles.empty()) {
@@ -277,31 +275,31 @@ Shader::createVertexParameter(const std::string & typestring) {
 }
 	
 void 
-Shader::parameter(CGparameter parameter, const int & value){
+Shader::parameter(const CGparameter & parameter, const int & value){
     cgSetParameter1i(parameter, value);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter parameter, const float & value){
+Shader::parameter(const CGparameter & parameter, const float & value){
     cgSetParameter1f(parameter, value);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter parameter, const float & v1, const float & v2){
+Shader::parameter(const CGparameter & parameter, const float & v1, const float & v2){
     cgSetParameter2f(parameter, v1, v2);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter parameter, const float & v1, const float & v2, const float & v3){
+Shader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3){
     cgSetParameter3f(parameter, v1, v2, v3);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter parameter, const float & v1, const float & v2, const float & v3, const float & v4){
+Shader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3, const float & v4){
     cgSetParameter4f(parameter, v1, v2, v3, v4);
     checkError("Problem setting parameters ");
 }

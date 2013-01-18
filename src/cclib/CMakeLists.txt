@@ -45,6 +45,9 @@ if (Boost_UNIT_TEST_FRAMEWORK_LIBRARY)
     include_directories(".")
 endif(Boost_UNIT_TEST_FRAMEWORK_LIBRARY)
 
+# look for OpenGL 
+find_package(OpenGL REQUIRED)
+
 # stringify all shader files
 FILE(GLOB_RECURSE SHADERS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/shaders" FALSE "*.?p")
 
@@ -60,11 +63,14 @@ FILE(GLOB_RECURSE SHADER_SOURCES ABSOLUTE ${SHADER_PATH} *.fp.cpp *.vp.cpp)
 
 set(SOURCES 
     gl/shader.cpp    
+    gl/texture.cpp    
 )
  
 set(HEADERS 
     math/vec2.h
     math/vec3.h
+    gl/shader.h
+    gl/texture.h    
 )
  
 set(CCLIB_NAME cclib)
@@ -73,7 +79,7 @@ add_library(${CCLIB_NAME} SHARED
     ${SOURCES} 
     ${HEADERS})
 
-target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES})
+target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${OPENGL_LIBRARIES})
 install(TARGETS ${CCLIB_NAME} DESTINATION bin)
 
 # install(FILES ${HEADERS} DESTINATION include/${CCLIB_NAME})

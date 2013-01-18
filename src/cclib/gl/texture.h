@@ -1,234 +1,132 @@
+#ifndef __CCLIB_TEXTURE_INCLUDED__
+#define __CCLIB_TEXTURE_INCLUDED__
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <tr1/memory>
+#include <GL/glew.h>
+
+#include <math/vec2.h>
+#include <math/vec3.h>
 
 namespace cclib {
 
-class TextureAttributes {
+struct TextureAttributes {
 
-    protected:
+    GLenum wrapS;
+    GLenum wrapT;
+    GLenum filter; 
+    GLenum mipmapFilter;
+    bool generateMipmaps;
+    GLenum internalFormat;
+    GLenum format;
+    GLenum type;
 
-        CCTextureWrap _myTextureWrapS;
-        CCTextureWrap _myTextureWrapT;
-
-        CCTextureFilter _myFilter;
-        CCTextureMipmapFilter _myMipmapFilter;
-
-	private CCPixelFormat _myPixelFormat;
-	protected CCPixelInternalFormat _myPixelInternalFormat;
-	
-	private CCPixelType _myPixelType;
-
-	protected boolean _myGenerateMipmaps;
-
-	/**
-	 * Default constructor, sets the target to \c GL_TEXTURE_2D, wrap to {@link CCTexture.CCTextureWrap#CLAMP_TO_EDGE}, disables mipmapping, 
-	 * the internal format to "automatic"
-	 */
-	public CCTextureAttributes() {
-		_myTextureWrapS = CCTextureWrap.CLAMP_TO_EDGE;
-		_myTextureWrapT = CCTextureWrap.CLAMP_TO_EDGE;
-		_myFilter = CCTextureFilter.LINEAR;
-		_myMipmapFilter = CCTextureMipmapFilter.LINEAR;
-		
-		_myGenerateMipmaps = false;
-		
-		_myPixelInternalFormat = CCPixelInternalFormat.RGBA;
-		_myPixelFormat = CCPixelFormat.RGBA;
-		_myPixelType = CCPixelType.FLOAT;
-	}
-
-	/**
-	 * Enables or disables mipmapping. Default is disabled.
-	 * @param theGenerateMipmaps
-	 */
-	public void generateMipmaps(final boolean theGenerateMipmaps) {
-		_myGenerateMipmaps = theGenerateMipmaps;
-	}
-
-	/**
-	 * Returns whether the texture has mipmapping enabled
-	 * @return whether the texture has mipmapping enabled
-	 */
-	public boolean generateMipmaps() {
-		return _myGenerateMipmaps;
-	}
-
-	/**
-	 * Sets the Texture's internal format. A value of null implies 
-	 * selecting the best format for the context.
-	 * @param theInternalFormat
-	 */
-	public void internalFormat(CCPixelInternalFormat theInternalFormat) {
-		_myPixelInternalFormat = theInternalFormat;
-	}
-
-	/**
-	 * Returns the Texture's internal format. A value of null implies automatic 
-	 * selection of the internal format based on the context.
-	 * @return the Texture's internal format
-	 */
-	public CCPixelInternalFormat internalFormat() {
-		return _myPixelInternalFormat;
-	}
-	
-	/**
-	 * Sets the Texture's format. A value of null implies 
-	 * selecting the best format for the context.
-	 * @param theFormat
-	 */
-	public void format(CCPixelFormat theFormat) {
-		_myPixelFormat = theFormat;
-	}
-
-	/**
-	 * Returns the Texture's format. A value of null implies automatic 
-	 * selection of the internal format based on the context.
-	 * @return the Texture's internal format
-	 */
-	public CCPixelFormat format() {
-		return _myPixelFormat;
-	}
-	
-	/**
-	 * Sets the Texture's pixeltype.
-	 * @param thePixelType
-	 */
-	public void pixelType(CCPixelType thePixelType) {
-		_myPixelType = thePixelType;
-	}
-
-	/**
-	 * Returns the Texture's pixeltype.
-	 * @return the Texture's pixeltype
-	 */
-	public CCPixelType pixelType() {
-		return _myPixelType;
-	}
-
-	/**
-	 * Sets the wrapping behavior when a texture coordinate falls outside the 
-	 * range of [0,1]. 
-	 * @param theWrapS
-	 * @param theWrapT
-	 */
-	public void wrap(final CCTextureWrap theWrapS, CCTextureWrap theWrapT) {
-		wrapS(theWrapS);
-		wrapT(theWrapT);
-	}
-	
-	/**
-	 * Sets the wrapping behavior when a texture coordinate falls outside the 
-	 * range of [0,1]. 
-	 * @param theWrap
-	 */
-	public void wrap(final CCTextureWrap theWrap) {
-		wrapS(theWrap);
-		wrapT(theWrap);
-	}
-
-	/**
-	 * Sets the horizontal wrapping behavior when a texture coordinate falls outside the range of [0,1].
-	 * @param theWrapS
-	 */
-	public void wrapS(CCTextureWrap theWrapS) {
-		_myTextureWrapS = theWrapS;
-	}
-
-	/**
-	 * Returns the horizontal wrapping behavior for the texture coordinates.
-	 * @return the horizontal wrapping behavior
-	 */
-	public CCTextureWrap wrapS() {
-		return _myTextureWrapS;
-	}
-
-	/**
-	 * Sets the verical wrapping behavior when a texture coordinate falls outside the range of [0,1].
-	 * @param theWrapT
-	 */
-	public void wrapT(CCTextureWrap theWrapT) {
-		_myTextureWrapT = theWrapT;
-	}
-
-	/**
-	 * Returns the vertical wrapping behavior for the texture coordinates.
-	 * @return the vertical wrapping behavior
-	 */
-	public CCTextureWrap wrapT() {
-		return _myTextureWrapT;
-	}
-
-	/**
-	 * Sets the filtering behavior when a texture is displayed at a lower or higher resolution than its native resolution.
-	 * Default is {@link CCTextureFilter#LINEAR} Possible values are:{@link CCTextureFilter#LINEAR}, {@link CCTextureFilter#NEAREST}
-	 * @param theMinFilter filtering behavior
-	 */
-	public void filter(CCTextureFilter theMinFilter) {
-		_myFilter = theMinFilter;
-	}
-
-	/**
-	 * Returns the texture function, which is used whenever the pixel 
-	 * being textured maps to an area greater or smaller than one texture element.
-	 * @return the texture filter function
-	 */
-	public CCTextureFilter filter() {
-		return _myFilter;
-	}
-
-	/**
-	 * Sets the filtering behavior when a texture is displayed at a higher resolution than its native resolution.
-	 * Default is {@link CCTextureFilter#LINEAR} Possible values are:{@link CCTextureFilter#LINEAR}, {@link CCTextureFilter#NEAREST}
-	 * @param theMipmapFilter filtering behavior when a texture is magnified
-	 */
-	public void mipmapFilter(CCTextureMipmapFilter theMipmapFilter) {
-		_myMipmapFilter = theMipmapFilter;
-	}
-	
-	/**
-	 * Returns the texture magnifying function, which is used whenever the pixel 
-	 * being textured maps to an area less than or equal to one texture element.
-	 * @return the texture magnifying function
-	 */
-	public CCTextureMipmapFilter mipmapFilter() {
-		return _myMipmapFilter;
-	}
-
-}
-
+    TextureAttributes() : 
+        wrapS(GL_CLAMP_TO_EDGE),
+        wrapT(GL_CLAMP_TO_EDGE),
+        filter(GL_LINEAR),
+        mipmapFilter(GL_LINEAR),
+        generateMipmaps(false),
+        internalFormat(GL_RGBA),
+        type(GL_RGBA),
+        format(GL_FLOAT) 
+    {};
+};
 
 class Texture {
+
+    public:
+        typedef std::tr1::shared_ptr<Texture> Ptr;
+        virtual ~Texture(); 
+        
+        Texture::Ptr createTexture(GLuint target, const TextureAttributes & attributes, unsigned int numberOfTextures = 1); 
+        
+        // virtual void dataImplementation(CCTextureData theData);
+        // virtual void updateData(final CCTextureData theData);
+        
+        void generateMipmaps(const bool & generateMipmaps);
+        bool & generateMipmaps(); 
+        
+        bool & isCompressed();
+        // void data(CCTextureData data);
+
+        std::vector<GLuint> createTextureIds(const unsigned int & numberOfIds);
+        void bind();
+        void bind(int id);
+        void unbind();
+        int id();
+        int id(const int & level);
+
+        GLenum target();
+
+        bool mustFlipVertically();
+
+        void mustFlipVertically(bool mustFlipVertically);
+        unsigned int width();
+        unsigned int height();
+        unsigned int size();
+
+        Vector2i::Ptr dimension();
+
+        int depth();
+        int border();
+        GLenum format();
+        GLenum internalFormat();
+        GLenum pixelType();
+        void parameter(GLenum type, int value);
+        void parameter(GLenum type, float value);
+        void parameter(GLenum type, std::vector<float> values);
+        int parameter(int glid);
+        void wrap(GLenum textureWrap);
+        void wrapR(GLenum textureWrap);
+        void wrapS(GLenum textureWrap);
+        void wrapT(GLenum textureWrap);
+        // void textureBorderColor(CCColor theColor);
+        void updateFilter();
+        void anisotropicFiltering(float amount);
+        void textureFilter(GLenum filter);
+        void textureMipmapFilter(GLenum filter);
+        void textureEnvironmentMode(GLenum mode);
+        void depthTextureMode(GLenum mode);
+        // void blendColor(CCColor blendColor);
+
     protected:
-        CCTextureTarget _target;
-        CCTextureEnvironmentMode _environmentMode;
+        Texture(GLuint target, const TextureAttributes & attributes, unsigned int numberOfTextures); 
+        
+        GLenum _target;
+        GLenum _environmentMode;
 
-        CCTextureFilter _textureFilter;
-        CCTextureMipmapFilter _textureMipmapFilter;
+        GLenum _textureFilter;
+        GLenum _textureMipmapFilter;
 
-        CCColor _myBlendColor = new CCColor();
+        // CCColor _blendColor = new CCColor();
 
-        CCPixelInternalFormat _internalFormat;
-        CCPixelFormat _format;
-        CCPixelType _pixelType;
+        GLenum _internalFormat;
+        GLenum _format;
+        GLenum _pixelType;
 
-        CCPixelStorageModes _storageModes;
+        // CCPixelStorageModes _storageModes;
 
-        int[] _textureIDs;
-        int _textureID;
+        std::vector<GLuint> _textureIDs;
+        GLuint _textureID;
 
         int _width;
         int _height;
         int _depth;
 
-        int _estimatedMemorySize = 0;
+        int _estimatedMemorySize;
 
         bool _mustFlipVertically;
 
         bool _generateMipmaps;
-        bool _isCompressed = false;
+        bool _isCompressed;
 
     private:
 	    bool _hasMipmaps;
-}
+};
 
 }; // namespace
 	
-
+#endif // includeguard
