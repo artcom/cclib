@@ -64,6 +64,8 @@ FILE(GLOB_RECURSE SHADER_SOURCES ABSOLUTE ${SHADER_PATH} *.fp.cpp *.vp.cpp)
 set(SOURCES 
     gl/shader.cpp    
     gl/texture.cpp    
+    gl/texture2D.cpp    
+    gl/pixelstoragemodes.cpp
 )
  
 set(HEADERS 
@@ -71,6 +73,8 @@ set(HEADERS
     math/vec3.h
     gl/shader.h
     gl/texture.h    
+    gl/texture2D.h    
+    gl/pixelstoragemodes.h
 )
  
 set(CCLIB_NAME cclib)

@@ -9,6 +9,7 @@
 
 #include <math/vec2.h>
 #include <math/vec3.h>
+#include <gl/pixelstoragemodes.h>
 
 namespace cclib {
 
@@ -107,7 +108,7 @@ class Texture {
         GLenum _format;
         GLenum _pixelType;
 
-        // CCPixelStorageModes _storageModes;
+        PixelStorageModes::Ptr _storageModes;
 
         std::vector<GLuint> _textureIDs;
         GLuint _textureID;

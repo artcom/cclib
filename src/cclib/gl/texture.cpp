@@ -34,8 +34,8 @@ void
 Texture::generateMipmaps(const bool & generateMipmaps) {
     _generateMipmaps = generateMipmaps;
     _hasMipmaps = generateMipmaps;
-    // _storageModes = new CCPixelStorageModes();
-    // _storageModes.alignment(1);
+    _storageModes = PixelStorageModes::Ptr(new PixelStorageModes());
+    _storageModes->alignment(1);
 
     if(generateMipmaps) {
         glGenerateMipmap(_target);
