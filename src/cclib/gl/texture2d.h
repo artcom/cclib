@@ -48,7 +48,7 @@ class Texture2D : public Texture {
         typedef std::tr1::shared_ptr<Texture2D> Ptr;
         virtual ~Texture2D() {}; 
 
-        Texture2D::Ptr createTexture2D(const TextureAttributes & attributes, int width=0, int height=0, 
+        Texture2D::Ptr createTexture2D(TextureAttributes::Ptr attributes, int width=0, int height=0, 
                 unsigned int numberOfTextures=1, GLenum target=GL_TEXTURE_2D);
         
         // XXX one for CCTexture2D(final CCTextureData theTextureData, CCTextureTarget theTarget)
@@ -58,11 +58,10 @@ class Texture2D : public Texture {
 
     protected:
         void allocateData(unsigned int width, unsigned int height);
-
-    private:
-        Texture2D(const TextureAttributes & attributes,
+        Texture2D(TextureAttributes::Ptr attributes,
                 int width, int height, unsigned int numberOfTextures, GLenum target);
 
+    private:
         void checkError();
     
 	    // private CCBufferObject _myBufferObject;

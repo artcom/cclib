@@ -13,26 +13,28 @@
 
 namespace cclib {
 
-struct TextureAttributes {
+class TextureAttributes {
+    public:
+        typedef std::tr1::shared_ptr<TextureAttributes> Ptr; 
+        
+        GLenum wrapS;
+        GLenum wrapT;
+        GLenum filter; 
+        GLenum mipmapFilter;
+        bool generateMipmaps;
+        GLenum internalFormat;
+        GLenum format;
+        GLenum type;
 
-    GLenum wrapS;
-    GLenum wrapT;
-    GLenum filter; 
-    GLenum mipmapFilter;
-    bool generateMipmaps;
-    GLenum internalFormat;
-    GLenum format;
-    GLenum type;
-
-    TextureAttributes() : 
-        wrapS(GL_CLAMP_TO_EDGE),
-        wrapT(GL_CLAMP_TO_EDGE),
-        filter(GL_LINEAR),
-        mipmapFilter(GL_LINEAR),
-        generateMipmaps(false),
-        internalFormat(GL_RGBA),
-        type(GL_RGBA),
-        format(GL_FLOAT) 
+        TextureAttributes() : 
+            wrapS(GL_CLAMP_TO_EDGE),
+            wrapT(GL_CLAMP_TO_EDGE),
+            filter(GL_LINEAR),
+            mipmapFilter(GL_LINEAR),
+            generateMipmaps(false),
+            internalFormat(GL_RGBA),
+            type(GL_RGBA),
+            format(GL_FLOAT) 
     {};
 };
 
@@ -42,7 +44,7 @@ class Texture {
         typedef std::tr1::shared_ptr<Texture> Ptr;
         virtual ~Texture(); 
         
-        Texture::Ptr createTexture(GLuint target, const TextureAttributes & attributes, unsigned int numberOfTextures = 1); 
+        Texture::Ptr createTexture(GLuint target, TextureAttributes::Ptr attributes, unsigned int numberOfTextures = 1); 
         
         // virtual void dataImplementation(CCTextureData theData);
         // virtual void updateData(final CCTextureData theData);
@@ -94,7 +96,7 @@ class Texture {
         // void blendColor(CCColor blendColor);
 
     protected:
-        Texture(GLuint target, const TextureAttributes & attributes, unsigned int numberOfTextures); 
+        Texture(GLuint target, TextureAttributes::Ptr attributes, unsigned int numberOfTextures); 
         
         GLenum _target;
         GLenum _environmentMode;

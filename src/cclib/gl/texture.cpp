@@ -3,26 +3,26 @@
 using namespace cclib;
 
 Texture::Ptr 
-Texture::createTexture(GLuint target, const TextureAttributes & attributes, unsigned int numberOfTextures) 
+Texture::createTexture(GLuint target, TextureAttributes::Ptr attributes, unsigned int numberOfTextures) 
 {
     Texture::Ptr texture = Texture::Ptr(new Texture(target, attributes, numberOfTextures));
     return texture;
 }
 
-Texture::Texture(GLenum target, const TextureAttributes & attributes, unsigned int numberOfTextures) 
+Texture::Texture(GLenum target, TextureAttributes::Ptr attributes, unsigned int numberOfTextures) 
     : _target(target), _environmentMode(GL_MODULATE), _textureID(0), 
       _width(0), _height(0), _depth(1),
-      _internalFormat(attributes.internalFormat), _format(attributes.format), 
-      _pixelType(attributes.type), _isCompressed(false), _estimatedMemorySize(0)
+      _internalFormat(attributes->internalFormat), _format(attributes->format), 
+      _pixelType(attributes->type), _isCompressed(false), _estimatedMemorySize(0)
 {
     _textureIDs = createTextureIds(numberOfTextures);
     
     // set attributes
-    textureFilter(attributes.filter);
-    wrapS(attributes.wrapS);
-    wrapT(attributes.wrapT);
+    textureFilter(attributes->filter);
+    wrapS(attributes->wrapS);
+    wrapT(attributes->wrapT);
 
-    generateMipmaps(attributes.generateMipmaps);
+    generateMipmaps(attributes->generateMipmaps);
 }
 
 /**

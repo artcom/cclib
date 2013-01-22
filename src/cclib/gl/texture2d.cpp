@@ -3,7 +3,7 @@
 using namespace cclib;
 
 Texture2D::Ptr 
-Texture2D::createTexture2D(const TextureAttributes & attributes, int width, int height, 
+Texture2D::createTexture2D(TextureAttributes::Ptr attributes, int width, int height, 
         unsigned int numberOfTextures, GLenum target)
 {
     Ptr texture = Ptr(new Texture2D(attributes, width, height, numberOfTextures, target));
@@ -14,7 +14,7 @@ Texture2D::createTexture2D(const TextureAttributes & attributes, int width, int 
     return texture;
 }
 
-Texture2D::Texture2D(const TextureAttributes & attributes,
+Texture2D::Texture2D(TextureAttributes::Ptr attributes,
              int width, int height, unsigned int numberOfTextures, GLenum target) 
     : Texture(target, attributes, numberOfTextures) 
 { 

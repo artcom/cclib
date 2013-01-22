@@ -66,6 +66,7 @@ set(SOURCES
     gl/texture.cpp    
     gl/texture2D.cpp    
     gl/pixelstoragemodes.cpp
+    gl/framebufferobject.cpp
 )
  
 set(HEADERS 
@@ -75,6 +76,7 @@ set(HEADERS
     gl/texture.h    
     gl/texture2D.h    
     gl/pixelstoragemodes.h
+    gl/framebufferobject.h
 )
  
 set(CCLIB_NAME cclib)
