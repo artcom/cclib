@@ -25,6 +25,9 @@ class FrameBufferObjectAttributes : public TextureAttributes {
         bool stencilBuffer;
         int numberOfColorBuffers;
         
+        int numberOfBits;
+        int numberOfChannels;
+
         FrameBufferObjectAttributes(int numberOfAttachments=1) : 
             TextureAttributes(),
             depthInternalFormat(GL_DEPTH_COMPONENT24),
@@ -32,7 +35,9 @@ class FrameBufferObjectAttributes : public TextureAttributes {
             coverageSamples(0),
             numberOfColorBuffers(numberOfAttachments),
             depthBuffer(true),
-            stencilBuffer(false)
+            stencilBuffer(false),
+            numberOfChannels(1),
+            numberOfBits(8)
     {
         internalFormat = GL_RGBA8;
     }; 

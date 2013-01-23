@@ -60,10 +60,8 @@ class Texture2D : public Texture {
         void allocateData(unsigned int width, unsigned int height);
         Texture2D(TextureAttributes::Ptr attributes,
                 int width, int height, unsigned int numberOfTextures, GLenum target);
-
-    private:
         void checkError();
-    
+
 	    // private CCBufferObject _myBufferObject;
 };
 
