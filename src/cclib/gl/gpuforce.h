@@ -11,6 +11,7 @@
 #include <math/vec3.h>
 #include <gl/texture2d.h>
 #include <gl/shader.h>
+#include <gl/gpuupdateshader.h>
 #include <Exception.h>
 
 namespace cclib {
@@ -18,68 +19,33 @@ namespace cclib {
 class GPUForce {
 
     protected:
+        GPUForce(const std::string & theShaderTypeName);
+        
         std::string _myParameterIndex;
         std::string _myShaderTypeName;
         GPUUpdateShader::Ptr _myVelocityShader;
         GPUParticles::Ptr _myParticles;
 	
-	    float _cStrength = 1;
-	
+	    float _myStrength; //  = 1;
         CGparameter _myStrengthParameter;
 	
-        void setupParameter(int theWidth, int theHeight) {
-            _myStrengthParameter = parameter("strength");
-        }
-// - -- --- 	
-	protected CCGPUForce(final String theShaderTypeName){
-		_myShaderTypeName = theShaderTypeName;
-	}
-	
-	public void setShader(CCGPUParticles theParticles, CCGPUUpdateShader theShader, final int theIndex, final int theWidth, final int theHeight){
-		setShader(theParticles,theShader,"forces["+theIndex+"]", theWidth, theHeight);
-	}
-	
-	public void setShader(CCGPUParticles theParticles, CCGPUUpdateShader theShader, final String theIndex, final int theWidth, final int theHeight) {
-		_myParticles = theParticles;
-		_myVelocityShader = theShader;
-		_myParameterIndex = theIndex;
-		_myVelocityShader.checkError("Problem creating force.");
-		CgGL.cgConnectParameter(
-			_myVelocityShader.createFragmentParameter(_myShaderTypeName), 
-			_myVelocityShader.fragmentParameter(_myParameterIndex)
-		);
-		
-        setupParameter(theWidth, theHeight);
-//		update(0);
-		_myVelocityShader.checkError("Problem creating force.");
-	}
-	
-	/**
-	 * @param theG
-	 * @param theWidth
-	 * @param theHeight
-	 */
-	public void setSize(CCGraphics theG, int theWidth, int theHeight) {
-	}
-	
-	public void update(final float theDeltaTime) {
-		_myVelocityShader.parameter(_myStrengthParameter, _cStrength);
-	}
-	
-	public void reset() {
-		
-	}
-	
-	/**
-	 * Set the strength of the force. The default value is one.
-	 * @param theStrength strength value to scale the force
-	 */
-	public void strength(final float theStrength) {
-		_cStrength = theStrength;
-	}
-	
-	protected CGparameter parameter(final String theName){
-		return _myVelocityShader.fragmentParameter(_myParameterIndex+"."+theName);
-	}
-}
+        void setupParameter(int theWidth, int theHeight);
+    
+    public: 
+        typedef std::tr1::shared_ptr<GPUForce> Ptr;
+        
+        virtual ~GPUForce() {};	
+	    void setShader(GPUParticles::Ptr theParticles, GPUUpdateShader::Ptr  theShader, 
+                int theIndex, int theWidth, int theHeight); 
+        void setShader(GPUParticles::Ptr theParticles, GPUUpdateShader::Ptr theShader, 
+                std::string theIndex, int theWidth, int theHeight);
+        void setSize(int theWidth, int theHeight);
+        void update(float theDeltaTime);
+        void reset();
+        void strength(float theStrength);
+        CGparameter parameter(const std::string & theName);
+};
 
+}; // namespace
+
+#endif // includeguard

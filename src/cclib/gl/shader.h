@@ -62,6 +62,13 @@ class Shader {
         void parameter(const CGparameter & parameter, const Vector2f & vector);
         
         void texture(const CGparameter parameter, int textureID);
+        
+    protected:
+        Shader(const std::vector<std::string> & vertexShaderFiles, 
+                const std::vector<std::string> & fragmentShaderFiles,
+                const std::string & vertexEntry = "", 
+                const std::string & fragmentEntry = "" );
+
    
     private:
         void initShader();
@@ -70,11 +77,6 @@ class Shader {
         CGprogram loadShader(const std::string & entry, CGprofile profile, const std::vector<std::string> & fragmentPrograms);
         
         void checkError(const std::string & message);
-
-        Shader(const std::vector<std::string> & vertexShaderFiles, 
-                const std::vector<std::string> & fragmentShaderFiles,
-                const std::string & vertexEntry = "", 
-                const std::string & fragmentEntry = "" );
 
         std::string _vertexEntry;
         std::string _fragmentEntry;
