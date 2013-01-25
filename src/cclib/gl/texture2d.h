@@ -1,16 +1,7 @@
 #ifndef __CCLIB_TEXTURE2D_INCLUDED__
 #define __CCLIB_TEXTURE2D_INCLUDED__
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <tr1/memory>
-#include <GL/glew.h>
-
-#include <math/vec2.h>
-#include <math/vec3.h>
-#include <gl/texture.h>
-#include <Exception.h>
+#include <cclib.h>
 
 namespace cclib {
 

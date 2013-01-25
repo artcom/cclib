@@ -68,13 +68,14 @@ set(SOURCES
     gl/pixelstoragemodes.cpp
     gl/framebufferobject.cpp
     gl/shadertexture.cpp
-    gl/gpuupdateshader.cpp
-    gl/gpuforce.cpp
-    gl/gpuconstraint.cpp
-    gl/gpuimpulse.cpp
+    particles/gpuupdateshader.cpp
+    particles/gpuforce.cpp
+    particles/gpuconstraint.cpp
+    particles/gpuimpulse.cpp
 )
  
 set(HEADERS 
+    cclib.h
     math/vec2.h
     math/vec3.h
     gl/shader.h
@@ -83,10 +84,10 @@ set(HEADERS
     gl/pixelstoragemodes.h
     gl/framebufferobject.h
     gl/shadertexture.h
-    gl/gpuupdateshader.h
-    gl/gpuforce.h
-    gl/gpuconstraint.h
-    gl/gpuimpulse.h
+    particles/gpuupdateshader.h
+    particles/gpuforce.h
+    particles/gpuconstraint.h
+    particles/gpuimpulse.h
 )
  
 set(CCLIB_NAME cclib)

@@ -1,11 +1,7 @@
 #ifndef __CCLIB_PIXELSTORAGEMODES_INCLUDED__
 #define __CCLIB_PIXELSTORAGEMODES_INCLUDED__
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <tr1/memory>
-#include <GL/glew.h>
+#include <cclib.h>
 
 namespace cclib {
 class PixelStorageModes {

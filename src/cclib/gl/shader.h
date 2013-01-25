@@ -9,16 +9,7 @@
 #ifndef __CCLIB_SHADER_INCLUDED__
 #define __CCLIB_SHADER_INCLUDED__
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <tr1/memory>
-#include <GL/glew.h>
-#include <Cg/cg.h>		// Cg Header
-#include <Cg/cgGL.h>
-
-#include <math/vec2.h>
-#include <math/vec3.h>
+#include <cclib.h>
 
 namespace cclib {
 
