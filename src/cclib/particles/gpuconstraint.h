@@ -8,8 +8,8 @@ namespace cclib {
 class GPUConstraint {
 	
     protected:
-        String _myParameterIndex;
-        String _myShaderTypeName;
+        std::string _myParameterIndex;
+        std::string _myShaderTypeName;
         GPUUpdateShader::Ptr _myVelocityShader;
         
     public: 
@@ -17,7 +17,7 @@ class GPUConstraint {
         
         GPUConstraint(const std::string & theShaderTypeName, float theResilience, float theFriction, float theMinimalVelocity); 
         virtual ~GPUConstraint() {};
-        void setShader(CCGPUUpdateShader::Ptr theShader, int theIndex, int theWidth, int theHeight);
+        void setShader(GPUUpdateShader::Ptr theShader, int theIndex, int theWidth, int theHeight);
 	
         CGparameter parameter(const std::string & theName);
         void resilience(float theResilience);

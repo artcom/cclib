@@ -1,7 +1,15 @@
 #ifndef __CCLIB_SHADERTEXTURE_INCLUDED__
 #define __CCLIB_SHADERTEXTURE_INCLUDED__
 
-#include <cclib.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <tr1/memory>
+#include <GL/glew.h>
+#include <gl/texture.h>
+#include <gl/texture2d.h>
+#include <gl/framebufferobject.h>
 
 namespace cclib {
 
@@ -63,7 +71,9 @@ class PBO {
 
 class ShaderTexture : public FrameBufferObject {
 
-    public: 
+    public:
+        typedef std::tr1::shared_ptr<ShaderTexture> Ptr;
+
         static FrameBufferObjectAttributes::Ptr createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures); 
         ShaderTexture::Ptr createShaderTexture(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32, 
             int theNumberOfChannels=3, int theNumberOfTextures=1, GLenum theTarget=GL_TEXTURE_RECTANGLE); 

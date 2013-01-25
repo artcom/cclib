@@ -1,9 +1,23 @@
 #ifndef __CCLIB_GPUFORCE_INCLUDED__
 #define __CCLIB_GPUFORCE_INCLUDED__
 
-#include <cclib.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <tr1/memory>
+#include <GL/glew.h>
+
+#include <particles/gpuparticles.h>
+#include <particles/gpuupdateshader.h>
 
 namespace cclib {
+
+class GPUUpdateShader;
+typedef std::tr1::shared_ptr<GPUUpdateShader> GPUUpdateShaderPtr;
+
+class GPUParticles;
+typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
 
 class GPUForce {
 
@@ -12,8 +26,8 @@ class GPUForce {
         
         std::string _myParameterIndex;
         std::string _myShaderTypeName;
-        GPUUpdateShader::Ptr _myVelocityShader;
-        GPUParticles::Ptr _myParticles;
+        GPUUpdateShaderPtr _myVelocityShader;
+        GPUParticlesPtr _myParticles;
 	
 	    float _myStrength; //  = 1;
         CGparameter _myStrengthParameter;
@@ -24,9 +38,9 @@ class GPUForce {
         typedef std::tr1::shared_ptr<GPUForce> Ptr;
         
         virtual ~GPUForce() {};	
-	    void setShader(GPUParticles::Ptr theParticles, GPUUpdateShader::Ptr  theShader, 
+	    void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr  theShader, 
                 int theIndex, int theWidth, int theHeight); 
-        void setShader(GPUParticles::Ptr theParticles, GPUUpdateShader::Ptr theShader, 
+        void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, 
                 std::string theIndex, int theWidth, int theHeight);
         void setSize(int theWidth, int theHeight);
         void update(float theDeltaTime);

@@ -61,6 +61,8 @@ MESSAGE(STATUS "  ...done.")
 set(SHADER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/stringified_shaders")
 FILE(GLOB_RECURSE SHADER_SOURCES ABSOLUTE ${SHADER_PATH} *.fp.cpp *.vp.cpp)
 
+set(CMAKE_CXX_FLAGS "-ferror-limit=5")
+
 set(SOURCES 
     gl/shader.cpp    
     gl/texture.cpp    

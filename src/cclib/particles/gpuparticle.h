@@ -5,26 +5,28 @@
 
 namespace cclib {
 
+class GPUParticles;
+
 class GPUParticle {
     private:
         double _myTimeOfDeath;
         float _myLifeTime;
-        boolean _myIsAllocated;
-        boolean _myIsPermanent;
+        bool _myIsAllocated;
+        bool _myIsPermanent;
 	
         int _myStep;
         int _myIndex;
         Vector3f::Ptr _myPosition;
         Vector3f::Ptr  _myVelocity;
 	
-	    GPUParticles _myParticles;
+        std::tr1::shared_ptr<GPUParticles> _myParticles;
 	    float _myAge;
 
-        GPUParticle(GPUParticles::Ptr theParticles, int theIndex);
+        GPUParticle(std::tr1::shared_ptr<GPUParticles> theParticles, int theIndex);
 
     public: 
         typedef std::tr1::shared_ptr<GPUParticle> Ptr;
-        Ptr create(GPUParticles::Ptr theParticles, int theIndex);
+        Ptr create(std::tr1::shared_ptr<GPUParticles> theParticles, int theIndex);
         virtual ~GPUParticle() {};
 
         void nextStep();
@@ -48,7 +50,7 @@ class GPUParticle {
         void index(int theIndex);
         int x();
         int y();
-}
+};
     
 }; // namespace
 

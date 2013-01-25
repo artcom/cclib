@@ -1,7 +1,14 @@
 #ifndef __CCLIB_FRAMEBUFFEROBJECT_INCLUDED__
 #define __CCLIB_FRAMEBUFFEROBJECT_INCLUDED__
 
-#include <cclib.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <tr1/memory>
+#include <GL/glew.h>
+#include <gl/texture.h>
+#include <gl/texture2d.h>
 
 namespace cclib {
 

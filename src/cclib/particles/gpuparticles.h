@@ -1,62 +1,101 @@
 #ifndef __CCLIB_GPUPARTICLES_INCLUDED__
 #define __CCLIB_GPUPARTICLES_INCLUDED__
 
-#include <cclib.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <tr1/memory>
+#include <GL/glew.h>
 
 namespace cclib {
 
+class GPUUpdateShader;
+typedef std::tr1::shared_ptr<GPUUpdateShader> GPUUpdateShaderPtr;
+
+class GPUParticles;
+typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
+
+class GPUParticle;
+typedef std::tr1::shared_ptr<GPUParticle> GPUParticlePtr;
+
+class GPUConstraint;
+typedef std::tr1::shared_ptr<GPUConstraint> GPUConstraintPtr;
+
+class GPUForce;
+typedef std::tr1::shared_ptr<GPUForce> GPUForcePtr;
+
+class ShaderTexture;
+typedef std::tr1::shared_ptr<ShaderTexture> ShaderTexturePtr;
+
+class GPUImpulse;
+typedef std::tr1::shared_ptr<GPUImpulse> GPUImpulsePtr;
+
+class GPUImpulse;
+typedef std::tr1::shared_ptr<GPUImpulse> GPUImpulsePtr;
+
+class Shader;
+typedef std::tr1::shared_ptr<Shader> ShaderPtr;
+
+class GPUParticleRenderer;
+typedef std::tr1::shared_ptr<GPUParticleRenderer> GPUParticleRendererPtr;
+
+class GPUParticleEmitter;
+typedef std::tr1::shared_ptr<GPUParticleEmitter> GPUParticleEmitterPtr;
+
+// class FloatBuffer; // XXX
 
 class GPUParticles {
 
     protected: 
-        std::map<int, Vector3f> _myPositionUpdates;
-        std::vector<GPUParticle::Ptr> _myLifetimeUpdates; 
+        std::map<int, Vector3fPtr> _myPositionUpdates;
+        std::vector<GPUParticlePtr> _myLifetimeUpdates; 
 	    
-	    List<GPUForce::Ptr> _myForces;
-	    List<GPUConstraint::Ptr> _myConstraints;
-	    List<GPUImpulse::Ptr> _myImpulses;
+        std::vector<GPUForcePtr> _myForces;
+	    std::vector<GPUConstraintPtr> _myConstraints;
+	    std::vector<GPUImpulsePtr> _myImpulses;
 	    
 	    int _myWidth;
 	    int _myHeight;
 	    
-        GPUUpdateShader::Ptr _myUpdateShader;
+        GPUUpdateShaderPtr _myUpdateShader;
 	    
-        Shader::Ptr _myInitValue01Shader;
-        Shader::Ptr _myInitValue0Shader;
+        ShaderPtr _myInitValue01Shader;
+        ShaderPtr _myInitValue0Shader;
 	    
-        ShaderTexture::Ptr _myCurrentDataTexture;
-        ShaderTexture::Ptr _myDestinationDataTexture;
+        ShaderTexturePtr _myCurrentDataTexture;
+        ShaderTexturePtr _myDestinationDataTexture;
 	    
 	    double _myCurrentTime;
 	    
-	    FloatBuffer _myPositionBuffer;
-	    FloatBuffer _myVelocityBuffer;
+	    // FloatBuffer _myPositionBuffer;
+	    // FloatBuffer _myVelocityBuffer;
 	
     private:
-        std::vector<GPUParticleEmitter::Ptr> _myEmitter; 
-	    GPUParticleRenderer::Ptr _myParticleRender;
+        std::vector<GPUParticleEmitterPtr> _myEmitter; 
+	    GPUParticleRendererPtr _myParticleRender;
 	
-	    GPUParticles( GPUParticleRenderer::Ptr theRender,
-		    std::vector<GPUForce::Ptr> & theForces, std::vector<GPUConstraint::Ptr> & theConstraints, 
-		    std::vector<GPUImpulse::Ptr> % theImpulse, int theWidth, int theHeight); 
+	    GPUParticles( GPUParticleRendererPtr theRender,
+		    std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints, 
+		    std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight); 
     
     public:
-        GPUParticles::Ptr create( GPUParticleRenderer::Ptr theRender,
-		    std::vector<GPUForce::Ptr> & theForces, std::vector<GPUConstraint::Ptr> & theConstraints, 
-		    std::vector<GPUImpulse::Ptr> & theImpulse, int theWidth, int theHeight); 
+        GPUParticlesPtr create( GPUParticleRendererPtr theRender,
+		    std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints, 
+		    std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight); 
 
-        void addEmitter(GPUParticleEmitter::Ptr theEmitter); 
-        Shader::Ptr initValueShader();
+        void addEmitter(GPUParticleEmitterPtr theEmitter); 
+        ShaderPtr initValueShader();
         double currentTime();
         void reset();
         int width();
         int height();
         int size();
-        ShaderTexture::Ptr dataTexture();
-        Vector3f::Ptr position(GPUParticle::Ptr theParticle);
-        ShaderTexture::Ptr destinationDataTexture();
-        void setPosition(int theIndex, Vector3f::Ptr thePosition);
-        void updateLifecyle(GPUParticle::Ptr theParticle);
+        ShaderTexturePtr dataTexture();
+        Vector3fPtr position(GPUParticlePtr theParticle);
+        ShaderTexturePtr destinationDataTexture();
+        void setPosition(int theIndex, Vector3fPtr thePosition);
+        void updateLifecyle(GPUParticlePtr theParticle);
     
     private:
         void updateManualPositionChanges();
@@ -73,8 +112,8 @@ class GPUParticles {
         void update(float theDeltaTime);
         void swapDataTextures();
         void draw();
-        GPUParticleRenderer::Ptr renderer();
-}
+        GPUParticleRendererPtr renderer();
+};
     
 }; // namespace
 

@@ -1,23 +1,51 @@
 #ifndef __CCLIB_GPUUPDATESHADER_INCLUDED__
 #define __CCLIB_GPUUPDATESHADER_INCLUDED__
 
-#include <cclib.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <tr1/memory>
+#include <GL/glew.h>
 
-// shaders, defining simple_fp, forces_fp, constraints_fp, impulses_fp and velocity_fp
-#include <stringified_shaders/simplex.fp.h>
-#include <stringified_shaders/forces.fp.h>
-#include <stringified_shaders/constraints.fp.h>
-#include <stringified_shaders/impulses.fp.h>
-#include <stringified_shaders/velocity.fp.h>
+#include <cg/cg.h>
+#include <cg/CgGL.h>
+
+#include <math/vec2.h>
+#include <math/vec3.h>
+#include <Exception.h>
+
+#include <gl/shader.h>
+
+class GPUParticles;
+typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
+
+class GPUParticle;
+typedef std::tr1::shared_ptr<GPUParticle> GPUParticlePtr;
+
+class ShaderTexture;
+typedef std::tr1::shared_ptr<ShaderTexture> ShaderTexturePtr;
+
+class GPUForce;
+typedef std::tr1::shared_ptr<GPUForce> GPUForcePtr;
+
+class GPUConstraint;
+typedef std::tr1::shared_ptr<GPUConstraint> GPUConstraintPtr;
+
+class GPUImpulse;
+typedef std::tr1::shared_ptr<GPUImpulse> GPUImpulsePtr;
+
+class GPUConstraint;
+typedef std::tr1::shared_ptr<GPUConstraint> GPUConstraintPtr;
 
 namespace cclib {
 
 class GPUUpdateShader : public Shader {
 
     public: 
-        typedef std::tr1::shared_ptr<GPUUpdateShaderShader> Ptr;
+        typedef std::tr1::shared_ptr<GPUUpdateShader> Ptr;
         
-        void positions(ShaderTexture::Ptr thePositionTexture);
+        void positions(ShaderTexturePtr thePositionTexture);
         void deltaTime(float theDeltaTime);
 
     protected: 
@@ -29,12 +57,12 @@ class GPUUpdateShader : public Shader {
 	    CGparameter _myConstraintsParameter;
 	    CGparameter _myImpulsesParameter;
 
-        GPUUpdateShader( GPUParticles theParticles, std::vector<GPUForce::Ptr> theForces , 
-            std::vector<GPUConstraint::Ptr> theConstrains, std::vector<GPUImpulse::Ptr> theImpulses,
+        GPUUpdateShader( GPUParticles theParticles, std::vector<GPUForcePtr> theForces , 
+            std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
             const std::vector<std::string> & theShaderFile, int theWidth, int theHeight ); 
 	
-        Ptr create( GPUParticles::Ptr theParticles, std::vector<GPUForce::Ptr> theForces, 
-                std::vector<CCGPUConstraint::Ptr> theConstrains, std::vector<CCGPUImpulse::Ptr> theImpulses,
+        Ptr create( GPUParticlesPtr theParticles, std::vector<GPUForcePtr> theForces, 
+                std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
                 std::vector<std::string> theShaderFile, int theWidth, int theHeight ); 
 };
 
