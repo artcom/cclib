@@ -1,27 +1,13 @@
 #ifndef __CCLIB_TEXTURE2D_INCLUDED__
 #define __CCLIB_TEXTURE2D_INCLUDED__
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <tr1/memory>
-#include <GL/glew.h>
-
-#include <cg/cg.h>
-#include <cg/CgGL.h>
-
-#include <math/vec2.h>
-#include <math/vec3.h>
-#include <Exception.h>
-
+#include <cclib.h>
 #include <gl/texture.h>
 
 namespace cclib {
 
 class Color {
     public:
-        typedef std::tr1::shared_ptr<Color> Ptr; 
         Color(unsigned int red=255, unsigned int green=255, unsigned int blue=255, unsigned int alpha=255) 
             : _red(red/255.0f), _green(green/255.0f), _blue(blue/255.0f), _alpha(alpha/255.0f) {};
 
@@ -50,10 +36,9 @@ class Color {
 class Texture2D : public Texture {
 
     public:
-        typedef std::tr1::shared_ptr<Texture2D> Ptr;
         virtual ~Texture2D() {}; 
 
-        Texture2D::Ptr createTexture2D(TextureAttributes::Ptr attributes, int width=0, int height=0, 
+        Texture2DPtr createTexture2D(TextureAttributesPtr attributes, int width=0, int height=0, 
                 unsigned int numberOfTextures=1, GLenum target=GL_TEXTURE_2D);
         
         // XXX one for CCTexture2D(final CCTextureData theTextureData, CCTextureTarget theTarget)
@@ -63,7 +48,7 @@ class Texture2D : public Texture {
 
     protected:
         void allocateData(unsigned int width, unsigned int height);
-        Texture2D(TextureAttributes::Ptr attributes,
+        Texture2D(TextureAttributesPtr attributes,
                 int width, int height, unsigned int numberOfTextures, GLenum target);
         void checkError();
 

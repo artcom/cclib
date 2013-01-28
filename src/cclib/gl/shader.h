@@ -1,31 +1,17 @@
 #ifndef __CCLIB_SHADER_INCLUDED__
 #define __CCLIB_SHADER_INCLUDED__
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <tr1/memory>
-#include <GL/glew.h>
-
-#include <cg/cg.h>
-#include <cg/CgGL.h>
-
-#include <math/vec2.h>
-#include <math/vec3.h>
-#include <Exception.h>
-
+#include <cclib.h>
 
 namespace cclib {
 
 class Shader {
 
     public:
-        typedef std::tr1::shared_ptr<Shader> Ptr;
-        static Ptr createShader(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
+        static ShaderPtr create(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
                 const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
         
-        static Ptr createShader(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
+        static ShaderPtr create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
                 const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
         
         
@@ -64,6 +50,8 @@ class Shader {
                 const std::vector<std::string> & fragmentShaderFiles,
                 const std::string & vertexEntry = "", 
                 const std::string & fragmentEntry = "" );
+        
+        void checkError(const std::string & message);
 
    
     private:
@@ -72,7 +60,6 @@ class Shader {
         void loadFragmentShader(const std::vector<std::string> & fragmentPrograms);
         CGprogram loadShader(const std::string & entry, CGprofile profile, const std::vector<std::string> & fragmentPrograms);
         
-        void checkError(const std::string & message);
 
         std::string _vertexEntry;
         std::string _fragmentEntry;

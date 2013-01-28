@@ -3,7 +3,7 @@
 
 using namespace cclib;
 
-FrameBufferObject::FrameBufferObject(GLenum target, FrameBufferObjectAttributes::Ptr attributes,
+FrameBufferObject::FrameBufferObject(GLenum target, FrameBufferObjectAttributesPtr attributes,
             unsigned int width, unsigned int height) 
 : Texture2D(attributes->getTex2DAttributes(), width, height, attributes->numberOfColorBuffers, target),
  _renderFramebufferID(0), _depthTexture(), _bindIndex(0),
@@ -64,7 +64,7 @@ void
 FrameBufferObject::init() {
     // allocate and attach depth texture
     if(_attributes->depthBuffer) {
-        TextureAttributes::Ptr depthTextureAttributes = TextureAttributes::Ptr(new TextureAttributes());
+        TextureAttributesPtr depthTextureAttributes = TextureAttributesPtr(new TextureAttributes());
         depthTextureAttributes->filter = GL_LINEAR;
         depthTextureAttributes->wrapS = GL_CLAMP_TO_EDGE;
         depthTextureAttributes->wrapT = GL_CLAMP_TO_EDGE;
@@ -184,7 +184,7 @@ FrameBufferObject::initMultisample() {
     return checkStatus();
 }
 	
-FrameBufferObjectAttributes::Ptr 
+FrameBufferObjectAttributesPtr 
 FrameBufferObject::attributes() {
     return _attributes;
 }
@@ -216,7 +216,7 @@ FrameBufferObject::bindIndex(int bindIndex) {
     _bindIndex = bindIndex;
 }
 
-Texture2D::Ptr 
+Texture2DPtr 
 FrameBufferObject::depthTexture() {
     return _depthTexture;
 }

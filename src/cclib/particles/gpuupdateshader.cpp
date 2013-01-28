@@ -1,6 +1,8 @@
 #include "gpuupdateshader.h"
 
 #include <gl/shadertexture.h>
+#include <particles/gpuforce.h>
+#include <particles/gpuconstraint.h>
 
 // shaders, defining simple_fp, forces_fp, constraints_fp, impulses_fp and velocity_fp
 #include <stringified_shaders/simplex.fp.h>
@@ -23,7 +25,7 @@ GPUUpdateShader::deltaTime(float theDeltaTime) {
     parameter(_myDeltaTimeParameter, theDeltaTime);
 }
 
-GPUUpdateShader::GPUUpdateShader( GPUParticles theParticles, std::vector<GPUForcePtr> theForces , 
+GPUUpdateShader::GPUUpdateShader( GPUParticlesPtr theParticles, std::vector<GPUForcePtr> theForces , 
         std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
         const std::vector<std::string> & theShaderFile, int theWidth, int theHeight) 
 : Shader(std::vector<std::string>(), theShaderFile),
@@ -43,7 +45,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles theParticles, std::vector<GPUForc
     int myIndex = 0;
     for(std::vector<GPUForcePtr>::size_type f=0; f<theForces.size(); f++) {
         GPUForcePtr myForce = theForces[f];
-        myForce->setShader(theParticles, Ptr(this), myIndex++, theWidth, theHeight);
+        myForce->setShader(theParticles, GPUUpdateShaderPtr(this), myIndex++, theWidth, theHeight);
     }
 
     _myConstraintsParameter = fragmentParameter("constraints");
@@ -52,7 +54,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles theParticles, std::vector<GPUForc
     int myConstraintIndex = 0;
     for(std::vector<GPUConstraintPtr>::size_type c=0; c<theConstrains.size(); c++) {
         GPUConstraintPtr myConstraint = theConstrains[c];
-        myConstraint->setShader(Ptr(this), myConstraintIndex++, theWidth, theHeight);
+        myConstraint->setShader(GPUUpdateShaderPtr(this), myConstraintIndex++, theWidth, theHeight);
     }
 
     _myImpulsesParameter = fragmentParameter("impulses");
@@ -71,7 +73,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles theParticles, std::vector<GPUForc
 
     load();
 
-    GPUNoise::attachFragmentNoise(Ptr(this));
+    GPUNoise::attachFragmentNoise(GPUUpdateShaderPtr(this));
 }
 
 GPUUpdateShaderPtr 
@@ -87,7 +89,7 @@ GPUUpdateShader::create( GPUParticles::PTr theParticles, std::vector<GPUForcePtr
         theShaderFile.push_back(std::string(velocity_fp));
     }
 
-    Ptr result = Ptr(new GPUParticles(theParticles, theForces, theConstrains, theImpulses, theShaderFile, theWidth, theHeight));        
+    GPUUpdateShaderPtr result = GPUUpdateShaderPtr(new GPUParticles(theParticles, theForces, theConstrains, theImpulses, theShaderFile, theWidth, theHeight));        
     return result;
 }
 

@@ -6,10 +6,10 @@
 
 namespace cclib {
 
+
     class PixelStorageModes {
         
         public:
-            typedef std::tr1::shared_ptr<PixelStorageModes> Ptr;
 
             PixelStorageModes(); 
             virtual ~PixelStorageModes() {};

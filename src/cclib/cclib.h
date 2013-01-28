@@ -1,20 +1,77 @@
 #ifndef __CCLIB_HEADER_DEFINED__
 #define __CCLIB_HEADER_DEFINED__
 
-// #include <iostream>
-// #include <string>
-// #include <vector>
-// #include <map>
-// #include <tr1/memory>
-// #include <GL/glew.h>
-// 
-// #include <cg/cg.h>
-// #include <cg/CgGL.h>
-// 
-// #include <math/vec2.h>
-// #include <math/vec3.h>
-// #include <Exception.h>
-// 
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <tr1/memory>
+#include <GL/glew.h>
+
+#include <cg/cg.h>
+#include <cg/CgGL.h>
+
+#include <Exception.h>
+#include <math/vec2.h>
+#include <math/vec3.h>
+
+namespace cclib {
+
+class FrameBufferObjectAttributes;
+typedef std::tr1::shared_ptr<FrameBufferObjectAttributes> FrameBufferObjectAttributesPtr; 
+
+class FrameBufferObject; 
+typedef std::tr1::shared_ptr<FrameBufferObject> FrameBufferObjectPtr; 
+
+class PixelStorageModes;
+typedef std::tr1::shared_ptr<PixelStorageModes> PixelStorageModesPtr;
+
+class Shader;
+typedef std::tr1::shared_ptr<Shader> ShaderPtr;
+
+class PBO;
+typedef std::tr1::shared_ptr<PBO> PBOPtr;
+
+class ShaderTexture;
+typedef std::tr1::shared_ptr<ShaderTexture> ShaderTexturePtr;
+
+class TextureAttributes; 
+typedef std::tr1::shared_ptr<TextureAttributes> TextureAttributesPtr; 
+
+class Texture;
+typedef std::tr1::shared_ptr<Texture> TexturePtr;
+
+class Color;
+typedef std::tr1::shared_ptr<Color> ColorPtr; 
+
+class Texture2D;
+typedef std::tr1::shared_ptr<Texture2D> Texture2DPtr;
+
+class GPUUpdateShader;
+typedef std::tr1::shared_ptr<GPUUpdateShader> GPUUpdateShaderPtr;
+
+class GPUParticles;
+typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
+
+class GPUForce;
+typedef std::tr1::shared_ptr<GPUForce> GPUForcePtr;
+
+class GPUConstraint;
+typedef std::tr1::shared_ptr<GPUConstraint> GPUConstraintPtr;
+
+class GPUImpulse;
+typedef std::tr1::shared_ptr<GPUImpulse> GPUImpulsePtr;
+
+class GPUParticleEmitter;
+typedef std::tr1::shared_ptr<GPUParticleEmitter> GPUParticleEmitterPtr;
+
+class GPUParticleRenderer;
+typedef std::tr1::shared_ptr<GPUParticleRenderer> GPUParticleRendererPtr;
+
+
+};
+
+
 // // #include <gl/graphics.h>
 // #include <gl/pixelstoragemodes.h>
 // #include <gl/texture.h>

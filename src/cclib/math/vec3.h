@@ -16,7 +16,7 @@ template<typename T>
 class Vector3 {
     
     public:
-        typedef std::tr1::shared_ptr< Vector3<T> > Ptr;
+        typedef std::tr1::shared_ptr<Vector3<T> > Ptr;
         
         /**
          * Initializes a new vector by setting x and y to 0

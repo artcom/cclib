@@ -1,15 +1,16 @@
 #include "texture.h"
+#include <gl/pixelstoragemodes.h>
 
 using namespace cclib;
 
-Texture::Ptr 
-Texture::createTexture(GLuint target, TextureAttributes::Ptr attributes, unsigned int numberOfTextures) 
+TexturePtr 
+Texture::createTexture(GLuint target, TextureAttributesPtr attributes, unsigned int numberOfTextures) 
 {
-    Texture::Ptr texture = Texture::Ptr(new Texture(target, attributes, numberOfTextures));
+    TexturePtr texture = TexturePtr(new Texture(target, attributes, numberOfTextures));
     return texture;
 }
 
-Texture::Texture(GLenum target, TextureAttributes::Ptr attributes, unsigned int numberOfTextures) 
+Texture::Texture(GLenum target, TextureAttributesPtr attributes, unsigned int numberOfTextures) 
     : _target(target), _environmentMode(GL_MODULATE), _textureID(0), 
       _width(0), _height(0), _depth(1),
       _internalFormat(attributes->internalFormat), _format(attributes->format), 
@@ -34,7 +35,7 @@ void
 Texture::generateMipmaps(const bool & generateMipmaps) {
     _generateMipmaps = generateMipmaps;
     _hasMipmaps = generateMipmaps;
-    _storageModes = PixelStorageModes::Ptr(new PixelStorageModes());
+    _storageModes = PixelStorageModesPtr(new PixelStorageModes());
     _storageModes->alignment(1);
 
     if(generateMipmaps) {
@@ -307,9 +308,9 @@ Texture::size() {
  * Returns the size of the texture in pixels
  * @return
  */
-Vector2i::Ptr
+Vector2iPtr
 Texture::dimension() {
-    return Vector2i::Ptr(new Vector2i(width(), height()));
+    return Vector2iPtr(new Vector2i(width(), height()));
 }
 
 /**

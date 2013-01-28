@@ -2,9 +2,9 @@
 
 using namespace cclib;
 
-FrameBufferObjectAttributes::Ptr 
+FrameBufferObjectAttributesPtr 
 ShaderTexture::createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures) {
-    FrameBufferObjectAttributes::Ptr result = FrameBufferObjectAttributes::Ptr(new FrameBufferObjectAttributes());
+    FrameBufferObjectAttributesPtr result = FrameBufferObjectAttributesPtr(new FrameBufferObjectAttributes());
 
     result->depthBuffer = false;
     result->filter = GL_NEAREST;
@@ -196,25 +196,25 @@ ShaderTexture::getData(unsigned int x, unsigned int y, int width, int height, in
 	return pixels;
 }
 
-ShaderTexture::Ptr 
-ShaderTexture::createShaderTexture(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits, 
+ShaderTexturePtr 
+ShaderTexture::create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits, 
         int theNumberOfChannels, int theNumberOfTextures, GLenum theTarget) 
 {
-    FrameBufferObjectAttributes::Ptr attributes = createAttributes(theNumberOfBits, theNumberOfChannels, theNumberOfTextures);
-    ShaderTexture::Ptr shaderTex = ShaderTexture::Ptr(new ShaderTexture(theWidth, theHeight, attributes, theTarget));
+    FrameBufferObjectAttributesPtr attributes = createAttributes(theNumberOfBits, theNumberOfChannels, theNumberOfTextures);
+    ShaderTexturePtr shaderTex = ShaderTexturePtr(new ShaderTexture(theWidth, theHeight, attributes, theTarget));
 
     return shaderTex;
 }
 
 ShaderTexture::ShaderTexture ( unsigned int theWidth, unsigned int theHeight, 
-        FrameBufferObjectAttributes::Ptr theAttributes, GLenum theTarget) :
+        FrameBufferObjectAttributesPtr theAttributes, GLenum theTarget) :
     FrameBufferObject(theTarget, theAttributes, theWidth, theHeight)
 
 {
     _numberOfChannels = theAttributes->numberOfChannels;
     _numberOfBits = theAttributes->numberOfBits;
 
-    _pbo = std::vector<PBO::Ptr>();
+    _pbo = std::vector<PBOPtr>();
     _pbo.push_back(PBO::create(_numberOfChannels * theWidth * theHeight * (_numberOfBits == 16 ? 2 : 4)));
     _pbo.push_back(PBO::create(_numberOfChannels * theWidth * theHeight * (_numberOfBits == 16 ? 2 : 4)));
 }

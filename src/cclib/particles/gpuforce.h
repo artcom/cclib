@@ -13,11 +13,6 @@
 
 namespace cclib {
 
-class GPUUpdateShader;
-typedef std::tr1::shared_ptr<GPUUpdateShader> GPUUpdateShaderPtr;
-
-class GPUParticles;
-typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
 
 class GPUForce {
 

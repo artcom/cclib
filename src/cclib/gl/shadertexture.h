@@ -1,14 +1,7 @@
 #ifndef __CCLIB_SHADERTEXTURE_INCLUDED__
 #define __CCLIB_SHADERTEXTURE_INCLUDED__
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <tr1/memory>
-#include <GL/glew.h>
-#include <gl/texture.h>
-#include <gl/texture2d.h>
+#include <cclib.h>
 #include <gl/framebufferobject.h>
 
 namespace cclib {
@@ -16,10 +9,9 @@ namespace cclib {
 class PBO {
 
     public:
-        typedef std::tr1::shared_ptr<PBO> Ptr;
 
-        static Ptr create(unsigned int dataSize) {
-            return Ptr(new PBO(dataSize));
+        static PBOPtr create(unsigned int dataSize) {
+            return PBOPtr(new PBO(dataSize));
         };
         
         void beginUnpack() {
@@ -68,14 +60,12 @@ class PBO {
         };
 };
 
-
 class ShaderTexture : public FrameBufferObject {
 
     public:
-        typedef std::tr1::shared_ptr<ShaderTexture> Ptr;
 
-        static FrameBufferObjectAttributes::Ptr createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures); 
-        ShaderTexture::Ptr createShaderTexture(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32, 
+        static FrameBufferObjectAttributesPtr createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures); 
+        ShaderTexturePtr create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32, 
             int theNumberOfChannels=3, int theNumberOfTextures=1, GLenum theTarget=GL_TEXTURE_RECTANGLE); 
 
         void beginOrtho2D();
@@ -108,11 +98,12 @@ class ShaderTexture : public FrameBufferObject {
 
     private: 
         ShaderTexture ( unsigned int theWidth, unsigned int theHeight, 
-                FrameBufferObjectAttributes::Ptr theAttributes, GLenum theTarget=GL_TEXTURE_RECTANGLE ); 
-        std::vector<PBO::Ptr> _pbo;
+                FrameBufferObjectAttributesPtr theAttributes, GLenum theTarget=GL_TEXTURE_RECTANGLE ); 
+        std::vector<PBOPtr> _pbo;
         int _numberOfChannels;
         int _numberOfBits;
 };
+
 }; // namespace
 	
 	// private int i = 0;

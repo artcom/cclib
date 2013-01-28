@@ -10,20 +10,20 @@ class GPUConstraint {
     protected:
         std::string _myParameterIndex;
         std::string _myShaderTypeName;
-        GPUUpdateShader::Ptr _myVelocityShader;
+        GPUUpdateShaderPtr _myVelocityShader;
         
     public: 
         typedef std::tr1::shared_ptr<GPUConstraint> Ptr;
         
         GPUConstraint(const std::string & theShaderTypeName, float theResilience, float theFriction, float theMinimalVelocity); 
         virtual ~GPUConstraint() {};
-        void setShader(GPUUpdateShader::Ptr theShader, int theIndex, int theWidth, int theHeight);
+        void setShader(GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight);
 	
         CGparameter parameter(const std::string & theName);
         void resilience(float theResilience);
-        void friction(final float theFriction);	
-        void minimalVelocity(final float theMinimalVelocity); 
-        void update(final float theDeltaTime);
+        void friction(float theFriction);	
+        void minimalVelocity(float theMinimalVelocity); 
+        void update(float theDeltaTime);
 	
         virtual void setupParameter(int theWidth, int theHeight);
 	

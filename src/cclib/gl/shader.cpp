@@ -1,6 +1,5 @@
 
 #include "shader.h"
-#include "Exception.h" 
 
 using namespace cclib;
 
@@ -9,22 +8,22 @@ CGcontext Shader::cg_context = 0;
 CGprofile Shader::cg_vertex_profile; // XXX is there a default or zero profile?
 CGprofile Shader::cg_fragment_profile;
 
-Shader::Ptr 
-Shader::createShader(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
+ShaderPtr 
+Shader::create(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
         const std::string & vertexEntry, const std::string & fragmentEntry) 
 {
     std::vector<std::string> vertexShaderFiles   = std::vector<std::string>(1, vertexShaderFile);
     std::vector<std::string> fragmentShaderFiles = std::vector<std::string>(1, fragmentShaderFile);
     
-    Shader::Ptr shader = Shader::Ptr(new Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry));
+    ShaderPtr shader = ShaderPtr(new Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry));
     return shader;
 }
 
-Shader::Ptr 
-Shader::createShader(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
+ShaderPtr 
+Shader::create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
         const std::string & vertexEntry, const std::string & fragmentEntry) 
 {
-    Shader::Ptr shader = Shader::Ptr(new Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry));
+    ShaderPtr shader = ShaderPtr(new Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry));
     return shader;
 }
     

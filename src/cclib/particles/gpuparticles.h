@@ -1,49 +1,17 @@
 #ifndef __CCLIB_GPUPARTICLES_INCLUDED__
 #define __CCLIB_GPUPARTICLES_INCLUDED__
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <tr1/memory>
-#include <GL/glew.h>
+#include <cclib.h>
 
 namespace cclib {
 
-class GPUUpdateShader;
-typedef std::tr1::shared_ptr<GPUUpdateShader> GPUUpdateShaderPtr;
-
-class GPUParticles;
-typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
+// class FloatBuffer; // XXX
 
 class GPUParticle;
 typedef std::tr1::shared_ptr<GPUParticle> GPUParticlePtr;
 
-class GPUConstraint;
-typedef std::tr1::shared_ptr<GPUConstraint> GPUConstraintPtr;
-
-class GPUForce;
-typedef std::tr1::shared_ptr<GPUForce> GPUForcePtr;
-
-class ShaderTexture;
-typedef std::tr1::shared_ptr<ShaderTexture> ShaderTexturePtr;
-
-class GPUImpulse;
-typedef std::tr1::shared_ptr<GPUImpulse> GPUImpulsePtr;
-
-class GPUImpulse;
-typedef std::tr1::shared_ptr<GPUImpulse> GPUImpulsePtr;
-
-class Shader;
-typedef std::tr1::shared_ptr<Shader> ShaderPtr;
-
-class GPUParticleRenderer;
-typedef std::tr1::shared_ptr<GPUParticleRenderer> GPUParticleRendererPtr;
-
-class GPUParticleEmitter;
-typedef std::tr1::shared_ptr<GPUParticleEmitter> GPUParticleEmitterPtr;
-
-// class FloatBuffer; // XXX
+class GPUParticles;
+typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
 
 class GPUParticles {
 

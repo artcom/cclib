@@ -1,27 +1,29 @@
 #ifndef __CCLIB_TEXTURE_INCLUDED__
 #define __CCLIB_TEXTURE_INCLUDED__
 
-#include <gl/pixelstoragemodes.h>
+// #include <gl/pixelstoragemodes.h>
+// 
+// #include <iostream>
+// #include <string>
+// #include <vector>
+// #include <map>
+// #include <tr1/memory>
+// #include <GL/glew.h>
+// 
+// #include <cg/cg.h>
+// #include <cg/CgGL.h>
+// 
+// #include <math/vec2.h>
+// #include <math/vec3.h>
+// #include <Exception.h>
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <tr1/memory>
-#include <GL/glew.h>
-
-#include <cg/cg.h>
-#include <cg/CgGL.h>
-
-#include <math/vec2.h>
-#include <math/vec3.h>
-#include <Exception.h>
+#include <cclib.h>
 
 namespace cclib {
+        
 
 class TextureAttributes {
     public:
-        typedef std::tr1::shared_ptr<TextureAttributes> Ptr; 
         
         GLenum wrapS;
         GLenum wrapT;
@@ -45,12 +47,10 @@ class TextureAttributes {
 };
 
 class Texture {
-
     public:
-        typedef std::tr1::shared_ptr<Texture> Ptr;
         virtual ~Texture(); 
         
-        Texture::Ptr createTexture(GLuint target, TextureAttributes::Ptr attributes, unsigned int numberOfTextures = 1); 
+        TexturePtr createTexture(GLuint target, TextureAttributesPtr attributes, unsigned int numberOfTextures = 1); 
         
         // virtual void dataImplementation(CCTextureData theData);
         // virtual void updateData(final CCTextureData theData);
@@ -77,7 +77,7 @@ class Texture {
         unsigned int height();
         unsigned int size();
 
-        Vector2i::Ptr dimension();
+        Vector2iPtr dimension();
 
         int depth();
         int border();
@@ -102,7 +102,7 @@ class Texture {
         // void blendColor(CCColor blendColor);
 
     protected:
-        Texture(GLuint target, TextureAttributes::Ptr attributes, unsigned int numberOfTextures); 
+        Texture(GLuint target, TextureAttributesPtr attributes, unsigned int numberOfTextures); 
         
         GLenum _target;
         GLenum _environmentMode;
@@ -116,7 +116,7 @@ class Texture {
         GLenum _format;
         GLenum _pixelType;
 
-        PixelStorageModes::Ptr _storageModes;
+        PixelStorageModesPtr _storageModes;
 
         std::vector<GLuint> _textureIDs;
         GLuint _textureID;

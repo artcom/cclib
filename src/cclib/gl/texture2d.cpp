@@ -1,12 +1,13 @@
 #include "texture2d.h"
+#include <gl/pixelstoragemodes.h>
 
 using namespace cclib;
 
-Texture2D::Ptr 
-Texture2D::createTexture2D(TextureAttributes::Ptr attributes, int width, int height, 
+Texture2DPtr 
+Texture2D::createTexture2D(TextureAttributesPtr attributes, int width, int height, 
         unsigned int numberOfTextures, GLenum target)
 {
-    Ptr texture = Ptr(new Texture2D(attributes, width, height, numberOfTextures, target));
+    Texture2DPtr texture = Texture2DPtr(new Texture2D(attributes, width, height, numberOfTextures, target));
     if (width > 0 && height > 0) {
         texture->allocateData(width, height);
     }
@@ -14,7 +15,7 @@ Texture2D::createTexture2D(TextureAttributes::Ptr attributes, int width, int hei
     return texture;
 }
 
-Texture2D::Texture2D(TextureAttributes::Ptr attributes,
+Texture2D::Texture2D(TextureAttributesPtr attributes,
              int width, int height, unsigned int numberOfTextures, GLenum target) 
     : Texture(target, attributes, numberOfTextures) 
 { 

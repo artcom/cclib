@@ -1,20 +1,16 @@
 #ifndef __CCLIB_FRAMEBUFFEROBJECT_INCLUDED__
 #define __CCLIB_FRAMEBUFFEROBJECT_INCLUDED__
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <tr1/memory>
-#include <GL/glew.h>
+#include <cclib.h>
 #include <gl/texture.h>
 #include <gl/texture2d.h>
+#include <gl/pixelstoragemodes.h>
+
 
 namespace cclib {
 
 class FrameBufferObjectAttributes : public TextureAttributes {
     public:
-        typedef std::tr1::shared_ptr<FrameBufferObjectAttributes> Ptr; 
         
         GLenum depthInternalFormat;
         int numberOfSamples;
@@ -36,18 +32,17 @@ class FrameBufferObjectAttributes : public TextureAttributes {
             stencilBuffer(false),
             numberOfChannels(1),
             numberOfBits(8)
-    {
-        internalFormat = GL_RGBA8;
-    }; 
+        {
+            internalFormat = GL_RGBA8;
+        }; 
 
-        TextureAttributes::Ptr getTex2DAttributes() {
-            return TextureAttributes::Ptr(static_cast<TextureAttributes*>(this));
+        TextureAttributesPtr getTex2DAttributes() {
+            return TextureAttributesPtr(static_cast<TextureAttributes*>(this));
         };
 };
 
 class FrameBufferObject : public Texture2D {
     public:
-        typedef std::tr1::shared_ptr<FrameBufferObject> Ptr; 
         virtual ~FrameBufferObject() {}; 
         
         static int getMaxSamples();
@@ -58,13 +53,13 @@ class FrameBufferObject : public Texture2D {
         bool initMultisampling();
         bool initMultisample();
         
-        FrameBufferObjectAttributes::Ptr attributes();
+        FrameBufferObjectAttributesPtr attributes();
         int numberOfAttachments();
         void updateMipmaps();
         void bind();
         void bindIndex(int theBindIndex);
         
-        Texture2D::Ptr depthTexture();
+        Texture2DPtr depthTexture();
         void bindBuffer();
         void unbindBuffer();
         void bindFBO();
@@ -77,13 +72,13 @@ class FrameBufferObject : public Texture2D {
     private:
         
         GLuint _renderFramebufferID;
-        Texture2D::Ptr _depthTexture;
+        Texture2DPtr _depthTexture;
         GLuint _bindIndex;
 
         std::vector<GLuint> _renderBufferIDs;
         bool _useMultisampling;
 
-        FrameBufferObjectAttributes::Ptr _attributes;
+        FrameBufferObjectAttributesPtr _attributes;
 	    int _maxAntialiasing;
 	
         GLuint _depthRenderBufferId;
@@ -91,7 +86,7 @@ class FrameBufferObject : public Texture2D {
         GLuint _resolveFramebufferId;
 
     protected:
-        FrameBufferObject(GLenum target, FrameBufferObjectAttributes::Ptr attributes,
+        FrameBufferObject(GLenum target, FrameBufferObjectAttributesPtr attributes,
                     unsigned int width, unsigned int height); 
         
         std::vector<GLuint> _framebuffers;
