@@ -65,7 +65,7 @@ class ShaderTexture : public FrameBufferObject {
     public:
 
         static FrameBufferObjectAttributesPtr createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures); 
-        ShaderTexturePtr create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32, 
+        static ShaderTexturePtr create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32, 
             int theNumberOfChannels=3, int theNumberOfTextures=1, GLenum theTarget=GL_TEXTURE_RECTANGLE); 
 
         void beginOrtho2D();

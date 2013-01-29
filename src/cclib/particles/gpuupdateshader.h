@@ -11,6 +11,10 @@ class GPUUpdateShader : public Shader {
     public: 
         void positions(ShaderTexturePtr thePositionTexture);
         void deltaTime(float theDeltaTime);
+        
+        static GPUUpdateShaderPtr create( GPUParticlesPtr theParticles, std::vector<GPUForcePtr> theForces, 
+                std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
+                std::vector<std::string> theShaderFile, int theWidth, int theHeight ); 
 
     protected: 
 	    CGparameter _myVelocityTextureParameter;
@@ -25,9 +29,6 @@ class GPUUpdateShader : public Shader {
             std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
             const std::vector<std::string> & theShaderFile, int theWidth, int theHeight ); 
 	
-        GPUUpdateShaderPtr create( GPUParticlesPtr theParticles, std::vector<GPUForcePtr> theForces, 
-                std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
-                std::vector<std::string> theShaderFile, int theWidth, int theHeight ); 
 };
 
 }; // namespace

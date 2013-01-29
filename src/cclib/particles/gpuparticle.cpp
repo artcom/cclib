@@ -1,19 +1,20 @@
 
-#include <gl/gpuparticle.h>
+#include "gpuparticle.h"
+#include <particles/gpuparticles.h>
 
 using namespace cclib;
 
-GPUParticle::GPUParticle(GPUParticles::Ptr theParticles, int theIndex):
+GPUParticle::GPUParticle(GPUParticlesPtr theParticles, int theIndex):
     _myParticles(theParticles), _myIndex(theIndex), _myIsAllocated(false), 
     _myStep(0), _myAge(0), _myIsPermanent(false)
 {
-    _myPosition = Ptr(new Vector3f());
-    _myVelocity = Ptr(new Vector3f());
+    _myPosition = Vector3fPtr( new Vector3f() );
+    _myVelocity = Vector3fPtr( new Vector3f() );
 }
 
-GPUParticle::Ptr 
-GPUParticle::create(GPUParticles::Ptr theParticles, int theIndex) {
-    return Ptr(new GPUParticle(theParticles, theIndex));
+GPUParticlePtr 
+GPUParticle::create(GPUParticlesPtr theParticles, int theIndex) {
+    return GPUParticlePtr(new GPUParticle(theParticles, theIndex));
 }
 
 void 
@@ -47,16 +48,16 @@ GPUParticle::isAllocated() {
 }
 
 void 
-GPUParticle::isAllocated(boolean theIsAllocated) {
+GPUParticle::isAllocated(bool theIsAllocated) {
     _myIsAllocated = theIsAllocated;
 }
 
-Vector3f::Ptr 
+Vector3fPtr 
 GPUParticle::position() {
     return _myPosition;
 }
 
-Vector3f::Ptr 
+Vector3fPtr 
 GPUParticle::velocity() {
     return _myVelocity;
 }
@@ -88,7 +89,7 @@ GPUParticle::isPermanent() {
 }
 
 void 
-GPUParticle::isPermanent(boolean theIsPermanent) {
+GPUParticle::isPermanent(bool theIsPermanent) {
     _myIsPermanent = theIsPermanent;
 }
 

@@ -1,73 +1,95 @@
 
-#include <gl/gpuparticles.h>
+#include <cfloat>
+
+#include "gpuparticles.h"
+#include <particles/gpuforce.h>
+#include <particles/gpuparticlerenderer.h>
+#include <particles/gpuparticle.h>
+#include <particles/gpuparticleemitter.h>
+#include <particles/gpuconstraint.h>
+#include <particles/gpuimpulse.h>
+#include <gl/graphics.h>
+#include <gl/shader.h>
+#include <gl/shadertexture.h>
+#include <stringified_shaders/initvalue01.fp.h>
+#include <stringified_shaders/initvalue.fp.h>
 
 using namespace cclib;
 
-GPUParticles::GPUParticles( GPUParticleRenderer::Ptr theRender,
-        std::vector<GPUForce::Ptr> & theForces, std::vector<GPUConstraint::Ptr> & theConstraints, 
-        std::vector<GPUImpulse::Ptr> % theImpulse, int theWidth, int theHeight) :
+GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
+        std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints, 
+        std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight) :
     _myForces(theForces), _myConstraints(theConstraints),
-    _myImpulses(theImpulse),_myWidth(theWidth), _myHeight(theHeight), _myCurrentTime(0.0)
+    _myImpulses(theImpulse), _myWidth(theWidth), 
+    _myHeight(theHeight), _myCurrentTime(0.0)
 {
-    for (std::vector<GPUForces::Ptr>::size_type f=0; f<theForces.size(); f++) {
+    for (std::vector<GPUForcePtr>::size_type f=0; f<theForces.size(); f++) {
         theForces[f]->setSize(theWidth, theHeight);
     }
 
-    _myInitValue01Shader = new CGShader(null,CCIOUtil.classPath(this, "shader/initvalue01.fp"));
-    _myInitValue01Shader.load();
+    std::vector<std::string> vfiles, ffiles;
+    ffiles.push_back(std::string(initvalue01_fp));
 
-    _myInitValue0Shader = new CGShader(null,CCIOUtil.classPath(this, "shader/initvalue.fp"));
-    _myInitValue0Shader.load();
+    _myInitValue01Shader = Shader::create(vfiles, ffiles);
+    _myInitValue01Shader->load();
 
-    _myCurrentDataTexture = new CCShaderTexture(32, 4, 3, _myWidth, _myHeight);
-    Graphics::clearColor(0.0f, 0.0f, 1.0ff);
-    _myCurrentDataTexture.beginDraw(0);
+    ffiles.clear(); ffiles.push_back(std::string(initvalue_fp));
+    _myInitValue01Shader = Shader::create(vfiles, ffiles);
+    _myInitValue0Shader->load();
+
+    _myCurrentDataTexture = ShaderTexture::create( _myWidth, _myHeight, 32, 4, 3);
+    Graphics::clearColor(0.0f, 0.0f, 1.0f);
+    _myCurrentDataTexture->beginDraw(0);
     Graphics::clear();
-    _myCurrentDataTexture.endDraw();
-    _myCurrentDataTexture.beginDraw(1);
+    _myCurrentDataTexture->endDraw();
+    _myCurrentDataTexture->beginDraw(1);
     Graphics::clear();
-    _myCurrentDataTexture.endDraw();
+    _myCurrentDataTexture->endDraw();
     Graphics::clearColor(0);
 
-    _myDestinationDataTexture = new CCShaderTexture(32, 4, 3, _myWidth, _myHeight);
+    _myDestinationDataTexture = ShaderTexture::create(_myWidth, _myHeight, 32, 4, 3);
 
     Graphics::noBlend();
-    _myCurrentDataTexture.beginDraw();
-    _myInitValue01Shader.start();
+    _myCurrentDataTexture->beginDraw();
+    _myInitValue01Shader->start();
 
     Graphics::beginShape(GL_POINTS);
-    for (int i = 0; i < _myWidth * _myHeight; i++){
-        Graphics::textureCoords(0, 0f, 0f, 0f);
-        Graphics::textureCoords(1, 0f, 0f, 0f);
-        Graphics::vertex(i % _myWidth,i / _myWidth);
+    for (int i = 0; i < _myWidth * _myHeight; i++) {
+        Graphics::textureCoords(0, 0.0f, 0.0f, 0.0f);
+        Graphics::textureCoords(1, 0.0f, 0.0f, 0.0f);
+        Graphics::vertex(i % _myWidth, i / _myWidth);
     }
     Graphics::endShape();
 
-    _myInitValue01Shader.end();
-    _myCurrentDataTexture.endDraw();
+    _myInitValue01Shader->end();
+    _myCurrentDataTexture->endDraw();
 
     _myParticleRender = theRender;
-    _myParticleRender.setup(Ptr(this));
-    _myUpdateShader = new CCGPUUpdateShader(Ptr(this),theForces, theConstraints, theImpulse, _myWidth, _myHeight);
+    _myParticleRender->setup( GPUParticlesPtr(this) );
+    
+    std::vector<std::string> myNoShaders;
+    _myUpdateShader = GPUUpdateShader::create( GPUParticlesPtr(this), theForces, theConstraints, theImpulse, myNoShaders, _myWidth, _myHeight );
 
     reset();
 }
     
-GPUParticles::Ptr 
-GPUParticles::create( GPUParticleRenderer::Ptr theRender,
-        std::vector<GPUForce::Ptr> & theForces, std::vector<GPUConstraint::Ptr> & theConstraints, 
-        std::vector<GPUImpulse::Ptr> & theImpulse, int theWidth, int theHeight) 
+GPUParticlesPtr 
+GPUParticles::create( GPUParticleRendererPtr theRender,
+        std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints, 
+        std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight) 
 {
-    Ptr ptr = Ptr(new GPUParticles(theRender, theForces, theConstraints, theImpulse, theWidth, theHeight)); 
-    return Ptr;
+    GPUParticlesPtr ptr = GPUParticlesPtr(
+            new GPUParticles(theRender, theForces, theConstraints, theImpulse, theWidth, theHeight)
+    ); 
+    return ptr;
 }
 
 void 
-GPUParticles::addEmitter(GPUParticleEmitter::Ptr theEmitter) {
+GPUParticles::addEmitter(GPUParticleEmitterPtr theEmitter) {
     _myEmitter.push_back(theEmitter);
 }
 
-Shader::Ptr 
+ShaderPtr 
 GPUParticles::initValueShader() {
     return _myInitValue01Shader;
 }
@@ -98,7 +120,6 @@ GPUParticles::reset(){
     for (unsigned int i=0; i<_myForces.size(); i++)
         _myForces[i]->reset();
 }
-}
 
 int 
 GPUParticles::width() {
@@ -115,29 +136,29 @@ GPUParticles::size() {
     return _myWidth * _myHeight;
 }
 
-ShaderTexture::Ptr 
+ShaderTexturePtr 
 GPUParticles::dataTexture() {
     return _myCurrentDataTexture;
 }
 
-Vector3f::Ptr 
-GPUParticles::position(GPUParticle::Ptr theParticle) {
-    FloatBuffer myResult = _myCurrentDataTexture.getData(theParticle->x(), theParticle->y(), 1, 1);
-    return Vector3f::Ptr(new Vector3f(myResult.get(), myResult.get(), myResult.get()));
+Vector3fPtr 
+GPUParticles::position(GPUParticlePtr theParticle) {
+    std::vector<float> myResult = _myCurrentDataTexture->getData(theParticle->x(), theParticle->y(), 1, 1);
+    return Vector3fPtr(new Vector3f(myResult[0], myResult[1], myResult[2]));
 }
 
-ShaderTexture::Ptr 
+ShaderTexturePtr 
 GPUParticles::destinationDataTexture() {
     return _myDestinationDataTexture;
 }
 
 void 
-GPUParticles::setPosition(int theIndex, Vector3f::Ptr thePosition) {
+GPUParticles::setPosition(int theIndex, Vector3fPtr thePosition) {
     _myPositionUpdates[theIndex] = thePosition;
 }
 
 void 
-GPUParticles::updateLifecyle(GPUParticle::Ptr theParticle) {
+GPUParticles::updateLifecyle(GPUParticlePtr theParticle) {
     _myLifetimeUpdates.push_back(theParticle);
 }
 
@@ -154,14 +175,11 @@ GPUParticles::updateManualPositionChanges() {
 
     Graphics::beginShape(GL_POINTS);
 
-    Iterator<Entry<Integer, CCVector3f>> it = _myPositionUpdates.entrySet().iterator();
+    std::map<int, Vector3fPtr>::const_iterator itr;
 
-    while (it.hasNext()) {
-        Map.Entry<Integer, CCVector3f> pairs = (Map.Entry<Integer, CCVector3f>)it.next();
-
-        Graphics::textureCoords(0, pairs.getValue());
-        Graphics::vertex(pairs.getKey() % _myWidth, 
-                pairs.getKey() / _myWidth);
+    for(itr = _myPositionUpdates.begin(); itr != _myPositionUpdates.end(); ++itr){
+        Graphics::textureCoords(0, (*itr).second);
+        Graphics::vertex((*itr).first % _myWidth,  (*itr).first / _myWidth);
     }
 
     Graphics::endShape();
@@ -169,7 +187,7 @@ GPUParticles::updateManualPositionChanges() {
     _myInitValue0Shader->end();
     _myCurrentDataTexture->endDraw();
 
-    _myPositionUpdates->clear();
+    _myPositionUpdates.clear();
 }
 
 void 
@@ -245,8 +263,8 @@ GPUParticles::update(float theDeltaTime) {
         return;
     }
 
-    for(CCGPUParticleEmitter myEmitter:_myEmitter) {
-        myEmitter.update(theDeltaTime);
+    for (unsigned int e=0; e<_myEmitter.size(); e++) {
+        _myEmitter[e]->update(theDeltaTime);
     }
 
     Graphics::noBlend();
@@ -257,7 +275,7 @@ GPUParticles::update(float theDeltaTime) {
     }
 
     for (unsigned int c=0; c<_myConstraints.size(); c++) {
-        myConstraints[c]->update(theDeltaTime);
+        _myConstraints[c]->update(theDeltaTime);
     }
 
     for (unsigned int i=0; i<_myImpulses.size(); i++) {
@@ -280,7 +298,7 @@ GPUParticles::update(float theDeltaTime) {
 
 void 
 GPUParticles::swapDataTextures() {
-    ShaderTexture::Ptr myTemp = _myDestinationDataTexture;
+    ShaderTexturePtr myTemp = _myDestinationDataTexture;
     _myDestinationDataTexture = _myCurrentDataTexture;
     _myCurrentDataTexture = myTemp;
 }
@@ -290,7 +308,7 @@ GPUParticles::draw() {
     _myParticleRender->draw();
 }
 
-GPUParticleRenderer::Ptr 
+GPUParticleRendererPtr 
 GPUParticles::renderer() {
     return _myParticleRender;
 }

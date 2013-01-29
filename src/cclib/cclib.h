@@ -54,6 +54,9 @@ typedef std::tr1::shared_ptr<GPUUpdateShader> GPUUpdateShaderPtr;
 class GPUParticles;
 typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
 
+class GPUParticle;
+typedef std::tr1::shared_ptr<GPUParticle> GPUParticlePtr;
+
 class GPUForce;
 typedef std::tr1::shared_ptr<GPUForce> GPUForcePtr;
 
@@ -71,6 +74,9 @@ typedef std::tr1::shared_ptr<GPUParticleRenderer> GPUParticleRendererPtr;
 
 class GPUNoise;
 typedef std::tr1::shared_ptr<GPUNoise> GPUNoisePtr;
+
+class VBOMesh;
+typedef std::tr1::shared_ptr<VBOMesh> VBOMeshPtr;
 
 };
 

@@ -5,8 +5,6 @@
 
 namespace cclib {
 
-class GPUParticles;
-
 class GPUParticle {
     private:
         double _myTimeOfDeath;
@@ -19,14 +17,13 @@ class GPUParticle {
         Vector3f::Ptr _myPosition;
         Vector3f::Ptr  _myVelocity;
 	
-        std::tr1::shared_ptr<GPUParticles> _myParticles;
+        GPUParticlesPtr _myParticles;
 	    float _myAge;
 
-        GPUParticle(std::tr1::shared_ptr<GPUParticles> theParticles, int theIndex);
+        GPUParticle(GPUParticlesPtr theParticles, int theIndex);
 
     public: 
-        typedef std::tr1::shared_ptr<GPUParticle> Ptr;
-        Ptr create(std::tr1::shared_ptr<GPUParticles> theParticles, int theIndex);
+        GPUParticlePtr create(GPUParticlesPtr theParticles, int theIndex);
         virtual ~GPUParticle() {};
 
         void nextStep();
