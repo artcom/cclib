@@ -3,6 +3,8 @@
 #include <gl/shadertexture.h>
 #include <particles/gpuforce.h>
 #include <particles/gpuconstraint.h>
+#include <particles/gpuimpulse.h>
+#include <particles/gpunoise.h>
 
 // shaders, defining simple_fp, forces_fp, constraints_fp, impulses_fp and velocity_fp
 #include <stringified_shaders/simplex.fp.h>
@@ -63,7 +65,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticlesPtr theParticles, std::vector<GPUF
     int myImpulseIndex = 0;
     for(std::vector<GPUImpulsePtr>::size_type i=0; i<theImpulses.size(); i++) {
         GPUImpulsePtr myImpulse = theImpulses[i];
-        myImpulse.setShader(this, myImpulseIndex++, theWidth, theHeight);
+        myImpulse->setShader(GPUUpdateShaderPtr(this), myImpulseIndex++, theWidth, theHeight);
     }
 
     _myPositionTextureParameter = fragmentParameter("positionTexture");
@@ -77,19 +79,19 @@ GPUUpdateShader::GPUUpdateShader( GPUParticlesPtr theParticles, std::vector<GPUF
 }
 
 GPUUpdateShaderPtr 
-GPUUpdateShader::create( GPUParticles::PTr theParticles, std::vector<GPUForcePtr> theForces, 
-        std::vector<CCGPUConstraintPtr> theConstrains, std::vector<CCGPUImpulsePtr> theImpulses,
+GPUUpdateShader::create( GPUParticlesPtr theParticles, std::vector<GPUForcePtr> theForces, 
+        std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
         std::vector<std::string> theShaderFile, int theWidth, int theHeight) 
 {
     if (theShaderFile.empty()) {
-        theShaderFile.push_back(std::string(simple_fp));
+        theShaderFile.push_back(std::string(simplex_fp));
         theShaderFile.push_back(std::string(forces_fp));
         theShaderFile.push_back(std::string(constraints_fp));
         theShaderFile.push_back(std::string(impulses_fp));
         theShaderFile.push_back(std::string(velocity_fp));
     }
 
-    GPUUpdateShaderPtr result = GPUUpdateShaderPtr(new GPUParticles(theParticles, theForces, theConstrains, theImpulses, theShaderFile, theWidth, theHeight));        
+    GPUUpdateShaderPtr result = GPUUpdateShaderPtr(new GPUUpdateShader(theParticles, theForces, theConstrains, theImpulses, theShaderFile, theWidth, theHeight));        
     return result;
 }
 

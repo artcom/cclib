@@ -1,4 +1,4 @@
-#include <gl/gpuforce.h>
+#include <particles/gpuforce.h>
 
 using namespace cclib;
 
@@ -19,7 +19,7 @@ GPUForce::setupParameter(int theWidth, int theHeight) {
 }
 
 void 
-GPUForce::setShader(GPUParticles::Ptr theParticles, GPUUpdateShader::Ptr  theShader, 
+GPUForce::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr  theShader, 
         int theIndex, int theWidth, int theHeight) 
 {
     std::stringstream ss;
@@ -32,23 +32,23 @@ GPUForce::setShader(GPUParticles::Ptr theParticles, GPUUpdateShader::Ptr  theSha
 }
 
 void 
-GPUForce::setShader(GPUParticles::Ptr theParticles, GPUUpdateShader::Ptr theShader, 
+GPUForce::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, 
         std::string theIndex, int theWidth, int theHeight) 
 {
     _myParticles = theParticles;
     _myVelocityShader = theShader;
     _myParameterIndex = theIndex;
     
-    _myVelocityShader.checkError("Problem creating force.");
+    _myVelocityShader->checkError("Problem creating force.");
     
     cgConnectParameter(
-            _myVelocityShader.createFragmentParameter(_myShaderTypeName), 
-            _myVelocityShader.fragmentParameter(_myParameterIndex)
+            _myVelocityShader->createFragmentParameter(_myShaderTypeName), 
+            _myVelocityShader->fragmentParameter(_myParameterIndex)
         );
 
     setupParameter(theWidth, theHeight);
     //		update(0);
-    _myVelocityShader.checkError("Problem creating force.");
+    _myVelocityShader->checkError("Problem creating force.");
 }
 
 void 
@@ -57,7 +57,7 @@ GPUForce::setSize(int theWidth, int theHeight) {
 
 void 
 GPUForce::update(float theDeltaTime) {
-    _myVelocityShader.parameter(_myStrengthParameter, _myStrength);
+    _myVelocityShader->parameter(_myStrengthParameter, _myStrength);
 }
 
 void 
@@ -72,7 +72,7 @@ GPUForce::strength(float theStrength) {
 
 CGparameter 
 GPUForce::parameter(const std::string & theName){
-    return _myVelocityShader.fragmentParameter(_myParameterIndex+"."+theName);
+    return _myVelocityShader->fragmentParameter(_myParameterIndex+"."+theName);
 }
 
 

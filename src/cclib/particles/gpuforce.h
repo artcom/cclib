@@ -24,7 +24,7 @@ class GPUForce {
         GPUUpdateShaderPtr _myVelocityShader;
         GPUParticlesPtr _myParticles;
 	
-	    float _myStrength; //  = 1;
+	    float _myStrength; 
         CGparameter _myStrengthParameter;
 	
         void setupParameter(int theWidth, int theHeight);

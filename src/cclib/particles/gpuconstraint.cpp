@@ -1,17 +1,15 @@
 
-#include <gl/gpuconstraint.h>
+#include <particles/gpuupdateshader.h>
+#include "gpuconstraint.h"
 
-GPUConstraint::GPUConstraint(const std::string & theShaderTypeName, float theResilience, float theFriction, float theMinimalVelocity) 
-{
-    _myShaderTypeName = theShaderTypeName;
+using namespace cclib;
 
-    _myResilience = theResilience;
-    _myFriction = theFriction;
-    _myMinimalVelocity = theMinimalVelocity;
-}
+GPUConstraint::GPUConstraint(const std::string & theShaderTypeName, float theResilience, float theFriction, float theMinimalVelocity) :
+    _myShaderTypeName(theShaderTypeName), _myResilience(theResilience), _myFriction(theFriction), _myMinimalVelocity(theMinimalVelocity)
+{}
 
 void 
-GPUConstraint::setShader(GPUUpdateShader::Ptr theShader, int theIndex, int theWidth, int theHeight)
+GPUConstraint::setShader(GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight)
 {
     _myVelocityShader = theShader;
     
@@ -35,6 +33,36 @@ GPUConstraint::setShader(GPUUpdateShader::Ptr theShader, int theIndex, int theWi
     minimalVelocity(_myMinimalVelocity);
 
     setupParameter(theWidth, theHeight);
-    _myVelocityShader.checkError("Problem creating constrain.");
+    _myVelocityShader->checkError("Problem creating constrain.");
+}
+	
+CGparameter 
+GPUConstraint::parameter(const std::string & theName) {
+    std::stringstream ss;
+    ss << _myParameterIndex;
+    ss << std::string(".");
+    ss << theName;
+
+    return _myVelocityShader->fragmentParameter(ss.str());
+}
+
+void 
+GPUConstraint::resilience(float theResilience) {
+    _myVelocityShader->parameter(_myResilienceParameter, theResilience);
+}
+
+void 
+GPUConstraint::friction(float theFriction) {
+    _myVelocityShader->parameter(_myFrictionarameter, 1.0f - theFriction);
+}
+
+void 
+GPUConstraint::minimalVelocity(float theMinimalVelocity) {
+    _myVelocityShader->parameter(_myMinimalVelocityParameter, theMinimalVelocity);
+}
+
+void 
+GPUConstraint::update(float theDeltaTime) {
+
 }
 

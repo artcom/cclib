@@ -1,4 +1,7 @@
-#include <gl/gpuimpulse.h>
+#include <particles/gpuupdateshader.h>
+#include "gpuimpulse.h"
+
+using namespace cclib;
 
 GPUImpulse::GPUImpulse(const std::string &theShaderTypeName, float theStrength) {
     _myShaderTypeName = theShaderTypeName;
@@ -6,7 +9,7 @@ GPUImpulse::GPUImpulse(const std::string &theShaderTypeName, float theStrength) 
 }
 
 void 
-GPUImpulse::setShader(GPUUpdateShader::Ptr theShader, int theIndex, int theWidth, int theHeight) {
+GPUImpulse::setShader(GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight) {
     _myVelocityShader = theShader;
     std::stringstream ss;
     ss << std::string("impulses[");
@@ -16,8 +19,8 @@ GPUImpulse::setShader(GPUUpdateShader::Ptr theShader, int theIndex, int theWidth
     _myParameterIndex = ss.str(); 
 
     cgConnectParameter(
-            _myVelocityShader.createFragmentParameter(_myShaderTypeName), 
-            _myVelocityShader.fragmentParameter(_myParameterIndex)
+            _myVelocityShader->createFragmentParameter(_myShaderTypeName), 
+            _myVelocityShader->fragmentParameter(_myParameterIndex)
             );
 
     _myStrengthParameter  = parameter("strength");
@@ -25,13 +28,13 @@ GPUImpulse::setShader(GPUUpdateShader::Ptr theShader, int theIndex, int theWidth
     strength(_myStrength);
 
     setupParameter(theWidth, theHeight);
-    _myVelocityShader.checkError("Problem creating constrain.");
+    _myVelocityShader->checkError("Problem creating constrain.");
 }
 
 CGparameter 
 GPUImpulse::parameter(const std::string & theName) {
     std::string s = _myParameterIndex + std::string(".") + theName;
-    return _myVelocityShader.fragmentParameter(_myParameterIndex+"."+theName);
+    return _myVelocityShader->fragmentParameter(_myParameterIndex+"."+theName);
 }
 
 void 
@@ -53,9 +56,9 @@ void
 GPUImpulse::update(float theDeltaTime) {
     if(_myTrigger) {
         _myTrigger = false;
-        _myVelocityShader.parameter(_myStrengthParameter, _myStrength);
+        _myVelocityShader->parameter(_myStrengthParameter, _myStrength);
     }else {
-        _myVelocityShader.parameter(_myStrengthParameter, 0);
+        _myVelocityShader->parameter(_myStrengthParameter, 0);
     }
 }
 

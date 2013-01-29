@@ -9,6 +9,7 @@
 #include <string>
 #include <stdexcept>
 
+#include <cclib.h>
 #include <gl/shader.h>
 
 #include "gl_fixture.h"
@@ -62,11 +63,11 @@ BOOST_FIXTURE_TEST_CASE(testShaderConstruction, GL_Fixture)
     BOOST_TEST_MESSAGE(">> it should work with no shaders");
     std::vector<std::string> vfiles;
     std::vector<std::string> ffiles;
-    Shader::Ptr shader = Shader::createShader(vfiles, ffiles); 
+    ShaderPtr shader = Shader::create(vfiles, ffiles); 
 
     BOOST_TEST_MESSAGE(">> it should throw an exception for syntax errors");
     vfiles.push_back(std::string("Syntax error? \n Wait, this is not even a shader!"));
-    BOOST_CHECK_THROW(Shader::createShader(vfiles, ffiles), std::exception);
+    BOOST_CHECK_THROW(Shader::create(vfiles, ffiles), std::exception);
     vfiles.clear();
     
     BOOST_TEST_MESSAGE(">> it should compile correct shaders without complaining");
@@ -75,14 +76,14 @@ BOOST_FIXTURE_TEST_CASE(testShaderConstruction, GL_Fixture)
         "{\n" \
         "    return float4(0.6, 1.0, 0.0, 1.0);\n" 
         " } "));
-    Shader::Ptr compiled = Shader::createShader(vfiles, ffiles); 
+    ShaderPtr compiled = Shader::create(vfiles, ffiles); 
     BOOST_CHECK(compiled != NULL);
 }
 
 #define COMPILE_FP(x) vfiles.clear(); ffiles.clear();  \
-    BOOST_CHECK_NO_THROW( ffiles.push_back(x); Shader::createShader(vfiles, ffiles) ); 
+    BOOST_CHECK_NO_THROW( ffiles.push_back(x); Shader::create(vfiles, ffiles) ); 
 #define COMPILE_VP(x) vfiles.clear(); ffiles.clear();  \
-    BOOST_CHECK_NO_THROW( vfiles.push_back(x); Shader::createShader(vfiles, ffiles) ); 
+    BOOST_CHECK_NO_THROW( vfiles.push_back(x); Shader::create(vfiles, ffiles) ); 
 
 BOOST_FIXTURE_TEST_CASE(testRealShaderCompilation, GL_Fixture)
 {
@@ -115,7 +116,7 @@ BOOST_FIXTURE_TEST_CASE(testRealShaderCompilation, GL_Fixture)
     BOOST_TEST_MESSAGE(">>>> with defined entry point");
     vfiles.clear(); ffiles.clear();
     ffiles.push_back(lookupPosition_fp);
-    BOOST_CHECK_NO_THROW(Shader::createShader(vfiles, ffiles, "main", "lookupPosition") ); // entry point: lookup position 
+    BOOST_CHECK_NO_THROW(Shader::create(vfiles, ffiles, "main", "lookupPosition") ); // entry point: lookup position 
 
 }
 
@@ -129,8 +130,8 @@ BOOST_FIXTURE_TEST_CASE(testCombinedShaderCompilation, GL_Fixture)
     ffiles.push_back(simplex_fp);
     vfiles.push_back(contour_vp);
     
-    Shader::Ptr shader;
-    BOOST_CHECK_NO_THROW( shader = Shader::createShader(vfiles, ffiles, "main", "main") ); 
+    ShaderPtr shader;
+    BOOST_CHECK_NO_THROW( shader = Shader::create(vfiles, ffiles, "main", "main") ); 
     BOOST_CHECK_NO_THROW( shader->load() );
 }
 
@@ -142,8 +143,8 @@ BOOST_FIXTURE_TEST_CASE(testShaderStartStop, GL_Fixture)
     ffiles.push_back(initvalue_fp);
     vfiles.push_back(contour_vp);
     
-    Shader::Ptr shader;
-    BOOST_CHECK_NO_THROW( shader = Shader::createShader(vfiles, ffiles, "main", "main") ); 
+    ShaderPtr shader;
+    BOOST_CHECK_NO_THROW( shader = Shader::create(vfiles, ffiles, "main", "main") ); 
     BOOST_CHECK_NO_THROW( shader->load() );
     BOOST_CHECK_NO_THROW( shader->start() );
 }

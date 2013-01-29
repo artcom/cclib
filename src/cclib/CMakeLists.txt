@@ -74,6 +74,7 @@ set(SOURCES
     particles/gpuforce.cpp
     particles/gpuconstraint.cpp
     particles/gpuimpulse.cpp
+    particles/gpunoise.cpp
 )
  
 set(HEADERS 
@@ -90,6 +91,7 @@ set(HEADERS
     particles/gpuforce.h
     particles/gpuconstraint.h
     particles/gpuimpulse.h
+    particles/gpunoise.h    
 )
  
 set(CCLIB_NAME cclib)

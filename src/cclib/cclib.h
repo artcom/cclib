@@ -2,6 +2,7 @@
 #define __CCLIB_HEADER_DEFINED__
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <map>
@@ -68,6 +69,8 @@ typedef std::tr1::shared_ptr<GPUParticleEmitter> GPUParticleEmitterPtr;
 class GPUParticleRenderer;
 typedef std::tr1::shared_ptr<GPUParticleRenderer> GPUParticleRendererPtr;
 
+class GPUNoise;
+typedef std::tr1::shared_ptr<GPUNoise> GPUNoisePtr;
 
 };
 

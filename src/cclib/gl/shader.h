@@ -44,15 +44,13 @@ class Shader {
         void parameter(const CGparameter & parameter, const Vector2f & vector);
         
         void texture(const CGparameter parameter, int textureID);
+        void checkError(const std::string & message);
         
     protected:
         Shader(const std::vector<std::string> & vertexShaderFiles, 
                 const std::vector<std::string> & fragmentShaderFiles,
                 const std::string & vertexEntry = "", 
                 const std::string & fragmentEntry = "" );
-        
-        void checkError(const std::string & message);
-
    
     private:
         void initShader();
