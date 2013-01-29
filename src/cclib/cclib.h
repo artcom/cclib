@@ -75,6 +75,9 @@ typedef std::tr1::shared_ptr<GPUParticleRenderer> GPUParticleRendererPtr;
 class GPUNoise;
 typedef std::tr1::shared_ptr<GPUNoise> GPUNoisePtr;
 
+class Mesh;
+typedef std::tr1::shared_ptr<Mesh> MeshPtr;
+
 class VBOMesh;
 typedef std::tr1::shared_ptr<VBOMesh> VBOMeshPtr;
 

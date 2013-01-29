@@ -71,6 +71,8 @@ set(SOURCES
     gl/framebufferobject.cpp
     gl/shadertexture.cpp
     gl/graphics.cpp
+    gl/mesh.cpp
+    # gl/vbomesh.cpp
     particles/gpuupdateshader.cpp
     particles/gpuforce.cpp
     particles/gpuconstraint.cpp
@@ -78,6 +80,8 @@ set(SOURCES
     particles/gpunoise.cpp
     particles/gpuparticles.cpp
     particles/gpuparticle.cpp
+    # particles/gpuindexparticleemitter.cpp
+    # particles/gpuparticlepointrenderer.cpp
 )
  
 set(HEADERS 
@@ -91,6 +95,8 @@ set(HEADERS
     gl/framebufferobject.h
     gl/shadertexture.h
     gl/graphics.h
+    gl/mesh.h
+    # gl/vbomesh.h
     particles/gpuupdateshader.h
     particles/gpuforce.h
     particles/gpuconstraint.h
@@ -98,6 +104,8 @@ set(HEADERS
     particles/gpunoise.h    
     particles/gpuparticles.h
     particles/gpuparticle.h
+    # particles/gpuindexparticleemitter.h
+    # particles/gpuparticlepointrenderer.h
 )
  
 set(CCLIB_NAME cclib)
