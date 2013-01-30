@@ -72,7 +72,8 @@ set(SOURCES
     gl/shadertexture.cpp
     gl/graphics.cpp
     gl/mesh.cpp
-    # gl/vbomesh.cpp
+    gl/bufferobject.cpp
+    gl/vbomesh.cpp
     particles/gpuupdateshader.cpp
     particles/gpuforce.cpp
     particles/gpuconstraint.cpp
@@ -96,7 +97,8 @@ set(HEADERS
     gl/shadertexture.h
     gl/graphics.h
     gl/mesh.h
-    # gl/vbomesh.h
+    gl/bufferobject.h
+    gl/vbomesh.h
     particles/gpuupdateshader.h
     particles/gpuforce.h
     particles/gpuconstraint.h
