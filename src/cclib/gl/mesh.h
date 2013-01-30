@@ -27,7 +27,6 @@ class Mesh {
         static MeshPtr create(GLenum theDrawMode, int theNumberOfVertices=0);
 
         void prepareVertexData(int theNumberOfVertices, int theVertexSize);
-
         void prepareVertexData(int theVertexSize);
         void addVertex(float theX, float theY, float theZ=0.0f);
         void addVertex(float theX, float theY, float theZ, float theW);

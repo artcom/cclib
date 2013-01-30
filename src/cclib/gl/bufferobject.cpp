@@ -16,7 +16,12 @@ BufferObject::BufferObject(int theSize) :
         updateData();
     } 
 }
-	
+
+BufferObjectPtr 
+BufferObject::create(int theSize) {
+    return BufferObjectPtr(new BufferObject(theSize)); 
+}
+
 void 
 BufferObject::updateData() {
     bind(GL_ARRAY_BUFFER);

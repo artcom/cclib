@@ -1,6 +1,7 @@
 #ifndef __CCLIB_HEADER_DEFINED__
 #define __CCLIB_HEADER_DEFINED__
 
+#include <math.h>
 #include <iostream>
 #include <sstream>
 #include <string>

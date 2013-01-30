@@ -81,7 +81,7 @@ set(SOURCES
     particles/gpunoise.cpp
     particles/gpuparticles.cpp
     particles/gpuparticle.cpp
-    # particles/gpuindexparticleemitter.cpp
+    particles/gpuindexparticleemitter.cpp
     # particles/gpuparticlepointrenderer.cpp
 )
  
@@ -106,7 +106,7 @@ set(HEADERS
     particles/gpunoise.h    
     particles/gpuparticles.h
     particles/gpuparticle.h
-    # particles/gpuindexparticleemitter.h
+    particles/gpuindexparticleemitter.h
     # particles/gpuparticlepointrenderer.h
 )
  

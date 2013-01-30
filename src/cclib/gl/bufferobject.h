@@ -38,7 +38,7 @@ class BufferObject {
         BufferObject(int theSize);
 
     public:
-        BufferObjectPtr create(int theSize=0);
+        static BufferObjectPtr create(int theSize=0);
 	    void updateData();
         std::vector<float> data(); // ByteBuffer
         std::vector<float> mapBuffer();

@@ -13,9 +13,9 @@ class VBOMesh : public Mesh {
         bool _myHasUpdatedVertices;
         bool _myHasVertices;
 
-        BufferObjectPtr[8] _myTextureCoordBuffers; // = new CCBufferObjectPtr[8];
-        bool[8] _myHasUpdatedTextureCoords; // = new bool[] {true, true, true, true, true, true, true, true};
-        bool[8] _myHasTextureCoords; // = new bool[] {false, false, false, false, false, false, false, false};
+        BufferObjectPtr _myTextureCoordBuffers[8]; // = new CCBufferObjectPtr[8];
+        bool _myHasUpdatedTextureCoords[8]; // = new bool[] {true, true, true, true, true, true, true, true};
+        bool _myHasTextureCoords[8]; // = new bool[] {false, false, false, false, false, false, false, false};
 
         BufferObjectPtr _myColorBuffer;
         bool _myHasUpdatedColors; 
@@ -34,7 +34,7 @@ class VBOMesh : public Mesh {
         VBOMeshPtr create(GLenum theDrawMode=GL_QUADS, int theNumberOfVertices=0);
 
         void bufferSubData(GLuint theBufferID, std::vector<float> & theData, int theOffset, 
-                int theNumberOfVertices, int theNumberOfCoords) 
+                int theNumberOfVertices, int theNumberOfCoords); 
         void prepareVertexData(int theNumberOfVertices, int theVertexSize);
         void vertices(ShaderTexturePtr theShaderTexture);
         void vertices(ShaderTexturePtr theShaderTexture, GLuint theID);

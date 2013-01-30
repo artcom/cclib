@@ -1,5 +1,7 @@
 
 #include <gl/shadertexture.h>
+#include <gl/mesh.h>
+#include <gl/bufferobject.h>
 #include "vbomesh.h"
 
 using namespace cclib;
@@ -57,7 +59,7 @@ VBOMesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
                     noData, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
         }
 
-        _myVertices = _myVertexBuffer.data();
+        _myVertices = _myVertexBuffer->data();
     }
     
     _myHasUpdatedVertices = true;
@@ -66,12 +68,12 @@ VBOMesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
 
 void 
 VBOMesh::vertices(ShaderTexturePtr theShaderTexture) {
-    vertices(theShaderTexture, 0, 0, theShaderTexture.width(), theShaderTexture.height());
+    vertices(theShaderTexture, 0, 0, theShaderTexture->width(), theShaderTexture->height());
 }
 
 void 
 VBOMesh::vertices(ShaderTexturePtr theShaderTexture, GLuint theID) {
-    vertices(theShaderTexture, 0, 0, 0, theShaderTexture.width(), theShaderTexture.height());
+    vertices(theShaderTexture, 0, 0, 0, theShaderTexture->width(), theShaderTexture->height());
 }
 
 void 
@@ -94,8 +96,9 @@ VBOMesh::vertices(ShaderTexturePtr theShaderTexture, GLuint theID, int theX, int
     _myHasUpdatedVertices = false;
 }
 
-BufferObjectPtr vertexBuffer() {
-    prepareVertexData(_myVertexSize);
+BufferObjectPtr 
+VBOMesh::vertexBuffer() {
+    Mesh::prepareVertexData(_myVertexSize);
     return _myVertexBuffer;
 }
 
@@ -157,7 +160,7 @@ VBOMesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theT
     _myNumberOfVertices = theNumberOfVertices;
     _myTextureCoordSize[theLevel] = theTextureCoordSize;
     
-    if(_myTextureCoordBuffers[theLevel] == null || _myTextureCoords[theLevel].size() / _myTextureCoordSize[theLevel] != _myNumberOfVertices) {
+    if(!_myTextureCoordBuffers[theLevel] || _myTextureCoords[theLevel].size() / _myTextureCoordSize[theLevel] != _myNumberOfVertices) {
         if (!_myTextureCoordBuffers[theLevel]) {
             _myTextureCoordBuffers[theLevel] = BufferObject::create(_myNumberOfVertices * theTextureCoordSize * sizeof(float));
         } else {
@@ -185,7 +188,7 @@ VBOMesh::prepareColorData(int theNumberOfVertices){
     
     if(!_myColorBuffer || _myColors.size() / 4 != _myNumberOfVertices){
         _myColorBuffer = BufferObject::create(_myNumberOfVertices * 4 * sizeof(float));
-        _myColors = _myColorBuffer.data();
+        _myColors = _myColorBuffer->data();
     }
     
     _myHasColors = true;
