@@ -6,8 +6,8 @@ c++ port of the creative computing particle system (http://code.google.com/p/cre
 
 Classes that we need to port:
 
-CCVBOMesh
-CCGPUIndexParticleEmitter
-
-
+[X] - CCMesh
+[ ] - CCVBOMesh
+[ ] - CCGPUIndexParticleEmitter
+[ ] - CCGPUParticlePointRenderer
 

@@ -81,6 +81,9 @@ typedef std::tr1::shared_ptr<Mesh> MeshPtr;
 class VBOMesh;
 typedef std::tr1::shared_ptr<VBOMesh> VBOMeshPtr;
 
+class BufferObject;
+typedef std::tr1::shared_ptr<BufferObject> BufferObjectPtr;
+
 };
 
 
