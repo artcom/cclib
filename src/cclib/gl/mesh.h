@@ -43,6 +43,60 @@ class Mesh {
         void disable();
         void drawArray();
         void draw();
+	
+        void prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theTextureCoordSize);
+        void prepareTextureCoordData(int theLevel, int theTextureCoordSize);
+        void addTextureCoords(int theLevel, float theX, float theY);
+        void addTextureCoords(float theX, float theY);
+        void addTextureCoords(int theLevel, Vector2fPtr & theTextureCoords);
+        void addTextureCoords(int theLevel, float theX, float theY, float theZ);
+        void addTextureCoords(int theLevel, Vector3fPtr theTextureCoords);
+        void addTextureCoords(int theLevel, float theX, float theY, float theZ, float theW);
+        
+        void textureCoords(int theLevel, std::vector<float> & theTextureCoords, int theTextureCoordSize);
+        void textureCoords(int theLevel, std::vector<float> & theTextureCoords);
+        void textureCoords(std::vector<float> & theTextureCoords);
+        std::vector<float> texCoords(int theLevel);
+        
+        // void addTextureCoords(int theLevel, Vector4fPtr theTextureCoords) {
+        //     addTextureCoords(theLevel, theTextureCoords->x(), theTextureCoords->y(), theTextureCoords->z(), theTextureCoords->w());
+        // }
+        
+        // void textureCoords(final int theLevel, final List<?> theTextureCoords){
+        //     if(theTextureCoords.get(0) instanceof CCVector2f) {
+        //         prepareTextureCoordData(theTextureCoords.size(), theLevel, 2);
+        //         _myTextureCoords[theLevel].rewind();
+        //         for(Object myObject:theTextureCoords){
+        //             CCVector2f myTextureCoords = (CCVector2f)myObject;
+        //             _myTextureCoords[theLevel].put(myTextureCoords.x);
+        //             _myTextureCoords[theLevel].put(myTextureCoords.y);
+        //         }
+        //     }else if(theTextureCoords.get(0) instanceof CCVector4f) {
+        //         prepareTextureCoordData(theTextureCoords.size(), theLevel, 4);
+        //         _myTextureCoords[theLevel].rewind();
+        //         for(Object myObject:theTextureCoords){
+        //             CCVector4f myTextureCoords = (CCVector4f)myObject;
+        //             _myTextureCoords[theLevel].put(myTextureCoords.x);
+        //             _myTextureCoords[theLevel].put(myTextureCoords.y);
+        //             _myTextureCoords[theLevel].put(myTextureCoords.z);
+        //             _myTextureCoords[theLevel].put(myTextureCoords.w);
+        //         }
+        //     }else if(theTextureCoords.get(0) instanceof CCVector3f) {
+        //         prepareTextureCoordData(theTextureCoords.size(), theLevel, 3);
+        //         _myTextureCoords[theLevel].rewind();
+        //         for(Object myObject:theTextureCoords){
+        //             CCVector3f myTextureCoords = (CCVector3f)myObject;
+        //             _myTextureCoords[theLevel].put(myTextureCoords.x);
+        //             _myTextureCoords[theLevel].put(myTextureCoords.y);
+        //             _myTextureCoords[theLevel].put(myTextureCoords.z);
+        //         }
+        //     }
+        // }
+        //
+        // void textureCoords(List<?> theTextureCoords){
+        //     textureCoords(0, theTextureCoords);
+        // }
+
 };
 }; // namespace
 
@@ -52,121 +106,6 @@ class Mesh {
     //
     //////////////////////////////////////////////////////
 	
-	// public void prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theTextureCoordSize){
-	// 	_myNumberOfVertices = theNumberOfVertices;
-	// 	_myTextureCoordSize[theLevel] = theTextureCoordSize;
-	// 	
-	// 	if(_myTextureCoords[theLevel] == null || _myNumberOfVertices != _myTextureCoords[theLevel].limit() / theTextureCoordSize) {
-    // 		_myTextureCoords[theLevel] = CCBufferUtil.newDirectFloatBuffer(_myNumberOfVertices * theTextureCoordSize);
-    // 	}
-	// }
-	// public void prepareTextureCoordData(int theLevel, int theTextureCoordSize){
-	// 	prepareTextureCoordData(_myNumberOfVertices, theLevel, theTextureCoordSize);
-	// }
-    // 
-    // public void addTextureCoords(final int theLevel, final float theX, final float theY){
-    // 	prepareTextureCoordData(_myNumberOfVertices, theLevel, 2);
-    // 	
-    // 	_myTextureCoords[theLevel].put(theX);
-    // 	_myTextureCoords[theLevel].put(theY);
-    // }
-    // 
-    // public void addTextureCoords(final float theX, final float theY){
-    // 	addTextureCoords(0, theX, theY);
-    // }
-    // 
-    // public void addTextureCoords(final int theLevel, final CCVector2f theTextureCoords){
-    // 	addTextureCoords(theTextureCoords.x, theTextureCoords.y);
-    // }
-    // 
-    // public void addTextureCoords(final int theLevel, final float theX, final float theY, final float theZ){
-    // 	prepareTextureCoordData(_myNumberOfVertices, theLevel, 3);
-    // 	
-    // 	_myTextureCoords[theLevel].put(theX);
-    // 	_myTextureCoords[theLevel].put(theY);
-    // 	_myTextureCoords[theLevel].put(theZ);
-    // }
-    // 
-    // public void addTextureCoords(final int theLevel, final CCVector3f theTextureCoords){
-    // 	addTextureCoords(theLevel, theTextureCoords.x, theTextureCoords.y, theTextureCoords.z);
-    // }
-    // 
-    // public void addTextureCoords(final int theLevel, final float theX, final float theY, final float theZ, final float theW){
-    // 	prepareTextureCoordData(_myNumberOfVertices, theLevel, 4);
-    // 	
-    // 	_myTextureCoords[theLevel].put(theX);
-    // 	_myTextureCoords[theLevel].put(theY);
-    // 	_myTextureCoords[theLevel].put(theZ);
-    // 	_myTextureCoords[theLevel].put(theW);
-    // }
-    // 
-    // public void addTextureCoords(final int theLevel, final CCVector4f theTextureCoords){
-    // 	addTextureCoords(theLevel, theTextureCoords.x, theTextureCoords.y, theTextureCoords.z, theTextureCoords.w);
-    // }
-    // 
-    // public void textureCoords(final int theLevel, final FloatBuffer theTextureCoords, final int theTextureCoordSize){
-    // 	_myNumberOfVertices = theTextureCoords.limit() / theTextureCoordSize;
-	// 	_myTextureCoordSize[theLevel] = theTextureCoordSize;
-    // 	_myTextureCoords[theLevel] = theTextureCoords;
-    // 	_myTextureCoords[theLevel].rewind();
-//  //   	prepareTextureCoordData(theTextureCoords.limit() / theTextureCoordSize, theLevel, theTextureCoordSize);
-//  //   	
-//  //   	_myTextureCoords[theLevel].rewind();
-//  //   	_myTextureCoords[theLevel].put(theTextureCoords);
-//  //   	_myTextureCoords[theLevel].rewind();
-    // }
-    // 
-    // public void textureCoords(final int theLevel, final FloatBuffer theTextureCoords){
-    // 	textureCoords(theLevel, theTextureCoords, 2);
-    // }
-    // 
-    // public void textureCoords(final FloatBuffer theTextureCoords){
-    // 	textureCoords(0, theTextureCoords);
-    // }
-    // 
-    // public void textureCoords(final int theLevel, final List<?> theTextureCoords){
-    // 	if(theTextureCoords.get(0) instanceof CCVector2f) {
-    // 		prepareTextureCoordData(theTextureCoords.size(), theLevel, 2);
-    //     	_myTextureCoords[theLevel].rewind();
-    //     	for(Object myObject:theTextureCoords){
-    //     		CCVector2f myTextureCoords = (CCVector2f)myObject;
-    //     		_myTextureCoords[theLevel].put(myTextureCoords.x);
-    //     		_myTextureCoords[theLevel].put(myTextureCoords.y);
-    //     	}
-    // 	}else if(theTextureCoords.get(0) instanceof CCVector4f) {
-    // 		prepareTextureCoordData(theTextureCoords.size(), theLevel, 4);
-    //     	_myTextureCoords[theLevel].rewind();
-    //     	for(Object myObject:theTextureCoords){
-    //     		CCVector4f myTextureCoords = (CCVector4f)myObject;
-    //     		_myTextureCoords[theLevel].put(myTextureCoords.x);
-    //     		_myTextureCoords[theLevel].put(myTextureCoords.y);
-    //     		_myTextureCoords[theLevel].put(myTextureCoords.z);
-    //     		_myTextureCoords[theLevel].put(myTextureCoords.w);
-    //     	}
-    // 	}else if(theTextureCoords.get(0) instanceof CCVector3f) {
-    // 		prepareTextureCoordData(theTextureCoords.size(), theLevel, 3);
-    //     	_myTextureCoords[theLevel].rewind();
-    //     	for(Object myObject:theTextureCoords){
-    //     		CCVector3f myTextureCoords = (CCVector3f)myObject;
-    //     		_myTextureCoords[theLevel].put(myTextureCoords.x);
-    //     		_myTextureCoords[theLevel].put(myTextureCoords.y);
-    //     		_myTextureCoords[theLevel].put(myTextureCoords.z);
-    //     	}
-    // 	}
-    // 	
-    // 	
-    // 	
-    // 	_myTextureCoords[theLevel].rewind();
-    // }
-    // 
-    // public void textureCoords(final List<?> theTextureCoords){
-    // 	textureCoords(0, theTextureCoords);
-    // }
-    // 
-    // public FloatBuffer texCoords(int theLevel) {
-    // 	return _myTextureCoords[theLevel];
-    // }
-    
     //////////////////////////////////////////////////////
     //
     //  METHODS TO ADD COLOR DATA

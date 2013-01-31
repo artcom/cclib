@@ -67,7 +67,7 @@ void
 ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitterPtr thePE) {
     _myStepTime += theDeltaTime;
 
-    handleCurrentWaitList(theDeltaTime, GPUIndexParticleEmitterPtr(this));
+    handleCurrentWaitList(theDeltaTime, thePE);
 
     if(_myStepTime > _myTimeStep) {
         _myStepTime -= _myTimeStep;
@@ -323,6 +323,7 @@ GPUIndexParticleEmitter::setData() {
     //     _myInfoBuffer.limit(myEmitSize * 3);
     //     _myVelocityBuffer.limit(myEmitSize * 3);
     // }
+    
     _myVertexBuffer.clear();
     _myPositionBuffer.clear();
     _myInfoBuffer.clear();
@@ -345,7 +346,7 @@ GPUIndexParticleEmitter::setData() {
     _myEmitMesh->textureCoords(1, _myInfoBuffer, 3);
     _myEmitMesh->textureCoords(2, _myVelocityBuffer, 3);
 
-    transferData(theGraphics);
+    transferData();
 
     _myAllocatedParticles.clear();
 }
