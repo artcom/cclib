@@ -19,15 +19,6 @@ else()
     include_directories(${GLEW_INCLUDE_PATH})
 endif()
 
-# look for GLFW
-find_package(GLFW)
-if(NOT GLFW_LIBRARIES)
-    message(ERROR " GLFW could not be found.")
-else()
-    message(STATUS "GLFW found here: ${GLFW_LIBRARIES}")
-    include_directories(${GLFW_INCLUDE_DIR})
-endif()
-
 # look for Cg
 find_package(Cg)
 if(NOT Cg_FOUND)
@@ -35,6 +26,15 @@ if(NOT Cg_FOUND)
 else()
     message(STATUS "Cg found here (libs): ${Cg_LIBRARIES}")
     include_directories({Cg_LIBRARIES})
+endif()
+
+# look for GLFW
+find_package(GLFW)
+if(NOT GLFW_LIBRARIES)
+    message(ERROR " GLFW could not be found.")
+else()
+    message(STATUS "GLFW found here: ${GLFW_LIBRARIES}")
+    include_directories(${GLFW_INCLUDE_DIR})
 endif()
 
 # look for boost unit test framework

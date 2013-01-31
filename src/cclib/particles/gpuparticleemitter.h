@@ -9,9 +9,6 @@ class GPUParticleEmitter {
     public:
         virtual void setData() = 0; 
         virtual void update(float theDeltaTime) = 0;
-
-    private:
-        GPUParticleEmitter() {};
 };
 
 }; // namespace 

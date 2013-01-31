@@ -23,7 +23,7 @@ class GPUParticle {
         GPUParticle(GPUParticlesPtr theParticles, int theIndex);
 
     public: 
-        GPUParticlePtr create(GPUParticlesPtr theParticles, int theIndex);
+        static GPUParticlePtr create(GPUParticlesPtr theParticles, int theIndex);
         virtual ~GPUParticle() {};
 
         void nextStep();

@@ -85,6 +85,12 @@ typedef std::tr1::shared_ptr<VBOMesh> VBOMeshPtr;
 class BufferObject;
 typedef std::tr1::shared_ptr<BufferObject> BufferObjectPtr;
 
+class ParticleWaitingList;
+typedef std::tr1::shared_ptr<ParticleWaitingList> ParticleWaitingListPtr;
+
+class GPUIndexParticleEmitter;
+typedef std::tr1::shared_ptr<GPUIndexParticleEmitter> GPUIndexParticleEmitterPtr;
+
 };
 
 

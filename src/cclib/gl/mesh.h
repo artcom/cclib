@@ -31,7 +31,7 @@ class Mesh {
         void addVertex(float theX, float theY, float theZ=0.0f);
         void addVertex(float theX, float theY, float theZ, float theW);
         std::vector<float> vertices();
-        void vertices(std::vector<float> theVertices, int theVertexSize);
+        void vertices(std::vector<float> theVertices, int theVertexSize=3);
         void clearVertices();
         void clearTextureCoords();
         void clearNormals();
