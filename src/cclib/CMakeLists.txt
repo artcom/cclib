@@ -25,7 +25,6 @@ if(NOT Cg_FOUND)
     message(ERROR "Cg could not be found.")
 else()
     message(STATUS "Cg found here (libs): ${Cg_LIBRARIES}")
-    message(STATUS "Cg found here (headers): ${Cg_INCLUDE_DIRS}")
 endif()
 
 # look for GLFW

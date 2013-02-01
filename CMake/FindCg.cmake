@@ -12,28 +12,13 @@
 # On OSX default to using the framework version of Cg.
 
 IF (APPLE)
-  INCLUDE(${CMAKE_ROOT}/Modules/CMakeFindFrameworks.cmake)
-  SET(Cg_FRAMEWORK_INCLUDES)
-  CMAKE_FIND_FRAMEWORKS(Cg)
-  IF (Cg_FRAMEWORKS)
-    FOREACH(dir ${Cg_FRAMEWORKS})
-      SET(Cg_FRAMEWORK_INCLUDES ${Cg_FRAMEWORK_INCLUDES}
-        ${dir}/Headers ${dir}/PrivateHeaders)
-    ENDFOREACH(dir)
-
+    FIND_LIBRARY( Cg_LIBRARIES NAMES Cg cg)
     #Find the include  dir
-    FIND_PATH(Cg_INCLUDE_DIRS cg.h
-      ${Cg_FRAMEWORK_INCLUDES}
-      )
-
-    #Since we are using Cg framework, we must link to it.
-    SET(Cg_LIBRARIES "-framework Cg" CACHE STRING "Cg library")
-    SET(Cg_GL_LIBRARIES "-framework Cg" CACHE STRING "Cg GL library")
-  ENDIF (Cg_FRAMEWORKS)
-  FIND_PROGRAM(Cg_COMPILER cgc
-    /usr/bin
-    /usr/local/bin
-    DOC "The Cg compiler"
+    FIND_PATH(Cg_INCLUDE_DIRS Cg/cg.h)
+    FIND_PROGRAM(Cg_COMPILER cgc
+        /usr/bin
+        /usr/local/bin
+        DOC "The Cg compiler"
     )
 ELSE (APPLE)
   IF (WIN32)
@@ -115,7 +100,7 @@ ELSE (APPLE)
   ENDIF (WIN32)
 ENDIF (APPLE)
 
-IF (Cg_INCLUDE_DIRS AND Cg_LIBRARIES)
+IF ( Cg_LIBRARIES)
   SET( Cg_FOUND TRUE)
 ENDIF ()
 
