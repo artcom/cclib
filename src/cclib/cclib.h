@@ -10,8 +10,8 @@
 #include <tr1/memory>
 #include <GL/glew.h>
 
-#include <cg/cg.h>
-#include <cg/CgGL.h>
+#include <Cg/cg.h>
+#include <Cg/cgGL.h>
 
 #include <Exception.h>
 #include <math/vec2.h>
