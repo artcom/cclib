@@ -48,7 +48,7 @@ class GPUParticles {
 		    std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight); 
     
     public:
-        GPUParticlesPtr create( GPUParticleRendererPtr theRender,
+        static GPUParticlesPtr create( GPUParticleRendererPtr theRender,
 		    std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints, 
 		    std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight); 
 

@@ -58,7 +58,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
 
     public:
-        GPUIndexParticleEmitterPtr create(GPUParticlesPtr theParticles, int theStart=0, int theNumberParticles=-1);
+        static GPUIndexParticleEmitterPtr create(GPUParticlesPtr theParticles, int theStart=0, int theNumberParticles=-1);
         std::vector<GPUParticlePtr> & pendingParticles();
         std::vector<GPUParticlePtr> & stateChangedParticles();
         std::vector<GPUParticlePtr> & allocatedParticles();

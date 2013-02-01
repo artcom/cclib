@@ -126,7 +126,6 @@ install(TARGETS ${CCLIB_NAME} DESTINATION bin)
 set(TEST_LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Cg_LIBRARIES} ${GLEW_LIBRARY} ${GLFW_LIBRARIES}) # ${CCLIB_NAME} 
 
 # XXX add automatic test detection
-
 add_executable(vec2 test/vec2.tst.cpp)
 target_link_libraries(vec2 ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_test(vec2 vec2) 
@@ -138,4 +137,8 @@ add_test(vec3 vec3)
 add_executable(shader_test test/shader.tst.cpp)
 target_link_libraries(shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_test(shader_test shader_test) 
+
+# samples
+add_executable(cclibEmitDemo demo/emitDemo.cpp)
+target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
