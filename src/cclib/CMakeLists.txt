@@ -65,8 +65,8 @@ set(CMAKE_CXX_FLAGS "-ferror-limit=5")
 
 set(SOURCES 
     gl/shader.cpp    
-    gl/texture.cpp    
-    gl/texture2D.cpp    
+    gl/texture.cpp
+    gl/texture2d.cpp
     gl/pixelstoragemodes.cpp
     gl/framebufferobject.cpp
     gl/shadertexture.cpp
@@ -92,7 +92,7 @@ set(HEADERS
     math/vec3.h
     gl/shader.h
     gl/texture.h    
-    gl/texture2D.h    
+    gl/texture2d.h    
     gl/pixelstoragemodes.h
     gl/framebufferobject.h
     gl/shadertexture.h
