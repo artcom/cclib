@@ -90,6 +90,13 @@ typedef std::tr1::shared_ptr<ParticleWaitingList> ParticleWaitingListPtr;
 
 class GPUIndexParticleEmitter;
 typedef std::tr1::shared_ptr<GPUIndexParticleEmitter> GPUIndexParticleEmitterPtr;
+	
+class GPUParticlePointRenderer;
+typedef std::tr1::shared_ptr<GPUParticlePointRenderer> GPUParticlePointRendererPtr;
+
+class GPUDisplayShader;
+typedef std::tr1::shared_ptr<GPUDisplayShader> GPUDisplayShaderPtr;
+
 
 };
 

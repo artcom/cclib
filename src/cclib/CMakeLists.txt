@@ -82,7 +82,8 @@ set(SOURCES
     particles/gpuparticles.cpp
     particles/gpuparticle.cpp
     particles/gpuindexparticleemitter.cpp
-    # particles/gpuparticlepointrenderer.cpp
+    particles/gpuparticlepointrenderer.cpp
+    particles/gpudisplayshader.cpp
 )
  
 set(HEADERS 
@@ -107,7 +108,8 @@ set(HEADERS
     particles/gpuparticles.h
     particles/gpuparticle.h
     particles/gpuindexparticleemitter.h
-    # particles/gpuparticlepointrenderer.h
+    particles/gpuparticlepointrenderer.h
+    particles/gpudisplayshader.h
 )
  
 set(CCLIB_NAME cclib)

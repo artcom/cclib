@@ -12,7 +12,7 @@ class GPUParticleRenderer {
 	    virtual void setup(GPUParticlesPtr theParticles) = 0;
         virtual void update(float theDeltaTime) = 0;
         virtual void draw() = 0;
-        virtual VBOMesh mesh() = 0;
+        virtual VBOMeshPtr mesh() = 0;
 };
 
 };

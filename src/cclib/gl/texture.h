@@ -1,22 +1,6 @@
 #ifndef __CCLIB_TEXTURE_INCLUDED__
 #define __CCLIB_TEXTURE_INCLUDED__
 
-// #include <gl/pixelstoragemodes.h>
-// 
-// #include <iostream>
-// #include <string>
-// #include <vector>
-// #include <map>
-// #include <tr1/memory>
-// #include <GL/glew.h>
-// 
-// #include <cg/cg.h>
-// #include <cg/CgGL.h>
-// 
-// #include <math/vec2.h>
-// #include <math/vec3.h>
-// #include <Exception.h>
-
 #include <cclib.h>
 
 namespace cclib {

@@ -57,6 +57,7 @@ class FrameBufferObject : public Texture2D {
         int numberOfAttachments();
         void updateMipmaps();
         void bind();
+        void bind(int theId);
         void bindIndex(int theBindIndex);
         
         Texture2DPtr depthTexture();

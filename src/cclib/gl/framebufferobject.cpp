@@ -212,6 +212,11 @@ FrameBufferObject::bind() {
 }
 
 void 
+FrameBufferObject::bind(int theId) {
+    Texture::bind(theId);
+}
+
+void 
 FrameBufferObject::bindIndex(int bindIndex) {
     _bindIndex = bindIndex;
 }

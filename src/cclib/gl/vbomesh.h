@@ -31,7 +31,7 @@ class VBOMesh : public Mesh {
         VBOMesh(GLenum theDrawMode, int theNumberOfVertices); 
     
     public:
-        VBOMeshPtr create(GLenum theDrawMode=GL_QUADS, int theNumberOfVertices=0);
+        static VBOMeshPtr create(GLenum theDrawMode=GL_QUADS, int theNumberOfVertices=0);
 
         void bufferSubData(GLuint theBufferID, std::vector<float> & theData, int theOffset, 
                 int theNumberOfVertices, int theNumberOfCoords); 
