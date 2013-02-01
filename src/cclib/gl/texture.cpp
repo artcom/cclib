@@ -197,9 +197,9 @@ Texture::isCompressed() {
 	
 std::vector<GLuint> 
 Texture::createTextureIds(const unsigned int & numberOfIds) {
-    std::vector<GLuint> textureIds;
-    textureIds.reserve(numberOfIds);
+    std::vector<GLuint> textureIds = std::vector<GLuint>(numberOfIds, 0);
     glGenTextures(numberOfIds, &(textureIds[0]));
+    
     return textureIds;
 }
 	

@@ -30,11 +30,11 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     std::vector<std::string> vfiles, ffiles;
     ffiles.push_back(std::string(initvalue01_fp));
 
-    _myInitValue01Shader = Shader::create(vfiles, ffiles);
+    _myInitValue01Shader = Shader::create(vfiles, ffiles, "main", "main");
     _myInitValue01Shader->load();
 
     ffiles.clear(); ffiles.push_back(std::string(initvalue_fp));
-    _myInitValue01Shader = Shader::create(vfiles, ffiles);
+    _myInitValue0Shader = Shader::create(vfiles, ffiles);
     _myInitValue0Shader->load();
 
     _myCurrentDataTexture = ShaderTexture::create( _myWidth, _myHeight, 32, 4, 3);

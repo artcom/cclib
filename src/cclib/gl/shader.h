@@ -42,7 +42,9 @@ class Shader {
         void parameter(const CGparameter & parameter, const Vector3f & vector);
         void parameter(const CGparameter & parameter, const bool & value);
         void parameter(const CGparameter & parameter, const Vector2f & vector);
-        
+        void parameter1(const CGparameter & parameter, const std::vector<float> & values);
+	
+
         void texture(const CGparameter parameter, int textureID);
         void checkError(const std::string & message);
         

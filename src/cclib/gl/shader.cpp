@@ -29,8 +29,9 @@ Shader::create(const std::vector<std::string> & vertexShaderFiles, const std::ve
     
 Shader::Shader(const std::vector<std::string> & vertexShaderFiles, 
         const std::vector<std::string> & fragmentShaderFiles,
-        const std::string & vertexEntry, const std::string & fragmentEntry)
-: _vertexEntry(vertexEntry), _fragmentEntry(fragmentEntry), _usedTextureParameters()
+        const std::string & vertexEntry, const std::string & fragmentEntry) :
+   _vertexEntry(vertexEntry), _fragmentEntry(fragmentEntry), _usedTextureParameters(),
+   _vertexProgram(0), _fragmentProgram(0)
 {   
     if (!glewIsSupported("GL_ARB_vertex_shader") || !glewIsSupported("GL_ARB_fragment_shader")) {
         throw cclib::Exception("Shaders are not supported by your hardware.");
@@ -321,7 +322,11 @@ Shader::parameter(const CGparameter & parameter, const Vector2f & vector){
     checkError("Problem setting parameters ");
 }
 
-
+void 
+Shader::parameter1(const CGparameter & parameter, const std::vector<float> & values) {
+    cgGLSetParameterArray1f(parameter, 0, values.size(), &(values[0]));
+}
+	
 // JAVA LINE -- DO NOT CROSS!
 #if 0
 public void addMatrix(const String parameterName, const CCCGMatrixType theMatrixType, const CCCGMatrixTransform theMatrixTransform) {
@@ -346,15 +351,7 @@ public void addMatrix(const String parameterName, const CCCGMatrixType theMatrix
 		cgSetParameter4f(parameter, theColor.r, theColor.g, theColor.b, theColor.a);
 		checkError("Problem setting parameters ");
 	}
-	
-	public void parameter1(const CGparameter parameter, const List<Float> parameterValues) {
-		FloatBuffer myValueBuffer = FloatBuffer.allocate(parameterValues.size());
-		for(Float myValue:parameterValues) {
-			myValueBuffer.put(myValue);
-		}
-		myValueBuffer.flip();
-		
-		cgGLSetParameterArray1f(parameter, 0, parameterValues.size(), myValueBuffer);
+        
 	}
 	
 	public void parameter1(const CGparameter parameter, const float...parameterValues) {

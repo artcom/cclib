@@ -135,6 +135,28 @@ BOOST_FIXTURE_TEST_CASE(testCombinedShaderCompilation, GL_Fixture)
     BOOST_CHECK_NO_THROW( shader->load() );
 }
 
+
+BOOST_FIXTURE_TEST_CASE(testGPUUpdateShader, GL_Fixture)
+{
+    BOOST_TEST_MESSAGE(">> it should compile the combined shaders");
+    std::vector<std::string> vfiles;
+    std::vector<std::string> ffiles;
+    
+    ShaderPtr shader;
+    ffiles.push_back(std::string(simplex_fp));
+    ffiles.push_back(std::string(forces_fp));
+    ffiles.push_back(std::string(constraints_fp));
+    ffiles.push_back(std::string(impulses_fp));
+    ffiles.push_back(std::string(velocity_fp));
+
+     BOOST_CHECK_NO_THROW( shader = Shader::create(vfiles, ffiles) ); 
+     shader->fragmentParameter("positionTexture");
+     shader->fragmentParameter("infoTexture");
+     shader->fragmentParameter("velocityTexture");
+     shader->fragmentParameter("deltaTime");
+     BOOST_CHECK_NO_THROW( shader->load() );
+}
+
 BOOST_FIXTURE_TEST_CASE(testShaderStartStop, GL_Fixture)
 {
     std::vector<std::string> vfiles;

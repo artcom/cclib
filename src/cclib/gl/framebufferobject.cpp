@@ -76,7 +76,7 @@ FrameBufferObject::init() {
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, _target, _depthTexture->id(), 0);
     }
 
-    checkStatusException(); 
+    // checkStatusException();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 	

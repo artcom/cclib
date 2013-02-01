@@ -25,7 +25,7 @@ if(NOT Cg_FOUND)
     message(ERROR "Cg could not be found.")
 else()
     message(STATUS "Cg found here (libs): ${Cg_LIBRARIES}")
-    include_directories({Cg_LIBRARIES})
+    message(STATUS "Cg found here (headers): ${Cg_INCLUDE_DIRS}")
 endif()
 
 # look for GLFW
@@ -84,6 +84,7 @@ set(SOURCES
     particles/gpuindexparticleemitter.cpp
     particles/gpuparticlepointrenderer.cpp
     particles/gpudisplayshader.cpp
+    particles/gpuforcefield.cpp
 )
  
 set(HEADERS 
@@ -110,6 +111,7 @@ set(HEADERS
     particles/gpuindexparticleemitter.h
     particles/gpuparticlepointrenderer.h
     particles/gpudisplayshader.h
+    particles/gpuforcefield.h
 )
  
 set(CCLIB_NAME cclib)

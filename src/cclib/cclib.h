@@ -97,6 +97,8 @@ typedef std::tr1::shared_ptr<GPUParticlePointRenderer> GPUParticlePointRendererP
 class GPUDisplayShader;
 typedef std::tr1::shared_ptr<GPUDisplayShader> GPUDisplayShaderPtr;
 
+class GPUForceField;
+typedef std::tr1::shared_ptr<GPUForceField> GPUForceFieldPtr;
 
 };
 

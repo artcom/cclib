@@ -127,7 +127,7 @@ GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, i
     _myActiveParticlesArray = std::vector<GPUParticlePtr>();
     for(int i = 0; i < _myNumberOfParticles; i++) {
         int myIndex = _myStart + i;
-        _myActiveParticlesArray[i] = GPUParticle::create(_myParticles, myIndex);
+        _myActiveParticlesArray.push_back(GPUParticle::create(_myParticles, myIndex));
         _myFreeIndices.push_back(myIndex);
     }
 

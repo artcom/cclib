@@ -7,6 +7,8 @@
 #include <particles/gpuparticlepointrenderer.h>
 #include <particles/gpuparticleemitter.h>
 #include <particles/gpuindexparticleemitter.h>
+#include <particles/gpuforce.h>
+#include <particles/gpuforcefield.h>
 #include <gl/graphics.h>
 
 using namespace cclib;
@@ -20,7 +22,7 @@ class EmitDemo {
         float _cY; // = 0;
         float _cZ; // = 0;
         float _cGStrength; // = 0;
-        // GPUForceFieldPtr _myForceField;
+        GPUForceFieldPtr _myForceField;
         float _cNScale; // = 0;
         float _cNStrength; // = 0;
         GPUParticlesPtr _myParticles;
@@ -31,7 +33,7 @@ class EmitDemo {
         
         EmitDemo() :
             _cLifeTime(3.0f), _cInitVel(3.0f), _cX(0.0f), _cY(0.0f), _cZ(0.0f),
-            _cGStrength(0.0f), // _myForceField(), 
+            _cGStrength(0.0f), _myForceField(), 
             _cNScale(0.0f), _cNStrength(0.0f),
             _myParticles(), _myEmitter(), 
             running(true) 
@@ -53,6 +55,8 @@ class EmitDemo {
             {
                 running = false;
             }
+            
+            setup();
         }
 
         void setup() {
@@ -60,9 +64,9 @@ class EmitDemo {
             std::vector<GPUConstraintPtr> myConstraints;
             std::vector<GPUImpulsePtr> myImpulses;
 
-            // _myForceField = GPUForceField::create(0.01f, 1.0f, Vector3fPtr(new Vector3f()));
-            // myForces.push_back( _myForceField->getBasePtr() );
-            // 
+            _myForceField = GPUForceField::create(0.01f, 1.0f, Vector3fPtr(new Vector3f()));
+            myForces.push_back( _myForceField->getBasePtr() );
+            
             // GPYConstraint myYConstraint = GPUYConstraint::create(-400, 1.0f, 0f, 0.1f); 
             // myConstraints.add(myYConstraint->getBasePtr());
             
@@ -114,11 +118,15 @@ class EmitDemo {
 
 
 int main() {
-    EmitDemo demo;
+    try {
+        EmitDemo demo;
 
-    while (demo.running) {
-        demo.update(1.0/60.0);
-    } 
+        while (demo.running) {
+            demo.update(1.0/60.0);
+        }
+    } catch (Exception & e) {
+        std::cout << e.what() << std::endl;
+    }
     
     return 0;
 }
