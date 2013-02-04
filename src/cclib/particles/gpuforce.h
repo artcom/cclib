@@ -33,9 +33,9 @@ class GPUForce {
         typedef std::tr1::shared_ptr<GPUForce> Ptr;
         
         virtual ~GPUForce() {};	
-	    void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr  theShader, 
+	    void setShader(GPUParticles * theParticles, GPUUpdateShader *  theShader,
                 int theIndex, int theWidth, int theHeight); 
-        void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, 
+        void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
                 std::string theIndex, int theWidth, int theHeight);
         void setSize(int theWidth, int theHeight);
         void update(float theDeltaTime);

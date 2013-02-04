@@ -21,8 +21,8 @@ GPUParticlePointRenderer::create() {
 }
 
 void 
-GPUParticlePointRenderer::setup(GPUParticlesPtr theParticles) {
-    _myParticles = theParticles;
+GPUParticlePointRenderer::setup(GPUParticles * theParticles) {
+    _myParticles = GPUParticlesPtr(theParticles);
 
     _myMesh = VBOMesh::create(GL_POINTS, _myParticles->size());
 }

@@ -19,12 +19,13 @@ class ParticleWaitingList {
     public:
         static ParticleWaitingListPtr create(float theTimeStep);
         void add(GPUParticlePtr theParticle);
-        void update(float theDeltaTime, GPUIndexParticleEmitterPtr thePE); 
+        void update(float theDeltaTime, GPUIndexParticleEmitter * thePE);
+
         // std::vector<GPUParticlePtr> deadParticles();
         // void reset(); 
         
     private:
-        void handleCurrentWaitList(float theDeltaTime, GPUIndexParticleEmitterPtr thePE);
+        void handleCurrentWaitList(float theDeltaTime, GPUIndexParticleEmitter * thePE);
 };
 
 
@@ -58,6 +59,9 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
 
     public:
+        ~GPUIndexParticleEmitter() {
+            std::cout << "hueh??" << std::endl;
+        }
         static GPUIndexParticleEmitterPtr create(GPUParticlesPtr theParticles, int theStart=0, int theNumberParticles=-1);
         std::vector<GPUParticlePtr> & pendingParticles();
         std::vector<GPUParticlePtr> & stateChangedParticles();
@@ -83,6 +87,8 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         void fillVelocityData(std::vector<float> & theBuffer);
         void transferData();
         void setData();
+    
+        GPUParticleEmitterPtr getBasePtr();
 
         // added due to the nested class private member access thing in the java original
         std::vector<int> & freeIndices();

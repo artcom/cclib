@@ -28,6 +28,8 @@ class EmitDemo {
         GPUParticlesPtr _myParticles;
         GPUIndexParticleEmitterPtr _myEmitter;
     
+        int frame;
+    
     public:
         bool running;
         
@@ -36,7 +38,7 @@ class EmitDemo {
             _cGStrength(0.0f), _myForceField(), 
             _cNScale(0.0f), _cNStrength(0.0f),
             _myParticles(), _myEmitter(), 
-            running(true) 
+            running(true), frame(0)
         { 
             if( !glfwInit() )
             {
@@ -74,7 +76,7 @@ class EmitDemo {
             
             _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 800, 800);
             _myEmitter = GPUIndexParticleEmitter::create(_myParticles);
-            _myParticles->addEmitter(_myEmitter);
+            _myParticles->addEmitter(_myEmitter->getBasePtr());
         }
 
         ~EmitDemo() { 
@@ -112,7 +114,9 @@ class EmitDemo {
 
             glfwSwapBuffers();
 
-            running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
+            
+            std::cout << "frame: " << frame++ << std::endl;
+            // running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
         }
 };
 

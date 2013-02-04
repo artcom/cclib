@@ -19,7 +19,7 @@ class GPUImpulse {
     
     public:	
         GPUImpulse(const std::string & theShaderTypeName, float theStrength);
-        void setShader(GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight);
+        void setShader(GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight);
         virtual void setupParameter(int theWidth, int theHeight) = 0;
 
         CGparameter parameter(const std::string & theName);

@@ -19,7 +19,7 @@ GPUForce::setupParameter(int theWidth, int theHeight) {
 }
 
 void 
-GPUForce::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr  theShader, 
+GPUForce::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
         int theIndex, int theWidth, int theHeight) 
 {
     std::stringstream ss;
@@ -32,11 +32,11 @@ GPUForce::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr  theShader,
 }
 
 void 
-GPUForce::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, 
+GPUForce::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
         std::string theIndex, int theWidth, int theHeight) 
 {
-    _myParticles = theParticles;
-    _myVelocityShader = theShader;
+    _myParticles = GPUParticlesPtr(theParticles);
+    _myVelocityShader = GPUUpdateShaderPtr(theShader);
     _myParameterIndex = theIndex;
     
     _myVelocityShader->checkError("Problem creating force.");

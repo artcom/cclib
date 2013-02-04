@@ -10,8 +10,8 @@
 using namespace cclib;
 
 ParticleWaitingList::ParticleWaitingList(float theTimeStep) :
-    _myOffset(0), 
     _myTimeStep(0),
+    _myOffset(0),
     _myCurrentWorkedIndex(0),
     _myCurrentWaitList()
 {
@@ -42,7 +42,7 @@ ParticleWaitingList::add(GPUParticlePtr theParticle) {
 }
     
 void 
-ParticleWaitingList::handleCurrentWaitList(float theDeltaTime, GPUIndexParticleEmitterPtr thePE) {
+ParticleWaitingList::handleCurrentWaitList(float theDeltaTime, GPUIndexParticleEmitter * thePE) {
     // if (_myCurrentWaitList == null)
     //     return;
     if (_myCurrentWaitList.empty()) {
@@ -64,7 +64,7 @@ ParticleWaitingList::handleCurrentWaitList(float theDeltaTime, GPUIndexParticleE
 }
     
 void 
-ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitterPtr thePE) {
+ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE) {
     _myStepTime += theDeltaTime;
 
     handleCurrentWaitList(theDeltaTime, thePE);
@@ -241,14 +241,14 @@ GPUIndexParticleEmitter::emit(int theIndex, Vector3fPtr thePosition, Vector3fPtr
     return myActiveParticle;
 }
 
-GPUParticlePtr 
+GPUParticlePtr
 GPUIndexParticleEmitter::emit(Vector3fPtr thePosition, Vector3fPtr theVelocity, float theLifeTime) {
     return emit(thePosition, theVelocity, theLifeTime, false);
 }
 
 void 
 GPUIndexParticleEmitter::update(float theDeltaTime) {
-    _myParticleWaitingList->update(theDeltaTime, GPUIndexParticleEmitterPtr(this));
+    _myParticleWaitingList->update(theDeltaTime, this);
 }
 
 int 
@@ -301,9 +301,13 @@ GPUIndexParticleEmitter::transferData() {
     _myParticles->dataTexture()->endDraw();
 }
 
+GPUParticleEmitterPtr
+GPUIndexParticleEmitter::getBasePtr() {
+    return GPUParticleEmitterPtr(static_cast<GPUParticleEmitter*>(this));
+}
+
 void 
 GPUIndexParticleEmitter::setData() {
-
     int myEmitSize = _myAllocatedParticles.size();
     if (myEmitSize == 0) {
         return;

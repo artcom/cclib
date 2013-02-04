@@ -12,7 +12,7 @@ class GPUUpdateShader : public Shader {
         void positions(ShaderTexturePtr thePositionTexture);
         void deltaTime(float theDeltaTime);
         
-        static GPUUpdateShaderPtr create( GPUParticlesPtr theParticles, std::vector<GPUForcePtr> theForces, 
+        static GPUUpdateShaderPtr create( GPUParticles * theParticles, std::vector<GPUForcePtr> theForces,
                 std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
                 std::vector<std::string> theShaderFile, int theWidth, int theHeight ); 
 
@@ -25,7 +25,7 @@ class GPUUpdateShader : public Shader {
 	    CGparameter _myConstraintsParameter;
 	    CGparameter _myImpulsesParameter;
 
-        GPUUpdateShader( GPUParticlesPtr theParticles, std::vector<GPUForcePtr> theForces , 
+        GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUForcePtr> theForces ,
             std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
             const std::vector<std::string> & theShaderFile, int theWidth, int theHeight ); 
 	

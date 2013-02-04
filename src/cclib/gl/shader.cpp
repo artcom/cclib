@@ -30,8 +30,8 @@ Shader::create(const std::vector<std::string> & vertexShaderFiles, const std::ve
 Shader::Shader(const std::vector<std::string> & vertexShaderFiles, 
         const std::vector<std::string> & fragmentShaderFiles,
         const std::string & vertexEntry, const std::string & fragmentEntry) :
-   _vertexEntry(vertexEntry), _fragmentEntry(fragmentEntry), _usedTextureParameters(),
-   _vertexProgram(0), _fragmentProgram(0)
+   _vertexEntry(vertexEntry), _fragmentEntry(fragmentEntry),
+   _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
 {   
     if (!glewIsSupported("GL_ARB_vertex_shader") || !glewIsSupported("GL_ARB_fragment_shader")) {
         throw cclib::Exception("Shaders are not supported by your hardware.");

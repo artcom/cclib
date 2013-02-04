@@ -19,7 +19,7 @@ class GPUParticlePointRenderer : public GPUParticleRenderer {
     public:
         static GPUParticlePointRendererPtr create();
 
-        void setup(GPUParticlesPtr theParticles);
+        void setup(GPUParticles * theParticles);
         void update(float theDeltaTime);
         void draw();
 	

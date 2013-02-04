@@ -65,10 +65,10 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     _myCurrentDataTexture->endDraw();
 
     _myParticleRender = theRender;
-    _myParticleRender->setup( GPUParticlesPtr(this) );
+    _myParticleRender->setup( this );
     
     std::vector<std::string> myNoShaders;
-    _myUpdateShader = GPUUpdateShader::create( GPUParticlesPtr(this), theForces, theConstraints, theImpulse, myNoShaders, _myWidth, _myHeight );
+    _myUpdateShader = GPUUpdateShader::create( this, theForces, theConstraints, theImpulse, myNoShaders, _myWidth, _myHeight );
 
     reset();
 }
