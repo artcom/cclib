@@ -139,6 +139,10 @@ add_executable(shader_test test/shader.tst.cpp)
 target_link_libraries(shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_test(shader_test shader_test) 
 
+add_executable(shadertexture_test test/shadertexture.tst.cpp)
+target_link_libraries(shadertexture_test ${CCLIB_NAME} ${TEST_LIBRARIES})
+add_test(shadertexture_test shadertexture_test) 
+
 # samples
 add_executable(cclibEmitDemo demo/emitDemo.cpp)
 target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
