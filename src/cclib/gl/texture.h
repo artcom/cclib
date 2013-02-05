@@ -25,8 +25,8 @@ class TextureAttributes {
             mipmapFilter(GL_LINEAR),
             generateMipmaps(false),
             internalFormat(GL_RGBA),
-            type(GL_RGBA),
-            format(GL_FLOAT) 
+            format(GL_FLOAT),
+            type(GL_RGBA)
         {};
 
         virtual ~TextureAttributes() {

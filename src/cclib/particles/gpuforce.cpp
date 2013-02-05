@@ -4,11 +4,9 @@ using namespace cclib;
 
 GPUForce::GPUForce(const std::string & theShaderTypeName) :
     _myShaderTypeName(theShaderTypeName),
+    _myParticles(),
     _myStrength(1.0f),
-    _myStrengthParameter(),
-    _myVelocityShader(),
-    _myParameterIndex(),
-    _myParticles()
+    _myStrengthParameter()
 {
     _myShaderTypeName = theShaderTypeName;
 }

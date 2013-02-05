@@ -11,7 +11,10 @@ Mesh::Mesh(GLenum theDrawMode, int theNumberOfVertices) :
     _myNormals(),
     _myColors(),
     _myIndices(),
-    _myDrawMode(GL_TRIANGLES)
+    _myDrawMode(GL_TRIANGLES),
+    _myVerticesIdx(0),
+    _myNormalsIdx(0),
+    _myColorsIdx(0)
 {
     _myDrawMode = theDrawMode;
     _myNumberOfVertices = theNumberOfVertices;
@@ -32,6 +35,7 @@ Mesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
         _myNumberOfVertices = theNumberOfVertices;
         _myVertexSize = theVertexSize;
         _myVertices = std::vector<float>(_myNumberOfVertices * _myVertexSize, 0.0f);
+        _myVerticesIdx = 0;
     }
 }
 
@@ -43,19 +47,20 @@ Mesh::prepareVertexData(int theVertexSize) {
 void 
 Mesh::addVertex(float theX, float theY, float theZ) {
     prepareVertexData(_myNumberOfVertices, 3);
-    _myVertices.push_back(theX);
-    _myVertices.push_back(theY);
-    _myVertices.push_back(theZ);
+    _myVertices[_myVerticesIdx]   = theX;
+    _myVertices[_myVerticesIdx+1] = theY;
+    _myVertices[_myVerticesIdx+2] = theZ;
+    _myVerticesIdx +=3;
 }
 
 void 
 Mesh::addVertex(float theX, float theY, float theZ, float theW) {
     prepareVertexData(_myNumberOfVertices, 4);
-
-    _myVertices.push_back(theX);
-    _myVertices.push_back(theY);
-    _myVertices.push_back(theZ);
-    _myVertices.push_back(theW);
+    _myVertices[_myVerticesIdx]   = theX;
+    _myVertices[_myVerticesIdx+1] = theY;
+    _myVertices[_myVerticesIdx+2] = theZ;
+    _myVertices[_myVerticesIdx+3] = theW;
+    _myVerticesIdx +=4;
 }
 
 std::vector<float> 
@@ -166,7 +171,7 @@ Mesh::disable() {
 void 
 Mesh::drawArray() {
     // Draw All Of The Triangles At Once
-    if (!_myIndices.empty()) {
+    if (_myIndices.empty()) {
         glDrawArrays(_myDrawMode, 0, _myNumberOfVertices);
     } else {
         glDrawElements(_myDrawMode, _myNumberOfIndices, GL_UNSIGNED_INT, &(_myIndices[0]));

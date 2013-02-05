@@ -77,7 +77,7 @@ Graphics::endShape(){
 
 void 
 Graphics::rect(float theX1, float theY1, float theX2, float theY2) {
-    float hradius, vradius;
+    // float hradius, vradius;
 
     // switch (_myRectMode){
     //     case CORNERS:
@@ -218,5 +218,10 @@ Graphics::noTexture() {
     glActiveTexture(GL_TEXTURE0);
     glDisable(GL_TEXTURE_2D);
     _myDrawTexture = false;
+}
+
+void 
+Graphics::noDepthTest() {
+    glDisable(GL_DEPTH_TEST);
 }
 

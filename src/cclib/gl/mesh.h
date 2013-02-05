@@ -18,7 +18,12 @@ class Mesh {
         std::vector<float> _myNormals;
         std::vector<float> _myTextureCoords[8]; // = new FloatBuffer[8];
         std::vector<float> _myColors;
-        
+
+        int _myVerticesIdx;
+        int _myNormalsIdx;
+        int _myTextureCoordsIdx[8];
+        int _myColorsIdx;
+    
         std::vector<int> _myIndices;
         GLenum _myDrawMode; // = CCDrawMode.TRIANGLES;
         Mesh(GLenum theDrawMode, int theNumberOfVertices=0);
@@ -26,37 +31,37 @@ class Mesh {
     public:
         static MeshPtr create(GLenum theDrawMode, int theNumberOfVertices=0);
 
-        void prepareVertexData(int theNumberOfVertices, int theVertexSize);
-        void prepareVertexData(int theVertexSize);
-        void addVertex(float theX, float theY, float theZ=0.0f);
-        void addVertex(float theX, float theY, float theZ, float theW);
-        std::vector<float> vertices();
-        void vertices(std::vector<float> theVertices, int theVertexSize=3);
-        void clearVertices();
-        void clearTextureCoords();
-        void clearNormals();
-        void clearColors();
-        void clearIndices();
-        void clearAll();
-        void drawMode(GLenum theDrawMode);
-        void enable();
-        void disable();
-        void drawArray();
-        void draw();
+        virtual void prepareVertexData(int theNumberOfVertices, int theVertexSize);
+        virtual void prepareVertexData(int theVertexSize);
+        virtual void addVertex(float theX, float theY, float theZ=0.0f);
+        virtual void addVertex(float theX, float theY, float theZ, float theW);
+        virtual std::vector<float> vertices();
+        virtual void vertices(std::vector<float> theVertices, int theVertexSize=3);
+        virtual void clearVertices();
+        virtual void clearTextureCoords();
+        virtual void clearNormals();
+        virtual void clearColors();
+        virtual void clearIndices();
+        virtual void clearAll();
+        virtual void drawMode(GLenum theDrawMode);
+        virtual void enable();
+        virtual void disable();
+        virtual void drawArray();
+        virtual void draw();
 	
-        void prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theTextureCoordSize);
-        void prepareTextureCoordData(int theLevel, int theTextureCoordSize);
-        void addTextureCoords(int theLevel, float theX, float theY);
-        void addTextureCoords(float theX, float theY);
-        void addTextureCoords(int theLevel, Vector2fPtr & theTextureCoords);
-        void addTextureCoords(int theLevel, float theX, float theY, float theZ);
-        void addTextureCoords(int theLevel, Vector3fPtr theTextureCoords);
-        void addTextureCoords(int theLevel, float theX, float theY, float theZ, float theW);
+        virtual void prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theTextureCoordSize);
+        virtual void prepareTextureCoordData(int theLevel, int theTextureCoordSize);
+        virtual void addTextureCoords(int theLevel, float theX, float theY);
+        virtual void addTextureCoords(float theX, float theY);
+        virtual void addTextureCoords(int theLevel, Vector2fPtr & theTextureCoords);
+        virtual void addTextureCoords(int theLevel, float theX, float theY, float theZ);
+        virtual void addTextureCoords(int theLevel, Vector3fPtr theTextureCoords);
+        virtual void addTextureCoords(int theLevel, float theX, float theY, float theZ, float theW);
         
-        void textureCoords(int theLevel, std::vector<float> & theTextureCoords, int theTextureCoordSize);
-        void textureCoords(int theLevel, std::vector<float> & theTextureCoords);
-        void textureCoords(std::vector<float> & theTextureCoords);
-        std::vector<float> texCoords(int theLevel);
+        virtual void textureCoords(int theLevel, std::vector<float> & theTextureCoords, int theTextureCoordSize);
+        virtual void textureCoords(int theLevel, std::vector<float> & theTextureCoords);
+        virtual void textureCoords(std::vector<float> & theTextureCoords);
+        virtual std::vector<float> texCoords(int theLevel);
         
         // void addTextureCoords(int theLevel, Vector4fPtr theTextureCoords) {
         //     addTextureCoords(theLevel, theTextureCoords->x(), theTextureCoords->y(), theTextureCoords->z(), theTextureCoords->w());

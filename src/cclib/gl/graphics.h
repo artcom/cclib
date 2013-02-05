@@ -25,6 +25,8 @@ class Graphics {
         static void noTexture();
         static void imageImplementation(TexturePtr theImage, 
                 float x1, float y1, float x2, float y2,float u1, float v1, float u2, float v2);
+        static void noDepthTest();
+        static void blend(GLenum theBlendMode) ;
 
         static std::vector<TexturePtr> _myTextures; 
         static bool _myDrawTexture;

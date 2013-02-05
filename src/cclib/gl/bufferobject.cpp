@@ -79,6 +79,7 @@ std::vector<float>
 BufferObject::mapBuffer() {
     _myIsMapped = true;
    
+    // return CCGraphics.currentGL().glMapBuffer(_myCurrentTarget.glId, GL2.GL_WRITE_ONLY);
     // void * bufferData = glMapBuffer(_myCurrentTarget, GL_WRITE_ONLY);
     std::cerr << "BufferObject.cpp - port incomplete." << std::endl;
     std::vector<float> targetData = std::vector<float>();

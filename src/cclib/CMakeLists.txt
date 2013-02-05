@@ -150,3 +150,5 @@ target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_executable(cclibShaderTextureDemo demo/shaderTextureDemo.cpp)
 target_link_libraries(cclibShaderTextureDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
+add_executable(cclibNoiseFieldDemo demo/gpuNoiseFieldDemo.cpp)
+target_link_libraries(cclibNoiseFieldDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
