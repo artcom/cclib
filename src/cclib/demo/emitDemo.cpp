@@ -67,16 +67,16 @@ class EmitDemo {
             std::vector<GPUImpulsePtr> myImpulses;
 
             _myForceField = GPUForceField::create(0.01f, 1.0f, Vector3fPtr(new Vector3f()));
-            myForces.push_back(_myForceField); // ->getBasePtr() );
+            myForces.push_back(_myForceField);
             
             // GPYConstraint myYConstraint = GPUYConstraint::create(-400, 1.0f, 0f, 0.1f); 
-            // myConstraints.add(myYConstraint->getBasePtr());
+            // myConstraints.add(myYConstraint);
             
             GPUParticlePointRendererPtr myRenderer = GPUParticlePointRenderer::create();
             
             _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 800, 800);
             _myEmitter = GPUIndexParticleEmitter::create(_myParticles);
-            _myParticles->addEmitter(_myEmitter->getBasePtr());
+            _myParticles->addEmitter(_myEmitter);
         }
 
         ~EmitDemo() { 

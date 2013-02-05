@@ -87,8 +87,6 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         void fillVelocityData(std::vector<float> & theBuffer);
         void transferData();
         void setData();
-    
-        GPUParticleEmitterPtr getBasePtr();
 
         // added due to the nested class private member access thing in the java original
         std::vector<int> & freeIndices();

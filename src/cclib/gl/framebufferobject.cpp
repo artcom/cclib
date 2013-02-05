@@ -5,7 +5,7 @@ using namespace cclib;
 
 FrameBufferObject::FrameBufferObject(GLenum target, FrameBufferObjectAttributesPtr attributes,
             unsigned int width, unsigned int height) 
-: Texture2D(attributes->getTex2DAttributes(), width, height, attributes->numberOfColorBuffers, target),
+: Texture2D(attributes, width, height, attributes->numberOfColorBuffers, target),
  _renderFramebufferID(0), _depthTexture(), _bindIndex(0),
  _renderBufferIDs(), _attributes(attributes), _numberOfAttachments(attributes->numberOfColorBuffers)
 {

@@ -35,16 +35,18 @@ class FrameBufferObjectAttributes : public TextureAttributes {
         {
             internalFormat = GL_RGBA8;
         }; 
-
-        TextureAttributesPtr getTex2DAttributes() {
-            return TextureAttributesPtr(static_cast<TextureAttributes*>(this));
+    
+        virtual ~FrameBufferObjectAttributes() {
+            std::cout << "~FrameBufferObjectAttributes" << std::endl;
         };
 };
 
 class FrameBufferObject : public Texture2D {
     public:
-        virtual ~FrameBufferObject() {}; 
-        
+        virtual ~FrameBufferObject() {
+            std::cout << "~FrameBufferObject" << std::endl;
+        };
+    
         static int getMaxSamples();
 
         void checkStatusException();

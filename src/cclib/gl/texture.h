@@ -27,7 +27,11 @@ class TextureAttributes {
             internalFormat(GL_RGBA),
             type(GL_RGBA),
             format(GL_FLOAT) 
-    {};
+        {};
+
+        virtual ~TextureAttributes() {
+            std::cout << "~TextureAttributes" << std::endl;
+        };
 };
 
 class Texture {

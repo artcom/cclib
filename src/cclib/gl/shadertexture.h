@@ -45,7 +45,8 @@ class PBO {
         // }
 
 
-        ~PBO() {
+        virtual ~PBO() {
+            std::cout << "~PBO for id: " << _id << std::endl;
             glDeleteBuffers(1, &_id);
         };
 
@@ -67,6 +68,9 @@ class ShaderTexture : public FrameBufferObject {
         static FrameBufferObjectAttributesPtr createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures); 
         static ShaderTexturePtr create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32, 
             int theNumberOfChannels=3, int theNumberOfTextures=1, GLenum theTarget=GL_TEXTURE_RECTANGLE); 
+        virtual ~ShaderTexture() {
+            std::cout << "~ShaderTexture" << std::endl;
+        };
 
         void beginOrtho2D();
         void drawQuad(); 
@@ -102,6 +106,7 @@ class ShaderTexture : public FrameBufferObject {
         std::vector<PBOPtr> _pbo;
         int _numberOfChannels;
         int _numberOfBits;
+    
 };
 
 }; // namespace

@@ -301,11 +301,6 @@ GPUIndexParticleEmitter::transferData() {
     _myParticles->dataTexture()->endDraw();
 }
 
-GPUParticleEmitterPtr
-GPUIndexParticleEmitter::getBasePtr() {
-    return GPUParticleEmitterPtr(static_cast<GPUParticleEmitter*>(this));
-}
-
 void 
 GPUIndexParticleEmitter::setData() {
     int myEmitSize = _myAllocatedParticles.size();

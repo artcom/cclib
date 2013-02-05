@@ -36,9 +36,11 @@ class Color {
 class Texture2D : public Texture {
 
     public:
-        virtual ~Texture2D() {}; 
+        virtual ~Texture2D() {
+            std::cout << "~Texture2D" << std::endl;
+        };
 
-        Texture2DPtr createTexture2D(TextureAttributesPtr attributes, int width=0, int height=0, 
+        Texture2DPtr createTexture2D(TextureAttributesPtr attributes, int width=0, int height=0,
                 unsigned int numberOfTextures=1, GLenum target=GL_TEXTURE_2D);
         
         // XXX one for CCTexture2D(final CCTextureData theTextureData, CCTextureTarget theTarget)
