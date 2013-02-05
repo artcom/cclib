@@ -38,12 +38,26 @@ BOOST_FIXTURE_TEST_CASE(testShaderTexture, GL_Fixture)
     
     BOOST_CHECK_NO_THROW(s->beginDraw());
             
-    Graphics::clearColor(1.0f, 0.0f, 0.0f, 1.0f);
+    Graphics::clearColor(1.0f, 0.5f, 0.0f, 1.0f);
     Graphics::clear();
-    Graphics::color(1.0f, 0.0f, 0.0f, 1.0f); // drawing red into the texture
-    Graphics::rect(-200, -200, 50, 50);
+    Graphics::color(0.0f, 0.0f, 1.0f, 1.0f); // drawing a single blue pixel into the texture
+    Graphics::rect(1, 0, 1, 1);
             
     BOOST_CHECK_NO_THROW(s->endDraw());
-    BOOST_CHECK_NO_THROW(s->getPixel(1, 1));
+    std::vector<float> data;
+    BOOST_CHECK_NO_THROW(data = s->getData());
+    BOOST_CHECK(data.size() == s->width() * s->height() * 3); 
+    
+    BOOST_CHECK(data[0] == 1.0f);
+    BOOST_CHECK(data[1] == 0.5f);
+    BOOST_CHECK(data[2] == 0.0f); 
+    
+    BOOST_CHECK(data[3] == 0.0f); 
+    BOOST_CHECK(data[4] == 0.0f); 
+    BOOST_CHECK(data[5] == 1.0f); 
+    
+    BOOST_CHECK(data[6] == 1.0f);
+    BOOST_CHECK(data[7] == 0.5f);
+    BOOST_CHECK(data[8] == 0.0f); 
 }
 

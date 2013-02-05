@@ -185,7 +185,7 @@ ShaderTexture::getData(unsigned int x, unsigned int y, int width, int height, in
     }
     
     std::vector<float> pixels(_width * _height * _numberOfChannels); 
-
+    
 	glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[0]);
 	glReadBuffer(_drawBuffers[texture]);
 	glReadPixels(x, y, width, height, _format, GL_FLOAT, &(pixels[0]));
