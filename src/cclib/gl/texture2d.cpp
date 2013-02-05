@@ -8,10 +8,6 @@ Texture2D::createTexture2D(TextureAttributesPtr attributes, int width, int heigh
         unsigned int numberOfTextures, GLenum target)
 {
     Texture2DPtr texture = Texture2DPtr(new Texture2D(attributes, width, height, numberOfTextures, target));
-    if (width > 0 && height > 0) {
-        texture->allocateData(width, height);
-    }
-
     return texture;
 }
 
@@ -19,6 +15,9 @@ Texture2D::Texture2D(TextureAttributesPtr attributes,
              int width, int height, unsigned int numberOfTextures, GLenum target) 
     : Texture(target, attributes, numberOfTextures) 
 { 
+    if (width > 0 && height > 0) {
+        allocateData(width, height);
+    }
 }
 
 

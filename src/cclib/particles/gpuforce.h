@@ -27,21 +27,21 @@ class GPUForce {
 	    float _myStrength; 
         CGparameter _myStrengthParameter;
 	
-        void setupParameter(int theWidth, int theHeight);
+        virtual void setupParameter(int theWidth, int theHeight);
     
     public: 
         typedef std::tr1::shared_ptr<GPUForce> Ptr;
         
         virtual ~GPUForce() {};	
-	    void setShader(GPUParticles * theParticles, GPUUpdateShader *  theShader,
+	    virtual void setShader(GPUParticles * theParticles, GPUUpdateShader *  theShader,
                 int theIndex, int theWidth, int theHeight); 
-        void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
+        virtual void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
                 std::string theIndex, int theWidth, int theHeight);
-        void setSize(int theWidth, int theHeight);
-        void update(float theDeltaTime);
-        void reset();
-        void strength(float theStrength);
-        CGparameter parameter(const std::string & theName);
+        virtual void setSize(int theWidth, int theHeight);
+        virtual void update(float theDeltaTime);
+        virtual void reset();
+        virtual void strength(float theStrength);
+        virtual CGparameter parameter(const std::string & theName);
 };
 
 }; // namespace

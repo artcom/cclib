@@ -143,3 +143,6 @@ add_test(shader_test shader_test)
 add_executable(cclibEmitDemo demo/emitDemo.cpp)
 target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
+add_executable(cclibShaderTextureDemo demo/shaderTextureDemo.cpp)
+target_link_libraries(cclibShaderTextureDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+

@@ -12,7 +12,9 @@ class Exception: public std::runtime_error
     public:
         Exception(std::string const& msg):
             std::runtime_error(msg)
-        {}
+        {
+            std::cout << "Exception: " << this->what() << std::endl;
+        }
 };
     
 } // namespace cclib 

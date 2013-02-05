@@ -38,7 +38,7 @@ class EmitDemo {
             _cGStrength(0.0f), _myForceField(), 
             _cNScale(0.0f), _cNStrength(0.0f),
             _myParticles(), _myEmitter(), 
-            running(true), frame(0)
+            frame(0), running(true)
         { 
             if( !glfwInit() )
             {
@@ -67,7 +67,7 @@ class EmitDemo {
             std::vector<GPUImpulsePtr> myImpulses;
 
             _myForceField = GPUForceField::create(0.01f, 1.0f, Vector3fPtr(new Vector3f()));
-            myForces.push_back( _myForceField->getBasePtr() );
+            myForces.push_back(_myForceField); // ->getBasePtr() );
             
             // GPYConstraint myYConstraint = GPUYConstraint::create(-400, 1.0f, 0f, 0.1f); 
             // myConstraints.add(myYConstraint->getBasePtr());

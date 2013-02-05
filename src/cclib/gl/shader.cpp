@@ -46,6 +46,14 @@ Shader::Shader(const std::vector<std::string> & vertexShaderFiles,
     if (!fragmentShaderFiles.empty()) {
         loadFragmentShader(fragmentShaderFiles);
     }
+    
+    // from CCCGShader
+    // if(_myVertexProgram != null) {
+    //     CGparameter myModelViewProjParameter = CgGL.cgGetNamedParameter(_myVertexProgram, theMatrixParameter);
+    //     if(myModelViewProjParameter != null) {
+    //         _myMatrices.add(new CCCGMatrix(myModelViewProjParameter, CCCGMatrixType.PROJECTION, CCCGMatrixTransform.IDENTITY));
+    //     }
+    // }
 }
 
 std::string 
@@ -88,7 +96,7 @@ Shader::loadFragmentShader(const std::vector<std::string> & fragmentPrograms) {
     }
 	
     _fragmentProgram = loadShader(_fragmentEntry, cg_fragment_profile, fragmentPrograms);
-    // std::cout << "fragment profile: " << cgGetProfileString(cgGLGetLatestProfile(CG_GL_FRAGMENT)) << std::endl; 
+    std::cout << "fragment profile: " << cgGetProfileString(cgGLGetLatestProfile(CG_GL_FRAGMENT)) << std::endl; 
 }
 
 void
@@ -195,7 +203,15 @@ Shader::start() {
 // XXX untested --------------------------------------------------------------------------------------
 void 
 Shader::texture(const CGparameter parameter, int textureID) {
+    std::cout << " isParameter? "  << cgIsParameter(parameter);
+    std::cout << "parameter: \"" << cgGetParameterName(parameter) << "\"";
+    std::cout << " isTexture? "  << glIsTexture(textureID);
+    std::cout << " isParameter? "  << cgIsParameter(parameter);
+    std::cout << " isParameterGlobal? "  << cgIsParameterGlobal(parameter);
+    std::cout << " isParameterReferenced? "  << cgIsParameterReferenced(parameter) << std::endl;
+    
     cgGLSetTextureParameter(parameter, textureID);
+    
     checkError("Problem setting texture ");
     _usedTextureParameters.push_back(parameter);
 }
@@ -204,6 +220,7 @@ void
 Shader::end() {
     for(std::vector<CGparameter>::size_type i=0; i<_usedTextureParameters.size(); i++) { 
         cgGLDisableTextureParameter(_usedTextureParameters[i]);
+        checkError("disable texture paramters");
     }
 
     if(_vertexProgram) {

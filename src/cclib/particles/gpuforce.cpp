@@ -15,6 +15,7 @@ GPUForce::GPUForce(const std::string & theShaderTypeName) :
 
 void 
 GPUForce::setupParameter(int theWidth, int theHeight) {
+    std::cout << "GPUForce :: setupParameter" << std::endl;
     _myStrengthParameter = parameter("strength");
 }
 

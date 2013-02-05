@@ -19,14 +19,14 @@ class GPUImpulse {
     
     public:	
         GPUImpulse(const std::string & theShaderTypeName, float theStrength);
-        void setShader(GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight);
+        virtual void setShader(GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight);
         virtual void setupParameter(int theWidth, int theHeight) = 0;
 
-        CGparameter parameter(const std::string & theName);
-        void strength(float theStrength);
-        void trigger();
-        bool isTriggering();
-        void update(float theDeltaTime);
+        virtual CGparameter parameter(const std::string & theName);
+        virtual void strength(float theStrength);
+        virtual void trigger();
+        virtual bool isTriggering();
+        virtual void update(float theDeltaTime);
 };
 
 }; // namespace

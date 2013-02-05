@@ -47,10 +47,10 @@ class Texture2D : public Texture {
         void setPixel(int x, int y, const Color & color);
 
     protected:
-        void allocateData(unsigned int width, unsigned int height);
+        virtual void allocateData(unsigned int width, unsigned int height);
         Texture2D(TextureAttributesPtr attributes,
                 int width, int height, unsigned int numberOfTextures, GLenum target);
-        void checkError();
+        virtual void checkError();
 
 	    // private CCBufferObject _myBufferObject;
 };

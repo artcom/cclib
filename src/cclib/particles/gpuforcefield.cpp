@@ -15,11 +15,6 @@ GPUForceField::create(float theNoiseScale, float theStrength, Vector3fPtr theNoi
     return GPUForceFieldPtr(new GPUForceField(theNoiseScale, theStrength, theNoiseOffset));
 }
 
-GPUForcePtr 
-GPUForceField::getBasePtr() {
-    return GPUForcePtr(static_cast<GPUForce*>(this));
-}
-
 void 
 GPUForceField::setupParameter(int theWidth, int theHeight) {
     GPUForce::setupParameter(theWidth, theHeight);
@@ -28,6 +23,7 @@ GPUForceField::setupParameter(int theWidth, int theHeight) {
     _myNoiseLengthScalesParameter = parameter("noiseLengthScales");
     _myNoiseGainsParameter = parameter("noiseGains");
 
+    
     std::vector<float> v1; 
     v1.push_back(0.4f);  
     v1.push_back(0.23f);

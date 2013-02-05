@@ -39,50 +39,50 @@ class Texture {
         // virtual void dataImplementation(CCTextureData theData);
         // virtual void updateData(final CCTextureData theData);
         
-        void generateMipmaps(const bool & generateMipmaps);
-        bool & generateMipmaps(); 
+        virtual void generateMipmaps(const bool & generateMipmaps);
+        virtual bool & generateMipmaps(); 
         
-        bool & isCompressed();
+        virtual bool & isCompressed();
         // void data(CCTextureData data);
 
-        std::vector<GLuint> createTextureIds(const unsigned int & numberOfIds);
-        void bind();
-        void bind(int id);
-        void unbind();
-        int id();
-        int id(const int & level);
+        virtual std::vector<GLuint> createTextureIds(const unsigned int & numberOfIds);
+        virtual void bind();
+        virtual void bind(int id);
+        virtual void unbind();
+        virtual int id();
+        virtual int id(const int & level);
 
-        GLenum target();
+        virtual GLenum target();
 
-        bool mustFlipVertically();
+        virtual bool mustFlipVertically();
 
-        void mustFlipVertically(bool mustFlipVertically);
-        unsigned int width();
-        unsigned int height();
-        unsigned int size();
+        virtual void mustFlipVertically(bool mustFlipVertically);
+        virtual unsigned int width();
+        virtual unsigned int height();
+        virtual unsigned int size();
 
-        Vector2iPtr dimension();
+        virtual Vector2iPtr dimension();
 
-        int depth();
-        int border();
-        GLenum format();
-        GLenum internalFormat();
-        GLenum pixelType();
-        void parameter(GLenum type, int value);
-        void parameter(GLenum type, float value);
-        void parameter(GLenum type, std::vector<float> values);
-        int parameter(int glid);
-        void wrap(GLenum textureWrap);
-        void wrapR(GLenum textureWrap);
-        void wrapS(GLenum textureWrap);
-        void wrapT(GLenum textureWrap);
+        virtual int depth();
+        virtual int border();
+        virtual GLenum format();
+        virtual GLenum internalFormat();
+        virtual GLenum pixelType();
+        virtual void parameter(GLenum type, int value);
+        virtual void parameter(GLenum type, float value);
+        virtual void parameter(GLenum type, std::vector<float> values);
+        virtual int parameter(int glid);
+        virtual void wrap(GLenum textureWrap);
+        virtual void wrapR(GLenum textureWrap);
+        virtual void wrapS(GLenum textureWrap);
+        virtual void wrapT(GLenum textureWrap);
         // void textureBorderColor(CCColor theColor);
-        void updateFilter();
-        void anisotropicFiltering(float amount);
-        void textureFilter(GLenum filter);
-        void textureMipmapFilter(GLenum filter);
-        void textureEnvironmentMode(GLenum mode);
-        void depthTextureMode(GLenum mode);
+        virtual void updateFilter();
+        virtual void anisotropicFiltering(float amount);
+        virtual void textureFilter(GLenum filter);
+        virtual void textureMipmapFilter(GLenum filter);
+        virtual void textureEnvironmentMode(GLenum mode);
+        virtual void depthTextureMode(GLenum mode);
         // void blendColor(CCColor blendColor);
 
     protected:
