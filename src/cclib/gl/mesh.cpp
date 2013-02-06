@@ -7,15 +7,20 @@ Mesh::Mesh(GLenum theDrawMode, int theNumberOfVertices) :
     _myNumberOfVertices(theNumberOfVertices), 
     // _myVertexSize()
     _myNumberOfIndices(0),
-    _myVertices(),
-    _myNormals(),
-    _myColors(),
-    _myIndices(),
     _myDrawMode(GL_TRIANGLES),
     _myVerticesIdx(0),
     _myNormalsIdx(0),
     _myColorsIdx(0)
 {
+    _myVertices = BufferPtr(new Buffer(0));
+    _myNormals  = BufferPtr(new Buffer(0));
+    _myColors   = BufferPtr(new Buffer(0));
+    // _myIndices  = BufferPtr(new Buffer(0));
+
+    for (unsigned int i=0; i<8; i++) {
+        _myTextureCoords[i] = BufferPtr(new Buffer(0));
+    }
+    
     _myDrawMode = theDrawMode;
     _myNumberOfVertices = theNumberOfVertices;
     _myVertexSize = 3;
@@ -31,10 +36,10 @@ Mesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
     _myNumberOfVertices = theNumberOfVertices;
     _myVertexSize = theVertexSize;
 
-    if(_myVertices.empty() || _myVertices.size() / _myVertexSize != _myNumberOfVertices) {
+    if(_myVertices->empty() || _myVertices->size() / _myVertexSize != _myNumberOfVertices) {
         _myNumberOfVertices = theNumberOfVertices;
         _myVertexSize = theVertexSize;
-        _myVertices = std::vector<float>(_myNumberOfVertices * _myVertexSize, 0.0f);
+        _myVertices = BufferPtr(new Buffer(_myNumberOfVertices * _myVertexSize));
         _myVerticesIdx = 0;
     }
 }
@@ -47,54 +52,54 @@ Mesh::prepareVertexData(int theVertexSize) {
 void 
 Mesh::addVertex(float theX, float theY, float theZ) {
     prepareVertexData(_myNumberOfVertices, 3);
-    _myVertices[_myVerticesIdx]   = theX;
-    _myVertices[_myVerticesIdx+1] = theY;
-    _myVertices[_myVerticesIdx+2] = theZ;
+    _myVertices->data()[_myVerticesIdx]   = theX;
+    _myVertices->data()[_myVerticesIdx+1] = theY;
+    _myVertices->data()[_myVerticesIdx+2] = theZ;
     _myVerticesIdx +=3;
 }
 
 void 
 Mesh::addVertex(float theX, float theY, float theZ, float theW) {
     prepareVertexData(_myNumberOfVertices, 4);
-    _myVertices[_myVerticesIdx]   = theX;
-    _myVertices[_myVerticesIdx+1] = theY;
-    _myVertices[_myVerticesIdx+2] = theZ;
-    _myVertices[_myVerticesIdx+3] = theW;
+    _myVertices->data()[_myVerticesIdx]   = theX;
+    _myVertices->data()[_myVerticesIdx+1] = theY;
+    _myVertices->data()[_myVerticesIdx+2] = theZ;
+    _myVertices->data()[_myVerticesIdx+3] = theW;
     _myVerticesIdx +=4;
 }
 
-std::vector<float> 
+BufferPtr
 Mesh::vertices() {
     return _myVertices;
 }
 
 void 
-Mesh::vertices(std::vector<float> theVertices, int theVertexSize) {
-    _myNumberOfVertices = theVertices.size() / theVertexSize;
+Mesh::vertices(BufferPtr theVertices, int theVertexSize) {
+    _myNumberOfVertices = theVertices->size() / theVertexSize;
     _myVertexSize = theVertexSize;
     _myVertices = theVertices;
 }
 
 void 
 Mesh::clearVertices() {
-    _myVertices.clear();
+    _myVertices->clear();
 }
 
 void 
 Mesh::clearTextureCoords() {
     for (int i=0; i<8; i++) {
-        _myTextureCoords[i].clear();
+        _myTextureCoords[i]->clear();
     }
 }
 
 void 
 Mesh::clearNormals() {
-    _myNormals.clear();
+    _myNormals->clear();
 }
 
 void 
 Mesh::clearColors() {
-    _myColors.clear();
+    _myColors->clear();
 }
 
 void 
@@ -119,27 +124,27 @@ Mesh::drawMode(GLenum theDrawMode) {
 void 
 Mesh::enable() {
     // Enable Pointers
-    if(!_myVertices.empty()) {
+    if(!_myVertices->empty()) {
         glEnableClientState(GL_VERTEX_ARRAY);
-        glVertexPointer(_myVertexSize, GL_FLOAT, 0, &(_myVertices[0]));
+        glVertexPointer(_myVertexSize, GL_FLOAT, 0, _myVertices->data());
     }
 
-    if(!_myNormals.empty()) {
+    if(!_myNormals->empty()) {
         glEnableClientState(GL_NORMAL_ARRAY);
-        glNormalPointer(GL_FLOAT, 0, &(_myNormals[0]));
+        glNormalPointer(GL_FLOAT, 0, _myNormals->data());
     }
 
     for(int i = 0; i < 8; i++) {
-        if(_myTextureCoords[i].empty()) {
+        if(_myTextureCoords[i]->empty()) {
             glClientActiveTexture(GL_TEXTURE0 + i);
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-            glTexCoordPointer(_myTextureCoordSize[i], GL_FLOAT, 0, &(_myTextureCoords[i][0]));
+            glTexCoordPointer(_myTextureCoordSize[i], GL_FLOAT, 0, _myTextureCoords[i]->data());
         }
     }
 
-    if(!_myColors.empty()) {
+    if(!_myColors->empty()) {
         glEnableClientState(GL_COLOR_ARRAY);
-        glColorPointer(4, GL_FLOAT, 0, &(_myColors[0]));
+        glColorPointer(4, GL_FLOAT, 0, _myColors->data());
     }
 }
 
@@ -147,23 +152,23 @@ void
 Mesh::disable() {
 
     // Disable Pointers
-    if(!_myVertices.empty()) {
+    if(!_myVertices->empty()) {
         glDisableClientState(GL_VERTEX_ARRAY);
     }
 
-    if(!_myNormals.empty()) {
+    if(!_myNormals->empty()) {
         glDisableClientState(GL_NORMAL_ARRAY);
     }
 
     for(int i = 0; i < 8; i++) {
-        if(!_myTextureCoords[i].empty()) {
+        if(!_myTextureCoords[i]->empty()) {
             glClientActiveTexture(GL_TEXTURE0 + i);
             glDisableClientState(GL_TEXTURE_COORD_ARRAY);
         }
     }
 
     glClientActiveTexture(GL_TEXTURE0);
-    if(!_myColors.size()){
+    if(!_myColors->size()){
         glDisableClientState(GL_COLOR_ARRAY);
     }
 }
@@ -174,7 +179,7 @@ Mesh::drawArray() {
     if (_myIndices.empty()) {
         glDrawArrays(_myDrawMode, 0, _myNumberOfVertices);
     } else {
-        glDrawElements(_myDrawMode, _myNumberOfIndices, GL_UNSIGNED_INT, &(_myIndices[0]));
+        glDrawElements(_myDrawMode, _myNumberOfIndices, GL_UNSIGNED_INT, 0); //&(_myIndices[0]));
     }
 }
 
@@ -190,8 +195,8 @@ Mesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theText
     _myNumberOfVertices = theNumberOfVertices;
     _myTextureCoordSize[theLevel] = theTextureCoordSize;
 
-    if(_myTextureCoords[theLevel].empty() || _myNumberOfVertices != _myTextureCoords[theLevel].size() / theTextureCoordSize) {
-        _myTextureCoords[theLevel] = std::vector<float>();  
+    if(_myTextureCoords[theLevel]->empty() || _myNumberOfVertices != _myTextureCoords[theLevel]->size() / theTextureCoordSize) {
+//        _myTextureCoords[theLevel] = std::vector<float>();
     }
 }
 
@@ -204,8 +209,8 @@ void
 Mesh::addTextureCoords(int theLevel, float theX, float theY) {
     prepareTextureCoordData(_myNumberOfVertices, theLevel, 2);
 
-    _myTextureCoords[theLevel].push_back(theX);
-    _myTextureCoords[theLevel].push_back(theY);
+    _myTextureCoords[theLevel]->put(theX);
+    _myTextureCoords[theLevel]->put(theY);
 }
 
 void 
@@ -222,9 +227,9 @@ void
 Mesh::addTextureCoords(int theLevel, float theX, float theY, float theZ) {
     prepareTextureCoordData(_myNumberOfVertices, theLevel, 3);
 
-    _myTextureCoords[theLevel].push_back(theX);
-    _myTextureCoords[theLevel].push_back(theY);
-    _myTextureCoords[theLevel].push_back(theZ);
+    _myTextureCoords[theLevel]->put(theX);
+    _myTextureCoords[theLevel]->put(theY);
+    _myTextureCoords[theLevel]->put(theZ);
 }
 
 void 
@@ -236,10 +241,10 @@ void
 Mesh::addTextureCoords(int theLevel, float theX, float theY, float theZ, float theW) {
     prepareTextureCoordData(_myNumberOfVertices, theLevel, 4);
 
-    _myTextureCoords[theLevel].push_back(theX);
-    _myTextureCoords[theLevel].push_back(theY);
-    _myTextureCoords[theLevel].push_back(theZ);
-    _myTextureCoords[theLevel].push_back(theW);
+    _myTextureCoords[theLevel]->put(theX);
+    _myTextureCoords[theLevel]->put(theY);
+    _myTextureCoords[theLevel]->put(theZ);
+    _myTextureCoords[theLevel]->put(theW);
 }
 
 // void addTextureCoords(int theLevel, Vector4fPtr theTextureCoords) {
@@ -247,8 +252,8 @@ Mesh::addTextureCoords(int theLevel, float theX, float theY, float theZ, float t
 // }
 
 void 
-Mesh::textureCoords(int theLevel, std::vector<float> & theTextureCoords, int theTextureCoordSize) {
-    _myNumberOfVertices = theTextureCoords.size() / theTextureCoordSize;
+Mesh::textureCoords(int theLevel, BufferPtr theTextureCoords, int theTextureCoordSize) {
+    _myNumberOfVertices = theTextureCoords->size() / theTextureCoordSize;
     _myTextureCoordSize[theLevel] = theTextureCoordSize;
     _myTextureCoords[theLevel] = theTextureCoords;
 
@@ -260,12 +265,12 @@ Mesh::textureCoords(int theLevel, std::vector<float> & theTextureCoords, int the
 }
 
 void 
-Mesh::textureCoords(int theLevel, std::vector<float> & theTextureCoords) {
+Mesh::textureCoords(int theLevel, BufferPtr theTextureCoords) {
     textureCoords(theLevel, theTextureCoords, 2);
 }
 
 void 
-Mesh::textureCoords(std::vector<float> & theTextureCoords) {
+Mesh::textureCoords(BufferPtr theTextureCoords) {
     textureCoords(0, theTextureCoords);
 }
 
@@ -304,7 +309,7 @@ Mesh::textureCoords(std::vector<float> & theTextureCoords) {
 //     textureCoords(0, theTextureCoords);
 // }
 
-std::vector<float> 
+BufferPtr 
 Mesh::texCoords(int theLevel) {
     return _myTextureCoords[theLevel];
 }

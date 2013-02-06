@@ -339,12 +339,14 @@ GPUIndexParticleEmitter::setData() {
     fillInfoData(_myInfoBuffer);
     fillVelocityData(_myVelocityBuffer);
 
+#warning FIXME!!
+#if 0
     _myEmitMesh->clearAll();
     _myEmitMesh->vertices(_myVertexBuffer);
     _myEmitMesh->textureCoords(0, _myPositionBuffer, 3);
     _myEmitMesh->textureCoords(1, _myInfoBuffer, 3);
     _myEmitMesh->textureCoords(2, _myVelocityBuffer, 3);
-
+#endif
     transferData();
 
     _myAllocatedParticles.clear();

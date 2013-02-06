@@ -3,6 +3,7 @@
 #define __CCLIB_VBOMESH_INCLUDED__
 
 #include <cclib.h>
+#include <gl/bufferobject.h>
 
 namespace cclib {
 
@@ -33,7 +34,7 @@ class VBOMesh : public Mesh {
     public:
         static VBOMeshPtr create(GLenum theDrawMode=GL_QUADS, int theNumberOfVertices=0);
 
-        void bufferSubData(GLuint theBufferID, std::vector<float> & theData, int theOffset, 
+        void bufferSubData(GLuint theBufferID, BufferPtr theData, int theOffset, 
                 int theNumberOfVertices, int theNumberOfCoords); 
         void prepareVertexData(int theNumberOfVertices, int theVertexSize);
         void vertices(ShaderTexturePtr theShaderTexture);

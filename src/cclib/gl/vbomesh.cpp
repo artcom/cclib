@@ -1,4 +1,5 @@
 
+#include <string.h>
 #include <gl/shadertexture.h>
 #include <gl/mesh.h>
 #include <gl/bufferobject.h>
@@ -17,7 +18,11 @@ VBOMesh::VBOMesh(GLenum theDrawMode, int theNumberOfVertices) :
     _myHasNormals(false),
     _myHasIndices(true),
     _myHasDefinedSize(false)
-{}
+{
+    for (int i=0; i<8; i++) {
+        _myHasTextureCoords[i] = false;
+    }
+}
         
 VBOMeshPtr 
 VBOMesh::create(GLenum theDrawMode, int theNumberOfVertices) {
@@ -25,7 +30,7 @@ VBOMesh::create(GLenum theDrawMode, int theNumberOfVertices) {
 }
     
 void 
-VBOMesh::bufferSubData(GLuint theBufferID, std::vector<float> & theData, int theOffset, 
+VBOMesh::bufferSubData(GLuint theBufferID, BufferPtr theData, int theOffset,
         int theNumberOfVertices, int theNumberOfCoords) 
 {
     // XXX ??? theData.flip();
@@ -34,7 +39,7 @@ VBOMesh::bufferSubData(GLuint theBufferID, std::vector<float> & theData, int the
 
     // Load The Data
     glBufferSubData(GL_ARRAY_BUFFER, theOffset, 
-            theNumberOfVertices * theNumberOfCoords * sizeof(float), &(theData[0]));
+            theNumberOfVertices * theNumberOfCoords * sizeof(float), theData->data());
 }
 
 //////////////////////////////////////////////////////
@@ -48,17 +53,16 @@ VBOMesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
     _myNumberOfVertices = theNumberOfVertices;
     _myVertexSize = theVertexSize;
 
-    if(_myVertices.empty() || _myVertices.size() / _myVertexSize != _myNumberOfVertices) {
+    if(_myVertices->empty() || _myVertices->size() / _myVertexSize != _myNumberOfVertices) {
         _myVertexSize = theVertexSize;
         
         if(!_myVertexBuffer) {
-            _myVertexBuffer = BufferObject::create(_myNumberOfVertices * _myVertexSize * sizeof(float));
+            _myVertexBuffer = BufferObject::create(_myNumberOfVertices * _myVertexSize);
         } else {
-            std::vector<float> noData;
-            _myVertexBuffer->bufferData(_myNumberOfVertices * _myVertexSize * sizeof(float), 
-                    noData, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
+            _myVertexBuffer->bufferData(_myNumberOfVertices * _myVertexSize,
+                    _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
         }
-
+        
         _myVertices = _myVertexBuffer->data();
     }
     
@@ -112,10 +116,10 @@ void
 VBOMesh::prepareNormalData(int theNumberOfVertices){
     _myNumberOfVertices = theNumberOfVertices;
 
-    if(!_myNormalBuffer || _myNormals.size() / 3 != _myNumberOfVertices) {
+    if(!_myNormalBuffer || _myNormals->size() / 3 != _myNumberOfVertices) {
         _myNumberOfVertices = theNumberOfVertices;
         _myNormalBuffer = BufferObject::create(_myNumberOfVertices * 3 * sizeof(float));
-        _myNormals = _myNormalBuffer->data();
+        // XXX _myNormals = _myNormalBuffer->data();
     }
     
     _myHasNormals = true;
@@ -159,7 +163,7 @@ void
 VBOMesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theTextureCoordSize){
     _myNumberOfVertices = theNumberOfVertices;
     _myTextureCoordSize[theLevel] = theTextureCoordSize;
-    
+ /* XXX
     if(!_myTextureCoordBuffers[theLevel] || _myTextureCoords[theLevel].size() / _myTextureCoordSize[theLevel] != _myNumberOfVertices) {
         if (!_myTextureCoordBuffers[theLevel]) {
             _myTextureCoordBuffers[theLevel] = BufferObject::create(_myNumberOfVertices * theTextureCoordSize * sizeof(float));
@@ -174,6 +178,7 @@ VBOMesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theT
 
     _myHasTextureCoords[theLevel] = true;
     _myHasUpdatedTextureCoords[theLevel] = true;
+  */
 }
 
 //////////////////////////////////////////////////
@@ -184,7 +189,8 @@ VBOMesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theT
 
 void 
 VBOMesh::prepareColorData(int theNumberOfVertices){
-    _myNumberOfVertices = theNumberOfVertices;
+    /* XXX
+     _myNumberOfVertices = theNumberOfVertices;
     
     if(!_myColorBuffer || _myColors.size() / 4 != _myNumberOfVertices){
         _myColorBuffer = BufferObject::create(_myNumberOfVertices * 4 * sizeof(float));
@@ -193,6 +199,7 @@ VBOMesh::prepareColorData(int theNumberOfVertices){
     
     _myHasColors = true;
     _myHasUpdatedColors = true;
+     */
 }
 
 void 
@@ -266,7 +273,7 @@ VBOMesh::enable(){
     if(_myHasVertices){
         if(_myHasUpdatedVertices) {
             _myVertexBuffer->bind(GL_ARRAY_BUFFER);
-            _myVertexBuffer->bufferData();
+            _myVertexBuffer->bufferData(); //_myVertices.size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
             _myVertexBuffer->unbind();
             _myHasUpdatedVertices = false;
         }

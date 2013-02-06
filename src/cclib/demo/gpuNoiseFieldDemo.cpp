@@ -40,7 +40,7 @@ class NoiseFieldDemo {
         CGparameter _myNoiseOffsetParameter;
 
         // Arcball _myArcball;
-        MeshPtr _myMesh;
+        VBOMeshPtr _myMesh;
         
         float time;
         Vector3fPtr _myOffset;
@@ -101,7 +101,7 @@ class NoiseFieldDemo {
             GPUNoise::attachVertexNoise(_myShader);
 
             // _myArcball = new CCArcball(this);
-            _myMesh = Mesh::create(GL_LINES, 2000000);
+            _myMesh = VBOMesh::create(GL_LINES, 500000);
 
             // Graphics::pointSize(20);
             glLineWidth(0.1f);// Graphics::strokeWeight(0.1f);
@@ -111,14 +111,16 @@ class NoiseFieldDemo {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glEnable(GL_BLEND); // Graphics::smooth();
         
-            for(float x = -1000; x < 1000; x +=2){
-                for(float y = -1000; y < 1000; y +=2){
+            for(float x = -500; x < 500; x +=2){
+                for(float y = -500; y < 500; y +=2){
+                    // std::cout << x << " : " << y << std::endl;
                     // _myMesh->addColor(0, 0, 0);
                     _myMesh->addVertex(x, y, -30);
                     // _myMesh->addColor(1, 1, 1, 0.15f);
                     _myMesh->addVertex(x, y, 30);
                 }
             }
+            
         }
 
         ~NoiseFieldDemo() { 
@@ -171,9 +173,9 @@ class NoiseFieldDemo {
 
             //
             glfwSwapBuffers();
-            if (++frame % 100 == 0) {
-                std::cout << "frame: " << frame << std::endl;
-            }
+            //if (++frame % 100 == 0) 
+                std::cout << "frame: " << ++frame << std::endl;
+            
             running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
             
             glPopMatrix();

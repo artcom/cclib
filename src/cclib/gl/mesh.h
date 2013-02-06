@@ -2,6 +2,7 @@
 #define __CCLIB_MESH_INCLUDED__
 
 #include <cclib.h>
+#include <gl/bufferobject.h>
 
 namespace cclib {
 
@@ -14,10 +15,10 @@ class Mesh {
         
         int _myNumberOfIndices; // = 0;
         
-        std::vector<float> _myVertices;
-        std::vector<float> _myNormals;
-        std::vector<float> _myTextureCoords[8]; // = new FloatBuffer[8];
-        std::vector<float> _myColors;
+        BufferPtr _myVertices;
+        BufferPtr _myNormals;
+        BufferPtr _myTextureCoords[8]; // = new FloatBuffer[8];
+        BufferPtr _myColors;
 
         int _myVerticesIdx;
         int _myNormalsIdx;
@@ -35,8 +36,8 @@ class Mesh {
         virtual void prepareVertexData(int theVertexSize);
         virtual void addVertex(float theX, float theY, float theZ=0.0f);
         virtual void addVertex(float theX, float theY, float theZ, float theW);
-        virtual std::vector<float> vertices();
-        virtual void vertices(std::vector<float> theVertices, int theVertexSize=3);
+        virtual BufferPtr vertices();
+        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
         virtual void clearVertices();
         virtual void clearTextureCoords();
         virtual void clearNormals();
@@ -58,10 +59,10 @@ class Mesh {
         virtual void addTextureCoords(int theLevel, Vector3fPtr theTextureCoords);
         virtual void addTextureCoords(int theLevel, float theX, float theY, float theZ, float theW);
         
-        virtual void textureCoords(int theLevel, std::vector<float> & theTextureCoords, int theTextureCoordSize);
-        virtual void textureCoords(int theLevel, std::vector<float> & theTextureCoords);
-        virtual void textureCoords(std::vector<float> & theTextureCoords);
-        virtual std::vector<float> texCoords(int theLevel);
+        virtual void textureCoords(int theLevel, BufferPtr theTextureCoords, int theTextureCoordSize);
+        virtual void textureCoords(int theLevel, BufferPtr theTextureCoords);
+        virtual void textureCoords(BufferPtr theTextureCoords);
+        virtual BufferPtr texCoords(int theLevel);
         
         // void addTextureCoords(int theLevel, Vector4fPtr theTextureCoords) {
         //     addTextureCoords(theLevel, theTextureCoords->x(), theTextureCoords->y(), theTextureCoords->z(), theTextureCoords->w());

@@ -9,6 +9,7 @@ BufferObject::BufferObject(int theSize) :
 {
     _mySize = 0;
     glGenBuffers(1, &(_myBufferID));
+    _myData = BufferPtr(new Buffer(0));
     
     if (theSize>0) {
         bind(GL_ARRAY_BUFFER);
@@ -27,9 +28,9 @@ BufferObject::updateData() {
     bind(GL_ARRAY_BUFFER);
 
     // Initialize data store of buffer object
-    _myData = mapBuffer();
+    mapBuffer(_myData);
 
-    if(_myData.empty()) {
+    if (_myData->empty()) {
         switch(glGetError()) {
             case GL_NO_ERROR:
                 throw new Exception(" # NO ERROR REPORTED");
@@ -66,24 +67,48 @@ BufferObject::updateData() {
     unbind();
 }
 	
-std::vector<float> 
+BufferPtr
 BufferObject::data(){
-    if(_myData.empty()){
+    if(_myData->empty()) {
         bind(GL_ARRAY_BUFFER);
-        _myData = mapBuffer();
+        mapBuffer(_myData);
     }
     return _myData;
 }
 
-std::vector<float> 
-BufferObject::mapBuffer() {
+void
+BufferObject::mapBuffer(BufferPtr targetData) {
     _myIsMapped = true;
    
-    // return CCGraphics.currentGL().glMapBuffer(_myCurrentTarget.glId, GL2.GL_WRITE_ONLY);
-    // void * bufferData = glMapBuffer(_myCurrentTarget, GL_WRITE_ONLY);
-    std::cerr << "BufferObject.cpp - port incomplete." << std::endl;
-    std::vector<float> targetData = std::vector<float>();
-    return targetData;
+    float * mappedBuffer = (float*) glMapBuffer(_myCurrentTarget, GL_WRITE_ONLY);
+    
+    // XXX test
+    
+   /* int i = 0;
+    for(float x = -1000; x < 1000; x +=2){
+        for(float y = -1000; y < 1000; y +=2){
+            // std::cout << x << " : " << y << std::endl;
+            // _myMesh->addColor(0, 0, 0);
+            mappedBuffer[i] = x;
+            mappedBuffer[i+1] = y;
+            mappedBuffer[i+2] = -30;
+
+            mappedBuffer[i+3] = x;
+            mappedBuffer[i+4] = y;
+            mappedBuffer[i+5] = 30;
+            i += 6;
+        }
+    } */
+    
+    // XXX test over
+    
+    // std::cerr << "BufferObject.cpp - port incomplete." << std::endl;
+    if (targetData->size() != _mySize) {
+        // XXX
+        std::cerr << "XXX incomplete" << std::endl;
+    }
+    
+    targetData->setData(mappedBuffer);
 }
 
 bool 
@@ -149,14 +174,14 @@ BufferObject::glUsage(unsigned int theUsageFrequency, unsigned int theUsageType)
 }
 
 void 
-BufferObject::bufferData(int theSize, std::vector<float> & theData, int theUsageFrequency, int theUsageType) {
-    _mySize = theSize;
-    glBufferData(_myCurrentTarget, theSize, 
-            &(theData[0]), glUsage(theUsageFrequency, theUsageType));
+BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, int theUsageType) {
+    // set the data to the currentTarget GPU buffer object
+    _mySize = theSize * sizeof(float);
+    glBufferData(_myCurrentTarget, _mySize, theData->data(), glUsage(theUsageFrequency, theUsageType));
 }
 
 void 
-BufferObject::bufferData(int theSize, std::vector<float> & theData) {
+BufferObject::bufferData(int theSize, BufferPtr theData) {
     bufferData(theSize, theData, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
 }
 
@@ -166,22 +191,21 @@ BufferObject::bufferData() {
 }
 
 void 
-BufferObject::bufferSubData(GLenum theTarget, int theOffset, int theSize, std::vector<float> & theData) {
+BufferObject::bufferSubData(GLenum theTarget, int theOffset, int theSize, BufferPtr theData) {
     _mySize = theSize;
-    glBufferSubData(theTarget, theOffset, theSize, &(theData[0]));
+    glBufferSubData(theTarget, theOffset, theSize, theData->data());
 }
 
 void 
 BufferObject::copyDataFromTexture(ShaderTexturePtr theShaderTexture, int theID, int theX, int theY, int theWidth, int theHeight) {
-    int myNewBufferSize = theWidth * theHeight * theShaderTexture->numberOfChannels() * 4;
+    int myNewBufferSize = theWidth * theHeight * theShaderTexture->numberOfChannels() * sizeof(float);
 
     if(myNewBufferSize != _mySize){
         bind(GL_ARRAY_BUFFER);	
-        bufferData(
-                myNewBufferSize, 
-                _myData, // NULL, 
-                BUFFERFREQ_STREAM,
-                BUFFERUSAGE_COPY
+        bufferData( myNewBufferSize,
+                    _myData, // NULL,
+                    BUFFERFREQ_STREAM,
+                    BUFFERUSAGE_COPY
                 );
         unbind();
         _mySize = myNewBufferSize;
