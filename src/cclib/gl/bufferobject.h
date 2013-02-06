@@ -20,6 +20,7 @@ public:
     Buffer(unsigned int theSize) :
         _myData(NULL), _myEmpty(true), _mySize(theSize), _myCurrentIndex(0)
     {
+        std::cout << "tausend?" << std::endl;
         _myData = new float[_mySize]();
     };
     

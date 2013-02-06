@@ -45,8 +45,13 @@ class EmitDemo {
                 running = false;
             }
 
+            glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
+            glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
+            glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+            
             // Open an OpenGL window
-            if( !glfwOpenWindow( 1200, 800, 0, 0, 0, 0, 0, 0, GLFW_WINDOW ) )
+            if( !glfwOpenWindow( 1200, 800,
+                                0,0,0, 0,0,0, GLFW_WINDOW ) )
             {
                 glfwTerminate();
                 running = false;

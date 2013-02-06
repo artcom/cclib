@@ -9,7 +9,7 @@ BufferObject::BufferObject(int theSize) :
 {
     _mySize = 0;
     glGenBuffers(1, &(_myBufferID));
-    _myData = BufferPtr(new Buffer(0));
+    _myData = BufferPtr(new Buffer(theSize));
     
     if (theSize>0) {
         bind(GL_ARRAY_BUFFER);
