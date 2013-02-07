@@ -15,6 +15,9 @@ namespace cclib {
 #define BUFFERUSAGE_READ 0x02
 #define BUFFERUSAGE_COPY 0x03
 
+class Buffer;
+typedef std::tr1::shared_ptr<Buffer> BufferPtr;
+
 class Buffer {
 public:
     Buffer(unsigned int theSize) :
@@ -66,6 +69,14 @@ public:
         }
     };
     
+    void put(BufferPtr theColors) {
+        if (theColors->size() + _myCurrentIndex > size()) {
+            std::cerr << "Color->put out of bounds" << std::endl;
+        }
+    
+        memcpy(_myData + _myCurrentIndex, theColors->data(), theColors->size());
+    };
+    
     void rewind() {
         _myCurrentIndex = 0;
     };
@@ -76,8 +87,6 @@ private:
     unsigned int _mySize;
     unsigned int _myCurrentIndex;
 };
-    
-typedef std::tr1::shared_ptr<Buffer> BufferPtr;
     
 class BufferObject {
     // Buffer Targets:	

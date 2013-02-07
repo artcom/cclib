@@ -101,22 +101,24 @@ class NoiseFieldDemo {
             GPUNoise::attachVertexNoise(_myShader);
 
             // _myArcball = new CCArcball(this);
-            _myMesh = VBOMesh::create(GL_LINES, 500000);
+            _myMesh = VBOMesh::create(GL_LINES, 1000000);
 
             // Graphics::pointSize(20);
             glLineWidth(0.1f);// Graphics::strokeWeight(0.1f);
             glEnable(GL_POINT_SMOOTH);
-            glEnable(GL_LINE_SMOOTH);
+            // glEnable(GL_LINE_SMOOTH);
             glEnable(GL_POLYGON_SMOOTH);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glEnable(GL_BLEND); // Graphics::smooth();
         
-            for(float x = -500; x < 500; x +=2){
+            for(float x = -1000; x < 1000; x +=2){
                 for(float y = -500; y < 500; y +=2){
-                    // std::cout << x << " : " << y << std::endl;
-                    // _myMesh->addColor(0, 0, 0);
+                    float c1 = (float)(x/1000.0f) + 0.5f;
+                    float c2 = (float)(y/1000.0f) + 0.5f;
+
+                    _myMesh->addColor(c1, c2, 0, 0.15f);
                     _myMesh->addVertex(x, y, -30);
-                    // _myMesh->addColor(1, 1, 1, 0.15f);
+                    _myMesh->addColor(c1, c2, 0, 0.15f);
                     _myMesh->addVertex(x, y, 30);
                 }
             }

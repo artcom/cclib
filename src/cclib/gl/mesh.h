@@ -63,12 +63,22 @@ class Mesh {
         virtual void textureCoords(int theLevel, BufferPtr theTextureCoords);
         virtual void textureCoords(BufferPtr theTextureCoords);
         virtual BufferPtr texCoords(int theLevel);
-        
+    
+        virtual void prepareColorData(int theNumberOfVertices);
+        virtual void addColor(float theRed, float theGreen, float theBlue, float theAlpha);
+        // virtual void addColor(Color & theColor);
+        virtual void addColor(float theRed, float theGreen, float theBlue);
+        virtual void addColor(float theGray, float theAlpha);
+        virtual void addColor(float theGray);
+        // virtual void colors(const std::vector<Color> & theColors);
+        virtual void colors(BufferPtr theColors);
+            
         // void addTextureCoords(int theLevel, Vector4fPtr theTextureCoords) {
-        //     addTextureCoords(theLevel, theTextureCoords->x(), theTextureCoords->y(), theTextureCoords->z(), theTextureCoords->w());
+        //     addTextureCoords(theLevel, theTextureCoords->x(), theTextureCoords->y(), 
+        //             theTextureCoords->z(), theTextureCoords->w());
         // }
-        
-        // void textureCoords(final int theLevel, final List<?> theTextureCoords){
+
+        // void textureCoords(int theLevel, List<?> theTextureCoords){
         //     if(theTextureCoords.get(0) instanceof CCVector2f) {
         //         prepareTextureCoordData(theTextureCoords.size(), theLevel, 2);
         //         _myTextureCoords[theLevel].rewind();
@@ -98,116 +108,52 @@ class Mesh {
         //         }
         //     }
         // }
-        //
+
         // void textureCoords(List<?> theTextureCoords){
         //     textureCoords(0, theTextureCoords);
         // }
+        // 
+        // 
+        // void indices(List<Integer> theIndices){
+        //     if(theIndices.size() == 0)return;
+        //     _myNumberOfIndices = theIndices.size();
+        //     _myIndices = CCBufferUtil.newIntBuffer(theIndices.size());
+        //     for(int myIndex:theIndices){
+        //         _myIndices.put(myIndex);
+        //     }
+        //     _myIndices.rewind();
+        // }
+        // 
+        // void indices(int[] theIndices) {
+        //     indices(IntBuffer.wrap(theIndices));
+        // }
+        // 
+        // void indices(IntBuffer theIndices) {
+        //     _myNumberOfIndices = theIndices.capacity();
+        //     if(theIndices.hasArray()) {
+        //         _myIndices = theIndices;
+        //     }else {
+        //         _myIndices = CCBufferUtil.newIntBuffer(theIndices.capacity());
+        //         theIndices.rewind();
+        //         _myIndices.put(theIndices);
+        //     }
+        //     _myIndices.rewind();
+        // }
+        // 
+        // void noIndices() {
+        //     _myIndices = null;
+        // }
+        // 
+        // IntBuffer indices() {
+        //     return _myIndices;
+        // }
 
+        // int numberOfVertices() {
+        //     return _myNumberOfVertices;
+        // }
 };
 }; // namespace
-
-    //////////////////////////////////////////////////////
-    //
-    //  METHODS TO ADD TEXTURE COORD DATA
-    //
-    //////////////////////////////////////////////////////
-	
-    //////////////////////////////////////////////////////
-    //
-    //  METHODS TO ADD COLOR DATA
-    //
-    //////////////////////////////////////////////////////
     
-    // public void prepareColorData(int theNumberOfVertices){
-    // 	_myNumberOfVertices = theNumberOfVertices;
-    // 	if(_myColors == null || _myColors.limit() / 4 != _myNumberOfVertices){
-    // 		_myNumberOfVertices = theNumberOfVertices;
-    // 		_myColors = CCBufferUtil.newDirectFloatBuffer(_myNumberOfVertices * 4);
-    // 	}
-    // }
-    // 
-    // public void addColor(final float theRed, final float theGreen, final float theBlue, final float theAlpha){
-    // 	prepareColorData(_myNumberOfVertices);
-    // 	_myColors.put(theRed);
-    // 	_myColors.put(theGreen);
-    // 	_myColors.put(theBlue);
-    // 	_myColors.put(theAlpha);
-    // }
-    // 
-    // public void addColor(final CCColor theColor){
-    // 	addColor(theColor.r, theColor.g, theColor.b, theColor.a);
-    // }
-    // 
-    // public void addColor(final float theRed, final float theGreen, final float theBlue){
-    // 	addColor(theRed, theGreen, theBlue, 1f);
-    // }
-    // 
-    // public void addColor(final float theGray, final float theAlpha){
-    // 	addColor(theGray, theGray, theGray, theAlpha);
-    // }
-    // 
-    // public void addColor(final float theGray){
-    // 	addColor(theGray, theGray, theGray, 1f);
-    // }
-    // 
-    // public void colors(final List<CCColor> theColors){
-    // 	prepareColorData(theColors.size());
-    // 	_myColors.rewind();
-    // 	
-    // 	for(CCColor myColor:theColors){
-    // 		_myColors.put(myColor.r);
-    // 		_myColors.put(myColor.g);
-    // 		_myColors.put(myColor.b);
-    // 		_myColors.put(myColor.a);
-    // 	}
-    // 	_myColors.rewind();
-    // }
-    // 
-    // public void colors(final FloatBuffer theColors){
-    // 	prepareColorData(theColors.limit() / 4);
-    // 	_myColors.rewind();
-    // 	_myColors.put(theColors);
-    // 	_myColors.rewind();
-    // }
-    // 
-    // public void indices(final List<Integer> theIndices){
-    // 	if(theIndices.size() == 0)return;
-    // 	_myNumberOfIndices = theIndices.size();
-    // 	_myIndices = CCBufferUtil.newIntBuffer(theIndices.size());
-    // 	for(int myIndex:theIndices){
-    // 		_myIndices.put(myIndex);
-    // 	}
-    // 	_myIndices.rewind();
-    // }
-    // 
-    // public void indices(final int[] theIndices) {
-    // 	indices(IntBuffer.wrap(theIndices));
-    // }
-    // 
-    // public void indices(final IntBuffer theIndices) {
-    // 	_myNumberOfIndices = theIndices.capacity();
-    // 	if(theIndices.hasArray()) {
-    //     	_myIndices = theIndices;
-    // 	}else {
-    //     	_myIndices = CCBufferUtil.newIntBuffer(theIndices.capacity());
-    //     	theIndices.rewind();
-    //     	_myIndices.put(theIndices);
-    // 	}
-    // 	_myIndices.rewind();
-    // }
-    // 
-    // public void noIndices() {
-    // 	_myIndices = null;
-    // }
-    // 
-    // public IntBuffer indices() {
-    // 	return _myIndices;
-    // }
-
-    // public int numberOfVertices() {
-    //     return _myNumberOfVertices;
-    // }
-    // 
 
 
     //////////////////////////////////////////////////////

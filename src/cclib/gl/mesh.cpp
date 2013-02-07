@@ -1,5 +1,7 @@
 
 #include "mesh.h"
+#include <gl/texture2d.h>
+
 
 using namespace cclib;
 
@@ -47,6 +49,15 @@ Mesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
 void 
 Mesh::prepareVertexData(int theVertexSize) {
     prepareVertexData(_myNumberOfVertices, theVertexSize);
+}
+
+void 
+Mesh::prepareColorData(int theNumberOfVertices) {
+    _myNumberOfVertices = theNumberOfVertices;
+    if (_myColors->empty() || _myColors->size() / 4 != _myNumberOfVertices){
+        _myNumberOfVertices = theNumberOfVertices;
+        _myColors = BufferPtr(new Buffer(_myNumberOfVertices * 4)); 
+    }
 }
 
 void 
@@ -245,6 +256,59 @@ Mesh::addTextureCoords(int theLevel, float theX, float theY, float theZ, float t
     _myTextureCoords[theLevel]->put(theY);
     _myTextureCoords[theLevel]->put(theZ);
     _myTextureCoords[theLevel]->put(theW);
+}
+        
+void 
+Mesh::addColor(float theRed, float theGreen, float theBlue, float theAlpha){
+    prepareColorData(_myNumberOfVertices);
+    _myColors->put(theRed);
+    _myColors->put(theGreen);
+    _myColors->put(theBlue);
+    _myColors->put(theAlpha);
+}
+
+// void 
+// Mesh::addColor(Color & theColor){
+//     float r = theColor.red();
+//     
+//     addColor(theColor.red(), theColor.green(), theColor.blue(), theColor.alpha());
+// }
+
+void 
+Mesh::addColor(float theRed, float theGreen, float theBlue){
+    addColor(theRed, theGreen, theBlue, 1.0f);
+}
+
+void 
+Mesh::addColor(float theGray, float theAlpha){
+    addColor(theGray, theGray, theGray, theAlpha);
+}
+
+void 
+Mesh::addColor(float theGray){
+    addColor(theGray, theGray, theGray, 1.0f);
+}
+
+// void 
+// Mesh::colors(const std::vector<Color> & theColors) {
+//     prepareColorData(theColors.size());
+//     _myColors->rewind();
+// 
+//     for(unsigned int i=0; i<theColors.size(); i++){
+//         _myColors->put(theColors[i].red());
+//         _myColors->put(theColors[i].green());
+//         _myColors->put(theColors[i].blue());
+//         _myColors->put(theColors[i].alpha());
+//     }
+//     _myColors->rewind();
+// }
+
+void 
+Mesh::colors(BufferPtr theColors) {
+    prepareColorData(theColors->size() / 4);
+    _myColors->rewind();
+    _myColors->put(theColors);
+    _myColors->rewind();
 }
 
 // void addTextureCoords(int theLevel, Vector4fPtr theTextureCoords) {

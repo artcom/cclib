@@ -189,17 +189,15 @@ VBOMesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theT
 
 void 
 VBOMesh::prepareColorData(int theNumberOfVertices){
-    /* XXX
      _myNumberOfVertices = theNumberOfVertices;
     
-    if(!_myColorBuffer || _myColors.size() / 4 != _myNumberOfVertices){
-        _myColorBuffer = BufferObject::create(_myNumberOfVertices * 4 * sizeof(float));
+    if(_myColors->empty() || _myColors->size() / 4 != _myNumberOfVertices) {
+        _myColorBuffer = BufferObject::create(_myNumberOfVertices * 4 );
         _myColors = _myColorBuffer->data();
     }
     
     _myHasColors = true;
     _myHasUpdatedColors = true;
-     */
 }
 
 void 
