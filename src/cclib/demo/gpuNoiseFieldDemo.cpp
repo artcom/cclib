@@ -64,7 +64,8 @@ class NoiseFieldDemo {
             }
 
             // Open an OpenGL window
-            if(!glfwOpenWindow( 1400, 750, 0, 0, 0, 0, 0, 0, GLFW_WINDOW )) {
+            if(!glfwOpenWindow( 1400, 750, 
+                        0, 0, 0, 0, 0, 0, GLFW_WINDOW )) {
                 glfwTerminate();
                 running = false;
             }
@@ -101,24 +102,17 @@ class NoiseFieldDemo {
             GPUNoise::attachVertexNoise(_myShader);
 
             // _myArcball = new CCArcball(this);
-            _myMesh = VBOMesh::create(GL_LINES, 1000000);
+            _myMesh = VBOMesh::create(GL_POINTS, 1000000);
 
-            // Graphics::pointSize(20);
-            glLineWidth(0.1f);// Graphics::strokeWeight(0.1f);
-            glEnable(GL_POINT_SMOOTH);
-            // glEnable(GL_LINE_SMOOTH);
-            glEnable(GL_POLYGON_SMOOTH);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glEnable(GL_BLEND); // Graphics::smooth();
+            Graphics::pointSize(1);
+            Graphics::strokeWeight(0.1f);
+            Graphics::smooth();
         
             for(float x = -1000; x < 1000; x +=2){
                 for(float y = -500; y < 500; y +=2){
-                    float c1 = (float)(x/1000.0f) + 0.5f;
-                    float c2 = (float)(y/1000.0f) + 0.5f;
-
-                    _myMesh->addColor(c1, c2, 0, 0.15f);
+                    _myMesh->addColor(0.2, 0, 0.1);
                     _myMesh->addVertex(x, y, -30);
-                    _myMesh->addColor(c1, c2, 0, 0.15f);
+                    _myMesh->addColor(0, 0, 1, 0.15f);
                     _myMesh->addVertex(x, y, 30);
                 }
             }
@@ -156,12 +150,10 @@ class NoiseFieldDemo {
 
             Graphics::clear();
             // _myArcball.draw(g);
-            Graphics::color(1.0f, 1.0f, 1.0f, 0.5f);
+            Graphics::color(1.0f, 1.0f, 1.0f, 0.05f);
             Graphics::noDepthTest();
             
-            glEnable(GL_BLEND);
-            
-            // Graphics::blend(GL_ADD);
+            Graphics::blend(BLEND_MODE_ADD);
             _myShader->start();
             _myShader->parameter(_myNoiseScaleParameter, time/100.0f); // (1 - CCMath.abs((blend - 0.5f) * 2))*0.01f + 0.002f);
             _myShader->parameter(_myNoiseOffsetParameter, _myOffset);
@@ -169,7 +161,6 @@ class NoiseFieldDemo {
             Graphics::rect(-width/2, -height/2, 20, 20);
 
             _myMesh->draw();
-            
             _myShader->end();
             Graphics::noBlend();
 

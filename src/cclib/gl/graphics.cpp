@@ -8,6 +8,7 @@ using namespace cclib;
 
 std::vector<TexturePtr> Graphics::_myTextures = std::vector<TexturePtr>();
 bool Graphics::_myDrawTexture = false;
+int Graphics::_myRectMode = CORNER;
 
 void 
 Graphics::clearColor(float r, float g, float b, float a) {
@@ -28,20 +29,6 @@ void
 Graphics::clear() {
     glClearStencil(0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-}
-
-void 
-Graphics::blend() {
-    glEnable(GL_BLEND);
-    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBlendEquationSeparate(GL_ADD, GL_ADD);
-}
-
-void 
-Graphics::noBlend() {
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glBlendEquation(GL_FUNC_ADD);
-	glDisable(GL_BLEND);
 }
 
 void 
@@ -76,32 +63,33 @@ Graphics::endShape(){
 }
 
 void 
-Graphics::rect(float theX1, float theY1, float theX2, float theY2) {
-    // float hradius, vradius;
+Graphics::rect( float theX1, float theY1, float theX2, float theY2 )
+{
+    float hradius, vradius;
 
-    // switch (_myRectMode){
-    //     case CORNERS:
-    //         break;
-    //     case CORNER:
+    switch (_myRectMode){
+        case CORNERS:
+            break;
+        case CORNER:
             theX2 += theX1;
             theY2 += theY1;
-    //         break;
-    //     case RADIUS:
-    //         hradius = theX2;
-    //         vradius = theY2;
-    //         theX2 = theX1 + hradius;
-    //         theY2 = theY1 + vradius;
-    //         theX1 -= hradius;
-    //         theY1 -= vradius;
-    //         break;
-    //     case CENTER:
-    //         hradius = theX2 / 2.0f;
-    //         vradius = theY2 / 2.0f;
-    //         theX2 = theX1 + hradius;
-    //         theY2 = theY1 + vradius;
-    //         theX1 -= hradius;
-    //         theY1 -= vradius;
-    // }
+            break;
+        case RADIUS:
+            hradius = theX2;
+            vradius = theY2;
+            theX2 = theX1 + hradius;
+            theY2 = theY1 + vradius;
+            theX1 -= hradius;
+            theY1 -= vradius;
+            break;
+        case CENTER:
+            hradius = theX2 / 2.0f;
+            vradius = theY2 / 2.0f;
+            theX2 = theX1 + hradius;
+            theY2 = theY1 + vradius;
+            theX1 -= hradius;
+            theY1 -= vradius;
+    }
 
     if (theX1 > theX2){
         float temp = theX1;
@@ -115,14 +103,24 @@ Graphics::rect(float theX1, float theY1, float theX2, float theY2) {
         theY2 = temp;
     }
 
-    beginShape(GL_QUADS);
-    vertex(theX1, theY1);
-    vertex(theX1, theY2);
-    vertex(theX2, theY2);
-    vertex(theX2, theY1);
-    endShape();
+    rectImpl(theX1, theY1, theX2, theY2);
 }
 
+void 
+Graphics::rectImpl(float x1, float y1, float x2, float y2) {
+    quad(x1, y2,x2, y2, x2, y1, x1, y1);
+}
+
+void 
+Graphics::quad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4)
+{
+    beginShape(GL_QUADS);
+    vertex(x1, y1);
+    vertex(x2, y2);
+    vertex(x3, y3);
+    vertex(x4, y4);
+    endShape();
+}
 
 void 
 Graphics::image( TexturePtr theImage, float theX, float theY, 

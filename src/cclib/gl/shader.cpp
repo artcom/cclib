@@ -137,9 +137,9 @@ Shader::checkError(const std::string & message) {
     if(error!= CG_NO_ERROR) {
         std::string errorString = std::string(message); 
 
-        if(error == CG_COMPILER_ERROR) {
-            errorString = errorString + cgGetLastListing(cg_context);
-        }
+        // if(error == CG_COMPILER_ERROR) {
+        errorString = errorString + cgGetLastListing(cg_context);
+        // }
         
         throw cclib::Exception(errorString + std::string("\n ") + std::string(cgGetErrorString(error)));
     }		
