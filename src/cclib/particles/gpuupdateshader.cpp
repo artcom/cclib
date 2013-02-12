@@ -27,8 +27,8 @@ GPUUpdateShader::deltaTime(float theDeltaTime) {
     parameter(_myDeltaTimeParameter, theDeltaTime);
 }
 
-GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUForcePtr> theForces ,
-        std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
+GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUForcePtr> & theForces ,
+        std::vector<GPUConstraintPtr> & theConstrains, std::vector<GPUImpulsePtr> & theImpulses,
         const std::vector<std::string> & theShaderFile, int theWidth, int theHeight) 
 : Shader(std::vector<std::string>(), theShaderFile),
     _myVelocityTextureParameter(),
@@ -75,7 +75,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
 
     load();
 
-    GPUNoise::attachFragmentNoise(GPUUpdateShaderPtr(this));
+    GPUNoise::attachFragmentNoise(this);
 }
 
 GPUUpdateShaderPtr 

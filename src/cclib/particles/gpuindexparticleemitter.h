@@ -49,10 +49,10 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
 	
         ParticleWaitingListPtr _myParticleWaitingList;
         
-        std::vector<float> _myVertexBuffer;
-	    std::vector<float> _myPositionBuffer;
-	    std::vector<float> _myInfoBuffer;
-	    std::vector<float> _myVelocityBuffer;
+        BufferPtr _myVertexBuffer;
+	    BufferPtr _myPositionBuffer;
+	    BufferPtr _myInfoBuffer;
+	    BufferPtr _myVelocityBuffer;
         int _myStart;
 	
 	
@@ -82,9 +82,9 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         void update(float theDeltaTime);
         int size();
         GPUParticlePtr particle(int theID);
-        void fillPositionData(std::vector<float> & theBuffer);
-        void fillInfoData(std::vector<float> & theBuffer);
-        void fillVelocityData(std::vector<float> & theBuffer);
+        void fillPositionData(BufferPtr theBuffer);
+        void fillInfoData(BufferPtr theBuffer);
+        void fillVelocityData(BufferPtr theBuffer);
         void transferData();
         void setData();
 

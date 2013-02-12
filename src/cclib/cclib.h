@@ -85,6 +85,9 @@ typedef std::tr1::shared_ptr<VBOMesh> VBOMeshPtr;
 class BufferObject;
 typedef std::tr1::shared_ptr<BufferObject> BufferObjectPtr;
 
+class Buffer;
+typedef std::tr1::shared_ptr<Buffer> BufferPtr;
+    
 class ParticleWaitingList;
 typedef std::tr1::shared_ptr<ParticleWaitingList> ParticleWaitingListPtr;
 

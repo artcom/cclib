@@ -16,15 +16,15 @@ using namespace cclib;
 class EmitDemo {
 
     private:    
-        float _cLifeTime; // = 3f;
-        float _cInitVel; // = 3f;
-        float _cX; // = 0;
-        float _cY; // = 0;
-        float _cZ; // = 0;
-        float _cGStrength; // = 0;
+        float _cLifeTime; 
+        float _cInitVel;
+        float _cX;
+        float _cY;
+        float _cZ;
+        float _cGStrength;
         GPUForceFieldPtr _myForceField;
-        float _cNScale; // = 0;
-        float _cNStrength; // = 0;
+        float _cNScale;
+        float _cNStrength;
         GPUParticlesPtr _myParticles;
         GPUIndexParticleEmitterPtr _myEmitter;
     
@@ -34,32 +34,24 @@ class EmitDemo {
         bool running;
         
         EmitDemo() :
-            _cLifeTime(3.0f), _cInitVel(3.0f), _cX(0.0f), _cY(0.0f), _cZ(0.0f),
+            _cLifeTime(8.0f), _cInitVel(3.0f), _cX(0.0f), _cY(0.0f), _cZ(0.0f),
             _cGStrength(0.0f), _myForceField(), 
-            _cNScale(0.0f), _cNStrength(0.0f),
+            _cNScale(0.066f), _cNStrength(0.21f),
             _myParticles(), _myEmitter(), 
             frame(0), running(true)
         { 
-            if( !glfwInit() )
-            {
+            if( !glfwInit() ) {
                 running = false;
             }
 
-            glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
-            glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
-            glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-            
             // Open an OpenGL window
-            if( !glfwOpenWindow( 1200, 800,
-                                0,0,0, 0,0,0, GLFW_WINDOW ) )
-            {
+            if( !glfwOpenWindow( 1400, 750, 0,0,0, 0,0,0, GLFW_WINDOW ) ) {
                 glfwTerminate();
                 running = false;
             }
 
             GLenum err = glewInit();
-            if (GLEW_OK != err)
-            {
+            if (GLEW_OK != err) {
                 running = false;
             }
             
@@ -89,39 +81,63 @@ class EmitDemo {
         }
 
         void update(double theDeltaTime) {
+            glPushMatrix();
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
+
             int width, height, mouseX, mouseY = 0;
+            
+            glfwGetWindowSize(&width, &height);
+            
+            glViewport(0, 0, width, height);
+            gluPerspective(60, (float)width/(float)height, 1, 10000);
+            gluLookAt(0.0, 0.0, 650, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 );
+            
             glfwGetMousePos( &mouseX, &mouseY );
-            glfwGetWindowSize( &width, &height );
-                
+            
             float x = mouseX - width/2;
             float y = height/2 - mouseY;
+            
+            Graphics::clear();
+            Graphics::pointSize(5.0f);
+            Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
+
+            Graphics::rect(-width/2, -height/2, 20, 20);
+
             for(int i = 0; i < 1000; i++){
-                Vector3fPtr vel = Vector3fPtr(new Vector3f());
+                Vector3fPtr vel = Vector3fPtr(new Vector3f(1.0f, 1.0f, 1.0f));
                 Vector3fPtr pos = Vector3fPtr(new Vector3f(x, y, 0.0f));
-                
-                vel->randomize();
-                vel->scale(_cInitVel);
+             
+                // vel->randomize();
+                // vel->scale(_cInitVel);
                 _myEmitter->emit(pos, vel, _cLifeTime);
             }
-            
-            // _myForceField.noiseScale(_cNScale);
-            // _myForceField.strength(_cNStrength);
+        
+            _myForceField->noiseScale(_cNScale);
+            _myForceField->strength(_cNStrength);
             _myParticles->update(theDeltaTime);
 		
             //  draw
-            Graphics::clear();
-            // Graphics::noDepthTest();
-            // Graphics::color(255, 50);
-            // Graphics::blend(GL_ADD);
+            Graphics::noDepthTest();
+            Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
+            Graphics::blend(BLEND_MODE_ADD);
             
             _myParticles->draw();
+            
+            Graphics::beginShape(GL_POINTS);
+            Graphics::vertex(x, y);
+            Graphics::endShape();
+            
             Graphics::noBlend();
-
+      
             glfwSwapBuffers();
 
+            if (++frame % 60 == 0) {
+                std::cout << "frame: " << frame << std::endl;
+            }
             
-            std::cout << "frame: " << frame++ << std::endl;
-            // running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
+            running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
+            glPopMatrix();
         }
 };
 

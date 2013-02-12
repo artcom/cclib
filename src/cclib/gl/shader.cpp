@@ -31,12 +31,13 @@ Shader::Shader(const std::vector<std::string> & vertexShaderFiles,
         const std::vector<std::string> & fragmentShaderFiles,
         const std::string & vertexEntry, const std::string & fragmentEntry) :
    _vertexEntry(vertexEntry), _fragmentEntry(fragmentEntry),
-   _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
+   _vertexProgram(0), _fragmentProgram(0)
 {   
     if (!glewIsSupported("GL_ARB_vertex_shader") || !glewIsSupported("GL_ARB_fragment_shader")) {
         throw cclib::Exception("Shaders are not supported by your hardware.");
     }
     
+    _usedTextureParameters = std::vector<CGparameter>();
     initShader();
 
     if (!vertexShaderFiles.empty()) {
@@ -137,9 +138,9 @@ Shader::checkError(const std::string & message) {
     if(error!= CG_NO_ERROR) {
         std::string errorString = std::string(message); 
 
-        // if(error == CG_COMPILER_ERROR) {
-        errorString = errorString + cgGetLastListing(cg_context);
-        // }
+        if(error == CG_COMPILER_ERROR) {
+            errorString = errorString + cgGetLastListing(cg_context);
+        }
         
         throw cclib::Exception(errorString + std::string("\n ") + std::string(cgGetErrorString(error)));
     }		
@@ -182,7 +183,9 @@ Shader::start() {
 
 // XXX untested
     for(std::vector<CGparameter>::size_type i=0; i<_usedTextureParameters.size(); i++) { 
-        cgGLEnableTextureParameter(_usedTextureParameters[i]);
+        // if (cgIsParameter(_usedTextureParameters[i]) && cgIsParameterReferenced(_usedTextureParameters[i]) ) {
+            cgGLEnableTextureParameter(_usedTextureParameters[i]);
+        // }
     }
 
 #if 0 // XXX do we need listeners?
@@ -202,16 +205,8 @@ Shader::start() {
 
 // XXX untested --------------------------------------------------------------------------------------
 void 
-Shader::texture(const CGparameter parameter, int textureID) {
-    std::cout << " isParameter? "  << cgIsParameter(parameter);
-    std::cout << "parameter: \"" << cgGetParameterName(parameter) << "\"";
-    std::cout << " isTexture? "  << glIsTexture(textureID);
-    std::cout << " isParameter? "  << cgIsParameter(parameter);
-    std::cout << " isParameterGlobal? "  << cgIsParameterGlobal(parameter);
-    std::cout << " isParameterReferenced? "  << cgIsParameterReferenced(parameter) << std::endl;
-    
+Shader::texture(const CGparameter & parameter, int textureID) {
     cgGLSetTextureParameter(parameter, textureID);
-    
     checkError("Problem setting texture ");
     _usedTextureParameters.push_back(parameter);
 }
@@ -219,7 +214,10 @@ Shader::texture(const CGparameter parameter, int textureID) {
 void 
 Shader::end() {
     for(std::vector<CGparameter>::size_type i=0; i<_usedTextureParameters.size(); i++) { 
-        cgGLDisableTextureParameter(_usedTextureParameters[i]);
+        // if (cgIsParameter(_usedTextureParameters[i]) && cgIsParameterReferenced(_usedTextureParameters[i]) ) {
+            cgGLDisableTextureParameter(_usedTextureParameters[i]);
+        // }
+        
         checkError("disable texture paramters");
     }
 
@@ -275,6 +273,8 @@ Shader::vertexParameter(const std::string & name) {
 CGparameter 
 Shader::fragmentParameter(const std::string & name) {
     CGparameter result = cgGetNamedParameter(_fragmentProgram, name.c_str());
+    std::cout << name << ": " << cgIsParameter(result) << " " << cgIsParameterReferenced(result) << std::endl;
+    
     checkError("could not get fragment parameter: " + name + " : ");
     return result;
 }

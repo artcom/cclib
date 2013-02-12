@@ -2,6 +2,7 @@
 #include <gl/mesh.h>
 #include <gl/shader.h>
 #include <gl/shadertexture.h>
+#include <gl/bufferobject.h>
 #include <particles/gpuparticleemitter.h>
 #include <particles/gpuparticle.h>
 #include <particles/gpuparticles.h>
@@ -132,10 +133,10 @@ GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, i
     }
 
     _myEmitMesh = Mesh::create(GL_POINTS);
-    _myVertexBuffer = std::vector<float>(1000*3, 0.0f); // BufferUtil.newDirectFloatBuffer(1000 * 3);
-    _myPositionBuffer = std::vector<float>(1000*3, 0.0f); // BufferUtil.newDirectFloatBuffer(1000 * 3);
-    _myInfoBuffer = std::vector<float>(1000*3, 0.0f); // BufferUtil.newDirectFloatBuffer(1000 * 3);
-    _myVelocityBuffer = std::vector<float>(1000*3, 0.0f); // BufferUtil.newDirectFloatBuffer(1000 * 3);
+    _myVertexBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
+    _myPositionBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
+    _myInfoBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
+    _myVelocityBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
 }
 
 GPUIndexParticleEmitterPtr 
@@ -261,32 +262,32 @@ GPUIndexParticleEmitter::particle(int theID) {
     return _myActiveParticlesArray[theID - _myStart];
 }
 
-void GPUIndexParticleEmitter::fillPositionData(std::vector<float> & theBuffer) {
+void GPUIndexParticleEmitter::fillPositionData(BufferPtr theBuffer) {
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
-        theBuffer[i * 3 + 0] = myParticle->position()->x();
-        theBuffer[i * 3 + 1] = myParticle->position()->y();
-        theBuffer[i * 3 + 2] = myParticle->position()->z();
+        theBuffer->data()[i * 3 + 0] = myParticle->position()->x();
+        theBuffer->data()[i * 3 + 1] = myParticle->position()->y();
+        theBuffer->data()[i * 3 + 2] = myParticle->position()->z();
     }
 }
 
 void 
-GPUIndexParticleEmitter::fillInfoData(std::vector<float> & theBuffer) {
+GPUIndexParticleEmitter::fillInfoData(BufferPtr theBuffer) {
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
-        theBuffer[i * 3 + 0] = 0;
-        theBuffer[i * 3 + 1] = myParticle->lifeTime();
-        theBuffer[i * 3 + 2] = myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
+        theBuffer->data()[i * 3 + 0] = 0;
+        theBuffer->data()[i * 3 + 1] = myParticle->lifeTime();
+        theBuffer->data()[i * 3 + 2] = myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
     }
 }
 
 void 
-GPUIndexParticleEmitter::fillVelocityData(std::vector<float> & theBuffer) {
+GPUIndexParticleEmitter::fillVelocityData(BufferPtr theBuffer) {
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
-        theBuffer[i * 3 + 0] = myParticle->velocity()->x();
-        theBuffer[i * 3 + 1] = myParticle->velocity()->y();
-        theBuffer[i * 3 + 2] = myParticle->velocity()->z();
+        theBuffer->data()[i * 3 + 0] = myParticle->velocity()->x();
+        theBuffer->data()[i * 3 + 1] = myParticle->velocity()->y();
+        theBuffer->data()[i * 3 + 2] = myParticle->velocity()->z();
     }
 }
 
@@ -308,45 +309,47 @@ GPUIndexParticleEmitter::setData() {
         return;
     }
 
-    // XXX unsure if the works. the structures were Java List<foo> using .limit for resizing and .put to set the data
-    //push_back and clear might not be equivalent in that case.
-
-    // if (myEmitSize > _myEmitMesh.numberOfVertices()) {
-    //     _myVertexBuffer = std::vector<float>(myEmitSize * 3, 0.0f);
-    //     _myPositionBuffer = std::vector<float>(myEmitSize * 3, 0.0f);
-    //     _myInfoBuffer = std::vector<float>(myEmitSize * 3, 0.0f);
-    //     _myVelocityBuffer = std::vector<float>(myEmitSize * 3, 0.0f);
-    // } else {
-    //     _myVertexBuffer.limit(myEmitSize * 3);
-    //     _myPositionBuffer.limit(myEmitSize * 3);
-    //     _myInfoBuffer.limit(myEmitSize * 3);
-    //     _myVelocityBuffer.limit(myEmitSize * 3);
+#warning implement correct resizing
+    // if (myEmitSize > _myEmitMesh->numberOfVertices()) {
+        _myVertexBuffer = Buffer::create(myEmitSize * 3, true);
+        _myPositionBuffer = Buffer::create(myEmitSize * 3, true);
+        _myInfoBuffer = Buffer::create(myEmitSize * 3, true);
+        _myVelocityBuffer = Buffer::create(myEmitSize * 3, true);
     // }
+    /* else {
+        _myVertexBuffer.limit(myEmitSize * 3);
+        _myPositionBuffer.limit(myEmitSize * 3);
+        _myInfoBuffer.limit(myEmitSize * 3);
+        _myVelocityBuffer.limit(myEmitSize * 3);
+    } */
     
-    _myVertexBuffer.clear();
-    _myPositionBuffer.clear();
-    _myInfoBuffer.clear();
-    _myVelocityBuffer.clear();
+    _myVertexBuffer->rewind();
+    _myPositionBuffer->rewind();
+    _myInfoBuffer->rewind();
+    _myVelocityBuffer->rewind();
 
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
-        _myVertexBuffer.push_back(myParticle->x() + 0.5f);
-        _myVertexBuffer.push_back(myParticle->y() + 0.5f);
-        _myVertexBuffer.push_back(0.0f);
+        _myVertexBuffer->put(myParticle->x() + 0.5f);
+        _myVertexBuffer->put(myParticle->y() + 0.5f);
+        _myVertexBuffer->put(0.0f);
     }
 
     fillPositionData(_myPositionBuffer);
     fillInfoData(_myInfoBuffer);
     fillVelocityData(_myVelocityBuffer);
 
-#warning FIXME!!
-#if 0
+    _myVertexBuffer->rewind();
+    _myPositionBuffer->rewind();
+    _myInfoBuffer->rewind();
+    _myVelocityBuffer->rewind();
+    
     _myEmitMesh->clearAll();
     _myEmitMesh->vertices(_myVertexBuffer);
     _myEmitMesh->textureCoords(0, _myPositionBuffer, 3);
     _myEmitMesh->textureCoords(1, _myInfoBuffer, 3);
     _myEmitMesh->textureCoords(2, _myVelocityBuffer, 3);
-#endif
+
     transferData();
 
     _myAllocatedParticles.clear();

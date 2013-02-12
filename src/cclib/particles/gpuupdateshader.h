@@ -25,8 +25,8 @@ class GPUUpdateShader : public Shader {
 	    CGparameter _myConstraintsParameter;
 	    CGparameter _myImpulsesParameter;
 
-        GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUForcePtr> theForces ,
-            std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
+        GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUForcePtr> & theForces ,
+            std::vector<GPUConstraintPtr> & theConstrains, std::vector<GPUImpulsePtr> & theImpulses,
             const std::vector<std::string> & theShaderFile, int theWidth, int theHeight ); 
 	
 };

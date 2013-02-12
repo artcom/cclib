@@ -20,11 +20,14 @@ typedef std::tr1::shared_ptr<Buffer> BufferPtr;
 
 class Buffer {
 public:
-    Buffer(unsigned int theSize) :
-        _myData(NULL), _myEmpty(true), _mySize(theSize), _myCurrentIndex(0)
+    Buffer(unsigned int theSize, bool theInitializedFlag) :
+        _myData(NULL), _myEmpty(!theInitializedFlag), _mySize(theSize), _myCurrentIndex(0)
     {
-        std::cout << "tausend?" << std::endl;
         _myData = new float[_mySize]();
+    };
+    
+    static BufferPtr create(unsigned int theSize, bool theInitializedFlag = false) {
+        return BufferPtr(new Buffer(theSize, theInitializedFlag));
     };
     
     virtual ~Buffer() {};
@@ -46,7 +49,6 @@ public:
     
     float * data() {
         if (empty()) {
-            // XXX Exception
             return NULL;
         }
         return _myData;

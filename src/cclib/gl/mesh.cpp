@@ -14,13 +14,13 @@ Mesh::Mesh(GLenum theDrawMode, int theNumberOfVertices) :
     _myNormalsIdx(0),
     _myColorsIdx(0)
 {
-    _myVertices = BufferPtr(new Buffer(0));
-    _myNormals  = BufferPtr(new Buffer(0));
-    _myColors   = BufferPtr(new Buffer(0));
+    _myVertices = Buffer::create(0);
+    _myNormals  = Buffer::create(0);
+    _myColors   = Buffer::create(0);
     // _myIndices  = BufferPtr(new Buffer(0));
 
     for (unsigned int i=0; i<8; i++) {
-        _myTextureCoords[i] = BufferPtr(new Buffer(0));
+        _myTextureCoords[i] = Buffer::create(0);
     }
     
     _myDrawMode = theDrawMode;
@@ -41,7 +41,7 @@ Mesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
     if(_myVertices->empty() || _myVertices->size() / _myVertexSize != _myNumberOfVertices) {
         _myNumberOfVertices = theNumberOfVertices;
         _myVertexSize = theVertexSize;
-        _myVertices = BufferPtr(new Buffer(_myNumberOfVertices * _myVertexSize));
+        _myVertices = Buffer::create(_myNumberOfVertices * _myVertexSize);
         _myVerticesIdx = 0;
     }
 }
@@ -56,7 +56,7 @@ Mesh::prepareColorData(int theNumberOfVertices) {
     _myNumberOfVertices = theNumberOfVertices;
     if (_myColors->empty() || _myColors->size() / 4 != _myNumberOfVertices){
         _myNumberOfVertices = theNumberOfVertices;
-        _myColors = BufferPtr(new Buffer(_myNumberOfVertices * 4)); 
+        _myColors = Buffer::create(_myNumberOfVertices * 4);
     }
 }
 
@@ -89,6 +89,7 @@ Mesh::vertices(BufferPtr theVertices, int theVertexSize) {
     _myNumberOfVertices = theVertices->size() / theVertexSize;
     _myVertexSize = theVertexSize;
     _myVertices = theVertices;
+    theVertices->rewind();
 }
 
 void 
@@ -320,12 +321,7 @@ Mesh::textureCoords(int theLevel, BufferPtr theTextureCoords, int theTextureCoor
     _myNumberOfVertices = theTextureCoords->size() / theTextureCoordSize;
     _myTextureCoordSize[theLevel] = theTextureCoordSize;
     _myTextureCoords[theLevel] = theTextureCoords;
-
-    // prepareTextureCoordData(theTextureCoords.limit() / theTextureCoordSize, theLevel, theTextureCoordSize);
-    // 
-    // _myTextureCoords[theLevel].rewind();
-    // _myTextureCoords[theLevel].put(theTextureCoords);
-    // _myTextureCoords[theLevel].rewind();
+    theTextureCoords->rewind();
 }
 
 void 
@@ -373,7 +369,12 @@ Mesh::textureCoords(BufferPtr theTextureCoords) {
 //     textureCoords(0, theTextureCoords);
 // }
 
-BufferPtr 
+int
+Mesh::numberOfVertices() {
+    return _myNumberOfVertices;
+}
+
+BufferPtr
 Mesh::texCoords(int theLevel) {
     return _myTextureCoords[theLevel];
 }

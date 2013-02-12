@@ -45,7 +45,7 @@ class Shader {
         void parameter1(const CGparameter & parameter, const std::vector<float> & values);
 	
 
-        void texture(const CGparameter parameter, int textureID);
+        void texture(const CGparameter & parameter, int textureID);
         void checkError(const std::string & message);
         
     protected:

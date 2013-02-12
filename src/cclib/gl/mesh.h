@@ -72,7 +72,8 @@ class Mesh {
         virtual void addColor(float theGray);
         // virtual void colors(const std::vector<Color> & theColors);
         virtual void colors(BufferPtr theColors);
-            
+        virtual int numberOfVertices();
+    
         // void addTextureCoords(int theLevel, Vector4fPtr theTextureCoords) {
         //     addTextureCoords(theLevel, theTextureCoords->x(), theTextureCoords->y(), 
         //             theTextureCoords->z(), theTextureCoords->w());
@@ -148,9 +149,6 @@ class Mesh {
         //     return _myIndices;
         // }
 
-        // int numberOfVertices() {
-        //     return _myNumberOfVertices;
-        // }
 };
 }; // namespace
     

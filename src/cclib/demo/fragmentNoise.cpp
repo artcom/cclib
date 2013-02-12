@@ -19,8 +19,8 @@ class FragmentNoiseDemo {
         CGparameter _myNoiseOffsetParameter;
 
     public:
-        bool running;
         float time;
+    bool running;
 
         FragmentNoiseDemo() :
             time(0),
@@ -59,7 +59,7 @@ class FragmentNoiseDemo {
             _myNoiseScaleParameter = _myShader->fragmentParameter("noiseScale");
             _myNoiseOffsetParameter = _myShader->fragmentParameter("noiseOffset");
        
-            GPUNoise::attachFragmentNoise(_myShader);
+            GPUNoise::attachFragmentNoise(_myShader.get());
         }
 
         ~FragmentNoiseDemo() { 
@@ -77,7 +77,8 @@ class FragmentNoiseDemo {
             glViewport(0, 0, width, height);
             gluPerspective(60, (float)width/(float)height, 1, 10000);
             gluLookAt(0.0, 0.0, 650, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 );
-            
+            std::cout << width << " " << height << std::endl;
+
             ///////
 
             Graphics::clear();

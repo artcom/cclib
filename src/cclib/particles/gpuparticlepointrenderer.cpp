@@ -33,7 +33,7 @@ GPUParticlePointRenderer::update(float theDeltaTime) {
 }
 
 void 
-GPUParticlePointRenderer::draw(){
+GPUParticlePointRenderer::draw() {
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
     _myParticles->dataTexture()->bind(1);
     _myDisplayShader->start();

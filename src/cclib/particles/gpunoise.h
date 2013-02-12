@@ -9,8 +9,8 @@ class GPUNoise
 {
     public:
         static GPUNoisePtr get();
-	    static void attachFragmentNoise(ShaderPtr theShader);
-        static void attachVertexNoise(ShaderPtr theShader);
+	    static void attachFragmentNoise(Shader * theShader);
+        static void attachVertexNoise(Shader * theShader);
         ~GPUNoise() {};
 
     private:
