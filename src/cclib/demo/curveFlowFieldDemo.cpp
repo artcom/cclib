@@ -130,7 +130,7 @@ class CurveFlowFieldDemo {
             // update
             
             _myTime += 1.0f/30.0f * 0.5f;
-            for(int i = 0; i < 2000; i++){
+            for(int i = 0; i < 1000; i++){
                 Vector3fPtr pos = Vector3fPtr( new Vector3f(cclib::random<float>(-width/2, width/2),
                             cclib::random<float>(-_cEmitRadius, _cEmitRadius), 
                             cclib::random<float>(-50.0, 50.0))); 
@@ -163,11 +163,13 @@ class CurveFlowFieldDemo {
                 
             // draw
 
+            Graphics::pointSize(1.0f);
+
             Graphics::clear();
             Graphics::noDepthTest();
             // Graphics::pushMatrix();
             // _myArcball.draw(g);
-            Graphics::color(1.0f, 1.0f, 1.0f, 50.0f/255.0f);
+            Graphics::color(1.0f, 1.0f, 1.0f, 5.0f/255.0f);
             Graphics::blend();
             //		g.pointSprite(_mySpriteTexture);
             //		g.smooth();
@@ -179,6 +181,8 @@ class CurveFlowFieldDemo {
             
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
             // 
+            
+            glfwSwapBuffers();
 
             if (++frame % 60 == 0) {
                 std::cout << "frame: " << frame << std::endl;
