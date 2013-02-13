@@ -12,6 +12,7 @@
 #include <particles/gpugravity.h>
 #include <particles/gpucurvefield.h>
 #include <particles/gpuattractor.h>
+#include <particles/gpuviscousdrag.h>
 #include <gl/shadertexture.h>
 #include <gl/graphics.h>
 
@@ -51,14 +52,14 @@ class CurveFlowFieldDemo {
             _cFieldStrength(0.46666f),
             _cAttractorStrength(-8.53334f),
             _cAttractorRadius(142.0f),
-            _cGravityStrength(0.06666f),
+            _cGravityStrength(0.6666f),
             _cCurveStrength(10.0f),
             _cCurveSpeed(0.046667f),
             _cPrediction(0.253333f),
             _cCurveNoiseScale(0.53333f),
             _cCurveOuputScale(30.6666f),
             _cCurveRadius(96.0f),
-            _cEmitRadius(69.3333f),
+            _cEmitRadius(100.3333f),
             _myTime(0.0f),
             frame(0), running(true)
         { 
@@ -84,12 +85,12 @@ class CurveFlowFieldDemo {
             
             _myCurveField = GPUCurveField::create();
             _myForceField = GPUForceField::create(0.005f, 1, Vector3fPtr(new Vector3f(100,20,30)));
-            _myGravity = GPUGravity::create(Vector3fPtr(new Vector3f(10,0,0)));
+            _myGravity = GPUGravity::create(Vector3fPtr(new Vector3f(150,0,0)));
             _myAttractor = GPUAttractor::create(Vector3fPtr(new Vector3f()), 0, 0);
                 
             std::vector<GPUForcePtr> myForces;
-            // myForces.push_back(GPUViscousDrag::create(0.3f));
-            myForces.push_back(_myCurveField);
+            myForces.push_back(GPUViscousDrag::create(0.25f));
+            // myForces.push_back(_myCurveField);
             myForces.push_back(_myGravity);
             myForces.push_back(_myForceField);
             myForces.push_back(_myAttractor);
@@ -130,7 +131,7 @@ class CurveFlowFieldDemo {
             // update
             
             _myTime += 1.0f/30.0f * 0.5f;
-            for(int i = 0; i < 1000; i++){
+            for(int i = 0; i < 1500; i++){
                 Vector3fPtr pos = Vector3fPtr( new Vector3f(cclib::random<float>(-width/2, width/2),
                             cclib::random<float>(-_cEmitRadius, _cEmitRadius), 
                             cclib::random<float>(-50.0, 50.0))); 
@@ -169,7 +170,7 @@ class CurveFlowFieldDemo {
             Graphics::noDepthTest();
             // Graphics::pushMatrix();
             // _myArcball.draw(g);
-            Graphics::color(1.0f, 1.0f, 1.0f, 5.0f/255.0f);
+            Graphics::color(1.0f, 1.0f, 1.0f, 15.0f/255.0f);
             Graphics::blend();
             //		g.pointSprite(_mySpriteTexture);
             //		g.smooth();

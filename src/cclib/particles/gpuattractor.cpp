@@ -32,7 +32,7 @@ GPUAttractor::setupParameter(int theWidth, int theHeight) {
 void 
 GPUAttractor::update(float theDeltaTime) {
     GPUForce::update(theDeltaTime);
-    _myVelocityShader->parameter(_myPositionParameter, _myPosition);
+    _myVelocityShader->parameter(_myPositionParameter, _myPosition->x(), _myPosition->y(), _myPosition->z());
     _myVelocityShader->parameter(_myStrengthParameter, _myStrength);
     _myVelocityShader->parameter(_myRadiusParameter, _myRadius);
 }

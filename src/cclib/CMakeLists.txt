@@ -87,6 +87,7 @@ set(SOURCES
     particles/gpucurvefield.cpp    
     particles/gpugravity.cpp    
     particles/gpuattractor.cpp    
+    particles/gpuviscousdrag.cpp    
 )
  
 set(HEADERS 
@@ -117,6 +118,7 @@ set(HEADERS
     particles/gpucurvefield.h
     particles/gpugravity.h   
     particles/gpuattractor.h    
+    particles/gpuviscousdrag.h    
 )
  
 set(CCLIB_NAME cclib)

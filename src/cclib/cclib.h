@@ -114,6 +114,9 @@ typedef std::tr1::shared_ptr<GPUGravity> GPUGravityPtr;
 class GPUAttractor;
 typedef std::tr1::shared_ptr<GPUAttractor> GPUAttractorPtr;
 
+class GPUViscousDrag;
+typedef std::tr1::shared_ptr<GPUViscousDrag> GPUViscousDragPtr;
+
 };
 
 #endif
