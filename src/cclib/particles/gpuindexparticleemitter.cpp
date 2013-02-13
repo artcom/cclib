@@ -72,8 +72,9 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
     handleCurrentWaitList(theDeltaTime, thePE);
 
     if(_myStepTime > _myTimeStep) {
+
         _myStepTime -= _myTimeStep;
-        if(_myCurrentWaitList.empty()) {
+        if(!_myCurrentWaitList.empty()) {
             for(;_myCurrentWorkedIndex < _myCurrentWaitList.size(); _myCurrentWorkedIndex++) {
                 GPUParticlePtr myParticle = _myCurrentWaitList[_myCurrentWorkedIndex];
 
@@ -131,7 +132,7 @@ GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, i
     for(int i = 0; i < _myNumberOfParticles; i++) {
         int myIndex = _myStart + i;
         _myActiveParticlesArray.push_back(GPUParticle::create(_myParticles, myIndex));
-        _myFreeIndices.push_back(myIndex);
+        _myFreeIndices[i] = myIndex;
     }
 
     _myEmitMesh = Mesh::create(GL_POINTS);
@@ -252,8 +253,6 @@ GPUIndexParticleEmitter::emit(Vector3fPtr thePosition, Vector3fPtr theVelocity, 
 void 
 GPUIndexParticleEmitter::update(float theDeltaTime) {
     _myParticleWaitingList->update(theDeltaTime, this);
-
-    std::cout << "Emitter: free: " << _myFreeIndices.size() << std::endl;
 }
 
 int
