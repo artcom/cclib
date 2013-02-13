@@ -112,7 +112,8 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
 
 
 	
-GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles) 
+GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles) :
+    _myCurrentTime(0)
 {
     if (theNumberParticles == -1) {
         theNumberParticles = theParticles->size();
@@ -251,9 +252,11 @@ GPUIndexParticleEmitter::emit(Vector3fPtr thePosition, Vector3fPtr theVelocity, 
 void 
 GPUIndexParticleEmitter::update(float theDeltaTime) {
     _myParticleWaitingList->update(theDeltaTime, this);
+
+    std::cout << "Emitter: free: " << _myFreeIndices.size() << std::endl;
 }
 
-int 
+int
 GPUIndexParticleEmitter::size() {
     return _myNumberOfParticles;
 }

@@ -130,10 +130,10 @@ class Vector3 {
          * centered at the origin.  Orientation will be random and length will range
          * between 0 and 1
          */
-        void randomize() {
-            _x = random();
-            _y = random();
-            _z = random();
+        void randomize(double theMax=1.0) {
+            _x = (T)(theMax * ((double)rand()/RAND_MAX));
+            _y = (T)(theMax * ((double)rand()/RAND_MAX));
+            _z = (T)(theMax * ((double)rand()/RAND_MAX));
         }
         
         /**

@@ -59,7 +59,8 @@ public:
     };
     
     void clear() {
-        std::cerr << "XXX Buffer Port incomplete." << std::endl;
+#warning XXX Buffer Port incomplete.
+        // std::cerr << "XXX Buffer Port incomplete." << std::endl;
     };
     
     void put(float theValue) {

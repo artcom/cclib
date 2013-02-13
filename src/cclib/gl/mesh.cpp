@@ -150,7 +150,6 @@ Mesh::enable() {
 
     for(int i = 0; i < 8; i++) {
         if(!_myTextureCoords[i]->empty()) {
-            std::cout << _myTextureCoordSize[i] << std::endl;
             glClientActiveTexture(GL_TEXTURE0 + i);
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
             glTexCoordPointer(_myTextureCoordSize[i], GL_FLOAT, 0, _myTextureCoords[i]->data());

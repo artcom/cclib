@@ -35,9 +35,9 @@ class EmitDemo {
         bool running;
         
         EmitDemo() :
-            _cLifeTime(8.0f), _cInitVel(5.0f), _cX(0.0f), _cY(0.0f), _cZ(0.0f),
+            _cLifeTime(8.0f), _cInitVel(15.0f), _cX(0.0f), _cY(0.0f), _cZ(0.0f),
             _cGStrength(0.0f), _myForceField(), 
-            _cNScale(0.066f), _cNStrength(0.21f),
+            _cNScale(0.026f), _cNStrength(0.31f),
             _myParticles(), _myEmitter(), 
             frame(0), running(true)
         { 
@@ -102,18 +102,14 @@ class EmitDemo {
             
         
             Graphics::clear();
-            Graphics::pointSize(5.0f);
+            Graphics::pointSize(2.0f);
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
             
-            for(int i = 0; i < 1000; i++){
-                float vx = (float)(_cInitVel * ((double)rand()/RAND_MAX));
-                float vy = (float)(_cInitVel * ((double)rand()/RAND_MAX));
-                float vz = (float)(_cInitVel * ((double)rand()/RAND_MAX));
-                Vector3fPtr vel = Vector3fPtr(new Vector3f(vx, vy, vz));
+            for(int i = 0; i < 1000; i++) {
+                Vector3fPtr vel = Vector3fPtr(new Vector3f());
                 Vector3fPtr pos = Vector3fPtr(new Vector3f(x, y, 0.0f));
-             
-                // vel->randomize();
-                // vel->scale(_cInitVel);
+            
+                vel->randomize(_cInitVel);
                 _myEmitter->emit(pos, vel, _cLifeTime);
             }
         
@@ -123,7 +119,7 @@ class EmitDemo {
 		            
             //  draw
             Graphics::noDepthTest();
-            Graphics::color(1.0f, 1.0f, 1.0f, 1.0f/255.0f);
+            Graphics::color(1.0f, 1.0f, 1.0f, 1.0f/128.0f);
             Graphics::blend(BLEND_MODE_ADD);
             
             _myParticles->draw();
