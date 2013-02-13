@@ -14,8 +14,10 @@
 #include <Cg/cgGL.h>
 
 #include <Exception.h>
+#include <math/math.h>
 #include <math/vec2.h>
 #include <math/vec3.h>
+
 
 namespace cclib {
 
@@ -103,25 +105,15 @@ typedef std::tr1::shared_ptr<GPUDisplayShader> GPUDisplayShaderPtr;
 class GPUForceField;
 typedef std::tr1::shared_ptr<GPUForceField> GPUForceFieldPtr;
 
+class GPUCurveField;
+typedef std::tr1::shared_ptr<GPUCurveField> GPUCurveFieldPtr;
+
+class GPUGravity;
+typedef std::tr1::shared_ptr<GPUGravity> GPUGravityPtr;
+
+class GPUAttractor;
+typedef std::tr1::shared_ptr<GPUAttractor> GPUAttractorPtr;
+
 };
-
-
-// // #include <gl/graphics.h>
-// #include <gl/pixelstoragemodes.h>
-// #include <gl/texture.h>
-// #include <gl/texture2d.h>
-// #include <gl/shader.h>
-// #include <gl/framebufferobject.h>
-// #include <gl/shadertexture.h>
-// 
-// #include <particles/gpuparticle.h>
-// #include <particles/gpuupdateshader.h>
-// #include <particles/gpuforce.h>
-// #include <particles/gpuparticles.h>
-// #include <particles/gpuconstraint.h>
-// #include <particles/gpuimpulse.h>
-// // #include <particles/gpudisplayshader.h>
-// // #include <particles/gpuparticlepointrenderer.h>
-// // #include <particles/gpuindexparticleemitter.h>
 
 #endif

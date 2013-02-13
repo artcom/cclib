@@ -72,7 +72,7 @@ class EmitDemo {
             
             GPUParticlePointRendererPtr myRenderer = GPUParticlePointRenderer::create();
             
-            _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 800, 800);
+            _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 1000, 1000);
             _myEmitter = GPUIndexParticleEmitter::create(_myParticles);
             _myParticles->addEmitter(_myEmitter);
             Graphics::smooth();

@@ -2,6 +2,7 @@
 #define __CCLIB_VEC3_INCLUDED__
 
 #include <math.h>
+#include <math/math.h>
 #include <iostream>
 #include <tr1/memory>
 
@@ -131,9 +132,9 @@ class Vector3 {
          * between 0 and 1
          */
         void randomize(double theMax=1.0) {
-            _x = (T)(theMax * ((double)rand()/RAND_MAX));
-            _y = (T)(theMax * ((double)rand()/RAND_MAX));
-            _z = (T)(theMax * ((double)rand()/RAND_MAX));
+            _x = cclib::random<T>(theMax); 
+            _y = cclib::random<T>(theMax); 
+            _z = cclib::random<T>(theMax); 
         }
         
         /**
@@ -260,6 +261,18 @@ class Vector3 {
         
         const T z() const {
             return _z;
+        };
+        
+        void x(T x) { 
+            _x = x;
+        };
+
+        void y(T y) {
+            _y = y;
+        };
+        
+        void z(T z) {
+            _z = z;
         };
 
     private:

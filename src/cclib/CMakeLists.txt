@@ -84,6 +84,9 @@ set(SOURCES
     particles/gpuparticlepointrenderer.cpp
     particles/gpudisplayshader.cpp
     particles/gpuforcefield.cpp
+    particles/gpucurvefield.cpp    
+    particles/gpugravity.cpp    
+    particles/gpuattractor.cpp    
 )
  
 set(HEADERS 
@@ -111,6 +114,9 @@ set(HEADERS
     particles/gpuparticlepointrenderer.h
     particles/gpudisplayshader.h
     particles/gpuforcefield.h
+    particles/gpucurvefield.h
+    particles/gpugravity.h   
+    particles/gpuattractor.h    
 )
  
 set(CCLIB_NAME cclib)
@@ -146,6 +152,9 @@ add_test(shadertexture_test shadertexture_test)
 # samples
 add_executable(cclibEmitDemo demo/emitDemo.cpp)
 target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+
+add_executable(cclibCurveFlowField demo/curveFlowFieldDemo.cpp)
+target_link_libraries(cclibCurveFlowField ${CCLIB_NAME} ${TEST_LIBRARIES})
 
 add_executable(cclibShaderTextureDemo demo/shaderTextureDemo.cpp)
 target_link_libraries(cclibShaderTextureDemo ${CCLIB_NAME} ${TEST_LIBRARIES})

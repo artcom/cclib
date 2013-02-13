@@ -2,6 +2,7 @@
 #define __CCLIB_VEC2_INCLUDED__
 
 #include <math.h>
+#include <math/math.h>
 #include <iostream>
 #include <tr1/memory>
 
@@ -136,8 +137,8 @@ class Vector2 {
          * between 0 and 1
          */
         void randomize() {
-            _x = random();
-            _y = random();
+            _x = cclib::random<T>();
+            _y = cclib::random<T>();
         }
         
         /**
