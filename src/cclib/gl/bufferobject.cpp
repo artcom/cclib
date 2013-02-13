@@ -82,30 +82,11 @@ BufferObject::mapBuffer(BufferPtr targetData) {
    
     float * mappedBuffer = (float*) glMapBuffer(_myCurrentTarget, GL_WRITE_ONLY);
     
-    // XXX test
-    
-   /* int i = 0;
-    for(float x = -1000; x < 1000; x +=2){
-        for(float y = -1000; y < 1000; y +=2){
-            // std::cout << x << " : " << y << std::endl;
-            // _myMesh->addColor(0, 0, 0);
-            mappedBuffer[i] = x;
-            mappedBuffer[i+1] = y;
-            mappedBuffer[i+2] = -30;
-
-            mappedBuffer[i+3] = x;
-            mappedBuffer[i+4] = y;
-            mappedBuffer[i+5] = 30;
-            i += 6;
-        }
-    } */
-    
-    // XXX test over
-    
     // std::cerr << "BufferObject.cpp - port incomplete." << std::endl;
     if (targetData->size() != _mySize) {
         // XXX
-        std::cerr << "XXX incomplete" << std::endl;
+        // std::cerr << "XXX incomplete" << std::endl;
+#warning XXX Buffer port Incomplete
     }
     
     targetData->setData(mappedBuffer);
@@ -177,7 +158,16 @@ void
 BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, int theUsageType) {
     // set the data to the currentTarget GPU buffer object
     _mySize = theSize * sizeof(float);
-    glBufferData(_myCurrentTarget, _mySize, theData->data(), glUsage(theUsageFrequency, theUsageType));
+    float * ptr;
+    if (theData->empty()) {
+        ptr = NULL;
+        std::cout << "-> empty" << std::endl;
+    } else {
+        ptr = theData->data();
+        std::cout << theData->data()[0] << " " << theData->data()[1] << " " << theData->data()[2] << std::endl;
+    }
+    
+    glBufferData(_myCurrentTarget, _mySize, ptr, glUsage(theUsageFrequency, theUsageType));
 }
 
 void 
@@ -212,8 +202,9 @@ BufferObject::copyDataFromTexture(ShaderTexturePtr theShaderTexture, int theID, 
     }
 
     theShaderTexture->bindBuffer();
+    
     // bind buffer object to pixel pack buffer
-    bind(GL_PIXEL_PACK_BUFFER);	
+    bind(GL_PIXEL_PACK_BUFFER);
     glReadBuffer(GL_COLOR_ATTACHMENT0 + theID);
 
     // read from frame buffer to buffer object

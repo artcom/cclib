@@ -1,5 +1,7 @@
 #include <gl/shadertexture.h>
 
+#include <gl/graphics.h>
+
 using namespace cclib;
 
 FrameBufferObjectAttributesPtr 
@@ -69,6 +71,7 @@ ShaderTexture::createAttributes( int theNumberOfBits, int theNumberOfChannels, i
     result->internalFormat = internalFormat;
     result->format = format;
 
+    Graphics::checkError();
     return result;
 }
 
@@ -76,15 +79,18 @@ void
 ShaderTexture::beginOrtho2D() {
     glPushAttrib(GL_VIEWPORT_BIT);
     glViewport(0, 0, _width, _height);
+    Graphics::checkError();
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
     glOrtho(0, _width, 0, _height, -1, 1);
+    Graphics::checkError();
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
+    Graphics::checkError();
 }
         
 void 
@@ -116,16 +122,20 @@ ShaderTexture::drawQuad() {
             glEnd();
             break;
     }
+    
+    Graphics::checkError();
 }
 
 void 
 ShaderTexture::clear() {
+    Graphics::checkError();
     beginDraw();
     glClearStencil(0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     endDraw();
+    Graphics::checkError();
 }
-	
+
 int 
 ShaderTexture::numberOfChannels() {
     return _numberOfChannels;
@@ -157,8 +167,9 @@ ShaderTexture::endOrtho2D() {
     glPopMatrix();
 
     glPopAttrib();
+    Graphics::checkError();
 }
-	
+
 void 
 ShaderTexture::endDraw() {
     endOrtho2D();
@@ -173,8 +184,10 @@ ShaderTexture::draw() {
     drawQuad();
 
     endDraw();
+    Graphics::checkError();
+
 }
-	
+
 std::vector<float> 
 ShaderTexture::getData(unsigned int x, unsigned int y, int width, int height, int texture) {
 	if (width == -1) {
@@ -191,7 +204,7 @@ ShaderTexture::getData(unsigned int x, unsigned int y, int width, int height, in
 	glReadPixels(x, y, width, height, _format, GL_FLOAT, &(pixels[0]));
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	
-	checkError();
+    Graphics::checkError();
 
 	return pixels;
 }

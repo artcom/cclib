@@ -9,6 +9,7 @@
 #include <particles/gpuindexparticleemitter.h>
 #include <particles/gpuforce.h>
 #include <particles/gpuforcefield.h>
+#include <gl/shadertexture.h>
 #include <gl/graphics.h>
 
 using namespace cclib;
@@ -101,11 +102,12 @@ class EmitDemo {
             Graphics::clear();
             Graphics::pointSize(5.0f);
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
-
-            Graphics::rect(-width/2, -height/2, 20, 20);
-
-            for(int i = 0; i < 1000; i++){
-                Vector3fPtr vel = Vector3fPtr(new Vector3f(1.0f, 1.0f, 1.0f));
+            
+            for(int i = 0; i < 100; i++){
+                float vx = (float)(_cInitVel * ((double)rand()/RAND_MAX));
+                float vy = (float)(_cInitVel * ((double)rand()/RAND_MAX));
+                float vz = (float)(_cInitVel * ((double)rand()/RAND_MAX));
+                Vector3fPtr vel = Vector3fPtr(new Vector3f(vx, vy, vz));
                 Vector3fPtr pos = Vector3fPtr(new Vector3f(x, y, 0.0f));
              
                 // vel->randomize();
@@ -116,18 +118,14 @@ class EmitDemo {
             _myForceField->noiseScale(_cNScale);
             _myForceField->strength(_cNStrength);
             _myParticles->update(theDeltaTime);
-		
+		            
             //  draw
             Graphics::noDepthTest();
-            Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
+            Graphics::color(1.0f, 1.0f, 1.0f, 1.0f/255.0f);
             Graphics::blend(BLEND_MODE_ADD);
             
             _myParticles->draw();
-            
-            Graphics::beginShape(GL_POINTS);
-            Graphics::vertex(x, y);
-            Graphics::endShape();
-            
+                     
             Graphics::noBlend();
       
             glfwSwapBuffers();

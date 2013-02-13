@@ -31,18 +31,22 @@ class Graphics {
         static void imageImplementation(TexturePtr theImage, 
                 float x1, float y1, float x2, float y2,float u1, float v1, float u2, float v2);
         static void noDepthTest();
-       
+        static void checkError();
+    
         static void blend(unsigned int theBlendmode) {
             glEnable(GL_BLEND);
-        
+            Graphics::checkError();
+
             switch(theBlendmode) {
                 case BLEND_MODE_ADD:   
                     glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE, GL_SRC_ALPHA, GL_ONE);
-		            glBlendEquationSeparate(GL_ADD, GL_ADD);
+                    glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+                    Graphics::checkError();
                     break;
                 case BLEND_MODE_BLEND:   
                     glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		            glBlendEquationSeparate(GL_ADD, GL_ADD);
+                    glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+                    Graphics::checkError();
                     break;
                  default:
                     std::cout << "unported blend mode";

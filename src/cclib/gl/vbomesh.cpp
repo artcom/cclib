@@ -119,7 +119,7 @@ VBOMesh::prepareNormalData(int theNumberOfVertices){
     if(!_myNormalBuffer || _myNormals->size() / 3 != _myNumberOfVertices) {
         _myNumberOfVertices = theNumberOfVertices;
         _myNormalBuffer = BufferObject::create(_myNumberOfVertices * 3 * sizeof(float));
-        // XXX _myNormals = _myNormalBuffer->data();
+        _myNormals = _myNormalBuffer->data();
     }
     
     _myHasNormals = true;

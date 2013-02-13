@@ -38,7 +38,7 @@ GPUParticlePointRenderer::draw() {
     _myParticles->dataTexture()->bind(1);
     _myDisplayShader->start();
     // _myDisplayShader->tangHalfFov( CCMath.tan( g.camera().fov() ) * g.height ); // XXX implement camera fov getter/setter and context height
-    _myDisplayShader->tangHalfFov( 800.0f );
+    _myDisplayShader->tangHalfFov( 1299.0382 );
     _myMesh->draw();
     _myDisplayShader->end();
     glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);

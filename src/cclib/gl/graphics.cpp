@@ -223,3 +223,41 @@ Graphics::noDepthTest() {
     glDisable(GL_DEPTH_TEST);
 }
 
+void
+Graphics::checkError() {
+    GLenum error = glGetError();
+    
+    std::string errorStr;
+    switch(error) {
+        case GL_NO_ERROR:
+            return;
+            break;
+        case GL_INVALID_ENUM:
+            errorStr = " # INVALID ENUMERATION REPORTED. check for errors in OPENGL calls with constants.";
+            break;
+        case GL_INVALID_VALUE:
+            errorStr = "# INVALID VALUE REPORTED. check for errors with passed values that are out of a defined range.";
+            break;
+        case GL_INVALID_OPERATION:
+            errorStr = "# INVALID OPERATION REPORTED. check for function calls that are invalid in the current graphics state.";
+            break;
+        case GL_STACK_OVERFLOW:
+            errorStr = "# STACK OVERFLOW REPORTED. check for errors in matrix operations";
+            break;
+        case GL_STACK_UNDERFLOW:
+            errorStr = "# STACK UNDERFLOW REPORTED. check for errors  in matrix operations";
+            break;
+        case GL_OUT_OF_MEMORY:
+            errorStr = "# OUT OF MEMORY. not enough memory to execute the commands";
+            break;
+        case GL_TABLE_TOO_LARGE:
+            errorStr = "# TABLE TOO LARGE.";
+            break;
+        default:
+            errorStr = "unknown gl error";
+            break;
+    }
+    
+    throw cclib::Exception("GL check Error: "+ errorStr);
+}
+

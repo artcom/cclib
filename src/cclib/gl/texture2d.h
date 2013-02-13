@@ -52,7 +52,6 @@ class Texture2D : public Texture {
         virtual void allocateData(unsigned int width, unsigned int height);
         Texture2D(TextureAttributesPtr attributes,
                 int width, int height, unsigned int numberOfTextures, GLenum target);
-        virtual void checkError();
 
 	    // private CCBufferObject _myBufferObject;
 };

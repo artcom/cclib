@@ -1,7 +1,7 @@
 
 #include "mesh.h"
 #include <gl/texture2d.h>
-
+#include <gl/graphics.h>
 
 using namespace cclib;
 
@@ -140,23 +140,28 @@ Mesh::enable() {
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(_myVertexSize, GL_FLOAT, 0, _myVertices->data());
     }
-
+    Graphics::checkError();
+    
     if(!_myNormals->empty()) {
         glEnableClientState(GL_NORMAL_ARRAY);
         glNormalPointer(GL_FLOAT, 0, _myNormals->data());
     }
+    Graphics::checkError();
 
     for(int i = 0; i < 8; i++) {
-        if(_myTextureCoords[i]->empty()) {
+        if(!_myTextureCoords[i]->empty()) {
+            std::cout << _myTextureCoordSize[i] << std::endl;
             glClientActiveTexture(GL_TEXTURE0 + i);
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
             glTexCoordPointer(_myTextureCoordSize[i], GL_FLOAT, 0, _myTextureCoords[i]->data());
+            Graphics::checkError();
         }
     }
 
     if(!_myColors->empty()) {
         glEnableClientState(GL_COLOR_ARRAY);
         glColorPointer(4, GL_FLOAT, 0, _myColors->data());
+        Graphics::checkError();
     }
 }
 
@@ -166,22 +171,26 @@ Mesh::disable() {
     // Disable Pointers
     if(!_myVertices->empty()) {
         glDisableClientState(GL_VERTEX_ARRAY);
+        Graphics::checkError();
     }
 
     if(!_myNormals->empty()) {
         glDisableClientState(GL_NORMAL_ARRAY);
+        Graphics::checkError();
     }
 
     for(int i = 0; i < 8; i++) {
         if(!_myTextureCoords[i]->empty()) {
             glClientActiveTexture(GL_TEXTURE0 + i);
             glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+            Graphics::checkError();
         }
     }
 
     glClientActiveTexture(GL_TEXTURE0);
-    if(!_myColors->size()){
+    if(!_myColors->empty()){
         glDisableClientState(GL_COLOR_ARRAY);
+        Graphics::checkError();
     }
 }
 
@@ -190,8 +199,10 @@ Mesh::drawArray() {
     // Draw All Of The Triangles At Once
     if (_myIndices.empty()) {
         glDrawArrays(_myDrawMode, 0, _myNumberOfVertices);
+        Graphics::checkError();
     } else {
         glDrawElements(_myDrawMode, _myNumberOfIndices, GL_UNSIGNED_INT, 0); //&(_myIndices[0]));
+        Graphics::checkError();
     }
 }
 

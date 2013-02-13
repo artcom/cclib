@@ -34,7 +34,7 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     _myInitValue01Shader->load();
 
     ffiles.clear(); ffiles.push_back(std::string(initvalue_fp));
-    _myInitValue0Shader = Shader::create(vfiles, ffiles, "main", "main");
+    _myInitValue0Shader = Shader::create(vfiles, ffiles);
     _myInitValue0Shader->load();
 
     _myCurrentDataTexture = ShaderTexture::create( _myWidth, _myHeight, 32, 4, 3);
@@ -218,7 +218,9 @@ GPUParticles::changeStates() {
 void 
 GPUParticles::beforeUpdate() {
     initializeNewParticles();
+    Graphics::checkError();
     changeStates();
+    Graphics::checkError();
 }
 
 void 
@@ -278,18 +280,27 @@ GPUParticles::update(float theDeltaTime) {
     for (unsigned int i=0; i<_myImpulses.size(); i++) {
         _myImpulses[i]->update(theDeltaTime);
     }
-    _myUpdateShader->checkError("????");
     _myUpdateShader->positions(_myCurrentDataTexture);
+    Graphics::checkError();
+    
     _myUpdateShader->deltaTime(theDeltaTime);
+    Graphics::checkError();
+
     _myUpdateShader->start();
+    Graphics::checkError();
+    
     _myDestinationDataTexture->draw();
+    Graphics::checkError();
+
     _myUpdateShader->end();
+    Graphics::checkError();
 
     swapDataTextures();
 
     afterUpdate();
     _myCurrentTime += theDeltaTime;
     _myParticleRender->update(theDeltaTime);
+
     Graphics::blend();
 }
 

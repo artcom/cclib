@@ -109,29 +109,4 @@ Texture2D::allocateData(unsigned int width, unsigned int height)
 	// 	return new CCPixelMap(myBuffer, _myWidth, _myHeight, _myMustFlipVertically);
 	// }
 
-void 
-Texture2D::checkError() {
-    GLenum error = glGetError();
 
-    std::string errorStr;
-    switch(error) {
-        case GL_NO_ERROR:
-            return;
-        case GL_INVALID_ENUM:
-            errorStr = " # INVALID ENUMERATION REPORTED. check for errors in OPENGL calls with constants.";
-        case GL_INVALID_VALUE:
-            errorStr = "# INVALID VALUE REPORTED. check for errors with passed values that are out of a defined range.";
-        case GL_INVALID_OPERATION:
-            errorStr = "# INVALID OPERATION REPORTED. check for function calls that are invalid in the current graphics state.";
-        case GL_STACK_OVERFLOW:
-            errorStr = "# STACK OVERFLOW REPORTED. check for errors in matrix operations";
-        case GL_STACK_UNDERFLOW:
-            errorStr = "# STACK UNDERFLOW REPORTED. check for errors  in matrix operations";
-        case GL_OUT_OF_MEMORY:
-            errorStr = "# OUT OF MEMORY. not enough memory to execute the commands";
-        case GL_TABLE_TOO_LARGE:
-            errorStr = "# TABLE TOO LARGE.";
-    }
-
-    throw cclib::Exception("Texture2D: "+ errorStr);
-}

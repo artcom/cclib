@@ -3,6 +3,7 @@
 #include <gl/shader.h>
 #include <gl/shadertexture.h>
 #include <gl/bufferobject.h>
+#include <gl/graphics.h>
 #include <particles/gpuparticleemitter.h>
 #include <particles/gpuparticle.h>
 #include <particles/gpuparticles.h>
@@ -294,12 +295,19 @@ GPUIndexParticleEmitter::fillVelocityData(BufferPtr theBuffer) {
 void 
 GPUIndexParticleEmitter::transferData() {
     _myParticles->dataTexture()->beginDraw();
+    Graphics::checkError();
+    
     _myParticles->initValueShader()->start();
+    Graphics::checkError();
 
     _myEmitMesh->draw();
+    Graphics::checkError();
 
     _myParticles->initValueShader()->end();
+    Graphics::checkError();
+
     _myParticles->dataTexture()->endDraw();
+    Graphics::checkError();
 }
 
 void 
