@@ -34,14 +34,15 @@ GPUParticlePointRenderer::update(float theDeltaTime) {
 
 void 
 GPUParticlePointRenderer::draw() {
-    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+#warning glEnable(GL_VERTEX_PROGRAM_POINT_SIZE); disabled
+    // glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
     _myParticles->dataTexture()->bind(1);
     _myDisplayShader->start();
     // _myDisplayShader->tangHalfFov( CCMath.tan( g.camera().fov() ) * g.height ); // XXX implement camera fov getter/setter and context height
     _myDisplayShader->tangHalfFov( 1299.0382 );
     _myMesh->draw();
     _myDisplayShader->end();
-    glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
+    // glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
 }
 
 VBOMeshPtr 

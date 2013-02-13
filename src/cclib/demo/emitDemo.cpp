@@ -35,7 +35,7 @@ class EmitDemo {
         bool running;
         
         EmitDemo() :
-            _cLifeTime(8.0f), _cInitVel(3.0f), _cX(0.0f), _cY(0.0f), _cZ(0.0f),
+            _cLifeTime(8.0f), _cInitVel(5.0f), _cX(0.0f), _cY(0.0f), _cZ(0.0f),
             _cGStrength(0.0f), _myForceField(), 
             _cNScale(0.066f), _cNStrength(0.21f),
             _myParticles(), _myEmitter(), 
@@ -75,6 +75,7 @@ class EmitDemo {
             _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 800, 800);
             _myEmitter = GPUIndexParticleEmitter::create(_myParticles);
             _myParticles->addEmitter(_myEmitter);
+            Graphics::smooth();
         }
 
         ~EmitDemo() { 
@@ -99,11 +100,12 @@ class EmitDemo {
             float x = mouseX - width/2;
             float y = height/2 - mouseY;
             
+        
             Graphics::clear();
             Graphics::pointSize(5.0f);
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
             
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < 1000; i++){
                 float vx = (float)(_cInitVel * ((double)rand()/RAND_MAX));
                 float vy = (float)(_cInitVel * ((double)rand()/RAND_MAX));
                 float vz = (float)(_cInitVel * ((double)rand()/RAND_MAX));
