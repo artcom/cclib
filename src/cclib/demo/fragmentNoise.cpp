@@ -7,7 +7,7 @@
 #include <gl/mesh.h>
 #include <gl/vbomesh.h>
 #include <gl/graphics.h>
-#include "fragmentnoise.h"
+#include "fragmentNoise.h"
 
 using namespace cclib;
 
