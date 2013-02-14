@@ -2,6 +2,8 @@
 #ifndef __CCLIB_MATH_INCLUDED__
 #define __CCLIB_MATH_INCLUDED__
 
+#include <cstdlib>
+
 namespace cclib {
 
 template<typename T>
