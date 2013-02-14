@@ -50,7 +50,7 @@ class CurveFlowFieldDemo {
         
         CurveFlowFieldDemo() :
             _cFieldStrength(0.46666f),
-            _cAttractorStrength(-8.53334f),
+            _cAttractorStrength(8.53334f),
             _cAttractorRadius(142.0f),
             _cGravityStrength(0.6666f),
             _cCurveStrength(10.0f),
@@ -84,7 +84,7 @@ class CurveFlowFieldDemo {
         void setup() {
             
             _myCurveField = GPUCurveField::create();
-            _myForceField = GPUForceField::create(0.005f, 1, Vector3fPtr(new Vector3f(100,20,30)));
+            _myForceField = GPUForceField::create(0.005f, 1, Vector3fPtr(new Vector3f(100, 20, 30)));
             _myGravity = GPUGravity::create(Vector3fPtr(new Vector3f(150,0,0)));
             _myAttractor = GPUAttractor::create(Vector3fPtr(new Vector3f()), 0, 0);
                 
