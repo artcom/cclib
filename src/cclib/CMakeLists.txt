@@ -125,7 +125,7 @@ add_library(${CCLIB_NAME} SHARED
     ${SOURCES} 
     ${HEADERS})
 
-target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${OPENGL_LIBRARIES})
+target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${Cg_GL_LIBRARIES} ${OPENGL_LIBRARIES})
 install(TARGETS ${CCLIB_NAME} DESTINATION bin)
 
 # install(FILES ${HEADERS} DESTINATION include/${CCLIB_NAME})
