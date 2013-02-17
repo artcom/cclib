@@ -88,7 +88,7 @@ set(SOURCES
     particles/gpuviscousdrag.cpp    
 )
  
-set(HEADERS 
+set(HEADERS
     cclib.h
     math/vec2.h
     math/vec3.h
@@ -118,7 +118,12 @@ set(HEADERS
     particles/gpuattractor.h    
     particles/gpuviscousdrag.h    
 )
- 
+
+FOREACH(HEADER ${HEADERS})
+    STRING(REGEX MATCH "(.*)[/\\]" DIR ${HEADER})
+    INSTALL(FILES ${HEADER} DESTINATION include/cclib/${DIR})
+ENDFOREACH(HEADER)
+
 set(CCLIB_NAME cclib)
 add_library(${CCLIB_NAME} SHARED 
     ${SHADER_SOURCES} 
@@ -126,7 +131,13 @@ add_library(${CCLIB_NAME} SHARED
     ${HEADERS})
 
 target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${OPENGL_LIBRARIES})
-install(TARGETS ${CCLIB_NAME} DESTINATION bin)
+install(TARGETS ${CCLIB_NAME} DESTINATION lib)
+
+# install(TARGETS ${HEADERS_GL} DESTINATION include/cclib/gl)
+# install(TARGETS ${HEADERS_PARTICLES} DESTINATION include/cclib/particles)
+# install(TARGETS ${HEADERS_MATH} DESTINATION include/cclib/math)
+# install(TARGETS ${HEADERS_CCLIB} DESTINATION include/cclib)
+
 
 # install(FILES ${HEADERS} DESTINATION include/${CCLIB_NAME})
 
