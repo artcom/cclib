@@ -131,15 +131,8 @@ add_library(${CCLIB_NAME} SHARED
     ${HEADERS})
 
 target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${OPENGL_LIBRARIES})
+target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${Cg_GL_LIBRARIES} ${OPENGL_LIBRARIES})
 install(TARGETS ${CCLIB_NAME} DESTINATION lib)
-
-# install(TARGETS ${HEADERS_GL} DESTINATION include/cclib/gl)
-# install(TARGETS ${HEADERS_PARTICLES} DESTINATION include/cclib/particles)
-# install(TARGETS ${HEADERS_MATH} DESTINATION include/cclib/math)
-# install(TARGETS ${HEADERS_CCLIB} DESTINATION include/cclib)
-
-
-# install(FILES ${HEADERS} DESTINATION include/${CCLIB_NAME})
 
 set(TEST_LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Cg_LIBRARIES} ${GLEW_LIBRARY} ${GLFW_LIBRARIES}) # ${CCLIB_NAME} 
 
