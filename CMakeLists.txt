@@ -18,6 +18,9 @@ project (cclib)
 set(CCLIB_VERSION_MAJOR 0)
 set(CCLIB_VERSION_MINOR 1)
 
+set(CMAKE_C_FLAGS "-Wno-reorder ${CMAKE_C_FLAGS}")
+set(CMAKE_CXX_FLAGS "-Wno-reorder ${CMAKE_CXX_FLAGS}")
+
 add_subdirectory (src) 
 
 include(CPack)
