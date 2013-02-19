@@ -95,23 +95,23 @@ class Texture {
         GLenum _target;
         GLenum _environmentMode;
 
+        GLenum _internalFormat;
+        GLenum _format;
+        GLenum _pixelType;
+
+        int _width;
+        int _height;
+        int _depth;
+    
         GLenum _textureFilter;
         GLenum _textureMipmapFilter;
 
         // CCColor _blendColor = new CCColor();
 
-        GLenum _internalFormat;
-        GLenum _format;
-        GLenum _pixelType;
-
         PixelStorageModesPtr _storageModes;
 
         std::vector<GLuint> _textureIDs;
         GLuint _textureID;
-
-        int _width;
-        int _height;
-        int _depth;
 
         int _estimatedMemorySize;
 

@@ -12,7 +12,7 @@ GPUParticle::GPUParticle(GPUParticlesPtr theParticles, int theIndex):
     _myVelocity = Vector3fPtr( new Vector3f() );
 }
 
-GPUParticlePtr 
+GPUParticlePtr
 GPUParticle::create(GPUParticlesPtr theParticles, int theIndex) {
     return GPUParticlePtr(new GPUParticle(theParticles, theIndex));
 }

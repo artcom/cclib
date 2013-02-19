@@ -319,13 +319,13 @@ GPUIndexParticleEmitter::setData() {
         return;
     }
 
-#warning implement correct resizing
-    // if (myEmitSize > _myEmitMesh->numberOfVertices()) {
+    if (myEmitSize > _myEmitMesh->numberOfVertices()) {
         _myVertexBuffer = Buffer::create(myEmitSize * 3, true);
         _myPositionBuffer = Buffer::create(myEmitSize * 3, true);
         _myInfoBuffer = Buffer::create(myEmitSize * 3, true);
         _myVelocityBuffer = Buffer::create(myEmitSize * 3, true);
-    // }
+    }
+#warning implement correct resizing
     /* else {
         _myVertexBuffer.limit(myEmitSize * 3);
         _myPositionBuffer.limit(myEmitSize * 3);

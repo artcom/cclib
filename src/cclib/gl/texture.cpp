@@ -12,8 +12,8 @@ Texture::createTexture(GLuint target, TextureAttributesPtr attributes, unsigned 
 
 Texture::Texture(GLenum target, TextureAttributesPtr attributes, unsigned int numberOfTextures) 
     : _target(target), _environmentMode(GL_MODULATE), _textureID(0), 
+      _internalFormat(attributes->internalFormat), _format(attributes->format),
       _width(0), _height(0), _depth(1),
-      _internalFormat(attributes->internalFormat), _format(attributes->format), 
       _pixelType(attributes->type), _isCompressed(false), _estimatedMemorySize(0)
 {
     _textureIDs = createTextureIds(numberOfTextures);
