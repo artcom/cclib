@@ -93,6 +93,7 @@ set(HEADERS
     cclib.h
     math/vec2.h
     math/vec3.h
+    math/math.h
     gl/shader.h
     gl/texture.h    
     gl/texture2d.h    
