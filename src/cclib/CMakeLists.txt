@@ -120,6 +120,7 @@ set(HEADERS
     particles/gpugravity.h   
     particles/gpuattractor.h    
     particles/gpuviscousdrag.h    
+    particles/gpuparticleemitter.h    
 )
 
 FOREACH(HEADER ${HEADERS})
