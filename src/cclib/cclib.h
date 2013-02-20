@@ -2,23 +2,22 @@
 #define __CCLIB_HEADER_DEFINED__
 
 #include <math.h>
+#include <string>
 #include <cstring>
 #include <iostream>
 #include <sstream>
-#include <string>
 #include <vector>
 #include <map>
 #include <tr1/memory>
 #include <GL/glew.h>
+#include <stdexcept>
 
 #include <Cg/cg.h>
 #include <Cg/cgGL.h>
 
-#include <Exception.h>
 #include <math/math.h>
 #include <math/vec2.h>
 #include <math/vec3.h>
-
 
 namespace cclib {
 
@@ -117,6 +116,18 @@ typedef std::tr1::shared_ptr<GPUAttractor> GPUAttractorPtr;
 
 class GPUViscousDrag;
 typedef std::tr1::shared_ptr<GPUViscousDrag> GPUViscousDragPtr;
+
+
+class Exception: public std::runtime_error
+{
+    public:
+        Exception(std::string const& msg):
+            std::runtime_error(msg)
+        {
+            std::cout << "Exception: " << this->what() << std::endl;
+        }
+};
+    
 
 };
 
