@@ -112,6 +112,7 @@ set(HEADERS
     particles/gpuparticles.h
     particles/gpuparticle.h
     particles/gpuindexparticleemitter.h
+    particles/gpuparticlerenderer.h
     particles/gpuparticlepointrenderer.h
     particles/gpudisplayshader.h
     particles/gpuforcefield.h
