@@ -85,7 +85,7 @@ class CurveFlowFieldDemo {
             
             _myCurveField = GPUCurveField::create();
             _myForceField = GPUForceField::create(0.005f, 1, Vector3fPtr(new Vector3f(100, 20, 30)));
-            _myGravity = GPUGravity::create(Vector3fPtr(new Vector3f(150,0,0)));
+            _myGravity = GPUGravity::create(Vector3f(150,0,0));
             _myAttractor = GPUAttractor::create(Vector3f(), 0, 0);
                 
             std::vector<GPUForcePtr> myForces;

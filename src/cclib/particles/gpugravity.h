@@ -11,16 +11,17 @@ class GPUGravity : public GPUForce {
 
     private:
         CGparameter _myGravityParameter;
-        Vector3fPtr _myGravity;
+        Property_<Vector3f>::Ptr _myGravity;
 
-        GPUGravity(Vector3fPtr theGravity); 
+        GPUGravity(Vector3f theGravity); 
 
     public:
-        static GPUGravityPtr create(Vector3fPtr theGravity);
+        static GPUGravityPtr create(Vector3f theGravity);
 
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);
-        Vector3fPtr direction();
+        Vector3f getDirection();
+        void setDirection(Vector3f theGravity);
 };	
 };
 
