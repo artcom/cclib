@@ -10,26 +10,25 @@ namespace cclib {
 class GPUForceField : public GPUForce {
 
     private:
-        float _myNoiseScale;
-        Vector3fPtr _myNoiseOffset;
+        Property_<float>::Ptr _myNoiseScale;
+        Property_<Vector3f>::Ptr _myNoiseOffset;
         
         CGparameter _myNoiseScaleParameter;
         CGparameter _myNoiseOffsetParameter;
         CGparameter _myNoiseLengthScalesParameter;
         CGparameter _myNoiseGainsParameter;
 	
-        GPUForceField(float theNoiseScale, float theStrength, Vector3fPtr theNoiseOffset); 
+        GPUForceField(float theNoiseScale, float theStrength, Vector3f theNoiseOffset); 
 
     public:
-        static GPUForceFieldPtr create(float theNoiseScale, float theStrength, Vector3fPtr theNoiseOffset);
-        // GPUForcePtr getBasePtr();
+        static GPUForceFieldPtr create(float theNoiseScale, float theStrength, Vector3f theNoiseOffset);
 
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);
-        void noiseOffset(Vector3fPtr theNoiseOffset);
-        Vector3fPtr noiseOffset();
-        void noiseScale(float theNoiseScale);
-        float noiseScale();
+        void setNoiseOffset(Vector3f theNoiseOffset);
+        Vector3f getNoiseOffset();
+        void setNoiseScale(float theNoiseScale);
+        float getNoiseScale();
 };	
 };
 

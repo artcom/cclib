@@ -84,7 +84,7 @@ class CurveFlowFieldDemo {
         void setup() {
             
             _myCurveField = GPUCurveField::create();
-            _myForceField = GPUForceField::create(0.005f, 1, Vector3fPtr(new Vector3f(100, 20, 30)));
+            _myForceField = GPUForceField::create(0.005f, 1, Vector3f(100, 20, 30));
             _myGravity = GPUGravity::create(Vector3f(2,0,0));
             _myAttractor = GPUAttractor::create(Vector3f(), 0, 0);
                 
@@ -146,8 +146,8 @@ class CurveFlowFieldDemo {
             _myGravity->setStrength(_cGravityStrength);
             
             _myForceField->setStrength(_cFieldStrength);
-            _myForceField->noiseOffset(Vector3fPtr(new Vector3f(0, 0, _myTime)));
-            _myForceField->noiseScale(0.0025f);
+            _myForceField->setNoiseOffset(Vector3f(0, 0, _myTime));
+            _myForceField->setNoiseScale(0.0025f);
 
             _myAttractor->setStrength(_cAttractorStrength);
             _myAttractor->setRadius(_cAttractorRadius);

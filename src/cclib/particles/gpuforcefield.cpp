@@ -3,16 +3,18 @@
 
 using namespace cclib; 
 
-GPUForceField::GPUForceField(float theNoiseScale, float theStrength, Vector3fPtr theNoiseOffset) :
-            GPUForce("NoiseForceField"), 
-            _myNoiseScale(theNoiseScale), 
-            _myNoiseOffset(theNoiseOffset) 
+GPUForceField::GPUForceField(float theNoiseScale, float theStrength, Vector3f theNoiseOffset) :
+    GPUForce("NoiseForceField"), 
+    _myNoiseScale(Property_<float>::create("noiseScale", theNoiseScale)), 
+    _myNoiseOffset(Property_<Vector3f>::create("noiseOffset", theNoiseOffset)) 
 {
+    registerProperty(_myNoiseScale);
+    registerProperty(_myNoiseOffset);
     setStrength(theStrength);
 }
 
 GPUForceFieldPtr
-GPUForceField::create(float theNoiseScale, float theStrength, Vector3fPtr theNoiseOffset) {
+GPUForceField::create(float theNoiseScale, float theStrength, Vector3f theNoiseOffset) {
     return GPUForceFieldPtr(new GPUForceField(theNoiseScale, theStrength, theNoiseOffset));
 }
 
@@ -24,7 +26,6 @@ GPUForceField::setupParameter(int theWidth, int theHeight) {
     _myNoiseLengthScalesParameter = parameter("noiseLengthScales");
     _myNoiseGainsParameter = parameter("noiseGains");
 
-    
     std::vector<float> v1; 
     v1.push_back(0.4f);  
     v1.push_back(0.23f);
@@ -41,27 +42,27 @@ GPUForceField::setupParameter(int theWidth, int theHeight) {
 void 
 GPUForceField::update(float theDeltaTime) {
     GPUForce::update(theDeltaTime);
-    _myVelocityShader->parameter(_myNoiseOffsetParameter, _myNoiseOffset);
-    _myVelocityShader->parameter(_myNoiseScaleParameter, _myNoiseScale);
+    _myVelocityShader->parameter(_myNoiseOffsetParameter, getNoiseOffset());
+    _myVelocityShader->parameter(_myNoiseScaleParameter, getNoiseScale());
 }
 
 void 
-GPUForceField::noiseOffset(Vector3fPtr theNoiseOffset){
-    _myNoiseOffset = theNoiseOffset;
+GPUForceField::setNoiseOffset(Vector3f theNoiseOffset){
+    _myNoiseOffset->setValue<Vector3f>(theNoiseOffset);
 }
 
-Vector3fPtr 
-GPUForceField::noiseOffset(){
-    return _myNoiseOffset;
+Vector3f 
+GPUForceField::getNoiseOffset(){
+    return _myNoiseOffset->getValue<Vector3f>();
 }
 
 void 
-GPUForceField::noiseScale(float theNoiseScale){
-    _myNoiseScale = theNoiseScale;
+GPUForceField::setNoiseScale(float theNoiseScale){
+    _myNoiseScale->setValue<float>(theNoiseScale);
 }
 
 float 
-GPUForceField::noiseScale(){
-    return _myNoiseScale;
+GPUForceField::getNoiseScale(){
+    return _myNoiseScale->getValue<float>();
 }
 

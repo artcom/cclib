@@ -64,7 +64,7 @@ class EmitDemo {
             std::vector<GPUConstraintPtr> myConstraints;
             std::vector<GPUImpulsePtr> myImpulses;
 
-            _myForceField = GPUForceField::create(0.01f, 1.0f, Vector3fPtr(new Vector3f()));
+            _myForceField = GPUForceField::create(0.01f, 1.0f, Vector3f());
             myForces.push_back(_myForceField);
             
             // GPYConstraint myYConstraint = GPUYConstraint::create(-400, 1.0f, 0f, 0.1f); 
@@ -113,7 +113,7 @@ class EmitDemo {
                 _myEmitter->emit(pos, vel, _cLifeTime);
             }
         
-            _myForceField->noiseScale(_cNScale);
+            _myForceField->setNoiseScale(_cNScale);
             _myForceField->setStrength(_cNStrength);
             _myParticles->update(theDeltaTime);
 		            
