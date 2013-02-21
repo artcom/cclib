@@ -49,9 +49,9 @@ class CurveFlowFieldDemo {
         bool running;
         
         CurveFlowFieldDemo() :
-            _cFieldStrength(0.46666f),
-            _cAttractorStrength(8.53334f),
-            _cAttractorRadius(142.0f),
+            _cFieldStrength(1.46666f),
+            _cAttractorStrength(18.53334f),
+            _cAttractorRadius(242.0f),
             _cGravityStrength(0.6666f),
             _cCurveStrength(10.0f),
             _cCurveSpeed(0.046667f),
@@ -85,7 +85,7 @@ class CurveFlowFieldDemo {
             
             _myCurveField = GPUCurveField::create();
             _myForceField = GPUForceField::create(0.005f, 1, Vector3fPtr(new Vector3f(100, 20, 30)));
-            _myGravity = GPUGravity::create(Vector3f(150,0,0));
+            _myGravity = GPUGravity::create(Vector3f(2,0,0));
             _myAttractor = GPUAttractor::create(Vector3f(), 0, 0);
                 
             std::vector<GPUForcePtr> myForces;
@@ -99,7 +99,7 @@ class CurveFlowFieldDemo {
             std::vector<GPUImpulsePtr> myImpulses;
 
             GPUParticlePointRendererPtr myRenderer = GPUParticlePointRenderer::create();
-            _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 1000, 1000);
+            _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 800, 800);
             _myEmitter = GPUIndexParticleEmitter::create(_myParticles);
             _myParticles->addEmitter(_myEmitter);
             
@@ -168,7 +168,7 @@ class CurveFlowFieldDemo {
             Graphics::noDepthTest();
             // Graphics::pushMatrix();
             // _myArcball.draw(g);
-            Graphics::color(1.0f, 1.0f, 1.0f, 15.0f/255.0f);
+            Graphics::color(1.0f, 1.0f, 1.0f, 50.0f/255.0f);
             Graphics::blend();
             //		g.pointSprite(_mySpriteTexture);
             //		g.smooth();
