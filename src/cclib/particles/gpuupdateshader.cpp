@@ -1,5 +1,4 @@
- #include "gpuupdateshader.h"
-
+#include "gpuupdateshader.h"
 #include <gl/shadertexture.h>
 #include <particles/gpuforce.h>
 #include <particles/gpuconstraint.h>

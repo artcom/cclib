@@ -9,16 +9,18 @@ float strength();
 void radius(float theRadius);
 float radius();
 
-GPUAttractor::GPUAttractor(Vector3fPtr thePosition, float theStrength, float theRadius) :
+GPUAttractor::GPUAttractor(Vector3f thePosition, float theStrength, float theRadius) :
             GPUForce("Attractor"), 
-            _myRadius(theRadius)
+            _myRadius(Property_<float>::create("radius", theRadius)),
+            _myPosition(Property_<Vector3f>::create("position", thePosition))
 {
-    _myStrength = theStrength;
-    _myPosition = Vector3fPtr(new Vector3f(thePosition->x(), thePosition->y(), thePosition->z())); 
+    setStrength(theStrength);
+    registerProperty(_myRadius);
+    registerProperty(_myPosition);
 }
 
 GPUAttractorPtr
-GPUAttractor::create(Vector3fPtr thePosition, float theStrength, float theRadius) {
+GPUAttractor::create(Vector3f thePosition, float theStrength, float theRadius) {
     return GPUAttractorPtr(new GPUAttractor(thePosition, theStrength, theRadius));
 }
 
@@ -32,34 +34,34 @@ GPUAttractor::setupParameter(int theWidth, int theHeight) {
 void 
 GPUAttractor::update(float theDeltaTime) {
     GPUForce::update(theDeltaTime);
-    _myVelocityShader->parameter(_myPositionParameter, _myPosition->x(), _myPosition->y(), _myPosition->z());
-    _myVelocityShader->parameter(_myStrengthParameter, _myStrength);
-    _myVelocityShader->parameter(_myRadiusParameter, _myRadius);
+    _myVelocityShader->parameter(_myPositionParameter, getPosition());
+    _myVelocityShader->parameter(_myStrengthParameter, getStrength());
+    _myVelocityShader->parameter(_myRadiusParameter, getRadius());
 }
 	
 void 
-GPUAttractor::position(Vector3fPtr thePosition){
-    _myPosition = thePosition;
+GPUAttractor::setPosition(Vector3f thePosition){
+    _myPosition->setValue<Vector3f>(thePosition);
 }
 
-Vector3fPtr 
-GPUAttractor::position() {
-    return _myPosition;
+Vector3f
+GPUAttractor::getPosition() {
+    return _myPosition->getValue<Vector3f>();
 }
 
 float 
 GPUAttractor::getStrength() {
-    return _myStrength;
+    return _myStrength->getValue<float>();
 }
 
 void 
-GPUAttractor::radius(float theRadius) {
-    _myRadius = theRadius;
+GPUAttractor::setRadius(float theRadius) {
+    _myRadius->setValue<float>(theRadius);
 }
 
 float 
-GPUAttractor::radius() {
-    return _myRadius;
+GPUAttractor::getRadius() {
+    return _myRadius->getValue<float>();
 }
 
 

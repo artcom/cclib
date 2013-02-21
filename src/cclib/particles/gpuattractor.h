@@ -10,24 +10,24 @@ namespace cclib {
 class GPUAttractor : public GPUForce {
 
     private:
-        float       _myRadius;
-        Vector3fPtr _myPosition;
+        Property_<float>::Ptr _myRadius;
+        Property_<Vector3f>::Ptr _myPosition;
         
         CGparameter _myPositionParameter;
         CGparameter _myRadiusParameter;
 	
-        GPUAttractor(Vector3fPtr thePosition, float theStrength, float theRadius); 
+        GPUAttractor(Vector3f thePosition, float theStrength, float theRadius); 
 
     public:
-        static GPUAttractorPtr create(Vector3fPtr thePosition, float theStrength, float theRadius);
+        static GPUAttractorPtr create(Vector3f thePosition, float theStrength, float theRadius);
 
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);
-        void position(Vector3fPtr thePosition);
-        Vector3fPtr position();
+        void setPosition(Vector3f thePosition);
+        Vector3f getPosition();
         float getStrength();
-        void radius(float theRadius);
-        float radius();
+        void setRadius(float theRadius);
+        float getRadius();
     
 };	
 };

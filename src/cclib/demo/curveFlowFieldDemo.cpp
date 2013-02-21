@@ -86,7 +86,7 @@ class CurveFlowFieldDemo {
             _myCurveField = GPUCurveField::create();
             _myForceField = GPUForceField::create(0.005f, 1, Vector3fPtr(new Vector3f(100, 20, 30)));
             _myGravity = GPUGravity::create(Vector3fPtr(new Vector3f(150,0,0)));
-            _myAttractor = GPUAttractor::create(Vector3fPtr(new Vector3f()), 0, 0);
+            _myAttractor = GPUAttractor::create(Vector3f(), 0, 0);
                 
             std::vector<GPUForcePtr> myForces;
             myForces.push_back(GPUViscousDrag::create(0.25f));
@@ -143,18 +143,17 @@ class CurveFlowFieldDemo {
 
             _myParticles->update(1.0f/60.0f);
 
-            _myGravity->strength(_cGravityStrength);
+            _myGravity->setStrength(_cGravityStrength);
             
-            _myForceField->strength(_cFieldStrength);
+            _myForceField->setStrength(_cFieldStrength);
             _myForceField->noiseOffset(Vector3fPtr(new Vector3f(0, 0, _myTime)));
             _myForceField->noiseScale(0.0025f);
 
-            _myAttractor->strength(_cAttractorStrength);
-            _myAttractor->radius(_cAttractorRadius);
-            _myAttractor->position()->x( mouseX - width/2 );
-            _myAttractor->position()->y( height/2 - mouseY );
+            _myAttractor->setStrength(_cAttractorStrength);
+            _myAttractor->setRadius(_cAttractorRadius);
+            _myAttractor->setPosition( Vector3f(mouseX - width/2.0f, height/2.0f - mouseY, 0.0f) ); 
 
-            _myCurveField->strength(_cCurveStrength);
+            _myCurveField->setStrength(_cCurveStrength);
             _myCurveField->outputScale(_cCurveOuputScale);
             _myCurveField->speed(_cCurveSpeed);
             _myCurveField->scale(_cCurveNoiseScale / 100);

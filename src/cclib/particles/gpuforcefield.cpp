@@ -4,10 +4,11 @@
 using namespace cclib; 
 
 GPUForceField::GPUForceField(float theNoiseScale, float theStrength, Vector3fPtr theNoiseOffset) :
-            GPUForce("NoiseForceField"), _myNoiseScale(theNoiseScale), 
+            GPUForce("NoiseForceField"), 
+            _myNoiseScale(theNoiseScale), 
             _myNoiseOffset(theNoiseOffset) 
 {
-    _myStrength = theStrength;
+    setStrength(theStrength);
 }
 
 GPUForceFieldPtr

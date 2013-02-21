@@ -62,6 +62,7 @@ set(SHADER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/stringified_shaders")
 FILE(GLOB_RECURSE SHADER_SOURCES ABSOLUTE ${SHADER_PATH} *.fp.cpp *.vp.cpp)
 
 set(SOURCES 
+    base/component.cpp
     gl/shader.cpp    
     gl/texture.cpp
     gl/texture2d.cpp
@@ -91,6 +92,8 @@ set(SOURCES
  
 set(HEADERS
     cclib.h
+    base/property.h
+    base/component.h
     math/vec2.h
     math/vec3.h
     math/math.h
@@ -120,7 +123,7 @@ set(HEADERS
     particles/gpugravity.h   
     particles/gpuattractor.h    
     particles/gpuviscousdrag.h    
-    particles/gpuparticleemitter.h    
+    particles/gpuparticleemitter.h        
 )
 
 FOREACH(HEADER ${HEADERS})

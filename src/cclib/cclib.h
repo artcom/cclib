@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <list>
 #include <map>
 #include <tr1/memory>
 #include <GL/glew.h>
@@ -116,7 +117,6 @@ typedef std::tr1::shared_ptr<GPUAttractor> GPUAttractorPtr;
 
 class GPUViscousDrag;
 typedef std::tr1::shared_ptr<GPUViscousDrag> GPUViscousDragPtr;
-
 
 class Exception: public std::runtime_error
 {

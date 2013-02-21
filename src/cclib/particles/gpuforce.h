@@ -8,14 +8,16 @@
 #include <tr1/memory>
 #include <GL/glew.h>
 
+#include <base/property.h>
+#include <base/component.h>
+
 #include <particles/gpuparticles.h>
 #include <particles/gpuupdateshader.h>
 
 namespace cclib {
 
-
-class GPUForce {
-
+class GPUForce : public Component
+{
     protected:
         GPUForce(const std::string & theShaderTypeName);
         
@@ -24,7 +26,7 @@ class GPUForce {
         GPUUpdateShaderPtr _myVelocityShader;
         GPUParticlesPtr _myParticles;
 	
-	    float _myStrength; 
+        Property_<float>::Ptr _myStrength; 
         CGparameter _myStrengthParameter;
 	
         virtual void setupParameter(int theWidth, int theHeight);
@@ -40,7 +42,8 @@ class GPUForce {
         virtual void setSize(int theWidth, int theHeight);
         virtual void update(float theDeltaTime);
         virtual void reset();
-        virtual void strength(float theStrength);
+        virtual float getStrength();
+        virtual void setStrength(float theStrength);
         virtual CGparameter parameter(const std::string & theName);
 };
 

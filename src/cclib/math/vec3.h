@@ -32,7 +32,7 @@ class Vector3 {
         Vector3(T x, T y, T z): _x(x), _y(y), _z(z) 
         {};
         
-        Vector3(Vector3<T> & vec): _x(vec.x()), _y(vec.y()), _z(vec.z()) 
+        Vector3(const Vector3<T> & vec): _x(vec.x()), _y(vec.y()), _z(vec.z()) 
         {};
 
         ~Vector3() {};
@@ -174,8 +174,8 @@ class Vector3 {
          * x and y coordinates.
          * @param theVector Vector3f, vector to be added
          */
-        Vector3<T>::Ptr operator+(const Vector3<T> & vec) {
-            return Vector3<T>::Ptr( new Vector3<T>(_x + vec.x(), _y + vec.y(), _z + vec.z()));
+        Vector3<T> operator+(const Vector3<T> & vec) {
+            return Vector3<T>(_x + vec.x(), _y + vec.y(), _z + vec.z());
         }
 	
         /**
@@ -183,8 +183,8 @@ class Vector3 {
          * x and y coordinates.
          * @param theVector Vector3f, vector to subtract
          */
-        Vector3<T>::Ptr operator-(const Vector3<T> & vec) {
-            return Vector3<T>::Ptr( new Vector3<T>(_x - vec.x(), _y - vec.y(), _z - vec.z()));
+        Vector3<T> operator-(const Vector3<T> & vec) {
+            return  Vector3<T>(_x - vec.x(), _y - vec.y(), _z - vec.z());
         }
         
         /**
@@ -192,8 +192,11 @@ class Vector3 {
          * @param theScale double, factor to scale the vector
          */
         
-        Vector3<T>::Ptr scale(double scale) {
-            return Vector3<T>::Ptr( new Vector3<T>(_x * scale, _y * scale, _z * scale));
+        Vector3<T> scale(double scale) {
+            _x *= scale;
+            _y *= scale;
+            _z *= scale;
+            return Vector3<T>(_x, _y, _z);
         }
 	
         /**

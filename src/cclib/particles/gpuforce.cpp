@@ -2,18 +2,19 @@
 
 using namespace cclib;
 
-GPUForce::GPUForce(const std::string & theShaderTypeName) :
+GPUForce::GPUForce(const std::string & theShaderTypeName) : 
+    Component(theShaderTypeName),
     _myShaderTypeName(theShaderTypeName),
     _myParticles(),
-    _myStrength(1.0f),
+    _myStrength(Property_<float>::create("strength", 1.0f)),
     _myStrengthParameter()
 {
+    registerProperty(_myStrength);
     _myShaderTypeName = theShaderTypeName;
 }
 
 void 
 GPUForce::setupParameter(int theWidth, int theHeight) {
-    std::cout << "GPUForce :: setupParameter" << std::endl;
     _myStrengthParameter = parameter("strength");
 }
 
@@ -25,7 +26,6 @@ GPUForce::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
     ss << std::string("forces[");
     ss << theIndex; //add number to the stream
     ss << std::string("]");
-    std::cout << ss.str() << std::endl;
 
     setShader(theParticles, theShader, ss.str(), theWidth, theHeight);
 }
@@ -56,7 +56,7 @@ GPUForce::setSize(int theWidth, int theHeight) {
 
 void 
 GPUForce::update(float theDeltaTime) {
-    _myVelocityShader->parameter(_myStrengthParameter, _myStrength);
+    _myVelocityShader->parameter(_myStrengthParameter, _myStrength->getValue<float>());
 }
 
 void 
@@ -64,9 +64,14 @@ GPUForce::reset() {
 
 }
 
+float
+GPUForce::getStrength() {
+    return _myStrength->getValue<float>();
+}
+
 void 
-GPUForce::strength(float theStrength) {
-    _myStrength = theStrength;
+GPUForce::setStrength(float theStrength) {
+    _myStrength->setValue(theStrength);
 }
 
 CGparameter 

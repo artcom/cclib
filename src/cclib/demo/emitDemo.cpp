@@ -114,7 +114,7 @@ class EmitDemo {
             }
         
             _myForceField->noiseScale(_cNScale);
-            _myForceField->strength(_cNStrength);
+            _myForceField->setStrength(_cNStrength);
             _myParticles->update(theDeltaTime);
 		            
             //  draw

@@ -94,14 +94,14 @@ BOOST_AUTO_TEST_CASE(testMoreOperators)
     cclib::Vector3f v1(1.0f, 2.0f, 0.0f);
     cclib::Vector3f v2(-1.0f, 5.0f, 1.0f);
      
-    cclib::Vector3f::Ptr v3 = v1 + v2;
-    BOOST_CHECK(v3->x() == 0.0f);
-    BOOST_CHECK(v3->y() == 7.0f);
-    BOOST_CHECK(v3->z() == 1.0f);
+    cclib::Vector3f v3 = v1 + v2;
+    BOOST_CHECK(v3.x() == 0.0f);
+    BOOST_CHECK(v3.y() == 7.0f);
+    BOOST_CHECK(v3.z() == 1.0f);
     
     v3 = v1 - v2;
-    BOOST_CHECK(v3->x() == 2.0f);
-    BOOST_CHECK(v3->y() == -3.0f);
-    BOOST_CHECK(v3->z() == -1.0f);
+    BOOST_CHECK(v3.x() == 2.0f);
+    BOOST_CHECK(v3.y() == -3.0f);
+    BOOST_CHECK(v3.z() == -1.0f);
 }
 

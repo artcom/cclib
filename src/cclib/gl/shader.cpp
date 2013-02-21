@@ -97,7 +97,6 @@ Shader::loadFragmentShader(const std::vector<std::string> & fragmentPrograms) {
     }
 	
     _fragmentProgram = loadShader(_fragmentEntry, cg_fragment_profile, fragmentPrograms);
-    std::cout << "fragment profile: " << cgGetProfileString(cgGLGetLatestProfile(CG_GL_FRAGMENT)) << std::endl; 
 }
 
 void
@@ -107,7 +106,6 @@ Shader::loadVertexShader(const std::vector<std::string> & vertexPrograms) {
     }
 	
     _vertexProgram = loadShader(_vertexEntry, cg_vertex_profile, vertexPrograms);
-    // std::cout << "vertex profile: " << cgGetProfileString(cgGLGetLatestProfile(CG_GL_VERTEX)) << std::endl; 
 }
 
 CGprogram
@@ -273,7 +271,6 @@ Shader::vertexParameter(const std::string & name) {
 CGparameter 
 Shader::fragmentParameter(const std::string & name) {
     CGparameter result = cgGetNamedParameter(_fragmentProgram, name.c_str());
-    std::cout << name << ": " << cgIsParameter(result) << " " << cgIsParameterReferenced(result) << std::endl;
     
     checkError("could not get fragment parameter: " + name + " : ");
     return result;
