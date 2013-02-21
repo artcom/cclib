@@ -10,7 +10,7 @@ namespace cclib {
 class GPUViscousDrag : public GPUForce {
 
     private:
-        float _myCoefficient;
+        Property_<float>::Ptr _myCoefficient;
         CGparameter _myCoefficientParameter;
 	
         GPUViscousDrag(float theCoefficient); 
@@ -20,7 +20,8 @@ class GPUViscousDrag : public GPUForce {
 
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);
-        void drag(float theDrag);
+        void setDrag(float theDrag);
+        float getDrag();
 };	
 };
 

@@ -4,8 +4,8 @@
 using namespace cclib; 
 
 GPUViscousDrag::GPUViscousDrag(float theCoefficient) :
-            GPUForce("ViscousDrag"), 
-            _myCoefficient(theCoefficient) 
+    GPUForce("ViscousDrag"), 
+    _myCoefficient(Property_<float>::create("coefficient", theCoefficient)) 
 {}
 
 GPUViscousDragPtr
@@ -14,8 +14,13 @@ GPUViscousDrag::create(float theCoefficient) {
 }
 
 void 
-GPUViscousDrag::drag(float theDrag) {
-    _myCoefficient = theDrag;
+GPUViscousDrag::setDrag(float theDrag) {
+    _myCoefficient->setValue<float>(theDrag);
+}
+
+float 
+GPUViscousDrag::getDrag() {
+    return _myCoefficient->getValue<float>();
 }
 
 void 
