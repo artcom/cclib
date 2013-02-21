@@ -154,12 +154,11 @@ class CurveFlowFieldDemo {
             _myAttractor->setPosition( Vector3f(mouseX - width/2.0f, height/2.0f - mouseY, 0.0f) ); 
 
             _myCurveField->setStrength(_cCurveStrength);
-            _myCurveField->outputScale(_cCurveOuputScale);
-            _myCurveField->speed(_cCurveSpeed);
-            _myCurveField->scale(_cCurveNoiseScale / 100);
-            _myCurveField->radius(_cCurveRadius);
-
-            _myCurveField->prediction(_cPrediction);
+            _myCurveField->setOutputScale(_cCurveOuputScale);
+            _myCurveField->setSpeed(_cCurveSpeed);
+            _myCurveField->setScale(_cCurveNoiseScale / 100);
+            _myCurveField->setRadius(_cCurveRadius);
+            _myCurveField->setPrediction(_cPrediction);
                 
             // draw
 

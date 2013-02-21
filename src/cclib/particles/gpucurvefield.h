@@ -10,12 +10,12 @@ namespace cclib {
 class GPUCurveField : public GPUForce {
 
     private: 
-        float _myPrediction; // = 0;
-        float _myOffset; // = 0;
-        float _myScale; // = 1;
-        float _myOutputScale; // = 1;
-        float _myRadius; // = 1;
-        float _mySpeed; // = 1;
+        Property_<float>::Ptr _myPrediction; 
+        Property_<float>::Ptr _myOffset; 
+        Property_<float>::Ptr _myScale; 
+        Property_<float>::Ptr _myOutputScale;
+        Property_<float>::Ptr _myRadius; 
+        Property_<float>::Ptr _mySpeed;
         
         CGparameter _myPredictionParameter;
         CGparameter _myOffsetParameter;
@@ -30,11 +30,19 @@ class GPUCurveField : public GPUForce {
 
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);
-        void prediction(float thePrediction);
-        void scale(float theScale);
-        void outputScale(float theOutputScale);
-        void radius(float theRadius);
-        void speed(float theSpeed);
+        void setPrediction(float thePrediction);
+        void setScale(float theScale);
+        void setOutputScale(float theOutputScale);
+        void setRadius(float theRadius);
+        void setSpeed(float theSpeed);
+        void setOffset(float theOffset);
+
+        float getPrediction();
+        float getScale();
+        float getOutputScale();
+        float getRadius();
+        float getSpeed();
+        float getOffset();
 };	
 };
 

@@ -5,10 +5,25 @@ using namespace cclib;
 
 GPUCurveField::GPUCurveField() :
     GPUForce("CurveForceFieldFollow"),
-    _myPrediction(0), _myOffset(0),_myScale(1), _myOutputScale(1),
-    _myRadius(1), _mySpeed(1), _myPredictionParameter(0), _myOffsetParameter(0),
-    _myScaleParameter(0), _myOutputScaleParameter(0), _myRadiusParameter(0)
-{}
+    _myPrediction(Property_<float>::create("prediction", 0)), 
+    _myOffset(Property_<float>::create("offset", 0)), 
+    _myScale(Property_<float>::create("scale", 1)), 
+    _myOutputScale(Property_<float>::create("outputScale", 1)),
+    _myRadius(Property_<float>::create("radius", 1)), 
+    _mySpeed(Property_<float>::create("speed", 1)), 
+    _myPredictionParameter(0), 
+    _myOffsetParameter(0),
+    _myScaleParameter(0), 
+    _myOutputScaleParameter(0), 
+    _myRadiusParameter(0)
+{
+    registerProperty(_myPrediction); 
+    registerProperty(_myOffset); 
+    registerProperty(_myScale); 
+    registerProperty(_myOutputScale);
+    registerProperty(_myRadius); 
+    registerProperty(_mySpeed); 
+}
 
 GPUCurveFieldPtr
 GPUCurveField::create() {
@@ -26,43 +41,81 @@ GPUCurveField::setupParameter(int theWidth, int theHeight) {
     _myRadiusParameter = parameter("radius");
 }
 
-void 
-GPUCurveField::prediction(float thePrediction) {
-    _myPrediction = thePrediction;
-}
-
-void 
-GPUCurveField::scale(float theScale) {
-    _myScale = theScale;
-}
-
-void
-GPUCurveField::outputScale(float theOutputScale) {
-    _myOutputScale = theOutputScale;
-}
-
-void 
-GPUCurveField::radius(float theRadius) {
-    _myRadius = theRadius;
-}
-
-void 
-GPUCurveField::speed(float theSpeed) {
-    _mySpeed = theSpeed;
-}
-
 
 void 
 GPUCurveField::update(float theDeltaTime) {
     GPUForce::update(theDeltaTime);
 	
-    _myOffset += theDeltaTime * _mySpeed;
+    float myOffset = getOffset(); 
+    myOffset += theDeltaTime * getSpeed();
+    setOffset(myOffset);
 
-    _myVelocityShader->parameter(_myOffsetParameter, _myOffset);
-    _myVelocityShader->parameter(_myOutputScaleParameter, _myOutputScale);
-    _myVelocityShader->parameter(_myScaleParameter, _myScale);
-    _myVelocityShader->parameter(_myRadiusParameter, _myRadius);
-    _myVelocityShader->parameter(_myPredictionParameter, _myPrediction);
+    _myVelocityShader->parameter(_myOffsetParameter, getOffset());
+    _myVelocityShader->parameter(_myOutputScaleParameter, getOutputScale());
+    _myVelocityShader->parameter(_myScaleParameter, getScale());
+    _myVelocityShader->parameter(_myRadiusParameter, getRadius());
+    _myVelocityShader->parameter(_myPredictionParameter, getPrediction());
 
 }
+
+void 
+GPUCurveField::setPrediction(float thePrediction) {
+    _myPrediction->setValue<float>(thePrediction);
+}
+
+void 
+GPUCurveField::setScale(float theScale) {
+    _myScale->setValue<float>(theScale);
+}
+
+void
+GPUCurveField::setOutputScale(float theOutputScale) {
+    _myOutputScale->setValue<float>(theOutputScale);
+}
+
+void 
+GPUCurveField::setRadius(float theRadius) {
+    _myRadius->setValue<float>(theRadius);
+}
+
+void 
+GPUCurveField::setSpeed(float theSpeed) {
+    _mySpeed->setValue<float>(theSpeed);
+}
+
+void 
+GPUCurveField::setOffset(float theOffset) {
+    _myOffset->setValue<float>(theOffset);
+}
+
+float 
+GPUCurveField::getPrediction() {
+    return _myPrediction->getValue<float>();
+}
+        
+float  
+GPUCurveField::getScale() {
+    return _myScale->getValue<float>();
+}
+
+float  
+GPUCurveField::getOutputScale() {
+    return _myOutputScale->getValue<float>();
+}
+
+float  
+GPUCurveField::getRadius() {
+    return _myRadius->getValue<float>();
+}
+
+float  
+GPUCurveField::getSpeed() {
+    return _mySpeed->getValue<float>();
+}
+
+float
+GPUCurveField::getOffset() {
+    return _myOffset->getValue<float>();
+}
+
 
