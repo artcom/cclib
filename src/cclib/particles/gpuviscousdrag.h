@@ -16,7 +16,7 @@ class GPUViscousDrag : public GPUForce {
         GPUViscousDrag(float theCoefficient); 
 
     public:
-        static GPUViscousDragPtr create(float theCoefficient);
+        static GPUViscousDragPtr create(float theCoefficient=0.0f);
 
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);

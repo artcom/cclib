@@ -25,6 +25,9 @@ namespace cclib
         virtual ~Component();
         
         const std::string& getName() const { return m_name; };
+        void setName(const std::string & theName) { 
+            m_name = std::string(theName); 
+        };
         const std::list<Property::Ptr>& getPropertyList() const;
         Property::Ptr getPropertyByName(const std::string & thePropertyName);
 

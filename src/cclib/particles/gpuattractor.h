@@ -19,7 +19,8 @@ class GPUAttractor : public GPUForce {
         GPUAttractor(Vector3f thePosition, float theStrength, float theRadius); 
 
     public:
-        static GPUAttractorPtr create(Vector3f thePosition, float theStrength, float theRadius);
+        static GPUAttractorPtr create(Vector3f thePosition = Vector3f(), 
+                float theStrength = 1.0f, float theRadius = 1.0f);
 
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);

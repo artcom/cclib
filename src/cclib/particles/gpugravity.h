@@ -16,7 +16,7 @@ class GPUGravity : public GPUForce {
         GPUGravity(Vector3f theGravity); 
 
     public:
-        static GPUGravityPtr create(Vector3f theGravity);
+        static GPUGravityPtr create(Vector3f theGravity=Vector3f());
 
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);

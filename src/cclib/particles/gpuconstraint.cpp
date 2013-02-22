@@ -5,7 +5,11 @@
 using namespace cclib;
 
 GPUConstraint::GPUConstraint(const std::string & theShaderTypeName, float theResilience, float theFriction, float theMinimalVelocity) :
-    _myShaderTypeName(theShaderTypeName), _myResilience(theResilience), _myFriction(theFriction), _myMinimalVelocity(theMinimalVelocity)
+    Component(theShaderTypeName),
+    _myShaderTypeName(theShaderTypeName), 
+    _myResilience(theResilience), 
+    _myFriction(theFriction), 
+    _myMinimalVelocity(theMinimalVelocity)
 {}
 
 void 

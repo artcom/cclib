@@ -2,10 +2,13 @@
 #define __CCLIB_GPUIMPULSE_INCLUDED__
 
 #include <cclib.h>
+#include <base/property.h>
+#include <base/component.h>
 
 namespace cclib {
 
-class GPUImpulse {
+class GPUImpulse : public Component 
+{
 
     protected:
         std::string _myParameterIndex;

@@ -21,7 +21,7 @@ class GPUForceField : public GPUForce {
         GPUForceField(float theNoiseScale, float theStrength, Vector3f theNoiseOffset); 
 
     public:
-        static GPUForceFieldPtr create(float theNoiseScale, float theStrength, Vector3f theNoiseOffset);
+        static GPUForceFieldPtr create(float theNoiseScale=1.0f, float theStrength=1.0f, Vector3f theNoiseOffset=Vector3f());
 
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);

@@ -2,10 +2,11 @@
 #define __CCLIB_GPUCONSTRAINT_INCLUDED__
 
 #include <cclib.h>
+#include <base/component.h>
 
 namespace cclib {
 
-class GPUConstraint {
+class GPUConstraint : public Component {
 	
     protected:
         std::string _myParameterIndex;
