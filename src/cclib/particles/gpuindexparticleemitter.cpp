@@ -15,12 +15,12 @@ ParticleWaitingList::ParticleWaitingList(float theTimeStep) :
     _myTimeStep(0),
     _myOffset(0),
     _myCurrentWorkedIndex(0),
-    _myCurrentWaitList()
+    _myCurrentIdx(0)
 {
     _myTimeStep = theTimeStep;
 
     // asume a default max lifetime of 120 s
-    int myNumberOfSteps = (int)(120 / theTimeStep);
+    int myNumberOfSteps = (int)(20 / theTimeStep);
 
     _myWaitLists = std::vector< std::vector<GPUParticlePtr> >( myNumberOfSteps, std::vector<GPUParticlePtr>() );
 }
@@ -45,17 +45,15 @@ ParticleWaitingList::add(GPUParticlePtr theParticle) {
     
 void 
 ParticleWaitingList::handleCurrentWaitList(float theDeltaTime, GPUIndexParticleEmitter * thePE) {
-    // if (_myCurrentWaitList == null)
-    //     return;
-    if (_myCurrentWaitList.empty()) {
+    if (_myWaitLists[_myCurrentIdx].empty()) {
         return;
     }
 
     float myFramesPerStep = _myTimeStep / theDeltaTime;
-    int myChecksPerFrame = ceil(_myCurrentWaitList.size() / myFramesPerStep);
+    int myChecksPerFrame = ceil(_myWaitLists[_myCurrentIdx].size() / myFramesPerStep);
 
-    for(int i = 0; i < myChecksPerFrame && _myCurrentWorkedIndex < _myCurrentWaitList.size(); i++, _myCurrentWorkedIndex++) {
-        GPUParticlePtr myParticle = _myCurrentWaitList[_myCurrentWorkedIndex];
+    for(int i = 0; i < myChecksPerFrame && _myCurrentWorkedIndex < _myWaitLists[_myCurrentIdx].size(); i++, _myCurrentWorkedIndex++) {
+        GPUParticlePtr myParticle = _myWaitLists[_myCurrentIdx][_myCurrentWorkedIndex];
 
         if(myParticle->isPermanent()) {
             thePE->pendingParticles().push_back(myParticle);
@@ -74,9 +72,9 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
     if(_myStepTime > _myTimeStep) {
 
         _myStepTime -= _myTimeStep;
-        if(!_myCurrentWaitList.empty()) {
-            for(;_myCurrentWorkedIndex < _myCurrentWaitList.size(); _myCurrentWorkedIndex++) {
-                GPUParticlePtr myParticle = _myCurrentWaitList[_myCurrentWorkedIndex];
+        if(!_myWaitLists[_myCurrentIdx].empty()) {
+            for(;_myCurrentWorkedIndex < _myWaitLists[_myCurrentIdx].size(); _myCurrentWorkedIndex++) {
+                GPUParticlePtr myParticle = _myWaitLists[_myCurrentIdx][_myCurrentWorkedIndex];
 
                 if(myParticle->isPermanent()) {
                     thePE->pendingParticles().push_back(myParticle);
@@ -85,17 +83,23 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
                 }
             }
             _myCurrentWorkedIndex = 0;
-            _myCurrentWaitList.clear();
+            _myWaitLists[_myCurrentIdx] = std::vector<GPUParticlePtr>();
         }
 
         if(!_myWaitLists[_myOffset].empty()) {
-            _myCurrentWaitList = _myWaitLists[_myOffset];
+            _myCurrentIdx = _myOffset;
         }
         _myOffset++;
         _myOffset %= _myWaitLists.size();
     }
-}
     
+    // std::cout << "> \t";
+    // for (unsigned int i=0; i<_myWaitLists.size(); i++) {
+    //     std::cout << _myWaitLists[i].size() << "\t";
+    // }
+    // std::cout << std::endl;
+}
+
 // std::vector<GPUParticlePtr> 
 // ParticleWaitingList::deadParticles() {
 //     return _myDeadParticles;
@@ -152,37 +156,7 @@ GPUIndexParticleEmitter::pendingParticles() {
     return _myPendingParticles;
 }
 
-std::vector<GPUParticlePtr> & 
-GPUIndexParticleEmitter::stateChangedParticles() {
-    return _myStateChanges;
-}
-
-std::vector<GPUParticlePtr> & 
-GPUIndexParticleEmitter::allocatedParticles() {
-    return _myAllocatedParticles;
-}
-
-int 
-GPUIndexParticleEmitter::particlesInUse(){
-    return size() - _myFreeIndices.size();
-}
-
-int 
-GPUIndexParticleEmitter::freeParticles() {
-    return _myFreeIndices.size();
-}
-
-int 
-GPUIndexParticleEmitter::start() {
-    return _myStart;
-}
-
-int 
-GPUIndexParticleEmitter::numberOfParticles() {
-    return _myNumberOfParticles;
-}
-
-int 
+int
 GPUIndexParticleEmitter::nextFreeId() {
     if (_myFreeIndices.empty()) {
         return -1;
@@ -194,16 +168,6 @@ GPUIndexParticleEmitter::nextFreeId() {
 std::vector<int> & 
 GPUIndexParticleEmitter::freeIndices() {
     return _myFreeIndices; 
-}
-
-int 
-GPUIndexParticleEmitter::xforIndex(int theIndex) {
-    return (_myStart + theIndex) % _myParticles->width();
-}
-
-int 
-GPUIndexParticleEmitter::yforIndex(int theIndex) {
-    return (_myStart + theIndex) / _myParticles->width();
 }
 
 void 
@@ -364,4 +328,45 @@ GPUIndexParticleEmitter::setData() {
 
     _myAllocatedParticles.clear();
 }
+
+//std::vector<GPUParticlePtr> &
+//GPUIndexParticleEmitter::stateChangedParticles() {
+//    return _myStateChanges;
+//}
+//
+//std::vector<GPUParticlePtr> &
+//GPUIndexParticleEmitter::allocatedParticles() {
+//    return _myAllocatedParticles;
+//}
+//
+//int
+//GPUIndexParticleEmitter::particlesInUse(){
+//    return size() - _myFreeIndices.size();
+//}
+//
+//int
+//GPUIndexParticleEmitter::freeParticles() {
+//    return _myFreeIndices.size();
+//}
+//
+//int
+//GPUIndexParticleEmitter::start() {
+//    return _myStart;
+//}
+//
+//int
+//GPUIndexParticleEmitter::numberOfParticles() {
+//    return _myNumberOfParticles;
+//}
+//int
+//GPUIndexParticleEmitter::xforIndex(int theIndex) {
+//    return (_myStart + theIndex) % _myParticles->width();
+//}
+//
+//int
+//GPUIndexParticleEmitter::yforIndex(int theIndex) {
+//    return (_myStart + theIndex) / _myParticles->width();
+//}
+
+
 

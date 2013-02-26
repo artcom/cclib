@@ -9,13 +9,14 @@ class ParticleWaitingList {
     
     private:
         float _myTimeStep;
-        int _myOffset; //  = 0;
+        int _myOffset;
         float _myStepTime; 
         int _myCurrentWorkedIndex; 
         std::vector< std::vector<GPUParticlePtr> > _myWaitLists;
-        std::vector<GPUParticlePtr> _myCurrentWaitList;
         ParticleWaitingList(float theTimeStep);
 
+        unsigned int _myCurrentIdx;
+    
     public:
         static ParticleWaitingListPtr create(float theTimeStep);
         void add(GPUParticlePtr theParticle);
@@ -64,15 +65,15 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         }
         static GPUIndexParticleEmitterPtr create(GPUParticlesPtr theParticles, int theStart=0, int theNumberParticles=-1);
         std::vector<GPUParticlePtr> & pendingParticles();
-        std::vector<GPUParticlePtr> & stateChangedParticles();
-        std::vector<GPUParticlePtr> & allocatedParticles();
-        int particlesInUse();
-        int freeParticles();
-        int start();
-        int numberOfParticles();
+//        std::vector<GPUParticlePtr> & stateChangedParticles();
+//        std::vector<GPUParticlePtr> & allocatedParticles();
+//        int particlesInUse();
+//        int freeParticles();
+//        int start();
+//        int numberOfParticles();
         int nextFreeId();
-        int xforIndex(int theIndex);
-        int yforIndex(int theIndex);
+//        int xforIndex(int theIndex);
+//        int yforIndex(int theIndex);
         void changeParticle(GPUParticlePtr theParticle);
         GPUParticlePtr emit(Vector3fPtr thePosition, Vector3fPtr theVelocity, 
                 float theLifeTime, bool theIsPermanent);
