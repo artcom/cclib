@@ -125,11 +125,7 @@ class CurveFlowFieldDemo {
             
             glfwGetMousePos( &mouseX, &mouseY );
             
-            float x = mouseX - width/2;
-            float y = height/2 - mouseY;
-       
             // update
-            
             _myTime += 1.0f/30.0f * 0.5f;
             for(int i = 0; i < 1500; i++){
                 Vector3fPtr pos = Vector3fPtr( new Vector3f(cclib::random<float>(-width/2, width/2),

@@ -77,7 +77,9 @@ ShaderTexture::createAttributes( int theNumberOfBits, int theNumberOfChannels, i
 
 void 
 ShaderTexture::beginOrtho2D() {
+    Graphics::checkError();
     glPushAttrib(GL_VIEWPORT_BIT);
+    Graphics::checkError();
     glViewport(0, 0, _width, _height);
     Graphics::checkError();
 
@@ -225,7 +227,7 @@ ShaderTexture::ShaderTexture ( unsigned int theWidth, unsigned int theHeight,
 
 {
     _numberOfChannels = theAttributes->numberOfChannels;
-    _numberOfBits = theAttributes->numberOfBits;
+    _numberOfBits = theAttributes->numberOfBits;    
 
     _pbo = std::vector<PBOPtr>();
     _pbo.push_back(PBO::create(_numberOfChannels * theWidth * theHeight * (_numberOfBits == 16 ? 2 : 4)));

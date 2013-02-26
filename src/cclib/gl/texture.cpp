@@ -1,5 +1,6 @@
 #include "texture.h"
 #include <gl/pixelstoragemodes.h>
+#include <gl/graphics.h>
 
 using namespace cclib;
 
@@ -14,14 +15,21 @@ Texture::Texture(GLenum target, TextureAttributesPtr attributes, unsigned int nu
     : _target(target), _environmentMode(GL_MODULATE), _textureID(0), 
       _internalFormat(attributes->internalFormat), _format(attributes->format),
       _width(0), _height(0), _depth(1),
-      _pixelType(attributes->type), _isCompressed(false), _estimatedMemorySize(0)
+      _pixelType(attributes->type), _isCompressed(false), _estimatedMemorySize(0),
+      _textureMipmapFilter(GL_LINEAR_MIPMAP_LINEAR), _textureFilter(GL_NEAREST_MIPMAP_NEAREST)
 {
     _textureIDs = createTextureIds(numberOfTextures);
+    Graphics::checkError();
     
     // set attributes
     textureFilter(attributes->filter);
+    Graphics::checkError();
+    
     wrapS(attributes->wrapS);
+    Graphics::checkError();
+
     wrapT(attributes->wrapT);
+    Graphics::checkError();
 
     generateMipmaps(attributes->generateMipmaps);
 }
@@ -212,6 +220,8 @@ void
 Texture::bind(int id) {
     glBindTexture(_target, _textureIDs[id]);
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, _environmentMode);
+    Graphics::checkError();
+    
 
     // if(_environmentMode == GL_BLEND) {
     //     glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, _blendColor.array(), 0);
@@ -221,6 +231,8 @@ Texture::bind(int id) {
 void 
 Texture::unbind() {
     glBindTexture(_target, 0);
+    Graphics::checkError();
+    
 }
 
 int 
@@ -359,14 +371,17 @@ Texture::pixelType() {
  * @param theValue the value for the parameter
  */
 void 
-Texture::parameter(GLenum type, int value) {
+Texture::parameter(GLenum type, GLint value) {
     if(_textureIDs.empty()) {
         return;
     }
     
     for(int i = 0; i < _textureIDs.size(); i++) {
         bind(i);
-        glTexParameteri(_target, type, value);
+        Graphics::checkError();
+        
+        glTexParameteri((GLenum)_target, type, value);
+        Graphics::checkError();
     }
 }
 
@@ -377,7 +392,7 @@ Texture::parameter(GLenum type, int value) {
  */
 // protected 
 void 
-Texture::parameter(GLenum type, float value) {
+Texture::parameter(GLenum type, GLfloat value) {
     for(int i = 0; i < _textureIDs.size(); i++) {
         bind(i);
         glTexParameterf(_target, type, value);
@@ -392,7 +407,7 @@ Texture::parameter(GLenum type, float value) {
  */
 // protected
 void 
-Texture::parameter(GLenum type, std::vector<float> values) {
+Texture::parameter(GLenum type, std::vector<GLfloat> values) {
     for(int i = 0; i < _textureIDs.size();i++) {
         bind(i);
         glTexParameterfv(_target, type, &(values[0]));
@@ -460,7 +475,7 @@ Texture::wrapS(GLenum textureWrap){
  */
 void 
 Texture::wrapT(GLenum textureWrap) {
-    parameter(GL_TEXTURE_WRAP_T, (int)textureWrap);
+    parameter(GL_TEXTURE_WRAP_T, (GLint)textureWrap);
 }
 
 // void 
@@ -471,26 +486,36 @@ Texture::wrapT(GLenum textureWrap) {
 void 
 Texture::updateFilter() {
     // set mag filter first as this has no impact on mipmapping
-    parameter(GL_TEXTURE_MAG_FILTER,(int) _textureFilter);
+    parameter(GL_TEXTURE_MAG_FILTER, (GLint)_textureFilter);
 
     if(!_hasMipmaps) {
-        parameter(GL_TEXTURE_MIN_FILTER, (int)_textureFilter);
+        parameter(GL_TEXTURE_MIN_FILTER, (GLint)_textureFilter);
         return;
     }
 
+#warning caused an error.
+#if 0
     if(_textureFilter == GL_NEAREST) {
         if(_textureMipmapFilter == GL_NEAREST) {
-            parameter(GL_TEXTURE_MIN_FILTER, (int)GL_NEAREST_MIPMAP_NEAREST);
+            parameter(GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
         }else {
-            parameter(GL_TEXTURE_MIN_FILTER, (int)GL_NEAREST_MIPMAP_LINEAR);
+            parameter(GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
         }
     }else {
         if(_textureMipmapFilter == GL_NEAREST) {
-            parameter(GL_TEXTURE_MIN_FILTER, (int)GL_LINEAR_MIPMAP_NEAREST);
+            parameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
         }else {
-            parameter(GL_TEXTURE_MIN_FILTER, (int)GL_LINEAR_MIPMAP_LINEAR);
+            parameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         }
     }
+    
+#else
+    if(_textureMipmapFilter == GL_NEAREST) {
+        parameter(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    }else {
+        parameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    }
+#endif
 }
 
 /**

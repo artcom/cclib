@@ -1,5 +1,6 @@
 #include "texture2d.h"
 #include <gl/pixelstoragemodes.h>
+#include <gl/graphics.h>
 
 using namespace cclib;
 
@@ -31,14 +32,19 @@ Texture2D::allocateData(unsigned int width, unsigned int height)
     {
         bind(i);
         _storageModes->unpackStorage();
+        Graphics::checkError();
+
         glTexImage2D(
                 _target, 0, 
                 _internalFormat, 
                 _width, _height, 0, 
                 _format, _pixelType, 
                 NULL); 
+        Graphics::checkError();
         
         _storageModes->defaultUnpackStorage();
+        Graphics::checkError();
+        
     }
 }
 	

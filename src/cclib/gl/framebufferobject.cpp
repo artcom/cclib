@@ -1,5 +1,6 @@
 
 #include <gl/framebufferobject.h>
+#include <gl/graphics.h>
 
 using namespace cclib;
 
@@ -13,19 +14,23 @@ FrameBufferObject::FrameBufferObject(GLenum target, FrameBufferObjectAttributesP
     _framebuffers = std::vector<GLuint>(2, 0);
     glGenFramebuffers(_framebuffers.size(), &(_framebuffers[0]));
     _drawBuffers = std::vector<GLuint>(_numberOfAttachments, 0);
+    Graphics::checkError();
     
-    // if we don't need any variety of multisampling or it failed to initialize
+// if we don't need any variety of multisampling or it failed to initialize
     glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[0]);
-
+    Graphics::checkError();
+    
     for(int i=0; i<_numberOfAttachments; i++) {
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, _target, id(i), 0);
         _drawBuffers[i] = GL_COLOR_ATTACHMENT0 + i;
+        Graphics::checkError();
     }
 
     if( !(_useMultisampling) || !initMultisampling()) { 
         _useMultisampling = false;
         init();
     }
+    Graphics::checkError();
 }
 
 void
@@ -74,10 +79,12 @@ FrameBufferObject::init() {
 
         _depthTexture = Texture2D::createTexture2D(depthTextureAttributes, _width, _height, 1, _target);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, _target, _depthTexture->id(), 0);
+        Graphics::checkError();
     }
 
     // checkStatusException();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    Graphics::checkError();
 }
 	
 bool 
@@ -246,7 +253,11 @@ FrameBufferObject::bindFBO() {
 void 
 FrameBufferObject::bindFBO(int theTexture) {
     glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[0]);
+
+    Graphics::checkError();
+
     glDrawBuffer(GL_COLOR_ATTACHMENT0 + theTexture);
+    Graphics::checkError();
 }
 
 void 

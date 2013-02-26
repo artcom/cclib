@@ -72,9 +72,9 @@ class Texture {
         virtual GLenum format();
         virtual GLenum internalFormat();
         virtual GLenum pixelType();
-        virtual void parameter(GLenum type, int value);
-        virtual void parameter(GLenum type, float value);
-        virtual void parameter(GLenum type, std::vector<float> values);
+        virtual void parameter(GLenum type, GLint value);
+        virtual void parameter(GLenum type, GLfloat value);
+        virtual void parameter(GLenum type, std::vector<GLfloat> values);
         virtual int parameter(int glid);
         virtual void wrap(GLenum textureWrap);
         virtual void wrapR(GLenum textureWrap);
