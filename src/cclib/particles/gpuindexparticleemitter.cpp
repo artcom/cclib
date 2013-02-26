@@ -20,7 +20,7 @@ ParticleWaitingList::ParticleWaitingList(float theTimeStep) :
     _myTimeStep = theTimeStep;
 
     // asume a default max lifetime of 120 s
-    int myNumberOfSteps = (int)(20 / theTimeStep);
+    int myNumberOfSteps = (int)(120 / theTimeStep);
 
     _myWaitLists = std::vector< std::vector<GPUParticlePtr> >( myNumberOfSteps, std::vector<GPUParticlePtr>() );
 }
