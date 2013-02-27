@@ -20,7 +20,7 @@ ParticleWaitingList::ParticleWaitingList(float theTimeStep) :
     _myTimeStep = theTimeStep;
 
     // asume a default max lifetime of 120 s
-    int myNumberOfSteps = (int)(120 / theTimeStep);
+    int myNumberOfSteps = (int)(12 / theTimeStep);
 
     _myWaitLists = std::vector< std::vector<GPUParticlePtr> >( myNumberOfSteps, std::vector<GPUParticlePtr>() );
 }
@@ -177,7 +177,7 @@ GPUIndexParticleEmitter::changeParticle(GPUParticlePtr theParticle) {
 }
 
 GPUParticlePtr 
-GPUIndexParticleEmitter::emit(Vector3fPtr thePosition, Vector3fPtr theVelocity, 
+GPUIndexParticleEmitter::emit(const Vector3f & thePosition, const Vector3f & theVelocity,
         float theLifeTime, bool theIsPermanent)
 {
     if(_myFreeIndices.empty()) {
@@ -191,13 +191,13 @@ GPUIndexParticleEmitter::emit(Vector3fPtr thePosition, Vector3fPtr theVelocity,
 }
 
 GPUParticlePtr 
-GPUIndexParticleEmitter::emit(int theIndex, Vector3fPtr thePosition, Vector3fPtr theVelocity, 
+GPUIndexParticleEmitter::emit(int theIndex, const Vector3f & thePosition, const Vector3f & theVelocity,
         float theLifeTime, bool theIsPermanent)
 {
     int myIndex = theIndex - _myStart;
     GPUParticlePtr myActiveParticle = _myActiveParticlesArray[myIndex];
-    myActiveParticle->position()->set( *(thePosition.get()) );
-    myActiveParticle->velocity()->set( *(theVelocity.get()) );
+    myActiveParticle->position()->set( thePosition );
+    myActiveParticle->velocity()->set( theVelocity );
     myActiveParticle->timeOfDeath(_myCurrentTime + theLifeTime);
     myActiveParticle->lifeTime(theLifeTime);
     myActiveParticle->isPermanent(theIsPermanent);
@@ -210,7 +210,7 @@ GPUIndexParticleEmitter::emit(int theIndex, Vector3fPtr thePosition, Vector3fPtr
 }
 
 GPUParticlePtr
-GPUIndexParticleEmitter::emit(Vector3fPtr thePosition, Vector3fPtr theVelocity, float theLifeTime) {
+GPUIndexParticleEmitter::emit(const Vector3f & thePosition, const Vector3f & theVelocity, float theLifeTime) {
     return emit(thePosition, theVelocity, theLifeTime, false);
 }
 

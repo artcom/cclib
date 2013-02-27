@@ -19,7 +19,7 @@ Shader::create(const std::string & vertexShaderFile, const std::string fragmentS
     return shader;
 }
 
-ShaderPtr 
+ShaderPtr
 Shader::create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
         const std::string & vertexEntry, const std::string & fragmentEntry) 
 {
@@ -31,13 +31,12 @@ Shader::Shader(const std::vector<std::string> & vertexShaderFiles,
         const std::vector<std::string> & fragmentShaderFiles,
         const std::string & vertexEntry, const std::string & fragmentEntry) :
    _vertexEntry(vertexEntry), _fragmentEntry(fragmentEntry),
-   _vertexProgram(0), _fragmentProgram(0)
+   _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
 {   
     if (!glewIsSupported("GL_ARB_vertex_shader") || !glewIsSupported("GL_ARB_fragment_shader")) {
         throw cclib::Exception("Shaders are not supported by your hardware.");
     }
     
-    _usedTextureParameters = std::vector<CGparameter>();
     initShader();
 
     if (!vertexShaderFiles.empty()) {
@@ -179,11 +178,11 @@ Shader::start() {
         checkError("binding fragment program");
     }
 
-// XXX untested
-    for(std::vector<CGparameter>::size_type i=0; i<_usedTextureParameters.size(); i++) { 
-        // if (cgIsParameter(_usedTextureParameters[i]) && cgIsParameterReferenced(_usedTextureParameters[i]) ) {
-            cgGLEnableTextureParameter(_usedTextureParameters[i]);
-        // }
+    std::set<CGparameter>::iterator it;
+    for (it = _usedTextureParameters.begin(); it!=_usedTextureParameters.end(); ++it) {
+        cgGLEnableTextureParameter(*(it));
+        
+        checkError("disable texture paramters");
     }
 
 #if 0 // XXX do we need listeners?
@@ -206,15 +205,15 @@ void
 Shader::texture(const CGparameter & parameter, int textureID) {
     cgGLSetTextureParameter(parameter, textureID);
     checkError("Problem setting texture ");
-    _usedTextureParameters.push_back(parameter);
+    
+    _usedTextureParameters.insert(parameter);
 }
 
 void 
 Shader::end() {
-    for(std::vector<CGparameter>::size_type i=0; i<_usedTextureParameters.size(); i++) { 
-        // if (cgIsParameter(_usedTextureParameters[i]) && cgIsParameterReferenced(_usedTextureParameters[i]) ) {
-            cgGLDisableTextureParameter(_usedTextureParameters[i]);
-        // }
+    std::set<CGparameter>::iterator it;
+    for (it = _usedTextureParameters.begin(); it!=_usedTextureParameters.end(); ++it) {
+        cgGLDisableTextureParameter(*(it));
         
         checkError("disable texture paramters");
     }

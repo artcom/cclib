@@ -2,6 +2,7 @@
 #define __CCLIB_SHADER_INCLUDED__
 
 #include <cclib.h>
+#include <set>
 
 namespace cclib {
 
@@ -74,7 +75,7 @@ class Shader {
         // std::vectorList<CCCGShaderListener> _myListener = new ArrayList<CCCGShaderListener>();
 	    // Set<CGparameter> _myUsedTextureParameters = new HashSet<CGparameter>();
 
-        std::vector<CGparameter> _usedTextureParameters;
+        std::set<CGparameter> _usedTextureParameters;
 };
 
 }; // namespace

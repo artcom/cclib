@@ -75,11 +75,11 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
 //        int xforIndex(int theIndex);
 //        int yforIndex(int theIndex);
         void changeParticle(GPUParticlePtr theParticle);
-        GPUParticlePtr emit(Vector3fPtr thePosition, Vector3fPtr theVelocity, 
+        GPUParticlePtr emit(const Vector3f & thePosition, const Vector3f & theVelocity,
                 float theLifeTime, bool theIsPermanent);
-        GPUParticlePtr emit(int theIndex, Vector3fPtr thePosition, Vector3fPtr theVelocity, 
+        GPUParticlePtr emit(int theIndex, const Vector3f & thePosition, const Vector3f & theVelocity,
                 float theLifeTime, bool theIsPermanent);
-        GPUParticlePtr emit(Vector3fPtr thePosition, Vector3fPtr theVelocity, float theLifeTime);
+        GPUParticlePtr emit(const Vector3f & thePosition, const Vector3f & theVelocity, float theLifeTime);
         void update(float theDeltaTime);
         int size();
         GPUParticlePtr particle(int theID);

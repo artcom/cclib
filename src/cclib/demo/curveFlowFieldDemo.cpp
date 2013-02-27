@@ -128,11 +128,11 @@ class CurveFlowFieldDemo {
             // update
             _myTime += 1.0f/30.0f * 0.5f;
             for(int i = 0; i < 1500; i++){
-                Vector3fPtr pos = Vector3fPtr( new Vector3f(cclib::random<float>(-width/2, width/2),
-                            cclib::random<float>(-_cEmitRadius, _cEmitRadius), 
-                            cclib::random<float>(-50.0, 50.0))); 
-                Vector3fPtr vel = Vector3fPtr( new Vector3f() );
-                vel->randomize(10.0f);
+                Vector3f pos = Vector3f(cclib::random<float>(-width/2, width/2),
+                                        cclib::random<float>(-_cEmitRadius, _cEmitRadius),
+                                        cclib::random<float>(-50.0, 50.0));
+                Vector3f vel;
+                vel.randomize(10.0f);
                 
                 _myEmitter->emit( pos, vel, 10, false );
             }
