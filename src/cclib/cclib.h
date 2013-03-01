@@ -16,7 +16,6 @@
 #include <Cg/cg.h>
 #include <Cg/cgGL.h>
 
-#include <math/math.h>
 #include <math/vec2.h>
 #include <math/vec3.h>
 

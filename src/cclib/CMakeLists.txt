@@ -178,3 +178,6 @@ target_link_libraries(cclibNoiseFieldDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
 add_executable(cclibFragmentNoiseDemo demo/fragmentNoise.cpp)
 target_link_libraries(cclibFragmentNoiseDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+
+add_executable(cclibTargetsDemo demo/targets.cpp)
+target_link_libraries(cclibTargetsDemo ${CCLIB_NAME} ${TEST_LIBRARIES})

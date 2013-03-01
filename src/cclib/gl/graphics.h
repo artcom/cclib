@@ -20,6 +20,7 @@ class Graphics {
         static void color(float r, float g, float b, float a = 1.0f);
         static void image(TexturePtr theTexture, float x, float y, float w, float h);
         static void clear();
+        static void textureCoords(int theUnit, float theX, float theY);
         static void textureCoords(int theUnit, float theX, float theY, float theZ);
         static void textureCoords(int theUnit, Vector3fPtr v);
         static void vertex(float x, float y);

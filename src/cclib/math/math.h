@@ -18,6 +18,11 @@ T random(T theMax=1) {
     return cclib::random<T>(0, theMax);
 };
 
+template<typename T>
+T radians(T theDegrees) {
+    return theDegrees * (M_PI / 180.0);
+}
+    
 }; // namespace
 
 

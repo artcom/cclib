@@ -31,7 +31,12 @@ Graphics::clear() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
-void 
+void
+Graphics::textureCoords(int theUnit, float theX, float theY) {
+	glMultiTexCoord2f(theUnit, theX, theY);
+}
+
+void
 Graphics::textureCoords(int theUnit, float theX, float theY, float theZ) {
 	glMultiTexCoord3f(theUnit, theX, theY, theZ);
 }
