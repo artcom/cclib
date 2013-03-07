@@ -126,6 +126,9 @@ typedef std::tr1::shared_ptr<GPUTargetForce> GPUTargetForcePtr;
 class GPUTargetSetup;
 typedef std::tr1::shared_ptr<GPUTargetSetup> GPUTargetSetupPtr;
     
+class GPUTimeForceBlend;
+typedef std::tr1::shared_ptr<GPUTimeForceBlend> GPUTimeForceBlendPtr;
+    
 class Exception: public std::runtime_error
 {
     public:

@@ -1,35 +1,48 @@
 
-#ifndef __CCLIB_GPUATTRACTOR_INCLUDED__
-#define __CCLIB_GPUATTRACTOR_INCLUDED__
+#ifndef __CCLIB_GPUTIMEFORCEBLEND_INCLUDED__
+#define __CCLIB_GPUTIMEFORCEBLEND_INCLUDED__
 
 #include <cclib.h>
 #include <particles/gpuforce.h>
 
 namespace cclib {
 
-class GPUAttractor : public GPUForce {
+class GPUTimeForceBlend : public GPUForce {
 
     private:
-        Property_<float>::Ptr _myRadius;
-        Property_<Vector3f>::Ptr _myPosition;
-        
-        CGparameter _myPositionParameter;
-        CGparameter _myRadiusParameter;
-	
-        GPUAttractor(Vector3f thePosition, float theStrength, float theRadius); 
+        static int MAX_STATES;
+        CGparameter _myStartTimeParameter;
+        CGparameter _myEndTimeParameter;
+    
+        Texture2DPtr _myBlendInfos;
+        TextureDataPtr _myBlendInfoData;
+        CGparameter _myBlendInfosParameter;
+    
+        float _myStartTime;
+        float _myEndTime;
+    
+        CGparameter _myPowerParameter;
+        float _myPower;
+    
+        GPUForcePtr _myForce1;
+        GPUForcePtr _myForce2;
+    
+        GPUTimeForceBlend(float theStartTime, float theEndTime, GPUForcePtr theForce1, GPUForcePtr theForce2);
 
     public:
-        static GPUAttractorPtr create(Vector3f thePosition = Vector3f(), 
-                float theStrength = 1.0f, float theRadius = 1.0f);
+        static GPUTimeForceBlendPtr create(float theStartTime, float theEndTime, GPUForcePtr theForce1, GPUForcePtr theForce2);
 
-	    void setupParameter(int theWidth, int theHeight);
-        void update(float theDeltaTime);
-        void setPosition(Vector3f thePosition);
-        Vector3f getPosition();
-        float getStrength();
-        void setRadius(float theRadius);
-        float getRadius();
+        void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight);
+        void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, std::string theIndex, int theWidth, int theHeight);
     
+	    void setupParameter(int theWidth, int theHeight);
+        void setSize(int theWidth, int theHeight);
+        void update(float theDeltaTime);
+        void startTime(float theStartTime);
+        void endTime(float theEndTime);
+        void blend(int theState, float theMinBlend, float theMaxBlend);
+        void blend(float theMinBlend, float theMaxBlend);
+        void power(float thePower);
 };	
 };
 
