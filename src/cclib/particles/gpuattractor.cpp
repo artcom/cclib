@@ -2,12 +2,6 @@
 #include "gpuattractor.h"
 
 using namespace cclib; 
-    
-void position(Vector3fPtr thePosition);
-Vector3fPtr position();
-float strength();
-void radius(float theRadius);
-float radius();
 
 GPUAttractor::GPUAttractor(Vector3f thePosition, float theStrength, float theRadius) :
             GPUForce("Attractor"), 

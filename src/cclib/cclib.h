@@ -36,8 +36,8 @@ typedef std::tr1::shared_ptr<Shader> ShaderPtr;
 class PBO;
 typedef std::tr1::shared_ptr<PBO> PBOPtr;
 
-class ShaderTexture;
-typedef std::tr1::shared_ptr<ShaderTexture> ShaderTexturePtr;
+class ShaderBuffer;
+typedef std::tr1::shared_ptr<ShaderBuffer> ShaderBufferPtr;
 
 class TextureAttributes; 
 typedef std::tr1::shared_ptr<TextureAttributes> TextureAttributesPtr; 
@@ -117,6 +117,15 @@ typedef std::tr1::shared_ptr<GPUAttractor> GPUAttractorPtr;
 class GPUViscousDrag;
 typedef std::tr1::shared_ptr<GPUViscousDrag> GPUViscousDragPtr;
 
+class GPUCombinedForce;
+typedef std::tr1::shared_ptr<GPUCombinedForce> GPUCombinedForcePtr;
+
+class GPUTargetForce;
+typedef std::tr1::shared_ptr<GPUTargetForce> GPUTargetForcePtr;
+    
+class GPUTargetSetup;
+typedef std::tr1::shared_ptr<GPUTargetSetup> GPUTargetSetupPtr;
+    
 class Exception: public std::runtime_error
 {
     public:

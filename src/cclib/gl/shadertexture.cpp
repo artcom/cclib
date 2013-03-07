@@ -5,19 +5,13 @@
 using namespace cclib;
 
 FrameBufferObjectAttributesPtr 
-ShaderTexture::createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures) {
-    FrameBufferObjectAttributesPtr result = FrameBufferObjectAttributesPtr(new FrameBufferObjectAttributes());
-
-    result->depthBuffer = false;
-    result->filter = GL_NEAREST;
-    result->numberOfColorBuffers = theNumberOfTextures;
-    result->type = GL_FLOAT;
-    result->wrapS = GL_CLAMP;
-    result->wrapT = GL_CLAMP;
-
-    result->numberOfChannels = theNumberOfChannels;
-    result->numberOfBits = theNumberOfBits; 
-
+ShaderBuffer::createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures) {
+    TextureAttributesPtr myTextureAttributes = TextureAttributesPtr(new TextureAttributes());
+    myTextureAttributes->type = GL_FLOAT;
+    myTextureAttributes->wrapS = GL_CLAMP;
+    myTextureAttributes->wrapT = GL_CLAMP;
+    myTextureAttributes->filter = GL_NEAREST;
+    
     bool is16Bit;
 
     switch(theNumberOfBits) {
@@ -68,25 +62,31 @@ ShaderTexture::createAttributes( int theNumberOfBits, int theNumberOfChannels, i
 
     }
 
-    result->internalFormat = internalFormat;
-    result->format = format;
+    myTextureAttributes->internalFormat = internalFormat;
+    myTextureAttributes->format = format;
+
+    FrameBufferObjectAttributesPtr result = FrameBufferObjectAttributesPtr(new FrameBufferObjectAttributes(myTextureAttributes, theNumberOfTextures));
+    result->numberOfBits = theNumberOfBits;
+    result->numberOfChannels = theNumberOfChannels;
+
+    result->depthBuffer = false;
 
     Graphics::checkError();
     return result;
 }
 
 void 
-ShaderTexture::beginOrtho2D() {
+ShaderBuffer::beginOrtho2D() {
     Graphics::checkError();
     glPushAttrib(GL_VIEWPORT_BIT);
     Graphics::checkError();
-    glViewport(0, 0, _width, _height);
+    glViewport(0, 0, _myWidth, _myHeight);
     Graphics::checkError();
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    glOrtho(0, _width, 0, _height, -1, 1);
+    glOrtho(0, _myWidth, 0, _myHeight, -1, 1);
     Graphics::checkError();
 
     glMatrixMode(GL_MODELVIEW);
@@ -96,18 +96,18 @@ ShaderTexture::beginOrtho2D() {
 }
         
 void 
-ShaderTexture::drawQuad() {
-    switch (_target) {
+ShaderBuffer::drawQuad() {
+    switch (_myTarget) {
         case GL_TEXTURE_2D:
             glBegin(GL_QUADS);
             glTexCoord2f(0.0f, 0.0f);
             glVertex2f(0.0f, 0.0f);
             glTexCoord2f(1.0f, 0.0f);
-            glVertex2f(_width, 0.0f);
+            glVertex2f(_myWidth, 0.0f);
             glTexCoord2f(1.0f, 1.0f);
-            glVertex2f(_width, _height);
+            glVertex2f(_myWidth, _myHeight);
             glTexCoord2f(0.0f, 1.0f);
-            glVertex2f(0.0f, _height);
+            glVertex2f(0.0f, _myHeight);
             glEnd();
             break;
 
@@ -115,12 +115,12 @@ ShaderTexture::drawQuad() {
             glBegin(GL_QUADS);
             glTexCoord2f(0.0f, 0.0f);
             glVertex2f(0.0f, 0.0f);
-            glTexCoord2f(_width, 0.0f);
-            glVertex2f(_width, 0.0f);
-            glTexCoord2f(_width, _height);
-            glVertex2f(_width, _height);
-            glTexCoord2f(0.0f, _height);
-            glVertex2f(0.0f, _height);
+            glTexCoord2f(_myWidth, 0.0f);
+            glVertex2f(_myWidth, 0.0f);
+            glTexCoord2f(_myWidth, _myHeight);
+            glVertex2f(_myWidth, _myHeight);
+            glTexCoord2f(0.0f, _myHeight);
+            glVertex2f(0.0f, _myHeight);
             glEnd();
             break;
     }
@@ -129,7 +129,7 @@ ShaderTexture::drawQuad() {
 }
 
 void 
-ShaderTexture::clear() {
+ShaderBuffer::clear() {
     Graphics::checkError();
     beginDraw();
     glClearStencil(0);
@@ -139,29 +139,29 @@ ShaderTexture::clear() {
 }
 
 int 
-ShaderTexture::numberOfChannels() {
+ShaderBuffer::numberOfChannels() {
     return _numberOfChannels;
 }
 
 int 
-ShaderTexture::numberOfBits() {
+ShaderBuffer::numberOfBits() {
     return _numberOfBits;
 }
 	
 void 
-ShaderTexture::beginDraw() {
+ShaderBuffer::beginDraw() {
     bindFBO();
     beginOrtho2D();
 }
 	
 void 
-ShaderTexture::beginDraw(int texture) {
+ShaderBuffer::beginDraw(int texture) {
     bindFBO(texture);
     beginOrtho2D();
 }
 
 void 
-ShaderTexture::endOrtho2D() {
+ShaderBuffer::endOrtho2D() {
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
 
@@ -173,13 +173,13 @@ ShaderTexture::endOrtho2D() {
 }
 
 void 
-ShaderTexture::endDraw() {
+ShaderBuffer::endDraw() {
     endOrtho2D();
     releaseFBO();
 }
 
 void 
-ShaderTexture::draw() {
+ShaderBuffer::draw() {
     beginDraw();
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -191,19 +191,19 @@ ShaderTexture::draw() {
 }
 
 std::vector<float> 
-ShaderTexture::getData(unsigned int x, unsigned int y, int width, int height, int texture) {
+ShaderBuffer::getData(unsigned int theAttachment, unsigned int x, unsigned int y, int width, int height, int texture) {
 	if (width == -1) {
-        width = _width;
+        width = _myWidth;
     }
 	if (height == -1) {
-        height = _height;
+        height = _myHeight;
     }
     
-    std::vector<float> pixels(_width * _height * _numberOfChannels); 
+    std::vector<float> pixels(_myWidth * _myHeight * _numberOfChannels); 
     
-	glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[0]);
-	glReadBuffer(_drawBuffers[texture]);
-	glReadPixels(x, y, width, height, _format, GL_FLOAT, &(pixels[0]));
+	glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[0]);
+	glReadBuffer(_myDrawBuffers[texture]);
+	glReadPixels(x, y, width, height, _myAttachments[theAttachment]->format(), GL_FLOAT, &(pixels[0]));
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	
     Graphics::checkError();
@@ -211,17 +211,17 @@ ShaderTexture::getData(unsigned int x, unsigned int y, int width, int height, in
 	return pixels;
 }
 
-ShaderTexturePtr 
-ShaderTexture::create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits, 
+ShaderBufferPtr 
+ShaderBuffer::create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits, 
         int theNumberOfChannels, int theNumberOfTextures, GLenum theTarget) 
 {
     FrameBufferObjectAttributesPtr attributes = createAttributes(theNumberOfBits, theNumberOfChannels, theNumberOfTextures);
-    ShaderTexturePtr shaderTex = ShaderTexturePtr(new ShaderTexture(theWidth, theHeight, attributes, theTarget));
+    ShaderBufferPtr shaderTex = ShaderBufferPtr(new ShaderBuffer(theWidth, theHeight, attributes, theTarget));
 
     return shaderTex;
 }
 
-ShaderTexture::ShaderTexture ( unsigned int theWidth, unsigned int theHeight, 
+ShaderBuffer::ShaderBuffer ( unsigned int theWidth, unsigned int theHeight, 
         FrameBufferObjectAttributesPtr theAttributes, GLenum theTarget) :
     FrameBufferObject(theTarget, theAttributes, theWidth, theHeight)
 

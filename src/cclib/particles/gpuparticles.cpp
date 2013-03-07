@@ -37,7 +37,7 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     _myInitValue0Shader = Shader::create(vfiles, ffiles);
     _myInitValue0Shader->load();
 
-    _myCurrentDataTexture = ShaderTexture::create( _myWidth, _myHeight, 32, 4, 3);
+    _myCurrentDataTexture = ShaderBuffer::create( _myWidth, _myHeight, 32, 4, 3);
     Graphics::clearColor(0.0f, 0.0f, 1.0f);
     _myCurrentDataTexture->beginDraw(0);
     Graphics::clear();
@@ -47,7 +47,7 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     _myCurrentDataTexture->endDraw();
     Graphics::clearColor(0);
 
-    _myDestinationDataTexture = ShaderTexture::create(_myWidth, _myHeight, 32, 4, 3);
+    _myDestinationDataTexture = ShaderBuffer::create(_myWidth, _myHeight, 32, 4, 3);
 
     Graphics::noBlend();
     _myCurrentDataTexture->beginDraw();
@@ -107,6 +107,8 @@ GPUParticles::reset(){
     for (int i = 0; i < _myWidth * _myHeight; i++){
         Graphics::textureCoords(0, FLT_MAX, FLT_MAX, FLT_MAX);
         Graphics::textureCoords(1, 1, 1, 1);
+        Graphics::textureCoords(2, 0, 0, 0);
+        Graphics::textureCoords(3, 1, 1, 1);
         Graphics::vertex(i % _myWidth,i / _myWidth);
     }
     Graphics::endShape();
@@ -114,11 +116,12 @@ GPUParticles::reset(){
     _myInitValue01Shader->end();
     _myCurrentDataTexture->endDraw();
 
-    for (unsigned int i=0; i<_myForces.size(); i++)
+    for (unsigned int i=0; i<_myForces.size(); i++) {
         _myForces[i]->reset();
+    }
 }
 
-int 
+int
 GPUParticles::width() {
     return _myWidth;
 }
@@ -133,7 +136,7 @@ GPUParticles::size() {
     return _myWidth * _myHeight;
 }
 
-ShaderTexturePtr 
+ShaderBufferPtr
 GPUParticles::dataTexture() {
     return _myCurrentDataTexture;
 }
@@ -144,7 +147,7 @@ GPUParticles::position(GPUParticlePtr theParticle) {
     return Vector3fPtr(new Vector3f(myResult[0], myResult[1], myResult[2]));
 }
 
-ShaderTexturePtr 
+ShaderBufferPtr 
 GPUParticles::destinationDataTexture() {
     return _myDestinationDataTexture;
 }
@@ -280,7 +283,7 @@ GPUParticles::update(float theDeltaTime) {
     for (unsigned int i=0; i<_myImpulses.size(); i++) {
         _myImpulses[i]->update(theDeltaTime);
     }
-    _myUpdateShader->positions(_myCurrentDataTexture);
+    _myUpdateShader->data(_myCurrentDataTexture);
     Graphics::checkError();
     
     _myUpdateShader->deltaTime(theDeltaTime);
@@ -306,7 +309,7 @@ GPUParticles::update(float theDeltaTime) {
 
 void 
 GPUParticles::swapDataTextures() {
-    ShaderTexturePtr myTemp = _myDestinationDataTexture;
+    ShaderBufferPtr myTemp = _myDestinationDataTexture;
     _myDestinationDataTexture = _myCurrentDataTexture;
     _myCurrentDataTexture = myTemp;
 }

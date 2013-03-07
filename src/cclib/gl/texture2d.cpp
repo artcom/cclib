@@ -5,7 +5,7 @@
 using namespace cclib;
 
 Texture2DPtr 
-Texture2D::createTexture2D(TextureAttributesPtr attributes, int width, int height, 
+Texture2D::create(TextureAttributesPtr attributes, int width, int height, 
         unsigned int numberOfTextures, GLenum target)
 {
     Texture2DPtr texture = Texture2DPtr(new Texture2D(attributes, width, height, numberOfTextures, target));

@@ -4,33 +4,52 @@
 
 using namespace cclib;
 
-FrameBufferObject::FrameBufferObject(GLenum target, FrameBufferObjectAttributesPtr attributes,
-            unsigned int width, unsigned int height) 
-: Texture2D(attributes, width, height, attributes->numberOfColorBuffers, target),
- _renderFramebufferID(0), _depthTexture(), _bindIndex(0),
- _renderBufferIDs(), _attributes(attributes), _numberOfAttachments(attributes->numberOfColorBuffers)
+FrameBufferObject::FrameBufferObject(GLenum theTarget, FrameBufferObjectAttributesPtr theAttributes,
+            unsigned int theWidth, unsigned int theHeight)
+: _myTarget(theTarget), _myRenderFramebufferID(0),
+ _myWidth(theWidth), _myHeight(theHeight),
+ _myRenderBufferIDs(), _myAttributes(theAttributes),
+ _myNumberOfAttachments(theAttributes->numberOfColorBuffers)
 {
-    _useMultisampling = (attributes->numberOfSamples > 0); 
-    _framebuffers = std::vector<GLuint>(2, 0);
-    glGenFramebuffers(_framebuffers.size(), &(_framebuffers[0]));
-    _drawBuffers = std::vector<GLuint>(_numberOfAttachments, 0);
+    for (unsigned int i=0; i<_myNumberOfAttachments; i++) {
+        _myAttachments.push_back(Texture2D::create(theAttributes->textureAttributes[i], _myWidth, _myHeight, 1, theTarget));
+    }
+                                 
+    _myUseMultisampling = (_myAttributes->numberOfSamples > 0);
+    _myFramebuffers = std::vector<GLuint>(2, 0);
+    glGenFramebuffers(_myFramebuffers.size(), &(_myFramebuffers[0]));
+    _myDrawBuffers = std::vector<GLuint>(_myNumberOfAttachments, 0);
     Graphics::checkError();
     
-// if we don't need any variety of multisampling or it failed to initialize
-    glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[0]);
+    glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[0]);
     Graphics::checkError();
     
-    for(int i=0; i<_numberOfAttachments; i++) {
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, _target, id(i), 0);
-        _drawBuffers[i] = GL_COLOR_ATTACHMENT0 + i;
+    for(int i=0; i<_myNumberOfAttachments; i++) {
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, _myTarget, _myAttachments[i]->id(), 0);
+        _myDrawBuffers[i] = GL_COLOR_ATTACHMENT0 + i;
         Graphics::checkError();
     }
 
-    if( !(_useMultisampling) || !initMultisampling()) { 
-        _useMultisampling = false;
+    if( !(_myUseMultisampling) || !initMultisampling()) {
+        _myUseMultisampling = false;
         init();
     }
     Graphics::checkError();
+}
+
+unsigned int
+FrameBufferObject::width() {
+    return _myWidth;
+}
+
+unsigned int
+FrameBufferObject::height() {
+    return _myHeight;
+}
+
+Texture2DPtr
+FrameBufferObject::attachment(int theId) {
+    return _myAttachments[theId];
 }
 
 void
@@ -39,21 +58,26 @@ FrameBufferObject::checkStatusException() {
 
     switch( status ) {
         case GL_FRAMEBUFFER_COMPLETE:
-            return;
+            break;
         case GL_FRAMEBUFFER_UNSUPPORTED:
             throw new Exception("Unsupported framebuffer format");
+            break;
         case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
             throw new Exception("Framebuffer incomplete: missing attachment");
+            break;
         case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
             throw new Exception("Framebuffer incomplete: duplicate attachment");
         // case GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS:
         //     throw new Exception("Framebuffer incomplete: attached images must have same dimensions");
         // case GL_FRAMEBUFFER_INCOMPLETE_FORMATS:
         //     throw new Exception("Framebuffer incomplete: attached images must have same format");
+            break;
         case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER:
             throw new Exception("Framebuffer incomplete: missing draw buffer");
+            break;
         case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER:
             throw new Exception("Framebuffer incomplete: missing read buffer");
+            break;
         default:
             throw new Exception("Framebuffer invalid: unknown reason");
     }
@@ -68,7 +92,7 @@ FrameBufferObject::checkStatus() {
 void 
 FrameBufferObject::init() {
     // allocate and attach depth texture
-    if(_attributes->depthBuffer) {
+    if(_myAttributes->depthBuffer) {
         TextureAttributesPtr depthTextureAttributes = TextureAttributesPtr(new TextureAttributes());
         depthTextureAttributes->filter = GL_LINEAR;
         depthTextureAttributes->wrapS = GL_CLAMP_TO_EDGE;
@@ -77,8 +101,8 @@ FrameBufferObject::init() {
         depthTextureAttributes->format = GL_DEPTH_COMPONENT;
         depthTextureAttributes->type = GL_FLOAT;
 
-        _depthTexture = Texture2D::createTexture2D(depthTextureAttributes, _width, _height, 1, _target);
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, _target, _depthTexture->id(), 0);
+        _myDepthTexture = Texture2D::create(depthTextureAttributes, _myWidth, _myHeight, 1, _myTarget);
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, _myTarget, _myDepthTexture->id(), 0);
         Graphics::checkError();
     }
 
@@ -89,39 +113,37 @@ FrameBufferObject::init() {
 	
 bool 
 FrameBufferObject::initMultisampling() {
-    _renderFramebufferID = 1;
-    _maxAntialiasing = getMaxSamples();
+    _myRenderFramebufferID = 1;
+    _myMaxAntialiasing = getMaxSamples();
 
-    int samples = _attributes->numberOfSamples <= _maxAntialiasing ? _attributes->numberOfSamples : _maxAntialiasing;
+    int mySamples = _myAttributes->numberOfSamples <= _myMaxAntialiasing ? _myAttributes->numberOfSamples : _myMaxAntialiasing;
 
     // create Render Buffer ids
-    _renderBufferIDs = std::vector<GLuint>(_numberOfAttachments + 1, 0);
-    glGenRenderbuffers(_renderBufferIDs.size(), &(_renderBufferIDs[0]));
+    _myRenderBufferIDs = std::vector<GLuint>(_myNumberOfAttachments + 1, 0);
+    glGenRenderbuffers(_myRenderBufferIDs.size(), &(_myRenderBufferIDs[0]));
     
     // create Multi sample depth buffer
-    glBindRenderbuffer(GL_RENDERBUFFER, _renderBufferIDs[0]);
+    glBindRenderbuffer(GL_RENDERBUFFER, _myRenderBufferIDs[0]);
     glRenderbufferStorageMultisample(
-            GL_RENDERBUFFER, samples, 
-            GL_DEPTH_COMPONENT, _width, _height );
+            GL_RENDERBUFFER, mySamples,
+            GL_DEPTH_COMPONENT, _myWidth, _myHeight );
 
     // create Multi sample colorbuffers
-    for(int i = 0; i < _numberOfAttachments;i++) {
-        glBindRenderbuffer(GL_RENDERBUFFER, _renderBufferIDs[1 + i]);
+    for(int i = 0; i < _myNumberOfAttachments;i++) {
+        glBindRenderbuffer(GL_RENDERBUFFER, _myRenderBufferIDs[1 + i]);
         glRenderbufferStorageMultisample(
-                GL_RENDERBUFFER, samples, 
-                GL_RGBA, _width, _height);
+                GL_RENDERBUFFER, mySamples,
+                GL_RGBA, _myWidth, _myHeight);
     }
 
     // Attach them
-    glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[1]);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _renderBufferIDs[0]);
+    glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[1]);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _myRenderBufferIDs[0]);
 
-    for(int i = 0; i < _numberOfAttachments;i++) {
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_RENDERBUFFER, _renderBufferIDs[1]);
+    for(int i = 0; i < _myNumberOfAttachments; i++) {
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_RENDERBUFFER, _myRenderBufferIDs[1]);
+        _myAttachments[i]->textureFilter(GL_LINEAR);
     }
-
-    // Final framebuffer color buffers
-    textureFilter(GL_LINEAR);
 
     checkStatusException();
     return checkStatus();
@@ -129,21 +151,21 @@ FrameBufferObject::initMultisampling() {
 
 bool 
 FrameBufferObject::initMultisample() {
-    _depthRenderBufferId = 0; 
-    glGenRenderbuffers(1, &(_depthRenderBufferId));
+    _myDepthRenderBufferId = 0;
+    glGenRenderbuffers(1, &(_myDepthRenderBufferId));
 
-    _colorRenderBufferId = std::vector<GLuint>(_attributes->numberOfColorBuffers, 0);
-    glGenRenderbuffers(_attributes->numberOfColorBuffers, &(_colorRenderBufferId[0]));
+    _myColorRenderBufferId = std::vector<GLuint>(_myAttributes->numberOfColorBuffers, 0);
+    glGenRenderbuffers(_myAttributes->numberOfColorBuffers, &(_myColorRenderBufferId[0]));
 
-    _resolveFramebufferId = 0; 
-    glGenFramebuffers( 1, &(_resolveFramebufferId));
+    _myResolveFramebufferId = 0;
+    glGenFramebuffers( 1, &(_myResolveFramebufferId));
 
     // multisample, so we need to resolve from the FBO, bind the texture to the resolve FBO
-    glBindFramebuffer(GL_FRAMEBUFFER, _resolveFramebufferId);
+    glBindFramebuffer(GL_FRAMEBUFFER, _myResolveFramebufferId);
 
-    for(int i=0; i<_attributes->numberOfColorBuffers; i++) {
+    for(int i=0; i<_myAttributes->numberOfColorBuffers; i++) {
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, 
-                _target, id(i), 0);
+                _myTarget, _myAttachments[i]->id(), 0);
     }
 
     // see if the resolve buffer is ok
@@ -151,40 +173,40 @@ FrameBufferObject::initMultisample() {
         return false;
     }
 
-    if(_attributes->numberOfSamples > getMaxSamples() ) {
-        _attributes->numberOfSamples = getMaxSamples();
+    if(_myAttributes->numberOfSamples > getMaxSamples() ) {
+        _myAttributes->numberOfSamples = getMaxSamples();
     }
 
     // setup the primary framebuffer
-    for(int i=0; i<_attributes->numberOfColorBuffers; i++) {
-        glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[0] );
-        glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBufferId[i]);
+    for(int i=0; i<_myAttributes->numberOfColorBuffers; i++) {
+        glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[0] );
+        glBindRenderbuffer(GL_RENDERBUFFER, _myColorRenderBufferId[i]);
 
 
         // create a regular MSAA color buffer
         glRenderbufferStorageMultisample(
-                GL_RENDERBUFFER, _attributes->numberOfSamples, 
-                _attributes->internalFormat, _width, _height );
+                GL_RENDERBUFFER, _myAttributes->numberOfSamples,
+                _myAttachments[i]->internalFormat(), _myWidth, _myHeight );
 
         // attach the multisampled color buffer
         glFramebufferRenderbuffer(
                 GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, 
-                GL_RENDERBUFFER, _colorRenderBufferId[i] );
+                GL_RENDERBUFFER, _myColorRenderBufferId[i] );
     }
 
-    if(_attributes->depthBuffer) {
-        glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBufferId);
+    if(_myAttributes->depthBuffer) {
+        glBindRenderbuffer(GL_RENDERBUFFER, _myDepthRenderBufferId);
         // create the multisampled depth buffer (with or without coverage sampling)
 
         // create a regular (not coverage sampled) MSAA depth buffer
         glRenderbufferStorageMultisample(
-                GL_RENDERBUFFER, _attributes->numberOfSamples, 
-                _attributes->depthInternalFormat, _width, _height);
+                GL_RENDERBUFFER, _myAttributes->numberOfSamples,
+                _myAttributes->depthInternalFormat, _myWidth, _myHeight);
 
         // attach the depth buffer
         glFramebufferRenderbuffer(
                 GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, 
-                GL_RENDERBUFFER, _depthRenderBufferId);
+                GL_RENDERBUFFER, _myDepthRenderBufferId);
     }
 
     // see if the primary framebuffer turned out ok
@@ -193,49 +215,33 @@ FrameBufferObject::initMultisample() {
 	
 FrameBufferObjectAttributesPtr 
 FrameBufferObject::attributes() {
-    return _attributes;
+    return _myAttributes;
 }
 	
 int 
 FrameBufferObject::numberOfAttachments() {
-    return _numberOfAttachments;
+    return _myNumberOfAttachments;
 }
 	
 void 
 FrameBufferObject::updateMipmaps() {
-    if(!_generateMipmaps) {
-        return;
+    for(int i=0; i<_myAttachments.size(); i++) {
+        if (!_myAttachments[i]->generateMipmaps()) {
+            continue;
+        }
+        _myAttachments[i]->bind();
+        glGenerateMipmap(_myTarget);
     }
-
-    for(int i=0; i<_attributes->numberOfColorBuffers; i++) {
-        Texture2D::bind(i);
-        glGenerateMipmap(_target);
-    }
-}
-	
-void 
-FrameBufferObject::bind() {
-    Texture2D::bind(_bindIndex);
-}
-
-void 
-FrameBufferObject::bind(int theId) {
-    Texture::bind(theId);
-}
-
-void 
-FrameBufferObject::bindIndex(int bindIndex) {
-    _bindIndex = bindIndex;
 }
 
 Texture2DPtr 
 FrameBufferObject::depthTexture() {
-    return _depthTexture;
+    return _myDepthTexture;
 }
 
 void 
 FrameBufferObject::bindBuffer() {
-    glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[0]);
+    glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[0]);
 }
 
 void 
@@ -246,13 +252,13 @@ FrameBufferObject::unbindBuffer() {
 void 
 FrameBufferObject::bindFBO() {
     // Directing rendering to the texture...
-    glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[_renderFramebufferID]);
-    glDrawBuffers(_numberOfAttachments, &(_drawBuffers[0]));
+    glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[_myRenderFramebufferID]);
+    glDrawBuffers(_myNumberOfAttachments, &(_myDrawBuffers[0]));
 }
 
 void 
 FrameBufferObject::bindFBO(int theTexture) {
-    glBindFramebuffer(GL_FRAMEBUFFER, _framebuffers[0]);
+    glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[0]);
 
     Graphics::checkError();
 
@@ -262,10 +268,10 @@ FrameBufferObject::bindFBO(int theTexture) {
 
 void 
 FrameBufferObject::releaseFBO() {
-    if(_useMultisampling) {
-        glBindFramebuffer(GL_READ_FRAMEBUFFER, _framebuffers[1]);
-        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _framebuffers[0]);
-        glBlitFramebuffer(0, 0, _width, _height, 0, 0, _width, _height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+    if(_myUseMultisampling) {
+        glBindFramebuffer(GL_READ_FRAMEBUFFER, _myFramebuffers[1]);
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _myFramebuffers[0]);
+        glBlitFramebuffer(0, 0, _myWidth, _myHeight, 0, 0, _myWidth, _myHeight, GL_COLOR_BUFFER_BIT, GL_NEAREST);
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -280,6 +286,7 @@ FrameBufferObject::getMaxSamples() {
 
     int result; 
     glGetIntegerv(GL_MAX_SAMPLES, &result);
+    
     return result;
 };
 

@@ -2,6 +2,7 @@
 #define __CCLIB_GPUINDEXPARTICLEEMITTER_INCLUDED__
 
 #include <cclib.h>
+#include <particles/gpuparticleemitter.h>
 
 namespace cclib {
 	

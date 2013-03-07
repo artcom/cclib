@@ -61,15 +61,15 @@ class PBO {
         };
 };
 
-class ShaderTexture : public FrameBufferObject {
+class ShaderBuffer : public FrameBufferObject {
 
     public:
 
         static FrameBufferObjectAttributesPtr createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures); 
-        static ShaderTexturePtr create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32, 
+        static ShaderBufferPtr create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32,
             int theNumberOfChannels=3, int theNumberOfTextures=1, GLenum theTarget=GL_TEXTURE_RECTANGLE); 
-        virtual ~ShaderTexture() {
-            std::cout << "~ShaderTexture" << std::endl;
+        virtual ~ShaderBuffer() {
+            std::cout << "~ShaderBuffer" << std::endl;
         };
 
         void beginOrtho2D();
@@ -82,7 +82,7 @@ class ShaderTexture : public FrameBufferObject {
         void endOrtho2D();
         void endDraw();
         void draw();
-        std::vector<float> getData(unsigned int x=0, unsigned int y=0, int width=-1, int height=-1, int texture=0);
+        std::vector<float> getData(unsigned int theAttachment, unsigned int x=0, unsigned int y=0, int width=-1, int height=-1, int texture=0);
 	
         // public void draw(CCAABoundingRectangle theRectangle) {
         //     beginDraw();
@@ -101,7 +101,7 @@ class ShaderTexture : public FrameBufferObject {
         // }
 
     private: 
-        ShaderTexture ( unsigned int theWidth, unsigned int theHeight, 
+        ShaderBuffer ( unsigned int theWidth, unsigned int theHeight,
                 FrameBufferObjectAttributesPtr theAttributes, GLenum theTarget=GL_TEXTURE_RECTANGLE ); 
         std::vector<PBOPtr> _pbo;
         int _numberOfChannels;

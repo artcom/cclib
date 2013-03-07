@@ -31,8 +31,8 @@ class GPUParticles {
         ShaderPtr _myInitValue01Shader;
         ShaderPtr _myInitValue0Shader;
 	    
-        ShaderTexturePtr _myCurrentDataTexture;
-        ShaderTexturePtr _myDestinationDataTexture;
+        ShaderBufferPtr _myCurrentDataTexture;
+        ShaderBufferPtr _myDestinationDataTexture;
 	    
 	    double _myCurrentTime;
 	    
@@ -59,9 +59,9 @@ class GPUParticles {
         int width();
         int height();
         int size();
-        ShaderTexturePtr dataTexture();
+        ShaderBufferPtr dataTexture();
         Vector3fPtr position(GPUParticlePtr theParticle);
-        ShaderTexturePtr destinationDataTexture();
+        ShaderBufferPtr destinationDataTexture();
         void setPosition(int theIndex, Vector3fPtr thePosition);
         void updateLifecyle(GPUParticlePtr theParticle);
     

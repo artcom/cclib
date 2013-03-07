@@ -1,6 +1,6 @@
 
 #include <string.h>
-#include <gl/shadertexture.h>
+#include <gl/ShaderTexture.h>
 #include <gl/mesh.h>
 #include <gl/bufferobject.h>
 #include "vbomesh.h"
@@ -71,30 +71,30 @@ VBOMesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
 }
 
 void 
-VBOMesh::vertices(ShaderTexturePtr theShaderTexture) {
-    vertices(theShaderTexture, 0, 0, theShaderTexture->width(), theShaderTexture->height());
+VBOMesh::vertices(ShaderBufferPtr theShaderBuffer) {
+    vertices(theShaderBuffer, 0, 0, theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
-VBOMesh::vertices(ShaderTexturePtr theShaderTexture, GLuint theID) {
-    vertices(theShaderTexture, 0, 0, 0, theShaderTexture->width(), theShaderTexture->height());
+VBOMesh::vertices(ShaderBufferPtr theShaderBuffer, GLuint theID) {
+    vertices(theShaderBuffer, 0, 0, 0, theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
-VBOMesh::vertices(ShaderTexturePtr theShaderTexture, int theX, int theY, int theWidth, int theHeight) {
-    vertices(theShaderTexture, 0, theX, theY, theWidth, theHeight);
+VBOMesh::vertices(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight) {
+    vertices(theShaderBuffer, 0, theX, theY, theWidth, theHeight);
 }
 
 void 
-VBOMesh::vertices(ShaderTexturePtr theShaderTexture, GLuint theID, int theX, int theY, int theWidth, int theHeight) {
+VBOMesh::vertices(ShaderBufferPtr theShaderBuffer, GLuint theID, int theX, int theY, int theWidth, int theHeight) {
     if(!_myVertexBuffer) {
         _myVertexBuffer = BufferObject::create();
     }
 
-    _myVertexSize = theShaderTexture->numberOfChannels();
+    _myVertexSize = theShaderBuffer->numberOfChannels();
     _myNumberOfVertices = theWidth * theHeight;
     
-    _myVertexBuffer->copyDataFromTexture(theShaderTexture, theID, theX, theY, theWidth, theHeight);
+    _myVertexBuffer->copyDataFromTexture(theShaderBuffer, theID, theX, theY, theWidth, theHeight);
     
     _myHasVertices = true;
     _myHasUpdatedVertices = false;
@@ -127,27 +127,27 @@ VBOMesh::prepareNormalData(int theNumberOfVertices){
 }
 
 void 
-VBOMesh::normals(ShaderTexturePtr theShaderTexture){
-    normals(theShaderTexture,0,0,theShaderTexture->width(), theShaderTexture->height());
+VBOMesh::normals(ShaderBufferPtr theShaderBuffer){
+    normals(theShaderBuffer,0,0,theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
-VBOMesh::normals(ShaderTexturePtr theShaderTexture, int theID){
-    normals(theShaderTexture,theID,0,0,theShaderTexture->width(), theShaderTexture->height());
+VBOMesh::normals(ShaderBufferPtr theShaderBuffer, int theID){
+    normals(theShaderBuffer,theID,0,0,theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
-VBOMesh::normals(ShaderTexturePtr theShaderTexture, int theX, int theY, int theWidth, int theHeight) {
-    normals(theShaderTexture, 0, theX, theY, theWidth, theHeight);
+VBOMesh::normals(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight) {
+    normals(theShaderBuffer, 0, theX, theY, theWidth, theHeight);
 }
 
 void 
-VBOMesh::normals(ShaderTexturePtr theShaderTexture, int theID, int theX, int theY, int theWidth, int theHeight) {    	
+VBOMesh::normals(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight) {    	
     if (!_myNormalBuffer) {
         _myNormalBuffer = BufferObject::create();
     }
 
-    _myNormalBuffer->copyDataFromTexture(theShaderTexture, theID, theX, theY, theWidth, theHeight);
+    _myNormalBuffer->copyDataFromTexture(theShaderBuffer, theID, theX, theY, theWidth, theHeight);
 
     _myHasNormals = true;
     _myHasUpdatedNormals = false;
@@ -201,27 +201,27 @@ VBOMesh::prepareColorData(int theNumberOfVertices){
 }
 
 void 
-VBOMesh::colors(ShaderTexturePtr theShaderTexture){
-    colors(theShaderTexture,0,0,theShaderTexture->width(), theShaderTexture->height());
+VBOMesh::colors(ShaderBufferPtr theShaderBuffer){
+    colors(theShaderBuffer,0,0,theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
-VBOMesh::colors(ShaderTexturePtr theShaderTexture, int theID){
-    colors(theShaderTexture,theID,0,0,theShaderTexture->width(), theShaderTexture->height());
+VBOMesh::colors(ShaderBufferPtr theShaderBuffer, int theID){
+    colors(theShaderBuffer,theID,0,0,theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
-VBOMesh::colors(ShaderTexturePtr theShaderTexture, int theX, int theY, int theWidth, int theHeight) {
-    colors(theShaderTexture, 0, theX, theY, theWidth, theHeight);
+VBOMesh::colors(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight) {
+    colors(theShaderBuffer, 0, theX, theY, theWidth, theHeight);
 }
 
 void 
-VBOMesh::colors(ShaderTexturePtr theShaderTexture, int theID, int theX, int theY, int theWidth, int theHeight) {
+VBOMesh::colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight) {
     if(!_myColorBuffer){
         _myColorBuffer = BufferObject::create(theWidth * theHeight * sizeof(float));
     }
     
-    _myColorBuffer->copyDataFromTexture(theShaderTexture, theID, theX, theY, theWidth, theHeight);
+    _myColorBuffer->copyDataFromTexture(theShaderBuffer, theID, theX, theY, theWidth, theHeight);
     
     _myHasColors = true;
     _myHasUpdatedColors = false;

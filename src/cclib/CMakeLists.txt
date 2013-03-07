@@ -88,6 +88,9 @@ set(SOURCES
     particles/gpugravity.cpp    
     particles/gpuattractor.cpp    
     particles/gpuviscousdrag.cpp    
+    particles/gpucombinedforce.cpp        
+    particles/gputargetforce.cpp        
+    particles/gputimeforceblend.cpp        
 )
  
 set(HEADERS
@@ -124,6 +127,10 @@ set(HEADERS
     particles/gpuattractor.h    
     particles/gpuviscousdrag.h    
     particles/gpuparticleemitter.h        
+    particles/gpucombinedforce.h        
+    particles/gputargetforce.h        
+    particles/gputimeforceblend.h        
+    particles/gputargetsetup.h
 )
 
 FOREACH(HEADER ${HEADERS})

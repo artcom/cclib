@@ -99,7 +99,14 @@ class Graphics {
             glDisable(GL_POLYGON_SMOOTH);
             glDisable(GL_BLEND);
         };
-
+    
+        static void pushAttribute() {
+            glPushAttrib(GL_ALL_ATTRIB_BITS);
+        };
+    
+        static void popAttribute() {
+            glPopAttrib();
+        };
 };
 }; // namespace 
 

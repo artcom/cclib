@@ -130,7 +130,7 @@ class BufferObject {
         void bufferData(int theSize, BufferPtr theData);
         void bufferData();
         void bufferSubData(GLenum theTarget, int theOffset, int theSize, BufferPtr theData);
-        void copyDataFromTexture(ShaderTexturePtr theShaderTexture, int theID, int theX, int theY, int theWidth, int theHeight);
+        void copyDataFromTexture(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight);
         
         virtual ~BufferObject();
     

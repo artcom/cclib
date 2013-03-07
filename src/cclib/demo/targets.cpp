@@ -15,6 +15,9 @@
 #include <particles/gpuparticlepointrenderer.h>
 #include <particles/gpuparticle.h>
 #include <particles/gpuindexparticleemitter.h>
+#include <particles/gpucombinedforce.h>
+#include <particles/gputargetforce.h>
+#include <particles/gputimeforceblend.h>
 
 using namespace cclib;
 
@@ -217,9 +220,7 @@ class TargetsDemo {
 				myVelocity.normalize();
 				myVelocity.scale(_cOpenSpeed * _cStartVelocity);
 				myVelocity = myVelocity + Vector3f(
-                        random(-_cEmitRandomVel, _cEmitRandomVel),
-                        random(-_cEmitRandomVel, _cEmitRandomVel),
-                        0);
+                    random(-_cEmitRandomVel, _cEmitRandomVel), random(-_cEmitRandomVel, _cEmitRandomVel), 0);
 				
 				myX += _cEmitX + random(-_cEmitRandomPos, _cEmitRandomPos);
 				myY += _cEmitY + random(-_cEmitRandomPos, _cEmitRandomPos);

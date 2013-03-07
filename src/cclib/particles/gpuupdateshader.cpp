@@ -15,10 +15,11 @@
 using namespace cclib;
 
 void 
-GPUUpdateShader::positions(ShaderTexturePtr thePositionTexture) {
-    texture(_myPositionTextureParameter, thePositionTexture->id(0));
-    texture(_myInfoTextureParameter, thePositionTexture->id(1));
-    texture(_myVelocityTextureParameter, thePositionTexture->id(2));
+GPUUpdateShader::data(ShaderBufferPtr theDataBuffer) {
+    texture(_myPositionTextureParameter, theDataBuffer->attachment(0)->id());
+    texture(_myInfoTextureParameter,  theDataBuffer->attachment(1)->id());
+    texture(_myVelocityTextureParameter, theDataBuffer->attachment(2)->id());
+    texture(_myColorTextureParameter, theDataBuffer->attachment(3)->id());
 }
 
 void
@@ -70,6 +71,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
     _myPositionTextureParameter = fragmentParameter("positionTexture");
     _myInfoTextureParameter     = fragmentParameter("infoTexture");
     _myVelocityTextureParameter = fragmentParameter("velocityTexture");
+    _myColorTextureParameter    = fragmentParameter("colorTexture");
     _myDeltaTimeParameter       = fragmentParameter("deltaTime");
 
     load();

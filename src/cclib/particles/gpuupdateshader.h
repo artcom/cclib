@@ -9,7 +9,7 @@ namespace cclib {
 class GPUUpdateShader : public Shader {
 
     public: 
-        void positions(ShaderTexturePtr thePositionTexture);
+        void data(ShaderBufferPtr theDataBuffer);
         void deltaTime(float theDeltaTime);
         
         static GPUUpdateShaderPtr create( GPUParticles * theParticles, std::vector<GPUForcePtr> theForces,
@@ -20,7 +20,9 @@ class GPUUpdateShader : public Shader {
 	    CGparameter _myVelocityTextureParameter;
 	    CGparameter _myPositionTextureParameter;
 	    CGparameter _myInfoTextureParameter;
-	    CGparameter _myDeltaTimeParameter;
+        CGparameter _myColorTextureParameter;
+        CGparameter _myDeltaTimeParameter;
+    
 	    CGparameter _myForcesParameter;
 	    CGparameter _myConstraintsParameter;
 	    CGparameter _myImpulsesParameter;

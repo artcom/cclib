@@ -29,8 +29,6 @@ class GPUForce : public Component
         Property_<float>::Ptr _myStrength; 
         CGparameter _myStrengthParameter;
 	
-        virtual void setupParameter(int theWidth, int theHeight);
-    
     public: 
         typedef std::tr1::shared_ptr<GPUForce> Ptr;
         
@@ -45,6 +43,7 @@ class GPUForce : public Component
         virtual float getStrength();
         virtual void setStrength(float theStrength);
         virtual CGparameter parameter(const std::string & theName);
+        virtual void setupParameter(int theWidth, int theHeight);
 };
 
 }; // namespace

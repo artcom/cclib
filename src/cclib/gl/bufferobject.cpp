@@ -187,8 +187,8 @@ BufferObject::bufferSubData(GLenum theTarget, int theOffset, int theSize, Buffer
 }
 
 void 
-BufferObject::copyDataFromTexture(ShaderTexturePtr theShaderTexture, int theID, int theX, int theY, int theWidth, int theHeight) {
-    int myNewBufferSize = theWidth * theHeight * theShaderTexture->numberOfChannels() * sizeof(float);
+BufferObject::copyDataFromTexture(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight) {
+    int myNewBufferSize = theWidth * theHeight * theShaderBuffer->numberOfChannels() * sizeof(float);
 
     if(myNewBufferSize != _mySize){
         bind(GL_ARRAY_BUFFER);	
@@ -201,18 +201,18 @@ BufferObject::copyDataFromTexture(ShaderTexturePtr theShaderTexture, int theID, 
         _mySize = myNewBufferSize;
     }
 
-    theShaderTexture->bindBuffer();
+    theShaderBuffer->bindBuffer();
     
     // bind buffer object to pixel pack buffer
     bind(GL_PIXEL_PACK_BUFFER);
     glReadBuffer(GL_COLOR_ATTACHMENT0 + theID);
 
     // read from frame buffer to buffer object
-    glReadPixels(theX, theY, theWidth, theHeight, theShaderTexture->format(), GL_FLOAT, 0);
+    glReadPixels(theX, theY, theWidth, theHeight, theShaderBuffer->attachment(theID)->format(), GL_FLOAT, 0);
 
     unbind();
 
-    theShaderTexture->unbindBuffer();
+    theShaderBuffer->unbindBuffer();
 }
 
         
