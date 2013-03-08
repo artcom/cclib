@@ -15,7 +15,7 @@ class GPUTimeForceBlend : public GPUForce {
         CGparameter _myEndTimeParameter;
     
         Texture2DPtr _myBlendInfos;
-        TextureDataPtr _myBlendInfoData;
+        std::vector<unsigned char> _myBlendInfoData;
         CGparameter _myBlendInfosParameter;
     
         float _myStartTime;

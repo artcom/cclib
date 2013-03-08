@@ -603,5 +603,34 @@ Texture::depthTextureMode(GLenum mode) {
 // Texture::blendColor(CCColor blendColor) {
 //     _blendColor = blendColor;
 // }
-	
-	
+
+void
+Texture::data(const std::vector<unsigned char> & theData) {
+    data(theData, _width, _height);
+}
+
+void
+Texture::data(const std::vector<unsigned char> & theData, unsigned int theWidth, unsigned int theHeight) {
+    _mustFlipVertically = false;
+    
+    _internalFormat = GL_RGBA;
+    _format = GL_RGBA;
+    _pixelType = GL_UNSIGNED_BYTE;
+    _storageModes = PixelStorageModesPtr(new PixelStorageModes());
+    
+    _width = theWidth;
+    _height = theHeight;
+    
+    bind();
+
+    _storageModes->unpackStorage();
+    dataImplementation(theData);
+    _storageModes->defaultUnpackStorage();
+    
+    textureFilter(GL_LINEAR);
+    
+    if(_generateMipmaps) {
+        glGenerateMipmap(_target);
+    }
+}
+

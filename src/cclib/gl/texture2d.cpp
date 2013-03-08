@@ -12,6 +12,14 @@ Texture2D::create(TextureAttributesPtr attributes, int width, int height,
     return texture;
 }
 
+Texture2DPtr
+Texture2D::create(std::vector<unsigned char> theData, GLenum theTarget,
+                  unsigned int theWidth, unsigned int theHeight)
+{
+    TextureAttributesPtr t = TextureAttributesPtr(new TextureAttributes());
+    return Texture2D::create(t, theWidth, theHeight, 1, GL_TEXTURE_RECTANGLE);
+}
+
 Texture2D::Texture2D(TextureAttributesPtr attributes,
              int width, int height, unsigned int numberOfTextures, GLenum target) 
     : Texture(target, attributes, numberOfTextures) 
@@ -34,12 +42,8 @@ Texture2D::allocateData(unsigned int width, unsigned int height)
         _storageModes->unpackStorage();
         Graphics::checkError();
 
-        glTexImage2D(
-                _target, 0, 
-                _internalFormat, 
-                _width, _height, 0, 
-                _format, _pixelType, 
-                NULL); 
+        glTexImage2D(_target, 0, _internalFormat, _width, _height, 0, _format, _pixelType, NULL);
+        
         Graphics::checkError();
         
         _storageModes->defaultUnpackStorage();
@@ -47,7 +51,12 @@ Texture2D::allocateData(unsigned int width, unsigned int height)
         
     }
 }
-	
+
+void
+Texture2D::dataImplementation(const std::vector<unsigned char> & theData) {
+    glTexImage2D( _target, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &(theData[0]) );
+}
+
 // 	public ByteBuffer buffer() {
 // 		int mySize = _myPixelType.bytesPerChannel * _myFormat.numberOfChannels * _myWidth * _myHeight;
 // 		if(_myBufferObject == null) {

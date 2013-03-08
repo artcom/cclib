@@ -14,12 +14,15 @@ GPUTimeForceBlend::GPUTimeForceBlend(float theStartTime, float theEndTime, GPUFo
             _myForce1(theForce1),
             _myForce2(theForce2)
 {
-    _myBlendInfoData = TextureData::create(GPUTimeForceBlend::MAX_STATES, 1));
-    for (int i=0; i<GPUTimeForceBlend::MAX_STATES; i++) {
-        _myBlendInfoData->setPixel(i, 0, 0.0f, 1.0f, 0.0f, 0.0f);
+    _myBlendInfoData = std::vector<unsigned char>(GPUTimeForceBlend::MAX_STATES * 4, 0);
+    for (int i=0; i<GPUTimeForceBlend::MAX_STATES; i+=4) {
+        _myBlendInfoData[i  ] = 0;
+        _myBlendInfoData[i+1] = 255;
+        _myBlendInfoData[i+2] = 0;
+        _myBlendInfoData[i+3] = 0;
     }
 
-    _myBlendInfos = Texture2D::create(_myBlendInfoData, GL_TEXTURE_RECTANGLE);
+    _myBlendInfos = Texture2D::create(_myBlendInfoData, GL_TEXTURE_RECTANGLE, GPUTimeForceBlend::MAX_STATES, 1);
 }
 
 GPUTimeForceBlendPtr
@@ -119,7 +122,12 @@ GPUTimeForceBlend::blend(int theState, float theMinBlend, float theMaxBlend) {
     float r = theMinBlend;
     float g = theMaxBlend;
     
-    _myBlendInfoData->setPixel(theState, 0, r, g, 0.0f, 0.0f);
+    int index = theState * 4;
+    _myBlendInfoData[index + 0] = r * 255;
+    _myBlendInfoData[index + 1] = g * 255;
+    _myBlendInfoData[index + 2] = 0;
+    _myBlendInfoData[index + 3] = 0;
+    
     _myBlendInfos->data(_myBlendInfoData);
 }
 

@@ -3,6 +3,7 @@
 #define __GPUPARTICLEPOINTRENDERER_INCLUDED__
 
 #include <cclib.h>
+#include <particles/gpuparticlerenderer.h>
 
 namespace cclib {
 

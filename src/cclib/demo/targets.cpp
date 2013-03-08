@@ -32,7 +32,7 @@ class TargetsDemo {
 		GPUViscousDragPtr _myViscousDrag;
 		GPUCombinedForcePtr _myCombinedForce;
 		GPUTargetForcePtr _myTargetForce;
-		ShaderTexturePtr _myTargetBuffer;
+		ShaderBufferPtr _myTargetBuffer;
 		GPUTimeForceBlend _myTimeBlendForce;
 
         float _myRadius;

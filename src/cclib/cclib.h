@@ -45,6 +45,9 @@ typedef std::tr1::shared_ptr<TextureAttributes> TextureAttributesPtr;
 class Texture;
 typedef std::tr1::shared_ptr<Texture> TexturePtr;
 
+class TextureData;
+typedef std::tr1::shared_ptr<TextureData> TextureDataPtr;
+
 class Color;
 typedef std::tr1::shared_ptr<Color> ColorPtr; 
 

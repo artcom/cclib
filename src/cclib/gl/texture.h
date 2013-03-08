@@ -2,6 +2,7 @@
 #define __CCLIB_TEXTURE_INCLUDED__
 
 #include <cclib.h>
+#include <gl/TextureData.h>
 
 namespace cclib {
         
@@ -87,6 +88,10 @@ class Texture {
         virtual void textureMipmapFilter(GLenum filter);
         virtual void textureEnvironmentMode(GLenum mode);
         virtual void depthTextureMode(GLenum mode);
+        virtual void data(const std::vector<unsigned char> & theData);
+        virtual void data(const std::vector<unsigned char> & theData, unsigned int theWidth, unsigned int theHeight);
+
+        virtual void dataImplementation(const std::vector<unsigned char> & theData) {};
         // void blendColor(CCColor blendColor);
 
     protected:

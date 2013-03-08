@@ -3,6 +3,7 @@
 
 #include <cclib.h>
 #include <gl/texture.h>
+#include <gl/texturedata.h>
 
 namespace cclib {
 
@@ -42,12 +43,14 @@ class Texture2D : public Texture {
 
         static Texture2DPtr create(TextureAttributesPtr attributes, int width=0, int height=0,
                 unsigned int numberOfTextures=1, GLenum target=GL_TEXTURE_2D);
-        
-        // XXX one for CCTexture2D(final CCTextureData theTextureData, CCTextureTarget theTarget)
-        // public ByteBuffer buffer() {
+    
+        static Texture2DPtr create(std::vector<unsigned char> theData, GLenum theTarget,
+                unsigned int theWidth, unsigned int theHeight);
+    
 	    Color getPixel(int x, int y);
         void setPixel(int x, int y, const Color & color);
-
+        void dataImplementation(const std::vector<unsigned char> & theData);
+    
     protected:
         virtual void allocateData(unsigned int width, unsigned int height);
         Texture2D(TextureAttributesPtr attributes,
