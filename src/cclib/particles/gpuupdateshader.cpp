@@ -34,6 +34,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
     _myVelocityTextureParameter(),
     _myPositionTextureParameter(),
     _myInfoTextureParameter(),
+    _myColorTextureParameter(),
     _myDeltaTimeParameter(),
     _myForcesParameter(),
     _myConstraintsParameter(),

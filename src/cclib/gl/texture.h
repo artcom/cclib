@@ -18,8 +18,9 @@ class TextureAttributes {
         GLenum internalFormat;
         GLenum format;
         GLenum type;
-
-        TextureAttributes() : 
+    
+    protected:
+        TextureAttributes() :
             wrapS(GL_CLAMP_TO_EDGE),
             wrapT(GL_CLAMP_TO_EDGE),
             filter(GL_LINEAR),
@@ -29,7 +30,10 @@ class TextureAttributes {
             format(GL_FLOAT),
             type(GL_RGBA)
         {};
-
+    
+    public:
+        static TextureAttributesPtr create(int theNumberOfBits, int theNumberOfChannels);
+    
         virtual ~TextureAttributes() {
             std::cout << "~TextureAttributes" << std::endl;
         };

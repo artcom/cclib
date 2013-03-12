@@ -26,7 +26,7 @@ void main (
 	
 	newInfo =lastInfo;
 	
-	if(myAge >= lastInfo.y && lastInfo.z == 0.0){
+	if(lastInfo.x >= lastInfo.y && lastInfo.z == 0.0){
 		position = float3(1000000,0,0);
 		
 		if(rand(texID) < emitProb){

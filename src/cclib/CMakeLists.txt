@@ -133,6 +133,7 @@ set(HEADERS
     particles/gputargetsetup.h
 )
 
+MESSAGE("Stringify shaders")
 FOREACH(HEADER ${HEADERS})
     STRING(REGEX MATCH "(.*)[/\\]" DIR ${HEADER})
     INSTALL(FILES ${HEADER} DESTINATION include/cclib/${DIR})

@@ -1,34 +1,33 @@
-float2 main(
-	float2 _Current : TEXCOORD0,
-	uniform samplerRECT _SortData : register(s0),
-	uniform int2 _Size,
-	uniform int _Step,
-	uniform int _Count
-) : COLOR
-{
-	float2 currentSample = (float2)texRECT(_SortData, (float2)_Current);
+uniform samplerRECT sortData : TEXUNIT0;
+	
+uniform int2 size;
+uniform int sortStep;
+uniform int sortCount;
+	
+void main(
+	in float2 current : TEXCOORD0,
+	out float3 oColor : COLOR0
+) {
+	float3 currentSample = texRECT(sortData, current);
+	oColor = currentSample;
 
-	float i = (_Current.y - 0.5) * _Size.x + _Current.x;
+	float i = (current.y - 0.5) * size.x + current.x;
 
-	float iMod = fmod((float)(i / _Step), (float)_Count);
+	float iMod = fmod((float)(i / sortStep), (float)sortCount);
 
-	if (iMod >= 1.0 && iMod < _Count - 1.0){
+	if (iMod >= 1.0 && iMod < sortCount - 1.0){
 		float b = (fmod((float)iMod, 2.0) > 1.0 ? 1.0 : -1.0);
 
-		float otherI = i + (b * _Step);
-		float2 otherPos = float2(fmod(otherI, _Size.x), floor(otherI / _Size.x) + 0.5);
+		float otherI = i + (b * sortStep);
+		float2 otherPos = float2(fmod(otherI, size.x), floor(otherI / size.x) + 0.5);
 
-		float2 otherSample = (float2)texRECT(_SortData, otherPos);
+		float3 otherSample = texRECT(sortData, otherPos);
 
 		if (b >= 0){
-			//return max(currentSample, otherSample);
-			return currentSample.x > otherSample.x ? currentSample : otherSample;
+			oColor = currentSample.z < otherSample.z ? currentSample : otherSample;
 		} else {
-			//return min(currentSample, otherSample);
-			return currentSample.x < otherSample.x ? currentSample : otherSample;
+			oColor = currentSample.z > otherSample.z ? currentSample : otherSample;
 		}
-
-		//return b * max(b * currentSample, b * otherSample);
 	} else
-		return currentSample;
+		oColor = currentSample;
 }

@@ -4,15 +4,81 @@
 
 using namespace cclib;
 
-TexturePtr 
-Texture::createTexture(GLuint target, TextureAttributesPtr attributes, unsigned int numberOfTextures) 
+TextureAttributesPtr
+TextureAttributes::create(int theNumberOfBits, int theNumberOfChannels) {
+    TextureAttributesPtr myTextureAttributes = TextureAttributesPtr(new TextureAttributes());
+    
+    myTextureAttributes->type = GL_FLOAT;
+    myTextureAttributes->wrapS = GL_CLAMP;
+    myTextureAttributes->wrapT = GL_CLAMP;
+    myTextureAttributes->filter = GL_NEAREST;
+    
+    bool is16Bit;
+    
+    switch(theNumberOfBits) {
+        case 16:
+            is16Bit = true;
+            break;
+        case 32:
+            is16Bit = false;
+            break;
+        default:
+            throw new cclib::Exception("The given number of bits is not supported. You can only create shader textures with 16 or 32 bit resolution.");
+    }
+    
+    std::string vendorString = std::string(reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
+    unsigned nvVendorIndex = vendorString.find(std::string("NVIDIA"));
+    bool isNvidia = (nvVendorIndex != std::string::npos);
+    
+    GLenum format;
+    GLenum internalFormat;
+    
+    switch(theNumberOfChannels) {
+        case 1:
+            if(isNvidia) {
+                internalFormat = is16Bit ? GL_FLOAT_R16_NV : GL_FLOAT_R32_NV;
+            } else {
+                internalFormat = is16Bit ? GL_LUMINANCE_FLOAT16_ATI : GL_LUMINANCE_FLOAT32_ATI;
+            }
+            format = GL_LUMINANCE;
+            break;
+        case 2:
+            if(isNvidia) {
+                internalFormat = is16Bit ? GL_FLOAT_RG16_NV : GL_FLOAT_RG32_NV;
+            } else {
+                internalFormat = is16Bit ? GL_LUMINANCE_ALPHA_FLOAT16_ATI : GL_LUMINANCE_ALPHA_FLOAT32_ATI;
+            }
+            format = GL_LUMINANCE_ALPHA;
+            break;
+        case 3:
+            internalFormat = is16Bit ? GL_RGB16F : GL_RGB32F;
+            format = GL_RGB;
+            break;
+        case 4:
+            internalFormat = is16Bit ? GL_RGBA16F : GL_RGBA32F;
+            format = GL_RGBA;
+            break;
+        default:
+            throw new cclib::Exception("The given number of channels is not supported. You can only create shader textures with 1,2,3 or 4 channels.");
+            
+    }
+    
+    myTextureAttributes->internalFormat = internalFormat;
+    myTextureAttributes->format = format;
+    
+    return myTextureAttributes;
+}
+
+
+TexturePtr
+Texture::createTexture(GLuint target, TextureAttributesPtr attributes, unsigned int numberOfTextures)
 {
     TexturePtr texture = TexturePtr(new Texture(target, attributes, numberOfTextures));
     return texture;
 }
 
-Texture::Texture(GLenum target, TextureAttributesPtr attributes, unsigned int numberOfTextures) 
-    : _target(target), _environmentMode(GL_MODULATE), _textureID(0), 
+Texture::Texture(GLenum target, TextureAttributesPtr attributes, unsigned int numberOfTextures)
+    : _target(target), _environmentMode(GL_MODULATE), _textureID(0),
       _internalFormat(attributes->internalFormat), _format(attributes->format),
       _width(0), _height(0), _depth(1),
       _pixelType(attributes->type), _isCompressed(false), _estimatedMemorySize(0),

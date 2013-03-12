@@ -9,7 +9,7 @@ using namespace cclib;
 class ShaderTextureDemo {
 
     private:    
-	    ShaderTexturePtr _myShaderTexture;
+	    ShaderBufferPtr _myShaderBuffer;
     
         int frame;
 
@@ -17,7 +17,7 @@ class ShaderTextureDemo {
         bool running;
         
         ShaderTextureDemo() :
-            _myShaderTexture(),
+            _myShaderBuffer(),
             frame(0), running(true)
         { 
             if(!glfwInit()) {
@@ -39,7 +39,7 @@ class ShaderTextureDemo {
         }
 
         void setup() {
-            _myShaderTexture = ShaderTexture::create(400, 400);
+            _myShaderBuffer = ShaderBuffer::create(400, 400);
         }
 
         ~ShaderTextureDemo() { 
@@ -49,17 +49,17 @@ class ShaderTextureDemo {
         void update(double theDeltaTime) {
             Graphics::clearColor(0);
             Graphics::clear();
-            _myShaderTexture->beginDraw();
+            _myShaderBuffer->beginDraw();
             
             Graphics::clearColor(1.0f, 0.0f, 0.0f, 1.0f);
             Graphics::clear();
             Graphics::color(1.0f, 0.0f, 0.0f, 1.0f); // drawing red into the texture
             Graphics::rect(-200, -200, 50, 50);
             
-            _myShaderTexture->endDraw();
+            _myShaderBuffer->endDraw();
                     
             Graphics::color(1.0f, 1.0f, 0.0f, 1.0f); // yellow. should not be visible 
-            Graphics::image(_myShaderTexture, -0.5, 0.5, 0.5, 0.5);
+            Graphics::image(_myShaderBuffer, -0.5, 0.5, 0.5, 0.5);
 //         
             glfwSwapBuffers();
             if (++frame % 100 == 0) {

@@ -37,7 +37,7 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     _myInitValue0Shader = Shader::create(vfiles, ffiles);
     _myInitValue0Shader->load();
 
-    _myCurrentDataTexture = ShaderBuffer::create( _myWidth, _myHeight, 32, 4, 3);
+    _myCurrentDataTexture = ShaderBuffer::create( _myWidth, _myHeight, 32, 4, 4);
     Graphics::clearColor(0.0f, 0.0f, 1.0f);
     _myCurrentDataTexture->beginDraw(0);
     Graphics::clear();
@@ -47,7 +47,7 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     _myCurrentDataTexture->endDraw();
     Graphics::clearColor(0);
 
-    _myDestinationDataTexture = ShaderBuffer::create(_myWidth, _myHeight, 32, 4, 3);
+    _myDestinationDataTexture = ShaderBuffer::create(_myWidth, _myHeight, 32, 4, 4);
 
     Graphics::noBlend();
     _myCurrentDataTexture->beginDraw();

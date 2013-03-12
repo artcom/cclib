@@ -26,11 +26,12 @@ BOOST_FIXTURE_TEST_CASE(testFixtureStatus, GL_Fixture)
 
 BOOST_FIXTURE_TEST_CASE(testShaderTexture, GL_Fixture)
 {
-    ShaderTexturePtr s;
-    BOOST_CHECK_NO_THROW(s = ShaderTexture::create(123, 456));
+    ShaderBufferPtr s;
+    BOOST_CHECK_NO_THROW(s = ShaderBuffer::create(123, 456));
     BOOST_CHECK(s->width() == 123);
     BOOST_CHECK(s->height() == 456);
-    BOOST_CHECK(s->target() == GL_TEXTURE_RECTANGLE);
+    // BOOST_CHECK_THROW(s->attachment(1), std::exception);
+    BOOST_CHECK(s->attachment(0)->target() == GL_TEXTURE_RECTANGLE);
     
     BOOST_CHECK(s->checkStatus());
     BOOST_CHECK(s->numberOfBits() == 32);
@@ -45,7 +46,7 @@ BOOST_FIXTURE_TEST_CASE(testShaderTexture, GL_Fixture)
             
     BOOST_CHECK_NO_THROW(s->endDraw());
     std::vector<float> data;
-    BOOST_CHECK_NO_THROW(data = s->getData());
+    BOOST_CHECK_NO_THROW(data = s->getData(0));
     BOOST_CHECK(data.size() == s->width() * s->height() * 3); 
     
     BOOST_CHECK(data[0] == 0.1f);

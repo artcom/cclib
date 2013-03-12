@@ -36,13 +36,13 @@ class GPUTimeForceBlend : public GPUForce {
         void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, std::string theIndex, int theWidth, int theHeight);
     
 	    void setupParameter(int theWidth, int theHeight);
-        void setSize(int theWidth, int theHeight);
         void update(float theDeltaTime);
-        void startTime(float theStartTime);
-        void endTime(float theEndTime);
-        void blend(int theState, float theMinBlend, float theMaxBlend);
-        void blend(float theMinBlend, float theMaxBlend);
-        void power(float thePower);
+        void setSize(int theWidth, int theHeight);
+        void setStartTime(float theStartTime);
+        void setEndTime(float theEndTime);
+        void setBlend(int theState, float theMinBlend, float theMaxBlend);
+        void setBlend(float theMinBlend, float theMaxBlend);
+        void setPower(float thePower);
 };	
 };
 

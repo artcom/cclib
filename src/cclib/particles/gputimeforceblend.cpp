@@ -107,17 +107,17 @@ GPUTimeForceBlend::update(float theDeltaTime) {
 }
 
 void
-GPUTimeForceBlend::startTime(float theStartTime) {
+GPUTimeForceBlend::setStartTime(float theStartTime) {
     _myStartTime = theStartTime;
 }
 
 void
-GPUTimeForceBlend::endTime(float theEndTime) {
+GPUTimeForceBlend::setEndTime(float theEndTime) {
     _myEndTime = theEndTime;
 }
 
 void
-GPUTimeForceBlend::blend(int theState, float theMinBlend, float theMaxBlend) {
+GPUTimeForceBlend::setBlend(int theState, float theMinBlend, float theMaxBlend) {
 
     float r = theMinBlend;
     float g = theMaxBlend;
@@ -132,12 +132,12 @@ GPUTimeForceBlend::blend(int theState, float theMinBlend, float theMaxBlend) {
 }
 
 void
-GPUTimeForceBlend::blend(float theMinBlend, float theMaxBlend) {
-    blend(0, theMinBlend, theMaxBlend);
+GPUTimeForceBlend::setBlend(float theMinBlend, float theMaxBlend) {
+    setBlend(0, theMinBlend, theMaxBlend);
 }
 
 void
-GPUTimeForceBlend::power(float thePower) {
+GPUTimeForceBlend::setPower(float thePower) {
     _myPower = thePower;
 }
 

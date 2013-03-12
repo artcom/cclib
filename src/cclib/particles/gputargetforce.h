@@ -30,7 +30,7 @@ class GPUTargetForce : public GPUForce {
     
     public:
         GPUTargetForce(int theTargetTextures);
-        static GPUTargetForcePtr create(int theTargetTextures);
+        static GPUTargetForcePtr create(int theTargetTextures=0);
     
         void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);

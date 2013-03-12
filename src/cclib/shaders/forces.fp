@@ -636,11 +636,8 @@ struct Springs : Force{
 	samplerRECT[] idTextures;
 	samplerRECT[] infoTextures;
 	
-	float restLength;
 	float springConstant;
-	
 	float strength;
-	
 	
 	float3 springForce(float3 thePosition1, float3 thePosition2, float theRestLength, float theForceRestLength){
 		float3 delta = thePosition2 - thePosition1;
@@ -655,7 +652,7 @@ struct Springs : Force{
 		float3 force = 0;
 		
 		for(int i = 0; i < idTextures.length;i++){
-			float4 ids = texRECT(idTextures[i], theTexID);
+			int4 ids = texRECT(idTextures[i], theTexID);
 		
 			// get positions of neighbouring particles
 			float3 position1 = texRECT(positionTexture, ids.xy);

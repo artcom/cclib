@@ -49,6 +49,11 @@ FrameBufferObject::height() {
 
 Texture2DPtr
 FrameBufferObject::attachment(int theId) {
+    if (_myAttachments.size() <= theId) {
+        std::stringstream ss;
+        ss << "Requesting attachment that isn't there: #" << theId << " (max: " << (_myAttachments.size() - 1) << ")";
+        throw new Exception(ss.str());
+    }
     return _myAttachments[theId];
 }
 
@@ -93,7 +98,7 @@ void
 FrameBufferObject::init() {
     // allocate and attach depth texture
     if(_myAttributes->depthBuffer) {
-        TextureAttributesPtr depthTextureAttributes = TextureAttributesPtr(new TextureAttributes());
+        TextureAttributesPtr depthTextureAttributes = TextureAttributes::create(24, 1);
         depthTextureAttributes->filter = GL_LINEAR;
         depthTextureAttributes->wrapS = GL_CLAMP_TO_EDGE;
         depthTextureAttributes->wrapT = GL_CLAMP_TO_EDGE;

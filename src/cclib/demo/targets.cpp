@@ -33,7 +33,7 @@ class TargetsDemo {
 		GPUCombinedForcePtr _myCombinedForce;
 		GPUTargetForcePtr _myTargetForce;
 		ShaderBufferPtr _myTargetBuffer;
-		GPUTimeForceBlend _myTimeBlendForce;
+		GPUTimeForceBlendPtr _myTimeBlendForce;
 
         float _myRadius;
         // TextureDataPtr _myTargetTextureData;
@@ -80,19 +80,18 @@ class TargetsDemo {
         TargetsDemo() :
             frame(0), running(true),
             myREs(1), time(0),
-            _cOpenSpeed(0), _cStartVelocity(0), _cStartRadius(0), _cRadiusRange(0),
-            _cParticlePerimeterDensity(0), _cDrag(0), _cTargetStrength(0), _cLookAhead(0),
-            _cMaxForce(0), _cTargetNearDistance(0), _cTargetNearMaxForce(0), _myOffset(0),
-            _cLookUpLookAhead(0), _cLifeTimeBlendPow(0), _cNScale(0), _cStrength(0), _cSpeed(0), _cEmitX(0),
-            _cEmitY(0), _cEmitRandomPos(0), _cEmitRandomVel(0), _cTargetX(0), _cTargetY(0), _cEmitTargetLookAhead(0)
+            _cOpenSpeed(86.6), _cStartVelocity(0.93), _cStartRadius(0), _cRadiusRange(1000),
+            _cParticlePerimeterDensity(1.0280), _cDrag(0.2866), _cTargetStrength(1.0), _cLookAhead(10.0),
+            _cMaxForce(1.0), _cTargetNearDistance(16.0), _cTargetNearMaxForce(0.3333334), _myOffset(1.73333),
+            _cLookUpLookAhead(1.7333), _cLifeTimeBlendPow(0.1999), _cNScale(0.04), _cStrength(0.46666660), _cSpeed(0.56), _cEmitX(13.33),
+            _cEmitY(-80.0), _cEmitRandomPos(14.0), _cEmitRandomVel(0), _cTargetX(-240.0), _cTargetY(26.666), _cEmitTargetLookAhead(0.9)
 {
             if(!glfwInit()) {
                 running = false;
             }
 
             // Open an OpenGL window
-            if(!glfwOpenWindow( 1400, 750, 
-                        0, 0, 0, 0, 0, 0, GLFW_WINDOW )) {
+            if(!glfwOpenWindow( 1400, 750, 0, 0, 0, 0, 0, 0, GLFW_WINDOW )) {
                 glfwTerminate();
                 running = false;
             }
@@ -119,8 +118,8 @@ class TargetsDemo {
             _myCombinedForce = GPUCombinedForce::create(myCombinedForces);
 			
 			_myTimeBlendForce = GPUTimeForceBlend::create(0, 4, _myCombinedForce, _myTargetForce);
-			_myTimeBlendForce->blend(0.005f, 1.0f);
-			_myTimeBlendForce->power(6);
+			_myTimeBlendForce->setBlend(0.005f, 1.0f);
+			_myTimeBlendForce->setPower(6);
 				
 			// _myTargetTextureData = CCTextureIO.newTextureData("squarepusher.png");
 
@@ -136,7 +135,7 @@ class TargetsDemo {
             GPUParticlePointRendererPtr myRenderer = GPUParticlePointRenderer::create();
             _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 700, 700);
 
-            _myTargetBuffer = ShaderTexture::create(16, 4, _myParticles->width(), _myParticles->height());
+            _myTargetBuffer = ShaderBuffer::create(_myParticles->width(), _myParticles->height(), 16, 4);
 			
             _myTargetBuffer->beginDraw();
             Graphics::clear();

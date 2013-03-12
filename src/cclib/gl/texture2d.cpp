@@ -16,7 +16,7 @@ Texture2DPtr
 Texture2D::create(std::vector<unsigned char> theData, GLenum theTarget,
                   unsigned int theWidth, unsigned int theHeight)
 {
-    TextureAttributesPtr t = TextureAttributesPtr(new TextureAttributes());
+    TextureAttributesPtr t = TextureAttributes::create(8, 4);
     return Texture2D::create(t, theWidth, theHeight, 1, GL_TEXTURE_RECTANGLE);
 }
 
@@ -41,7 +41,7 @@ Texture2D::allocateData(unsigned int width, unsigned int height)
         bind(i);
         _storageModes->unpackStorage();
         Graphics::checkError();
-
+        
         glTexImage2D(_target, 0, _internalFormat, _width, _height, 0, _format, _pixelType, NULL);
         
         Graphics::checkError();

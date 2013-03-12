@@ -106,10 +106,10 @@ class EmitDemo {
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
             
             for(int i = 0; i < 1000; i++) {
-                Vector3fPtr vel = Vector3fPtr(new Vector3f());
-                Vector3fPtr pos = Vector3fPtr(new Vector3f(x, y, 0.0f));
+                Vector3f vel = Vector3f();
+                Vector3f pos = Vector3f(x, y, 0.0f);
             
-                vel->randomize(_cInitVel);
+                vel.randomize(_cInitVel);
                 _myEmitter->emit(pos, vel, _cLifeTime);
             }
         
