@@ -135,6 +135,9 @@ class TargetsDemo {
             GPUParticlePointRendererPtr myRenderer = GPUParticlePointRenderer::create();
             _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 700, 700);
 
+            _myEmitter = GPUIndexParticleEmitter::create(_myParticles);
+            _myParticles->addEmitter(_myEmitter);
+            
             _myTargetBuffer = ShaderBuffer::create(_myParticles->width(), _myParticles->height(), 16, 4);
 			
             _myTargetBuffer->beginDraw();
