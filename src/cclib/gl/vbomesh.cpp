@@ -1,6 +1,6 @@
 
 #include <string.h>
-#include <gl/ShaderTexture.h>
+#include <gl/shaderbuffer.h>
 #include <gl/mesh.h>
 #include <gl/bufferobject.h>
 #include "vbomesh.h"

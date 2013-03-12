@@ -116,8 +116,7 @@ BOOST_FIXTURE_TEST_CASE(testRealShaderCompilation, GL_Fixture)
     BOOST_TEST_MESSAGE(">>>> with defined entry point");
     vfiles.clear(); ffiles.clear();
     ffiles.push_back(lookupPosition_fp);
-    BOOST_CHECK_NO_THROW(Shader::create(vfiles, ffiles, "main", "lookupPosition") ); // entry point: lookup position 
-
+    BOOST_CHECK_NO_THROW(Shader::create(vfiles, ffiles, "main", "main") ); // entry point: lookup position 
 }
 
 BOOST_FIXTURE_TEST_CASE(testCombinedShaderCompilation, GL_Fixture)

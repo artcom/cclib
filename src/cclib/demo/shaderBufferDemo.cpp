@@ -59,7 +59,7 @@ class ShaderBufferDemo {
             _myShaderBuffer->endDraw();
                     
             Graphics::color(1.0f, 1.0f, 0.0f, 1.0f); // yellow. should not be visible 
-            Graphics::image(_myShaderBuffer, -0.5, 0.5, 0.5, 0.5);
+            Graphics::image(_myShaderBuffer->attachment(0), -0.5, 0.5, 0.5, 0.5);
 //         
             glfwSwapBuffers();
             if (++frame % 100 == 0) {
