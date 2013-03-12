@@ -16,7 +16,7 @@ Texture2DPtr
 Texture2D::create(std::vector<unsigned char> theData, GLenum theTarget,
                   unsigned int theWidth, unsigned int theHeight)
 {
-    TextureAttributesPtr t = TextureAttributes::create(8, 4);
+    TextureAttributesPtr t = TextureAttributes::create(32, 4);
     return Texture2D::create(t, theWidth, theHeight, 1, GL_TEXTURE_RECTANGLE);
 }
 

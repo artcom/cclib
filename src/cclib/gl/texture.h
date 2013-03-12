@@ -2,7 +2,6 @@
 #define __CCLIB_TEXTURE_INCLUDED__
 
 #include <cclib.h>
-#include <gl/TextureData.h>
 
 namespace cclib {
         

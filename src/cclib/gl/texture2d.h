@@ -3,7 +3,6 @@
 
 #include <cclib.h>
 #include <gl/texture.h>
-#include <gl/texturedata.h>
 
 namespace cclib {
 
