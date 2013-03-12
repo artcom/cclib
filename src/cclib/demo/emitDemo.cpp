@@ -9,7 +9,7 @@
 #include <particles/gpuindexparticleemitter.h>
 #include <particles/gpuforce.h>
 #include <particles/gpuforcefield.h>
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 #include <gl/graphics.h>
 
 using namespace cclib;

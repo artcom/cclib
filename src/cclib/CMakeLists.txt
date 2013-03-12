@@ -68,7 +68,7 @@ set(SOURCES
     gl/texture2d.cpp
     gl/pixelstoragemodes.cpp
     gl/framebufferobject.cpp
-    gl/shadertexture.cpp
+    gl/shaderbuffer.cpp
     gl/graphics.cpp
     gl/mesh.cpp
     gl/bufferobject.cpp
@@ -105,7 +105,7 @@ set(HEADERS
     gl/texture2d.h    
     gl/pixelstoragemodes.h
     gl/framebufferobject.h
-    gl/shadertexture.h
+    gl/shaderbuffer.h
     gl/graphics.h
     gl/mesh.h
     gl/bufferobject.h
@@ -163,9 +163,9 @@ add_executable(shader_test test/shader.tst.cpp)
 target_link_libraries(shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_test(shader_test shader_test) 
 
-add_executable(shadertexture_test test/shadertexture.tst.cpp)
-target_link_libraries(shadertexture_test ${CCLIB_NAME} ${TEST_LIBRARIES})
-add_test(shadertexture_test shadertexture_test) 
+add_executable(shaderbuffer_test test/shaderbuffer.tst.cpp)
+target_link_libraries(shaderbuffer_test ${CCLIB_NAME} ${TEST_LIBRARIES})
+add_test(shaderbuffer_test shaderbuffer_test)
 
 add_executable(components_test test/components.tst.cpp)
 target_link_libraries(components_test ${CCLIB_NAME} ${TEST_LIBRARIES})
@@ -178,8 +178,8 @@ target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_executable(cclibCurveFlowField demo/curveFlowFieldDemo.cpp)
 target_link_libraries(cclibCurveFlowField ${CCLIB_NAME} ${TEST_LIBRARIES})
 
-add_executable(cclibShaderTextureDemo demo/shaderTextureDemo.cpp)
-target_link_libraries(cclibShaderTextureDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+add_executable(cclibShaderBufferDemo demo/ShaderBufferDemo.cpp)
+target_link_libraries(cclibShaderBufferDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
 add_executable(cclibNoiseFieldDemo demo/gpuNoiseFieldDemo.cpp)
 target_link_libraries(cclibNoiseFieldDemo ${CCLIB_NAME} ${TEST_LIBRARIES})

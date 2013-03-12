@@ -1,5 +1,5 @@
 
-#define BOOST_TEST_MODULE shadertexture 
+#define BOOST_TEST_MODULE shaderbuffer 
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MAIN
@@ -11,7 +11,7 @@
 
 #include <cclib.h>
 #include <gl/shader.h>
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 #include <gl/graphics.h>
 
 #include "gl_fixture.h"

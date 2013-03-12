@@ -7,7 +7,7 @@
 #include <gl/mesh.h>
 #include <gl/vbomesh.h>
 #include <gl/graphics.h>
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 
 #include <particles/gpugravity.h>
 #include <particles/gpuviscousdrag.h>

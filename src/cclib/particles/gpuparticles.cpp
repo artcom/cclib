@@ -10,7 +10,7 @@
 #include <particles/gpuimpulse.h>
 #include <gl/graphics.h>
 #include <gl/shader.h>
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 #include <stringified_shaders/initvalue01.fp.h>
 #include <stringified_shaders/initvalue.fp.h>
 

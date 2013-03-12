@@ -1,7 +1,7 @@
 
 #include "gputargetforce.h"
 #include <stringified_shaders/initvalue01.fp.h>
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 #include <gl/graphics.h>
 #include <particles/gputargetsetup.h>
 #include <particles/gpuindexparticleemitter.h>

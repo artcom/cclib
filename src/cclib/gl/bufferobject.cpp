@@ -1,5 +1,5 @@
 
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 #include "bufferobject.h"
 
 using namespace cclib;

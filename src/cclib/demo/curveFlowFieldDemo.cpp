@@ -13,7 +13,7 @@
 #include <particles/gpucurvefield.h>
 #include <particles/gpuattractor.h>
 #include <particles/gpuviscousdrag.h>
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 #include <gl/graphics.h>
 
 using namespace cclib;

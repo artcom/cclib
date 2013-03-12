@@ -1,7 +1,7 @@
 
 #include <gl/mesh.h>
 #include <gl/shader.h>
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 #include <gl/bufferobject.h>
 #include <gl/graphics.h>
 #include <particles/gpuparticleemitter.h>

@@ -4,7 +4,7 @@
 #include <particles/gpudisplayshader.h>
 #include <gl/mesh.h>
 #include <gl/vbomesh.h>
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 #include "gpuparticlepointrenderer.h"
 
 using namespace cclib;

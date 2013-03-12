@@ -1,4 +1,4 @@
-#include <gl/shadertexture.h>
+#include <gl/shaderbuffer.h>
 
 #include <gl/graphics.h>
 
