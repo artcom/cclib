@@ -209,8 +209,8 @@ class TargetsDemo {
 			
 			// float myTargetX2 = _myTargetTextureData->width() + _cTargetX;
 			// float myTargetY2 = _myTargetTextureData->height() + _cTargetY;
-			float myTargetX2 = 300 + _cTargetX;
-			float myTargetY2 = 300 + _cTargetY;
+			float myTargetX2 = 400 + _cTargetX;
+			float myTargetY2 = 400 + _cTargetY;
 			
             Graphics::beginShape(GL_POINTS);
 			for(float angle = 0; angle < 360; angle += myStep){
@@ -242,9 +242,8 @@ class TargetsDemo {
                 
                 Graphics::textureCoords(0, myTargetX, myTargetY);
 				Graphics::vertex(myParticle->x() + 0.5f, myParticle->y() + 0.5f);
-				
-				
 			}
+            
             Graphics::endShape();
 			_myTargetBuffer->endDraw();
 			_myInitValueShader->end();

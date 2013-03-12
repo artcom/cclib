@@ -6,7 +6,7 @@
 
 using namespace cclib;
 
-class ShaderTextureDemo {
+class ShaderBufferDemo {
 
     private:    
 	    ShaderBufferPtr _myShaderBuffer;
@@ -16,7 +16,7 @@ class ShaderTextureDemo {
     public:
         bool running;
         
-        ShaderTextureDemo() :
+        ShaderBufferDemo() :
             _myShaderBuffer(),
             frame(0), running(true)
         { 
@@ -42,7 +42,7 @@ class ShaderTextureDemo {
             _myShaderBuffer = ShaderBuffer::create(400, 400);
         }
 
-        ~ShaderTextureDemo() { 
+        ~ShaderBufferDemo() { 
             glfwTerminate();
         }
 
@@ -72,7 +72,7 @@ class ShaderTextureDemo {
 
 int main() {
     try {
-        ShaderTextureDemo demo;
+        ShaderBufferDemo demo;
 
         while (demo.running) {
             demo.update(1.0/60.0);
