@@ -46,7 +46,6 @@ class PBO {
 
 
         virtual ~PBO() {
-            std::cout << "~PBO for id: " << _id << std::endl;
             glDeleteBuffers(1, &_id);
         };
 
@@ -69,7 +68,6 @@ class ShaderBuffer : public FrameBufferObject {
         static ShaderBufferPtr create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32,
             int theNumberOfChannels=3, int theNumberOfTextures=1, GLenum theTarget=GL_TEXTURE_RECTANGLE); 
         virtual ~ShaderBuffer() {
-            std::cout << "~ShaderBuffer" << std::endl;
         };
 
         void beginOrtho2D();

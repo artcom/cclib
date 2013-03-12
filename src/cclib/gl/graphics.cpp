@@ -135,7 +135,6 @@ Graphics::image( TexturePtr theImage, float theX, float theY,
     // _myTextureMode = CCTextureMode.IMAGE;
     Graphics::imageImplementation( theImage, theX, theY, theWidth, theHeight, 
         0, 0, theImage->width(), theImage->height());
-    std::cout << theImage->width() << " " << theImage->height() << std::endl;
     // _myTextureMode = myStoredTextureMode;
 }
 

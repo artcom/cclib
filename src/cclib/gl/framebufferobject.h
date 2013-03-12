@@ -38,7 +38,6 @@ class FrameBufferObjectAttributes {
         };
     
         virtual ~FrameBufferObjectAttributes() {
-            std::cout << "~FrameBufferObjectAttributes" << std::endl;
         };
 };
 
@@ -46,7 +45,6 @@ class FrameBufferObject {
     
     public:
         virtual ~FrameBufferObject() {
-            std::cout << "~FrameBufferObject" << std::endl;
         };
     
         static int getMaxSamples();

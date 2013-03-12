@@ -37,7 +37,6 @@ class Texture2D : public Texture {
 
     public:
         virtual ~Texture2D() {
-            std::cout << "~Texture2D" << std::endl;
         };
 
         static Texture2DPtr create(TextureAttributesPtr attributes, int width=0, int height=0,

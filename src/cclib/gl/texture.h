@@ -34,7 +34,6 @@ class TextureAttributes {
         static TextureAttributesPtr create(int theNumberOfBits, int theNumberOfChannels);
     
         virtual ~TextureAttributes() {
-            std::cout << "~TextureAttributes" << std::endl;
         };
 };
 

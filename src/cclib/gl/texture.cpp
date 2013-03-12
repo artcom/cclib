@@ -312,7 +312,6 @@ Texture::id(const int & level) {
 }
 
 Texture::~Texture() {
-    std::cout << "~Texture" << std::endl;
     glDeleteTextures(_textureIDs.size(), &(_textureIDs[0]));
 }
 
