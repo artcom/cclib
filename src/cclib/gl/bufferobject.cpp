@@ -113,14 +113,12 @@ void
 BufferObject::bind(GLenum theTarget){
     _myCurrentTarget = theTarget;
     glBindBuffer(theTarget, _myBufferID);
-    std::cout << "binding buffer id: " << _myBufferID << std::endl;
     Graphics::checkError();
 }
 
 void 
 BufferObject::unbind(){
     glBindBuffer(_myCurrentTarget, 0);
-    std::cout << "unbinding buffer id: " << _myBufferID << std::endl;
     Graphics::checkError();
 }
 
@@ -165,7 +163,6 @@ BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, 
     
     Graphics::checkError();
     _mySize = theSize;
-    std::cout << theSize << " f: "<< sizeof(float) << std::endl;
     float * ptr;
     if (theData->empty()) {
         ptr = NULL;
@@ -174,8 +171,6 @@ BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, 
     }
     
     GLenum usage = glUsage(theUsageFrequency, theUsageType);
-    std::cout << "glUsage: 0x" << std::hex << usage << std::endl;
-    std::cout << "target:  0x" << std::hex << _myCurrentTarget << " size: " << std::dec << _mySize << std::endl;
     glBufferData(_myCurrentTarget, _mySize * sizeof(float), ptr, usage);
     Graphics::checkError();
 }
