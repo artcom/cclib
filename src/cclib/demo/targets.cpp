@@ -184,7 +184,7 @@ class TargetsDemo {
 
             Graphics::clear();
             // _myArcball.draw(g);
-            Graphics::color(1.0f, 1.0f, 1.0f, 0.05f);
+            Graphics::color(1.0f, 1.0f, 1.0f, 0.2f);
             Graphics::noDepthTest();
             
             Graphics::blend(BLEND_MODE_ADD);
@@ -263,11 +263,11 @@ class TargetsDemo {
 			_myViscousDrag->setDrag(_cDrag);
             
  /////////////           
-            Graphics::noBlend();
+            Graphics::blend();
 
         	// g.ellipse(_cEmitX, _cEmitY, 20,20);
 			// g.ellipse(_cTargetX, _cTargetY, 20,20);
-            Graphics::pointSize(0.1f);
+            Graphics::pointSize(1.0f);
 			_myParticles->draw();
             
             //

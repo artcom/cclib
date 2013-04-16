@@ -4,6 +4,7 @@
 #include <gl/mesh.h>
 #include <gl/bufferobject.h>
 #include "vbomesh.h"
+#include "graphics.h"
 
 using namespace cclib;
         
@@ -192,22 +193,24 @@ VBOMesh::prepareColorData(int theNumberOfVertices){
      _myNumberOfVertices = theNumberOfVertices;
     
     if(_myColors->empty() || _myColors->size() / 4 != _myNumberOfVertices) {
-        _myColorBuffer = BufferObject::create(_myNumberOfVertices * 4 );
-        _myColors = _myColorBuffer->data();
+        if (!_myColorBuffer) {
+            _myColorBuffer = BufferObject::create(_myNumberOfVertices * 4 );
+            _myColors = _myColorBuffer->data();
+        }
     }
     
     _myHasColors = true;
     _myHasUpdatedColors = true;
 }
 
-void 
+void
 VBOMesh::colors(ShaderBufferPtr theShaderBuffer){
-    colors(theShaderBuffer,0,0,theShaderBuffer->width(), theShaderBuffer->height());
+    colors(theShaderBuffer, 0, 0, theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
 VBOMesh::colors(ShaderBufferPtr theShaderBuffer, int theID){
-    colors(theShaderBuffer,theID,0,0,theShaderBuffer->width(), theShaderBuffer->height());
+    colors(theShaderBuffer, theID, 0, 0, theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
@@ -243,20 +246,28 @@ VBOMesh::enable(){
             glClientActiveTexture(GL_TEXTURE0 + i);
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
             glTexCoordPointer(_myTextureCoordSize[i], GL_FLOAT, 0, 0);
+            Graphics::checkError();
         }
     }
 
     if(_myHasColors){
         if(_myHasUpdatedColors) {
             _myColorBuffer->bind(GL_ARRAY_BUFFER);
+            Graphics::checkError();
             _myColorBuffer->bufferData();
+            Graphics::checkError();
             _myColorBuffer->unbind();
+            Graphics::checkError();
             _myHasUpdatedColors = false;
         }
         _myColorBuffer->bind(GL_ARRAY_BUFFER);
+        Graphics::checkError();
         glEnableClientState(GL_COLOR_ARRAY);
+        Graphics::checkError();
         glColorPointer(4, GL_FLOAT, 0, 0);
+        Graphics::checkError();
     }
+    
     if(_myHasNormals){
         if(_myHasUpdatedNormals) {
             _myNormalBuffer->bind(GL_ARRAY_BUFFER);
@@ -267,7 +278,9 @@ VBOMesh::enable(){
         _myNormalBuffer->bind(GL_ARRAY_BUFFER);
         glEnableClientState(GL_NORMAL_ARRAY);
         glNormalPointer(GL_FLOAT, 0, 0);
+        Graphics::checkError();
     }
+    
     if(_myHasVertices){
         if(_myHasUpdatedVertices) {
             _myVertexBuffer->bind(GL_ARRAY_BUFFER);
@@ -278,7 +291,9 @@ VBOMesh::enable(){
         _myVertexBuffer->bind(GL_ARRAY_BUFFER);
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(_myVertexSize, GL_FLOAT, 0, 0);
+        Graphics::checkError();
     }
+    
     // if(_myHasIndices) {
     // 	
     // } // ??

@@ -39,8 +39,6 @@ Mesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
     _myVertexSize = theVertexSize;
 
     if(_myVertices->empty() || _myVertices->size() / _myVertexSize != _myNumberOfVertices) {
-        _myNumberOfVertices = theNumberOfVertices;
-        _myVertexSize = theVertexSize;
         _myVertices = Buffer::create(_myNumberOfVertices * _myVertexSize);
         _myVerticesIdx = 0;
     }
@@ -208,7 +206,9 @@ Mesh::drawArray() {
 void 
 Mesh::draw() {
     enable();
+    Graphics::checkError();
     drawArray();
+    Graphics::checkError();
     disable();
 }
 

@@ -18,28 +18,43 @@ namespace cclib {
 class Buffer;
 typedef std::tr1::shared_ptr<Buffer> BufferPtr;
 
+// 
+    
 class Buffer {
 public:
     Buffer(unsigned int theSize, bool theInitializedFlag) :
-        _myData(NULL), _myEmpty(!theInitializedFlag), _mySize(theSize), _myCurrentIndex(0)
+        _myData(NULL), _myEmpty(!theInitializedFlag), _mySize(theSize),
+        _myCurrentIndex(0), _myIsSelfAllocated(false)
     {
+        if (_mySize == 0) {
+            return;
+        }
+
         _myData = new float[_mySize]();
+        _myIsSelfAllocated = true;
+        _myEmpty = false;
     };
     
     static BufferPtr create(unsigned int theSize, bool theInitializedFlag = false) {
         return BufferPtr(new Buffer(theSize, theInitializedFlag));
     };
     
-    virtual ~Buffer() {};
+    virtual ~Buffer() {
+        if (_myData != NULL && _myIsSelfAllocated) {
+            delete _myData;
+        }
+    };
     
-    void setData(float * theData) {
-        if (_myData != NULL) {
+    void setGLMapBufferDataPtr(float * theData) {
+        
+        if (_myData != NULL && _myIsSelfAllocated) {
             delete _myData;
         }
         
         if (theData) {
             _myData = theData;
             _myEmpty = false;
+            _myIsSelfAllocated = false;
         }
     };
 
@@ -48,9 +63,11 @@ public:
     };
     
     float * data() {
-        if (empty()) {
+        if (!_myData) {
+            std::cerr << "Buffer is empty!" << std::endl;
             return NULL;
         }
+    
         return _myData;
     };
     
@@ -72,12 +89,12 @@ public:
         }
     };
     
-    void put(BufferPtr theColors) {
-        if (theColors->size() + _myCurrentIndex > size()) {
+    void put(BufferPtr theData) {
+        if (theData->size() + _myCurrentIndex > size()) {
             std::cerr << "Color->put out of bounds" << std::endl;
         }
     
-        memcpy(_myData + _myCurrentIndex, theColors->data(), theColors->size());
+        memcpy(_myData + _myCurrentIndex, theData->data(), theData->size());
     };
     
     void rewind() {
@@ -85,6 +102,7 @@ public:
     };
     
 private:
+    bool _myIsSelfAllocated;
     float * _myData;
     bool _myEmpty;
     unsigned int _mySize;

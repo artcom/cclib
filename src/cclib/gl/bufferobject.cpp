@@ -1,6 +1,7 @@
 
 #include <gl/shaderbuffer.h>
 #include "bufferobject.h"
+#include "graphics.h"
 
 using namespace cclib;
 
@@ -15,7 +16,7 @@ BufferObject::BufferObject(int theSize) :
         bind(GL_ARRAY_BUFFER);
         bufferData(theSize, _myData, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
         updateData();
-    } 
+    }
 }
 
 BufferObjectPtr 
@@ -89,7 +90,7 @@ BufferObject::mapBuffer(BufferPtr targetData) {
 #warning XXX Buffer port Incomplete
     }
     
-    targetData->setData(mappedBuffer);
+    targetData->setGLMapBufferDataPtr(mappedBuffer);
 }
 
 bool 
@@ -112,14 +113,18 @@ void
 BufferObject::bind(GLenum theTarget){
     _myCurrentTarget = theTarget;
     glBindBuffer(theTarget, _myBufferID);
+    std::cout << "binding buffer id: " << _myBufferID << std::endl;
+    Graphics::checkError();
 }
 
 void 
 BufferObject::unbind(){
     glBindBuffer(_myCurrentTarget, 0);
+    std::cout << "unbinding buffer id: " << _myBufferID << std::endl;
+    Graphics::checkError();
 }
 
-GLuint 
+GLuint
 BufferObject::glUsage(unsigned int theUsageFrequency, unsigned int theUsageType) {
     switch(theUsageFrequency) {
         case BUFFERFREQ_STREAM:
@@ -157,17 +162,22 @@ BufferObject::glUsage(unsigned int theUsageFrequency, unsigned int theUsageType)
 void 
 BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, int theUsageType) {
     // set the data to the currentTarget GPU buffer object
-    _mySize = theSize * sizeof(float);
+    
+    Graphics::checkError();
+    _mySize = theSize;
+    std::cout << theSize << " f: "<< sizeof(float) << std::endl;
     float * ptr;
     if (theData->empty()) {
         ptr = NULL;
-        std::cout << "-> empty" << std::endl;
     } else {
         ptr = theData->data();
-        std::cout << theData->data()[0] << " " << theData->data()[1] << " " << theData->data()[2] << std::endl;
     }
     
-    glBufferData(_myCurrentTarget, _mySize, ptr, glUsage(theUsageFrequency, theUsageType));
+    GLenum usage = glUsage(theUsageFrequency, theUsageType);
+    std::cout << "glUsage: 0x" << std::hex << usage << std::endl;
+    std::cout << "target:  0x" << std::hex << _myCurrentTarget << " size: " << std::dec << _mySize << std::endl;
+    glBufferData(_myCurrentTarget, _mySize * sizeof(float), ptr, usage);
+    Graphics::checkError();
 }
 
 void 
@@ -178,9 +188,10 @@ BufferObject::bufferData(int theSize, BufferPtr theData) {
 void 
 BufferObject::bufferData() {
     bufferData(_mySize, _myData, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
+
 }
 
-void 
+void
 BufferObject::bufferSubData(GLenum theTarget, int theOffset, int theSize, BufferPtr theData) {
     _mySize = theSize;
     glBufferSubData(theTarget, theOffset, theSize, theData->data());
