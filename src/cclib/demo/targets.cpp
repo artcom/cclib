@@ -117,10 +117,16 @@ class TargetsDemo {
 			
             _myCombinedForce = GPUCombinedForce::create(myCombinedForces);
 			
-			_myTimeBlendForce = GPUTimeForceBlend::create(0, 4, _myCombinedForce, _myTargetForce);
-			_myTimeBlendForce->setBlend(0.005f, 1.0f);
-			_myTimeBlendForce->setPower(6);
-				
+			_myTimeBlendForce = GPUTimeForceBlend::create();
+            float startTime = 0.0f;float endTime = 4.0f; float power = 6.0f;
+			
+            _myTimeBlendForce->set<float>("startTime", startTime);
+			_myTimeBlendForce->set<float>("endTime", endTime);
+            _myTimeBlendForce->setBlend(0.005f, 1.0f);
+			_myTimeBlendForce->set<float>("power", power);
+			
+            _myTimeBlendForce->initialize( _myCombinedForce, _myTargetForce );
+
 			// _myTargetTextureData = CCTextureIO.newTextureData("squarepusher.png");
 
             std::vector<GPUForcePtr> myForces;
@@ -260,7 +266,7 @@ class TargetsDemo {
             Vector3f offset = Vector3f(0, 0, _myOffset);
 			_myForceField->set<Vector3f>("noiseOffset", offset);
 			
-            _myTimeBlendForce->setPower(_cLifeTimeBlendPow);
+            _myTimeBlendForce->set<float>("power", _cLifeTimeBlendPow);
 			
 			_myViscousDrag->setDrag(_cDrag);
             

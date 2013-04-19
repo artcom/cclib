@@ -18,19 +18,20 @@ class GPUTimeForceBlend : public GPUForce {
         std::vector<unsigned char> _myBlendInfoData;
         CGparameter _myBlendInfosParameter;
     
-        float _myStartTime;
-        float _myEndTime;
-    
+        Property_<float>::Ptr _myStartTime;
+        Property_<float>::Ptr _myEndTime;
+        Property_<float>::Ptr _myPower;
+
         CGparameter _myPowerParameter;
-        float _myPower;
     
         GPUForcePtr _myForce1;
         GPUForcePtr _myForce2;
     
-        GPUTimeForceBlend(float theStartTime, float theEndTime, GPUForcePtr theForce1, GPUForcePtr theForce2);
+        GPUTimeForceBlend();
 
     public:
-        static GPUTimeForceBlendPtr create(float theStartTime, float theEndTime, GPUForcePtr theForce1, GPUForcePtr theForce2);
+        static GPUTimeForceBlendPtr create();
+        void initialize(GPUForcePtr theForce1, GPUForcePtr theForce2); 
 
         void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight);
         void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, std::string theIndex, int theWidth, int theHeight);
@@ -38,11 +39,8 @@ class GPUTimeForceBlend : public GPUForce {
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);
         void setSize(int theWidth, int theHeight);
-        void setStartTime(float theStartTime);
-        void setEndTime(float theEndTime);
         void setBlend(int theState, float theMinBlend, float theMaxBlend);
         void setBlend(float theMinBlend, float theMaxBlend);
-        void setPower(float thePower);
 };	
 };
 

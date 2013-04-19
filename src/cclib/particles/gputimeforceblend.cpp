@@ -6,14 +6,16 @@ using namespace cclib;
 
 int GPUTimeForceBlend::MAX_STATES = 10;
 
-GPUTimeForceBlend::GPUTimeForceBlend(float theStartTime, float theEndTime, GPUForcePtr theForce1, GPUForcePtr theForce2) :
-            GPUForce("TimeForceBlend"),
-            _myStartTime(theStartTime),
-            _myEndTime(theEndTime),
-            _myPower(1),
-            _myForce1(theForce1),
-            _myForce2(theForce2)
+GPUTimeForceBlend::GPUTimeForceBlend() : 
+    GPUForce("TimeForceBlend"),
+    _myStartTime(Property_<float>::create("startTime", 0.0f)),
+    _myEndTime(Property_<float>::create("endTime", 0.0f)),
+    _myPower(Property_<float>::create("power", 0.0f))
 {
+    registerProperty(_myStartTime);
+    registerProperty(_myEndTime);
+    registerProperty(_myPower);
+    
     _myBlendInfoData = std::vector<unsigned char>(GPUTimeForceBlend::MAX_STATES * 4, 0);
     for (int i=0; i<GPUTimeForceBlend::MAX_STATES; i+=4) {
         _myBlendInfoData[i  ] = 0;
@@ -25,11 +27,17 @@ GPUTimeForceBlend::GPUTimeForceBlend(float theStartTime, float theEndTime, GPUFo
     _myBlendInfos = Texture2D::create(_myBlendInfoData, GL_TEXTURE_RECTANGLE, GPUTimeForceBlend::MAX_STATES, 1);
 }
 
-GPUTimeForceBlendPtr
-GPUTimeForceBlend::create(float theStartTime, float theEndTime, GPUForcePtr theForce1, GPUForcePtr theForce2) {
-    return GPUTimeForceBlendPtr(new GPUTimeForceBlend(theStartTime, theEndTime, theForce1, theForce2));
+void
+GPUTimeForceBlend::initialize(GPUForcePtr theForce1, GPUForcePtr theForce2) 
+{
+    _myForce1 = theForce1;
+    _myForce2 = theForce2;
 }
 
+GPUTimeForceBlendPtr
+GPUTimeForceBlend::create() {
+    return GPUTimeForceBlendPtr(new GPUTimeForceBlend());
+}
 
 void
 GPUTimeForceBlend::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight) {
@@ -107,16 +115,6 @@ GPUTimeForceBlend::update(float theDeltaTime) {
 }
 
 void
-GPUTimeForceBlend::setStartTime(float theStartTime) {
-    _myStartTime = theStartTime;
-}
-
-void
-GPUTimeForceBlend::setEndTime(float theEndTime) {
-    _myEndTime = theEndTime;
-}
-
-void
 GPUTimeForceBlend::setBlend(int theState, float theMinBlend, float theMaxBlend) {
 
     float r = theMinBlend;
@@ -134,10 +132,5 @@ GPUTimeForceBlend::setBlend(int theState, float theMinBlend, float theMaxBlend) 
 void
 GPUTimeForceBlend::setBlend(float theMinBlend, float theMaxBlend) {
     setBlend(0, theMinBlend, theMaxBlend);
-}
-
-void
-GPUTimeForceBlend::setPower(float thePower) {
-    _myPower = thePower;
 }
 
