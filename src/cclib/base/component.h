@@ -24,24 +24,37 @@ namespace cclib
         Component(const std::string &theName = "Component");
         virtual ~Component();
         
-        const std::string& getName() const { return m_name; };
+        const std::string& getName() const { 
+            return m_name; 
+        };
+        
         void setName(const std::string & theName) { 
             m_name = std::string(theName); 
         };
+        
         const std::list<Property::Ptr>& getPropertyList() const;
         Property::Ptr getPropertyByName(const std::string & thePropertyName);
+        
+        template<typename T>
+        inline void set(const std::string & thePropertyName, T & theValue) {
+            Property::Ptr myProperty = getPropertyByName(thePropertyName);
+            myProperty->setValue<T>(theValue);
+        }
+        
+        template<typename T>
+        inline T get(const std::string & thePropertyName) {
+            Property::Ptr myProperty = getPropertyByName(thePropertyName);
+            return myProperty->getValue<T>();
+        }
 
         virtual void updateProperty(const Property::ConstPtr &theProperty){};
         
     protected:        
-        
         void registerProperty(Property::Ptr theProperty);
 
     private:
-        
         std::string m_name;
         std::list<Property::Ptr> m_propertyList;
-        
     };
 
     // Exception definitions. TODO: put those to some neat macros

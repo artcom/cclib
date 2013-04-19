@@ -284,7 +284,9 @@ VBOMesh::enable(){
     if(_myHasVertices){
         if(_myHasUpdatedVertices) {
             _myVertexBuffer->bind(GL_ARRAY_BUFFER);
-            _myVertexBuffer->bufferData(); //_myVertices.size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
+//            _myVertexBuffer->bufferData(); //_myVertices.size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
+            // _myVertexBuffer->bufferData(_myVertices.size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
+            _myVertexBuffer->bufferData(_myVertices->size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
             _myVertexBuffer->unbind();
             _myHasUpdatedVertices = false;
         }
@@ -305,4 +307,14 @@ VBOMesh::disable() {
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
+
+void
+VBOMesh::draw() {
+    enable();
+    Graphics::checkError();
+    drawArray();
+    Graphics::checkError();
+    disable();    
+}
+
 

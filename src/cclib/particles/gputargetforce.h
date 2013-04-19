@@ -1,6 +1,6 @@
 
-#ifndef __CCLIB_GPUATTRACTOR_INCLUDED__
-#define __CCLIB_GPUATTRACTOR_INCLUDED__
+#ifndef __CCLIB_GPUTARGETFORCE_INCLUDED__
+#define __CCLIB_GPUTARGETFORCE_INCLUDED__
 
 #include <cclib.h>
 #include <particles/gpuforce.h>
@@ -23,7 +23,12 @@ class GPUTargetForce : public GPUForce {
         ShaderPtr _myInitValueShader;
         std::vector<ShaderBufferPtr> _myTargetPositionTextures;
         Property_<float>::Ptr _myScale;
-    
+        Property_<Vector3f>::Ptr _myCenter;
+        Property_<float>::Ptr _myLookAhead;
+        Property_<float>::Ptr _myMaxForce; 
+        Property_<float>::Ptr _myNearDistance; 
+        Property_<float>::Ptr _myNearMaxForce;
+        
         int _myWidth;
         int _myHeight;
         int _myCurrentIndex;
@@ -34,15 +39,18 @@ class GPUTargetForce : public GPUForce {
     
         void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);
-        void setScale(float theScale);
-        float getScale();
-        void setLookAhead(float theLookAhead);
-        void setMaxForce(float theMaxForce);
-        void setCenter(Vector3f & theCenter);
-        void setCenter(float theX, float theY, float theZ);
-        void setNearDistance(float theNearMaxDistance);
-        void setNearMaxForce(float theNearMaxForce);
+        
+        // void setScale(float theScale);
+        // float getScale();
+        // void setLookAhead(float theLookAhead);
+        // void setMaxForce(float theMaxForce);
+        // void setCenter(Vector3f & theCenter);
+        // void setCenter(float theX, float theY, float theZ);
+        // void setNearDistance(float theNearMaxDistance);
+        // void setNearMaxForce(float theNearMaxForce);
+        
         void setSize(int theWidth, int theHeight);
+        
         void setTargets(ShaderBufferPtr theTargetTexture, GPUTargetSetupPtr theSetup,
                     int theX, int theY, int theWidth, int theHeight);
         void setTargets(ShaderBufferPtr theTargetTexture, GPUTargetSetupPtr theSetup,

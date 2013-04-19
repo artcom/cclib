@@ -248,17 +248,19 @@ class TargetsDemo {
 			_myTargetBuffer->endDraw();
 			_myInitValueShader->end();
 			
-			_myTargetForce->setStrength(_cTargetStrength);
-			_myTargetForce->setLookAhead(_cLookAhead);
-			_myTargetForce->setMaxForce(_cMaxForce);
-			_myTargetForce->setNearDistance(_cTargetNearDistance);
-			_myTargetForce->setNearMaxForce(_cTargetNearMaxForce);
+			_myTargetForce->set<float>("strength", _cTargetStrength);
+			_myTargetForce->set<float>("lookAhead", _cLookAhead);
+			_myTargetForce->set<float>("maxForce", _cMaxForce);
+			_myTargetForce->set<float>("nearDistance", _cTargetNearDistance);
+			_myTargetForce->set<float>("nearMaxForce", _cTargetNearMaxForce);
 					
 			_myOffset += theDeltaTime * _cSpeed;
-			_myForceField->setNoiseScale(_cNScale);
-			_myForceField->setStrength(_cStrength);
-			_myForceField->setNoiseOffset(Vector3f(0, 0, _myOffset));
-			_myTimeBlendForce->setPower(_cLifeTimeBlendPow);
+			_myForceField->set<float>("noiseScale", _cNScale);
+			_myForceField->set<float>("strength", _cStrength);
+            Vector3f offset = Vector3f(0, 0, _myOffset);
+			_myForceField->set<Vector3f>("noiseOffset", offset);
+			
+            _myTimeBlendForce->setPower(_cLifeTimeBlendPow);
 			
 			_myViscousDrag->setDrag(_cDrag);
             

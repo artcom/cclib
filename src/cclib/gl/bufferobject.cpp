@@ -15,6 +15,7 @@ BufferObject::BufferObject(int theSize) :
     if (theSize>0) {
         bind(GL_ARRAY_BUFFER);
         bufferData(theSize, _myData, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
+        unbind();
         updateData();
     }
 }
@@ -32,32 +33,7 @@ BufferObject::updateData() {
     mapBuffer(_myData);
 
     if (_myData->empty()) {
-        switch(glGetError()) {
-            case GL_NO_ERROR:
-                throw new Exception(" # NO ERROR REPORTED");
-                break;
-            case GL_INVALID_ENUM:
-                throw new Exception(" # INVALID ENUMERATION REPORTED. check for errors in OPENGL calls with constants.");
-                break;
-            case GL_INVALID_VALUE:
-                throw new Exception("# INVALID VALUE REPORTED. check for errors with passed values that are out of a defined range.");
-                break;
-            case GL_INVALID_OPERATION:
-                throw new Exception("# INVALID OPERATION REPORTED. check for function calls that are invalid in the current graphics state.");
-                break;
-            case GL_STACK_OVERFLOW:
-                throw new Exception("# STACK OVERFLOW REPORTED. check for errors in matrix operations");
-                break;
-            case GL_STACK_UNDERFLOW:
-                throw new Exception("# STACK UNDERFLOW REPORTED. check for errors  in matrix operations");
-                break;
-            case GL_OUT_OF_MEMORY:
-                throw new Exception("# OUT OF MEMORY. not enough memory to execute the commands");
-                break;
-            case GL_TABLE_TOO_LARGE:
-                throw new Exception("# TABLE TOO LARGE.");
-                break;
-        }
+        Graphics::checkError();
     }
 
     // XXX
@@ -113,7 +89,7 @@ void
 BufferObject::bind(GLenum theTarget){
     _myCurrentTarget = theTarget;
     glBindBuffer(theTarget, _myBufferID);
-    Graphics::checkError();
+    // Graphics::checkError();
 }
 
 void 
@@ -172,6 +148,7 @@ BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, 
     
     GLenum usage = glUsage(theUsageFrequency, theUsageType);
     glBufferData(_myCurrentTarget, _mySize * sizeof(float), ptr, usage);
+    
     Graphics::checkError();
 }
 
@@ -183,7 +160,6 @@ BufferObject::bufferData(int theSize, BufferPtr theData) {
 void 
 BufferObject::bufferData() {
     bufferData(_mySize, _myData, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
-
 }
 
 void
