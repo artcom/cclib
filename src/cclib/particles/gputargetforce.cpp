@@ -166,6 +166,7 @@ GPUTargetForce::updateSetup(int theIndex, GPUTargetSetupPtr theSetup)
 void
 GPUTargetForce::addTargetSetup(ShaderBufferPtr theShaderBuffer)
 {
+    std::cerr << "fix me!" << std::endl;
     _myTargetPositionTextures.push_back(theShaderBuffer);
     if(_myTargetPositionTextures.size() == 1) {
         // Object myObject = _myTargetPositionTextures.get(_myCurrentIndex);
