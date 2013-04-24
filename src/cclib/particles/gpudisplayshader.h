@@ -7,7 +7,7 @@
 
 #include <stringified_shaders/points/display.fp.h>
 #include <stringified_shaders/points/display.vp.h>
-
+#include <stringified_shaders/points/display1.vp.h>
 
 namespace cclib {
 
@@ -23,7 +23,7 @@ class GPUDisplayShader : public Shader {
 
     public:
         static GPUDisplayShaderPtr create(const std::string & theVertexFile = std::string(display_vp), 
-                const std::string & theFragmentFile = std::string(display_fp));
+                                          const std::string & theFragmentFile = std::string(display_fp));
         void pointSize(float thePointSize);
         void minPointSize(float theMinPointSize);
         void maxPointSize(float theMaxPointSize);

@@ -4,7 +4,8 @@
 
 #include <cclib.h>
 #include <gl/bufferobject.h>
-
+#include <gl/mesh.h>
+#include <vector>
 namespace cclib {
 
 class VBOMesh : public Mesh {
@@ -14,7 +15,8 @@ class VBOMesh : public Mesh {
         bool _myHasUpdatedVertices;
         bool _myHasVertices;
 
-        BufferObjectPtr _myTextureCoordBuffers[8]; // = new CCBufferObjectPtr[8];
+        //BufferObjectPtr _myTextureCoordBuffers[8]; // = new CCBufferObjectPtr[8];
+        std::vector<BufferObjectPtr> _myTextureCoordBuffers; // = new CCBufferObjectPtr[8];
         bool _myHasUpdatedTextureCoords[8]; // = new bool[] {true, true, true, true, true, true, true, true};
         bool _myHasTextureCoords[8]; // = new bool[] {false, false, false, false, false, false, false, false};
 

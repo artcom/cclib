@@ -23,7 +23,6 @@ class FrameBufferObjectAttributes {
         int numberOfBits;
         int numberOfChannels;
 
-    
         FrameBufferObjectAttributes(TextureAttributesPtr theAttributes, int numberOfAttachments=1) :
             depthInternalFormat(GL_DEPTH_COMPONENT24),
             numberOfSamples(0),
@@ -44,6 +43,10 @@ class FrameBufferObjectAttributes {
 class FrameBufferObject {
     
     public:
+        FrameBufferObject() {};
+        FrameBufferObject(GLenum target, FrameBufferObjectAttributesPtr attributes,
+                      unsigned int width, unsigned int height);
+    
         virtual ~FrameBufferObject() {
         };
     
@@ -96,8 +99,6 @@ class FrameBufferObject {
         GLuint _myResolveFramebufferId;
 
     protected:
-        FrameBufferObject(GLenum target, FrameBufferObjectAttributesPtr attributes,
-                unsigned int width, unsigned int height);
 
         std::vector<Texture2DPtr> _myAttachments;
 

@@ -16,7 +16,7 @@
 
 namespace cclib {
 
-class GPUForce : public Component
+    class GPUForce : public Component
 {
     protected:
         GPUForce(const std::string & theShaderTypeName);

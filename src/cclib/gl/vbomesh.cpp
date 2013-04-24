@@ -164,22 +164,53 @@ void
 VBOMesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theTextureCoordSize){
     _myNumberOfVertices = theNumberOfVertices;
     _myTextureCoordSize[theLevel] = theTextureCoordSize;
- /* XXX
-    if(!_myTextureCoordBuffers[theLevel] || _myTextureCoords[theLevel].size() / _myTextureCoordSize[theLevel] != _myNumberOfVertices) {
-        if (!_myTextureCoordBuffers[theLevel]) {
-            _myTextureCoordBuffers[theLevel] = BufferObject::create(_myNumberOfVertices * theTextureCoordSize * sizeof(float));
-        } else {
-            std::vector<float> noData;
-            _myTextureCoordBuffers[theLevel]->bufferData(_myNumberOfVertices * theTextureCoordSize * sizeof(float), 
-                    noData, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
-        }
-
-        _myTextureCoords[theLevel] = _myTextureCoordBuffers[theLevel]->data();
+  
+    if(theLevel >= _myTextureCoordBuffers.size())
+    {
+        printf("%s\n\tlevel %d, theNumberOfVertices %d, theTextureCoordSize %d\n",__PRETTY_FUNCTION__,theLevel,theNumberOfVertices,theTextureCoordSize);
+        
+        _myTextureCoordBuffers.push_back( cclib::BufferObject::create(_myNumberOfVertices * theTextureCoordSize * sizeof(float)) );
+        
+        _myTextureCoords[theLevel] = _myTextureCoordBuffers.back()->data();
     }
+    else if(theLevel < _myTextureCoordBuffers.size())
+    {
+        return;
+        
+//        _myTextureCoordBuffers[theLevel]->bind(GL_ARRAY_BUFFER);
+//        _myTextureCoordBuffers[theLevel]->bufferData(_myNumberOfVertices * theTextureCoordSize * sizeof(float),
+//                                                     _myTextureCoords[theLevel], BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
+        
+        _myTextureCoords[theLevel] = _myTextureCoordBuffers.back()->data();
+    }
+    
+//    if(!_myTextureCoordBuffers[theLevel] || _myTextureCoords[theLevel]->size() / _myTextureCoordSize[theLevel] != _myNumberOfVertices)
+//    {
+//        if(!_myTextureCoordBuffers[theLevel]) {
+//            
+//            printf("%s\n\tlevel %d, theNumberOfVertices %d, theTextureCoordSize %d\n",__PRETTY_FUNCTION__,theLevel,theNumberOfVertices,theTextureCoordSize);
+//            printf("\tcreate, size %d\n",_myTextureCoords[theLevel]->size());
+//            
+//            _myTextureCoordBuffers[theLevel] = cclib::BufferObject::create(_myNumberOfVertices * theTextureCoordSize * sizeof(float));
+//            
+//            printf("\tallocated %d\n",_myTextureCoords[theLevel]->size());
+//        }
+//        else {
+//            
+////            printf("\trealloc, size %d\n",_myTextureCoords[theLevel]->size());
+////            _myTextureCoordBuffers[theLevel]->bufferData(_myNumberOfVertices * theTextureCoordSize * sizeof(float),
+////                                                         _myTextureCoords[theLevel], BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
+////            
+////            printf("\tallocated %d\n",_myTextureCoords[theLevel]->size());
+//        }
+//
+//        _myTextureCoords[theLevel] = _myTextureCoordBuffers[theLevel]->data();
+//    }
 
     _myHasTextureCoords[theLevel] = true;
     _myHasUpdatedTextureCoords[theLevel] = true;
-  */
+  
+    
 }
 
 //////////////////////////////////////////////////

@@ -62,7 +62,7 @@ class CurveFlowFieldDemo {
             _cEmitRadius(100.3333f),
             _myTime(0.0f),
             frame(0), running(true)
-        { 
+        {
             if( !glfwInit() ) {
                 running = false;
             }

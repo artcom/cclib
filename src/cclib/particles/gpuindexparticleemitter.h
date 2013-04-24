@@ -41,9 +41,9 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         std::vector<GPUParticlePtr> _myActiveParticlesArray;
 	    MeshPtr _myEmitMesh;
         double _myCurrentTime; // = 0;
-
-    private:
         std::vector<GPUParticlePtr> _myAllocatedParticles; // = new ArrayList<GPUParticle>();
+    
+    private:
 	    std::vector<GPUParticlePtr> _myDeadParticles; // = new ArrayList<GPUParticle>();
 	    std::vector<GPUParticlePtr> _myPendingParticles; // = new ArrayList<GPUParticle>();
 	    std::vector<GPUParticlePtr> _myStateChanges; // = new ArrayList<GPUParticle>();
@@ -57,10 +57,10 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
 	    BufferPtr _myVelocityBuffer;
         int _myStart;
 	
-	
-        GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
-
     public:
+        GPUIndexParticleEmitter() {};
+        GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
+    
         ~GPUIndexParticleEmitter() {
             std::cout << "hueh??" << std::endl;
         }
@@ -84,10 +84,10 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         void update(float theDeltaTime);
         int size();
         GPUParticlePtr particle(int theID);
-        void fillPositionData(BufferPtr theBuffer);
+        virtual void fillPositionData(BufferPtr theBuffer);
         void fillInfoData(BufferPtr theBuffer);
         void fillVelocityData(BufferPtr theBuffer);
-        void transferData();
+        virtual void transferData();
         void setData();
 
         // added due to the nested class private member access thing in the java original

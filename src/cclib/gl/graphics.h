@@ -13,6 +13,9 @@ namespace cclib {
 #define RADIUS  3
 #define CENTER  4
 
+#define DEFAULT_FOV 60
+    
+    
 class Graphics {
     public:
         static void clearColor(float r, float g, float b, float a = 1.0f);
@@ -31,6 +34,7 @@ class Graphics {
         static void noTexture();
         static void imageImplementation(TexturePtr theImage, 
                 float x1, float y1, float x2, float y2,float u1, float v1, float u2, float v2);
+        static void depthTest();
         static void noDepthTest();
         static void checkError();
     

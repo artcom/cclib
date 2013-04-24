@@ -26,10 +26,12 @@ public:
         _myData(NULL), _myEmpty(!theInitializedFlag), _mySize(theSize),
         _myCurrentIndex(0), _myIsSelfAllocated(false)
     {
+//        printf("%s\n\tsize %d\n",__PRETTY_FUNCTION__, _mySize);
+        
         if (_mySize == 0) {
             return;
         }
-
+        
         _myData = new float[_mySize]();
         _myIsSelfAllocated = true;
         _myEmpty = false;
@@ -78,9 +80,18 @@ public:
     void clear() {
 #warning XXX Buffer Port incomplete.
         // std::cerr << "XXX Buffer Port incomplete." << std::endl;
+        
+        delete _myData;
+        _myData = NULL;
+        _myEmpty = true;
+        _myIsSelfAllocated = false;
+        _mySize = _myCurrentIndex = 0;
     };
     
     void put(float theValue) {
+        
+//        printf("%s\n\tcurrent %d size %d\n",__PRETTY_FUNCTION__, _myCurrentIndex, _mySize);
+        
         if (_myCurrentIndex < _mySize) {
             _myData[_myCurrentIndex] = theValue;
             _myCurrentIndex++;

@@ -11,13 +11,14 @@ class GPUParticlePointRenderer : public GPUParticleRenderer {
    
     protected:
         VBOMeshPtr _myMesh;
-
-    private:
         GPUParticlesPtr _myParticles;
+    
+    private:
         GPUDisplayShaderPtr _myDisplayShader;
-        GPUParticlePointRenderer();
 
     public:
+        GPUParticlePointRenderer();
+    
         static GPUParticlePointRendererPtr create();
 
         void setup(GPUParticles * theParticles);

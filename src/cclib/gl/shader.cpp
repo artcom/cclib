@@ -8,7 +8,15 @@ CGcontext Shader::cg_context = 0;
 CGprofile Shader::cg_vertex_profile; // XXX is there a default or zero profile?
 CGprofile Shader::cg_fragment_profile;
 
-ShaderPtr 
+cclib::Shader::Shader(const std::string & vertexShaderFile, const std::string fragmentShaderFile,
+                      const std::string & vertexEntry, const std::string & fragmentEntry)
+{
+    std::vector<std::string> vertexShaderFiles   = std::vector<std::string>(1, vertexShaderFile);
+    std::vector<std::string> fragmentShaderFiles = std::vector<std::string>(1, fragmentShaderFile);
+    cclib::Shader::Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry);
+}
+
+ShaderPtr
 Shader::create(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
         const std::string & vertexEntry, const std::string & fragmentEntry) 
 {
@@ -32,10 +40,18 @@ Shader::Shader(const std::vector<std::string> & vertexShaderFiles,
         const std::string & vertexEntry, const std::string & fragmentEntry) :
    _vertexEntry(vertexEntry), _fragmentEntry(fragmentEntry),
    _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
-{   
-    if (!glewIsSupported("GL_ARB_vertex_shader") || !glewIsSupported("GL_ARB_fragment_shader")) {
-        throw cclib::Exception("Shaders are not supported by your hardware.");
+{
+    // Driver does not support OpenGL Shading Language - GLSL
+    if (!glewIsSupported("GL_ARB_vertex_shader")) {
+        throw cclib::Exception("GL_ARB_vertex_shader not supported by your hardware.");
+//        printf("GL_ARB_vertex_shader not supported by your hardware.\n");
     }
+    
+    if (!glewIsSupported("GL_ARB_fragment_shader")) {
+        throw cclib::Exception("GL_ARB_fragment_shader not supported by your hardware.");
+//        printf("GL_ARB_fragment_shader not supported by your hardware.\n");
+    }
+
     
     initShader();
 

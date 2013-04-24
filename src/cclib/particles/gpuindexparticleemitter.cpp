@@ -325,7 +325,7 @@ GPUIndexParticleEmitter::setData() {
     _myEmitMesh->textureCoords(2, _myVelocityBuffer, 3);
 
     transferData();
-
+    
     _myAllocatedParticles.clear();
 }
 

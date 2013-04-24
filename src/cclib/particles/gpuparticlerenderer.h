@@ -7,12 +7,12 @@
 namespace cclib {
 
 class GPUParticleRenderer {
-    public:
-        GPUParticleRenderer() {};
-	    virtual void setup(GPUParticles * theParticles) = 0;
-        virtual void update(float theDeltaTime) = 0;
-        virtual void draw() = 0;
-        virtual VBOMeshPtr mesh() = 0;
+public:
+    GPUParticleRenderer() {};
+    virtual void setup(GPUParticles* theParticles) = 0;
+    virtual void update(float theDeltaTime) = 0;
+    virtual void draw() = 0;
+    virtual VBOMeshPtr mesh() = 0;
 };
 
 };
