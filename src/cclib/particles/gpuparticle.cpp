@@ -10,7 +10,9 @@ GPUParticle::GPUParticle(GPUParticlesPtr theParticles, int theIndex):
 {
     _myPosition = Vector3fPtr( new Vector3f() );
     _myVelocity = Vector3fPtr( new Vector3f() );
+    _myColor = Color::Ptr( new Color() );
 }
+
 
 GPUParticlePtr
 GPUParticle::create(GPUParticlesPtr theParticles, int theIndex) {
@@ -50,6 +52,11 @@ GPUParticle::isAllocated() {
 void 
 GPUParticle::isAllocated(bool theIsAllocated) {
     _myIsAllocated = theIsAllocated;
+}
+
+ColorPtr
+GPUParticle::color() {
+    return _myColor;
 }
 
 Vector3fPtr 

@@ -41,9 +41,19 @@ Graphics::textureCoords(int theUnit, float theX, float theY, float theZ) {
 	glMultiTexCoord3f(theUnit, theX, theY, theZ);
 }
 
+void
+Graphics::textureCoords(int theUnit, float theX, float theY, float theZ, float theW) {
+	glMultiTexCoord4f(theUnit, theX, theY, theZ, theW);
+}
+
 void 
 Graphics::textureCoords(int theUnit, Vector3fPtr v) {
 	glMultiTexCoord3f(theUnit, v->x(), v->y(), v->z());
+}
+
+void 
+Graphics::textureCoords(int theUnit, Vector3f v) {
+	glMultiTexCoord3f(theUnit, v.x(), v.y(), v.z());
 }
 
 void 

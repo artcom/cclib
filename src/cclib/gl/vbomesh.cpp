@@ -34,6 +34,7 @@ void
 VBOMesh::bufferSubData(GLuint theBufferID, BufferPtr theData, int theOffset,
         int theNumberOfVertices, int theNumberOfCoords) 
 {
+    // std::cout << "vbo::bufferSubData" << std::endl;
     // XXX ??? theData.flip();
     // Bind The Buffer
     glBindBuffer(GL_ARRAY_BUFFER, theBufferID);
@@ -51,6 +52,7 @@ VBOMesh::bufferSubData(GLuint theBufferID, BufferPtr theData, int theOffset,
 
 void 
 VBOMesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
+    // std::cout << "vbo::prepareVertexData" << std::endl;
     _myNumberOfVertices = theNumberOfVertices;
     _myVertexSize = theVertexSize;
 
@@ -73,21 +75,25 @@ VBOMesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
 
 void 
 VBOMesh::vertices(ShaderBufferPtr theShaderBuffer) {
+    // std::cout << "vbo::vertices/shaderbuffer" << std::endl;
     vertices(theShaderBuffer, 0, 0, theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
 VBOMesh::vertices(ShaderBufferPtr theShaderBuffer, GLuint theID) {
+    // std::cout << "vbo::vertices/shaderbuffer" << std::endl;
     vertices(theShaderBuffer, 0, 0, 0, theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
 VBOMesh::vertices(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight) {
+    // std::cout << "vbo::vertices/shaderbuffer" << std::endl;
     vertices(theShaderBuffer, 0, theX, theY, theWidth, theHeight);
 }
 
 void 
 VBOMesh::vertices(ShaderBufferPtr theShaderBuffer, GLuint theID, int theX, int theY, int theWidth, int theHeight) {
+    // std::cout << "vbo::vertices/shaderbuffer" << std::endl;
     if(!_myVertexBuffer) {
         _myVertexBuffer = BufferObject::create();
     }
@@ -103,6 +109,7 @@ VBOMesh::vertices(ShaderBufferPtr theShaderBuffer, GLuint theID, int theX, int t
 
 BufferObjectPtr 
 VBOMesh::vertexBuffer() {
+    // std::cout << "vbo::vertexBuffer" << std::endl;
     Mesh::prepareVertexData(_myVertexSize);
     return _myVertexBuffer;
 }
@@ -115,6 +122,7 @@ VBOMesh::vertexBuffer() {
 
 void 
 VBOMesh::prepareNormalData(int theNumberOfVertices){
+    // std::cout << "vbo::prepareNormalData" << std::endl;
     _myNumberOfVertices = theNumberOfVertices;
 
     if(!_myNormalBuffer || _myNormals->size() / 3 != _myNumberOfVertices) {
@@ -129,21 +137,25 @@ VBOMesh::prepareNormalData(int theNumberOfVertices){
 
 void 
 VBOMesh::normals(ShaderBufferPtr theShaderBuffer){
+    // std::cout << "vbo::normals" << std::endl;
     normals(theShaderBuffer,0,0,theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
 VBOMesh::normals(ShaderBufferPtr theShaderBuffer, int theID){
+    // std::cout << "vbo::normals" << std::endl;
     normals(theShaderBuffer,theID,0,0,theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
 VBOMesh::normals(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight) {
+    // std::cout << "vbo::normals" << std::endl;
     normals(theShaderBuffer, 0, theX, theY, theWidth, theHeight);
 }
 
 void 
 VBOMesh::normals(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight) {    	
+    // std::cout << "vbo::normals" << std::endl;
     if (!_myNormalBuffer) {
         _myNormalBuffer = BufferObject::create();
     }
@@ -162,6 +174,7 @@ VBOMesh::normals(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY,
 
 void 
 VBOMesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theTextureCoordSize){
+    // std::cout << "vbo::prepareTextureCoordData" << std::endl;
     _myNumberOfVertices = theNumberOfVertices;
     _myTextureCoordSize[theLevel] = theTextureCoordSize;
  /* XXX
@@ -190,6 +203,7 @@ VBOMesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theT
 
 void 
 VBOMesh::prepareColorData(int theNumberOfVertices){
+    // std::cout << "vbo::prepareColorData" << std::endl;
      _myNumberOfVertices = theNumberOfVertices;
     
     if(_myColors->empty() || _myColors->size() / 4 != _myNumberOfVertices) {
@@ -205,21 +219,25 @@ VBOMesh::prepareColorData(int theNumberOfVertices){
 
 void
 VBOMesh::colors(ShaderBufferPtr theShaderBuffer){
+    // std::cout << "vbo::colors" << std::endl;
     colors(theShaderBuffer, 0, 0, theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
 VBOMesh::colors(ShaderBufferPtr theShaderBuffer, int theID){
+    // std::cout << "vbo::colors" << std::endl;
     colors(theShaderBuffer, theID, 0, 0, theShaderBuffer->width(), theShaderBuffer->height());
 }
 
 void 
 VBOMesh::colors(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight) {
+    // std::cout << "vbo::colors" << std::endl;
     colors(theShaderBuffer, 0, theX, theY, theWidth, theHeight);
 }
 
 void 
 VBOMesh::colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight) {
+    // std::cout << "vbo::colors" << std::endl;
     if(!_myColorBuffer){
         _myColorBuffer = BufferObject::create(theWidth * theHeight * sizeof(float));
     }
@@ -236,6 +254,7 @@ VBOMesh::enable(){
     // Enable Pointers
     for(int i = 0; i < 8; i++) {
         if(_myHasTextureCoords[i]){
+            // std::cout << "vbo:textureCoords " << i << std::endl;
             if(_myHasUpdatedTextureCoords[i]) {
                 _myTextureCoordBuffers[i]->bind(GL_ARRAY_BUFFER);
                 _myTextureCoordBuffers[i]->bufferData();
@@ -247,10 +266,13 @@ VBOMesh::enable(){
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
             glTexCoordPointer(_myTextureCoordSize[i], GL_FLOAT, 0, 0);
             Graphics::checkError();
+        } else {
+            // std::cout << "no vbo:textureCoords " << i << std::endl;
         }
     }
 
-    if(_myHasColors){
+    if(_myHasColors) {
+        // std::cout << "vbo:color" << std::endl;
         if(_myHasUpdatedColors) {
             _myColorBuffer->bind(GL_ARRAY_BUFFER);
             Graphics::checkError();
@@ -266,9 +288,12 @@ VBOMesh::enable(){
         Graphics::checkError();
         glColorPointer(4, GL_FLOAT, 0, 0);
         Graphics::checkError();
+    } else {
+        // std::cout << "no vbo:colors" << std::endl;
     }
     
     if(_myHasNormals){
+        // std::cout << "vbo:normal" << std::endl;
         if(_myHasUpdatedNormals) {
             _myNormalBuffer->bind(GL_ARRAY_BUFFER);
             _myNormalBuffer->bufferData();
@@ -279,9 +304,12 @@ VBOMesh::enable(){
         glEnableClientState(GL_NORMAL_ARRAY);
         glNormalPointer(GL_FLOAT, 0, 0);
         Graphics::checkError();
+    } else {
+        // std::cout << "no vbo:normals" << std::endl;
     }
     
     if(_myHasVertices){
+        // std::cout << "vbo:vertices" << std::endl;
         if(_myHasUpdatedVertices) {
             _myVertexBuffer->bind(GL_ARRAY_BUFFER);
 //            _myVertexBuffer->bufferData(); //_myVertices.size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
@@ -294,6 +322,8 @@ VBOMesh::enable(){
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(_myVertexSize, GL_FLOAT, 0, 0);
         Graphics::checkError();
+    } else {
+        // std::cout << "no vbo:vertices" << std::endl;
     }
     
     // if(_myHasIndices) {
@@ -310,11 +340,16 @@ VBOMesh::disable() {
 
 void
 VBOMesh::draw() {
+    // std::cout << "draw1 ";
     enable();
+    // std::cout << "2 ";
     Graphics::checkError();
-    drawArray();
+    // std::cout << "3 ";
+    Mesh::drawArray();
+    // std::cout << "4 ";
     Graphics::checkError();
     disable();    
+    // std::cout << "5 ";
 }
 
 

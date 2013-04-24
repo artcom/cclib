@@ -106,37 +106,41 @@ class TargetsDemo {
 
         void setup() {
 
-            _myGravity = GPUGravity::create(Vector3f());
+            _myGravity = GPUGravity::create(Vector3f(2,0,0));
             _myForceField = GPUForceField::create(0.01, 1, Vector3f());
             _myViscousDrag = GPUViscousDrag::create(0.1f);	
             _myTargetForce = GPUTargetForce::create();
 
-            std::vector<GPUForcePtr> myCombinedForces;
+            /*std::vector<GPUForcePtr> myCombinedForces;
             myCombinedForces.push_back(_myGravity);
 			myCombinedForces.push_back(_myForceField);
 			
             _myCombinedForce = GPUCombinedForce::create(myCombinedForces);
-			
+			*/
+            
 			_myTimeBlendForce = GPUTimeForceBlend::create();
-            float startTime = 0.0f;float endTime = 4.0f; float power = 6.0f;
+            float startTime = 0.0f;
+            float endTime = 2.0f;
+            float power = 6.0f;
 			
             _myTimeBlendForce->set<float>("startTime", startTime);
 			_myTimeBlendForce->set<float>("endTime", endTime);
             _myTimeBlendForce->setBlend(0.005f, 1.0f);
 			_myTimeBlendForce->set<float>("power", power);
 			
-            _myTimeBlendForce->initialize( _myCombinedForce, _myTargetForce );
-
+            // _myTimeBlendForce->initialize( _myCombinedForce, _myTargetForce );
+            _myTimeBlendForce->initialize(_myGravity, _myViscousDrag); 
+            
 			// _myTargetTextureData = CCTextureIO.newTextureData("squarepusher.png");
 
             std::vector<GPUForcePtr> myForces;
             std::vector<GPUImpulsePtr> myImpulses;
             std::vector<GPUConstraintPtr> myConstraints;
 
-//			myForces.push_back(_myTimeBlendForce);
+			myForces.push_back(_myTimeBlendForce);
 			myForces.push_back(_myTargetForce);
 			myForces.push_back(_myForceField);
-			myForces.push_back(_myViscousDrag);
+			// myForces.push_back(_myViscousDrag);
 			
             GPUParticlePointRendererPtr myRenderer = GPUParticlePointRenderer::create();
             _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 700, 700);

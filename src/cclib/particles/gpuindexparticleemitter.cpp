@@ -142,8 +142,9 @@ GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, i
     _myEmitMesh = Mesh::create(GL_POINTS);
     _myVertexBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
     _myPositionBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
-    _myInfoBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
+    _myInfoBuffer = Buffer::create(1000*4); // BufferUtil.newDirectFloatBuffer(1000 * 3);
     _myVelocityBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
+    _myColorBuffer = Buffer::create(1000*4);
 }
 
 GPUIndexParticleEmitterPtr 
@@ -177,6 +178,17 @@ GPUIndexParticleEmitter::changeParticle(GPUParticlePtr theParticle) {
 }
 
 GPUParticlePtr 
+GPUIndexParticleEmitter::emit(const Color & theColor, const Vector3f & thePosition, const Vector3f & theVelocity, float theLifeTime, bool theIsPermanent) {
+    if (_myFreeIndices.empty()) {
+        return GPUParticlePtr();
+    }
+
+    int myFreeIndex = nextFreeId();
+    _myFreeIndices.pop_back();
+    return emit(myFreeIndex, theColor, thePosition, theVelocity, theLifeTime, theIsPermanent);
+}
+
+GPUParticlePtr 
 GPUIndexParticleEmitter::emit(const Vector3f & thePosition, const Vector3f & theVelocity,
         float theLifeTime, bool theIsPermanent)
 {
@@ -186,23 +198,24 @@ GPUIndexParticleEmitter::emit(const Vector3f & thePosition, const Vector3f & the
 
     int myFreeIndex = nextFreeId(); 
     _myFreeIndices.pop_back();
-
-    return emit(myFreeIndex, thePosition, theVelocity, theLifeTime, theIsPermanent);
+    Color myColor(1.0f, 1.0f, 1.0f, 1.0);
+    return emit(myFreeIndex, myColor, thePosition, theVelocity, theLifeTime, theIsPermanent);
 }
 
 GPUParticlePtr 
-GPUIndexParticleEmitter::emit(int theIndex, const Vector3f & thePosition, const Vector3f & theVelocity,
+GPUIndexParticleEmitter::emit(int theIndex, const Color & theColor, const Vector3f & thePosition, const Vector3f & theVelocity,
         float theLifeTime, bool theIsPermanent)
 {
     int myIndex = theIndex - _myStart;
     GPUParticlePtr myActiveParticle = _myActiveParticlesArray[myIndex];
+    myActiveParticle->color()->set( theColor );
     myActiveParticle->position()->set( thePosition );
     myActiveParticle->velocity()->set( theVelocity );
     myActiveParticle->timeOfDeath(_myCurrentTime + theLifeTime);
     myActiveParticle->lifeTime(theLifeTime);
     myActiveParticle->isPermanent(theIsPermanent);
     myActiveParticle->step(0);
-
+    
     _myAllocatedParticles.push_back(myActiveParticle);
     _myParticleWaitingList->add(myActiveParticle);
 
@@ -238,13 +251,24 @@ void GPUIndexParticleEmitter::fillPositionData(BufferPtr theBuffer) {
     }
 }
 
+void GPUIndexParticleEmitter::fillColorData(BufferPtr theBuffer) {
+    for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
+        GPUParticlePtr myParticle = _myAllocatedParticles[i];
+        theBuffer->data()[i * 3 + 0] = myParticle->color()->red();
+        theBuffer->data()[i * 3 + 1] = myParticle->color()->green();
+        theBuffer->data()[i * 3 + 2] = myParticle->color()->blue();
+        theBuffer->data()[i * 3 + 3] = myParticle->color()->alpha();
+    }
+}
+
 void 
 GPUIndexParticleEmitter::fillInfoData(BufferPtr theBuffer) {
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
-        theBuffer->data()[i * 3 + 0] = 0;
+        theBuffer->data()[i * 3 + 0] = myParticle->age();
         theBuffer->data()[i * 3 + 1] = myParticle->lifeTime();
         theBuffer->data()[i * 3 + 2] = myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
+        theBuffer->data()[i * 3 + 3] = myParticle->step(); //, myParticle.step();
     }
 }
 
@@ -286,8 +310,9 @@ GPUIndexParticleEmitter::setData() {
     if (myEmitSize > _myEmitMesh->numberOfVertices()) {
         _myVertexBuffer = Buffer::create(myEmitSize * 3, true);
         _myPositionBuffer = Buffer::create(myEmitSize * 3, true);
-        _myInfoBuffer = Buffer::create(myEmitSize * 3, true);
+        _myInfoBuffer = Buffer::create(myEmitSize * 4, true);
         _myVelocityBuffer = Buffer::create(myEmitSize * 3, true);
+        _myColorBuffer = Buffer::create(myEmitSize * 4, true);
     }
 #warning implement correct resizing
     /* else {
@@ -310,10 +335,12 @@ GPUIndexParticleEmitter::setData() {
     }
 
     fillPositionData(_myPositionBuffer);
+    fillColorData(_myColorBuffer);
     fillInfoData(_myInfoBuffer);
     fillVelocityData(_myVelocityBuffer);
 
     _myVertexBuffer->rewind();
+    _myColorBuffer->rewind();
     _myPositionBuffer->rewind();
     _myInfoBuffer->rewind();
     _myVelocityBuffer->rewind();
@@ -321,8 +348,9 @@ GPUIndexParticleEmitter::setData() {
     _myEmitMesh->clearAll();
     _myEmitMesh->vertices(_myVertexBuffer);
     _myEmitMesh->textureCoords(0, _myPositionBuffer, 3);
-    _myEmitMesh->textureCoords(1, _myInfoBuffer, 3);
+    _myEmitMesh->textureCoords(1, _myInfoBuffer, 4);
     _myEmitMesh->textureCoords(2, _myVelocityBuffer, 3);
+    _myEmitMesh->textureCoords(3, _myColorBuffer, 4);
 
     transferData();
 

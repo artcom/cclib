@@ -133,8 +133,8 @@ class CurveFlowFieldDemo {
                                         cclib::random<float>(-50.0, 50.0));
                 Vector3f vel;
                 vel.randomize(10.0f);
-                
-                _myEmitter->emit( pos, vel, 10, false );
+                Color c(1.0f, 0.0f, 0.0f, 1.0f);
+                _myEmitter->emit(c, pos, vel, 10, false);
             }
 
             _myParticles->update(1.0f/60.0f);

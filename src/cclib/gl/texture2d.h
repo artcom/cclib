@@ -8,6 +8,7 @@ namespace cclib {
 
 class Color {
     public:
+        typedef std::tr1::shared_ptr<Color> Ptr;
         Color(unsigned int red=255, unsigned int green=255, unsigned int blue=255, unsigned int alpha=255) 
             : _red(red/255.0f), _green(green/255.0f), _blue(blue/255.0f), _alpha(alpha/255.0f) {};
 
@@ -21,10 +22,22 @@ class Color {
         float blue() { return _blue; };
         float alpha() { return _alpha; };
         
+        float r() { return _red; };
+        float g() { return _green; };
+        float b() { return _blue; };
+        float a() { return _alpha; };
+        
         void red(float value) { _red = value; };
         void green(float value) { _green = value; };
         void blue(float value) { _blue = value; };
         void alpha(float value) { _alpha = value; };
+
+        void set(Color theColor) {
+            _red   = theColor.r();
+            _green = theColor.g();
+            _blue  = theColor.b();
+            _alpha = theColor.a();
+        };
 
     private:
         float _red;
