@@ -6,11 +6,13 @@
 using namespace cclib;
 
 BufferObject::BufferObject(int theSize) :
-    _myBufferID(0), _mySize(0)    
+    _myBufferID(0), _mySize(theSize)
 {
-    _mySize = 0;
+    _mySize = theSize;
     glGenBuffers(1, &(_myBufferID));
     _myData = Buffer::create(theSize);
+    
+    printf("%s\n\tmyBufferID %d\n",__PRETTY_FUNCTION__,_myBufferID);
     
     if (theSize>0) {
         bind(GL_ARRAY_BUFFER);
@@ -133,6 +135,9 @@ BufferObject::glUsage(unsigned int theUsageFrequency, unsigned int theUsageType)
     return 0;
 }
 
+// http://www.opengl.org/sdk/docs/man/xhtml/glBufferData.xml
+// GL_INVALID_OPERATION is generated if the reserved buffer object name 0 is bound to target.
+
 void 
 BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, int theUsageType) {
     // set the data to the currentTarget GPU buffer object
@@ -145,6 +150,8 @@ BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, 
     } else {
         ptr = theData->data();
     }
+    
+    printf("%s\n\tmyCurrentTarget %d, %s\n",__PRETTY_FUNCTION__,_myCurrentTarget,(ptr == NULL) ? "data is empty" : "data is available");
     
     GLenum usage = glUsage(theUsageFrequency, theUsageType);
     glBufferData(_myCurrentTarget, _mySize * sizeof(float), ptr, usage);

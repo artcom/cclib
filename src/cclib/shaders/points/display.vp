@@ -23,9 +23,18 @@ void main (
 	// Compute point size.
 	
 	//const float fieldOfView = radians(60.0);
-	//pointSize = 50 * tan(fieldOfView / 2) / -posViewSpace.z;
+	//float myPointSize = 50 * tan(fieldOfView / 2) / -posViewSpace.z;
 	
-	float pointSize = tanHalfFov / -posViewSpace.z;
+	float myPointSize = tanHalfFov / -posViewSpace.z * pointSize;
+
+	if (myPointSize > maxPointSize)
+	{
+		myPointSize = maxPointSize;
+	}
+	else if (myPointSize < minPointSize)
+	{
+		myPointSize = minPointSize;
+	}
 
 	// Do fake antialiasing if point size is below 1.	
 	/*o.Color = color;
@@ -35,7 +44,9 @@ void main (
 		o.Color = color * pointSize; /// BUG: Squared!
 		o.PointSize = 1;
 	}*/
-	oColor = min(iColor * pointSize * pointSize, iColor);
-	oPointSize = max(pointSize, 1);
+
+	oColor = min(iColor * (myPointSize * 3.0), iColor);
+	//oColor = iColor;
+	oPointSize = max(myPointSize, 1);
 }
 	           

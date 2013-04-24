@@ -232,6 +232,11 @@ Graphics::noTexture() {
     _myDrawTexture = false;
 }
 
+void
+Graphics::depthTest() {
+    glEnable(GL_DEPTH_TEST);
+}
+
 void 
 Graphics::noDepthTest() {
     glDisable(GL_DEPTH_TEST);

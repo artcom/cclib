@@ -353,7 +353,7 @@ GPUIndexParticleEmitter::setData() {
     _myEmitMesh->textureCoords(3, _myColorBuffer, 4);
 
     transferData();
-
+    
     _myAllocatedParticles.clear();
 }
 

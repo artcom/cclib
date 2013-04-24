@@ -49,7 +49,7 @@ endif(Boost_UNIT_TEST_FRAMEWORK_LIBRARY)
 find_package(OpenGL REQUIRED)
 
 # stringify all shader files
-FILE(GLOB_RECURSE SHADERS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/shaders" FALSE "*.?p")
+FILE(GLOB_RECURSE SHADERS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/shaders" FALSE "*.?p" || "*.glsl")
 
 MESSAGE(STATUS "stringifying shaders...")
 FOREACH(shader ${SHADERS})
@@ -59,7 +59,8 @@ MESSAGE(STATUS "  ...done.")
 
 # add stringified shaders to library
 set(SHADER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/stringified_shaders")
-FILE(GLOB_RECURSE SHADER_SOURCES ABSOLUTE ${SHADER_PATH} *.fp.cpp *.vp.cpp)
+FILE(GLOB_RECURSE SHADER_SOURCES ABSOLUTE ${SHADER_PATH} *.fp.cpp *.vp.cpp *.glsl.cpp)
+
 
 set(SOURCES 
     base/component.cpp
@@ -94,6 +95,7 @@ set(SOURCES
 )
  
 set(HEADERS
+    cclib_all.h
     cclib.h
     base/property.h
     base/component.h

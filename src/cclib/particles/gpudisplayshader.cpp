@@ -14,9 +14,9 @@ GPUDisplayShader::GPUDisplayShader(const std::vector<std::string> & theVertexFil
     _myTangHalfFovParameter = vertexParameter("tanHalfFov");
     load();
 
-    pointSize(50);
-    minPointSize(0.1f);
-    maxPointSize(2);
+    pointSize(0.1);
+    minPointSize(0.01f);
+    maxPointSize(3);
 }
 
 GPUDisplayShaderPtr 

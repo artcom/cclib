@@ -38,7 +38,8 @@ Mesh::prepareVertexData(int theNumberOfVertices, int theVertexSize) {
     _myNumberOfVertices = theNumberOfVertices;
     _myVertexSize = theVertexSize;
 
-    if(_myVertices->empty() || _myVertices->size() / _myVertexSize != _myNumberOfVertices) {
+    if(_myVertices->empty() || _myVertices->size() / _myVertexSize != _myNumberOfVertices)
+    {
         _myVertices = Buffer::create(_myNumberOfVertices * _myVertexSize);
         _myVerticesIdx = 0;
     }
@@ -217,6 +218,8 @@ Mesh::prepareTextureCoordData(int theNumberOfVertices, int theLevel, int theText
     _myNumberOfVertices = theNumberOfVertices;
     _myTextureCoordSize[theLevel] = theTextureCoordSize;
 
+    printf("%s\n\tlevel %d, size %d\n",__PRETTY_FUNCTION__,theLevel,_myTextureCoords[theLevel]->size());
+    
     if(_myTextureCoords[theLevel]->empty() || _myNumberOfVertices != _myTextureCoords[theLevel]->size() / theTextureCoordSize) {
 //        _myTextureCoords[theLevel] = std::vector<float>();
     }

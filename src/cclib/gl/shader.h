@@ -15,7 +15,11 @@ class Shader {
         static ShaderPtr create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
                 const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
         
-        
+    
+        Shader() {};
+        Shader(const std::string & vertexShaderFile, const std::string fragmentShaderFile,
+               const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main");
+    
         virtual ~Shader() {};
         static std::string combineSources(const std::vector<std::string> & shaders);
 
