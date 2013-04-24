@@ -7,18 +7,31 @@
 #include <particles/gpuindexparticleemitter.h>
 
 using namespace cclib; 
-    
 
 GPUTargetForce::GPUTargetForce(int theTargetTextures) :
     GPUForce("TargetForce"),
     _myInitialTargetTextures(theTargetTextures),
     _myTargetPositionTextures(),
     _myInitValueShader(),
-    _myScale(Property_<float>::create("scale", 1.0f)),
     _myWidth(0),
     _myHeight(0),
-    _myCurrentIndex(0)
+    _myCurrentIndex(0),
+
+	// _myTargetPositionTexture("targetPositionTexture");
+    _myScale(Property_<float>::create("scale", 1.0f)),
+    _myCenter(Property_<Vector3f>::create("center", Vector3f())),
+    _myLookAhead(Property_<float>::create("lookAhead", 0.0f)),
+    _myMaxForce(Property_<float>::create("maxForce", 0.0f)),
+    _myNearDistance(Property_<float>::create("nearDistance", 0.0f)),
+    _myNearMaxForce(Property_<float>::create("nearMaxForce", 0.0f))
 {
+    registerProperty(_myScale);
+    registerProperty(_myScale);
+    registerProperty(_myCenter);
+    registerProperty(_myLookAhead);
+    registerProperty(_myMaxForce);
+    registerProperty(_myNearDistance);
+    registerProperty(_myNearMaxForce);
 }
 
 GPUTargetForcePtr
@@ -41,47 +54,12 @@ GPUTargetForce::setupParameter(int theWidth, int theHeight) {
 void 
 GPUTargetForce::update(float theDeltaTime) {
     GPUForce::update(theDeltaTime);
-    _myVelocityShader->parameter(_myScaleParameter, getScale());
-}
-
-void
-GPUTargetForce::setScale(float theScale) {
-    _myScale->setValue<float>(theScale);
-}
-
-float
-GPUTargetForce::getScale() {
-    return _myScale->getValue<float>();
-}
-
-void
-GPUTargetForce::setLookAhead(float theLookAhead) {
-    _myVelocityShader->parameter(_myLookAheadParameter, theLookAhead);
-}
-
-void
-GPUTargetForce::setMaxForce(float theMaxForce) {
-    _myVelocityShader->parameter(_myMaxForceParameter, theMaxForce);
-}
-
-void
-GPUTargetForce::setCenter(Vector3f & theCenter) {
-    _myVelocityShader->parameter(_myCenterParameter, theCenter);
-}
-
-void
-GPUTargetForce::setCenter(float theX, float theY, float theZ) {
-    _myVelocityShader->parameter(_myCenterParameter, theX, theY, theZ);
-}
-
-void
-GPUTargetForce::setNearDistance(float theNearMaxDistance) {
-    _myVelocityShader->parameter(_myNearDistanceParameter, theNearMaxDistance);
-}
-
-void
-GPUTargetForce::setNearMaxForce(float theNearMaxForce) {
-    _myVelocityShader->parameter(_myNearMaxForceParameter, theNearMaxForce);
+    _myVelocityShader->parameter(_myScaleParameter, _myScale->getValue<float>());
+    _myVelocityShader->parameter(_myLookAheadParameter, _myLookAhead->getValue<float>());
+    _myVelocityShader->parameter(_myMaxForceParameter, _myMaxForce->getValue<float>());
+    _myVelocityShader->parameter(_myCenterParameter, _myCenter->getValue<Vector3f>());
+    _myVelocityShader->parameter(_myNearDistanceParameter, _myNearDistance->getValue<float>());
+    _myVelocityShader->parameter(_myNearMaxForceParameter, _myNearMaxForce->getValue<float>());
 }
 
 void
@@ -188,6 +166,7 @@ GPUTargetForce::updateSetup(int theIndex, GPUTargetSetupPtr theSetup)
 void
 GPUTargetForce::addTargetSetup(ShaderBufferPtr theShaderBuffer)
 {
+    std::cerr << "fix me!" << std::endl;
     _myTargetPositionTextures.push_back(theShaderBuffer);
     if(_myTargetPositionTextures.size() == 1) {
         // Object myObject = _myTargetPositionTextures.get(_myCurrentIndex);

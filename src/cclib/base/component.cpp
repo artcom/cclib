@@ -23,7 +23,7 @@ Component::getPropertyByName(const std::string & thePropertyName)
     throw PropertyNotFoundException(thePropertyName);
 }
 
-const std::list<Property::Ptr>& 
+const std::list<Property::Ptr>&
 Component::getPropertyList() const
 {
     return m_propertyList;

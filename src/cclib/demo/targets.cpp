@@ -117,10 +117,16 @@ class TargetsDemo {
 			
             _myCombinedForce = GPUCombinedForce::create(myCombinedForces);
 			
-			_myTimeBlendForce = GPUTimeForceBlend::create(0, 4, _myCombinedForce, _myTargetForce);
-			_myTimeBlendForce->setBlend(0.005f, 1.0f);
-			_myTimeBlendForce->setPower(6);
-				
+			_myTimeBlendForce = GPUTimeForceBlend::create();
+            float startTime = 0.0f;float endTime = 4.0f; float power = 6.0f;
+			
+            _myTimeBlendForce->set<float>("startTime", startTime);
+			_myTimeBlendForce->set<float>("endTime", endTime);
+            _myTimeBlendForce->setBlend(0.005f, 1.0f);
+			_myTimeBlendForce->set<float>("power", power);
+			
+            _myTimeBlendForce->initialize( _myCombinedForce, _myTargetForce );
+
 			// _myTargetTextureData = CCTextureIO.newTextureData("squarepusher.png");
 
             std::vector<GPUForcePtr> myForces;
@@ -248,17 +254,19 @@ class TargetsDemo {
 			_myTargetBuffer->endDraw();
 			_myInitValueShader->end();
 			
-			_myTargetForce->setStrength(_cTargetStrength);
-			_myTargetForce->setLookAhead(_cLookAhead);
-			_myTargetForce->setMaxForce(_cMaxForce);
-			_myTargetForce->setNearDistance(_cTargetNearDistance);
-			_myTargetForce->setNearMaxForce(_cTargetNearMaxForce);
+			_myTargetForce->set<float>("strength", _cTargetStrength);
+			_myTargetForce->set<float>("lookAhead", _cLookAhead);
+			_myTargetForce->set<float>("maxForce", _cMaxForce);
+			_myTargetForce->set<float>("nearDistance", _cTargetNearDistance);
+			_myTargetForce->set<float>("nearMaxForce", _cTargetNearMaxForce);
 					
 			_myOffset += theDeltaTime * _cSpeed;
-			_myForceField->setNoiseScale(_cNScale);
-			_myForceField->setStrength(_cStrength);
-			_myForceField->setNoiseOffset(Vector3f(0, 0, _myOffset));
-			_myTimeBlendForce->setPower(_cLifeTimeBlendPow);
+			_myForceField->set<float>("noiseScale", _cNScale);
+			_myForceField->set<float>("strength", _cStrength);
+            Vector3f offset = Vector3f(0, 0, _myOffset);
+			_myForceField->set<Vector3f>("noiseOffset", offset);
+			
+            _myTimeBlendForce->set<float>("power", _cLifeTimeBlendPow);
 			
 			_myViscousDrag->setDrag(_cDrag);
             

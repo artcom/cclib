@@ -57,6 +57,7 @@ class VBOMesh : public Mesh {
         void colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight);
         void enable();
         void disable();
+        void draw();
 };
 
 };// namespace
