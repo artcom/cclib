@@ -56,6 +56,7 @@ namespace cclib {
         void setOutputScale(float value) { _myOutputScale = value; };
         void setRadius(float value) { _myRadius = value; };
         void setSpeed(float value) { _mySpeed = value; };
+        void setOffset(float value) { _myOffset = value; };
     };
     
 }; // namespace cclib
