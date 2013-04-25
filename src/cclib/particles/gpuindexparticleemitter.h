@@ -52,6 +52,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         ParticleWaitingListPtr _myParticleWaitingList;
         
         BufferPtr _myVertexBuffer;
+	    BufferPtr _myColorBuffer;
 	    BufferPtr _myPositionBuffer;
 	    BufferPtr _myInfoBuffer;
 	    BufferPtr _myVelocityBuffer;
@@ -78,13 +79,17 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         void changeParticle(GPUParticlePtr theParticle);
         GPUParticlePtr emit(const Vector3f & thePosition, const Vector3f & theVelocity,
                 float theLifeTime, bool theIsPermanent);
-        GPUParticlePtr emit(int theIndex, const Vector3f & thePosition, const Vector3f & theVelocity,
-                float theLifeTime, bool theIsPermanent);
         GPUParticlePtr emit(const Vector3f & thePosition, const Vector3f & theVelocity, float theLifeTime);
+        GPUParticlePtr emit(const Color & theColor, const Vector3f & thePosition, const Vector3f & theVelocity, float theLifeTime, bool theIsPermanent);
+        
+        GPUParticlePtr emit(int theIndex, const Color & theColor, const Vector3f & thePosition, const Vector3f & theVelocity,
+                float theLifeTime, bool theIsPermanent);
+        
         void update(float theDeltaTime);
         int size();
         GPUParticlePtr particle(int theID);
-        virtual void fillPositionData(BufferPtr theBuffer);
+        void fillPositionData(BufferPtr theBuffer);
+        void fillColorData(BufferPtr theBuffer);
         void fillInfoData(BufferPtr theBuffer);
         void fillVelocityData(BufferPtr theBuffer);
         virtual void transferData();

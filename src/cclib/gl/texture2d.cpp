@@ -29,7 +29,6 @@ Texture2D::Texture2D(TextureAttributesPtr attributes,
     }
 }
 
-
 void 
 Texture2D::allocateData(unsigned int width, unsigned int height)
 {

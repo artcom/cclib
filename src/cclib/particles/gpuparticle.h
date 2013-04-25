@@ -2,6 +2,7 @@
 #define __CCLIB_GPUPARTICLE_INCLUDED__
 
 #include <cclib.h>
+#include <gl/texture2d.h>
 
 namespace cclib {
 
@@ -15,7 +16,8 @@ class GPUParticle {
         int _myStep;
         int _myIndex;
         Vector3f::Ptr _myPosition;
-        Vector3f::Ptr  _myVelocity;
+        Vector3f::Ptr _myVelocity;
+        Color::Ptr    _myColor;
 	
         GPUParticlesPtr _myParticles;
 	    float _myAge;
@@ -35,6 +37,7 @@ class GPUParticle {
         void isAllocated(bool theIsAllocated);
         Vector3f::Ptr position();
 	    Vector3f::Ptr velocity();
+        Color::Ptr color();
 
         bool isDead();
         float lifeTime();

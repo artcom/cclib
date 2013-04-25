@@ -123,6 +123,7 @@ GPUTargetForce::setTargets(ShaderBufferPtr theTargetTexture, GPUTargetSetupPtr t
 void
 GPUTargetForce::addTargetSetup(GPUTargetSetupPtr theSetup)
 {
+    std::cout << "add target setup " << theSetup << std::endl; 
     ShaderBufferPtr myTexture = ShaderBuffer::create(_myWidth, _myHeight, 16, 4);
     _myTargetPositionTextures.push_back(myTexture);
     
@@ -166,7 +167,7 @@ GPUTargetForce::updateSetup(int theIndex, GPUTargetSetupPtr theSetup)
 void
 GPUTargetForce::addTargetSetup(ShaderBufferPtr theShaderBuffer)
 {
-    std::cerr << "fix me!" << std::endl;
+    std::cerr << "GPUTargetForce: add target buffer " << theShaderBuffer << std::endl;
     _myTargetPositionTextures.push_back(theShaderBuffer);
     if(_myTargetPositionTextures.size() == 1) {
         // Object myObject = _myTargetPositionTextures.get(_myCurrentIndex);

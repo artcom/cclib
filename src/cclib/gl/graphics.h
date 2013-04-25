@@ -25,7 +25,9 @@ class Graphics {
         static void clear();
         static void textureCoords(int theUnit, float theX, float theY);
         static void textureCoords(int theUnit, float theX, float theY, float theZ);
+        static void textureCoords(int theUnit, float theX, float theY, float theZ, float theW);
         static void textureCoords(int theUnit, Vector3fPtr v);
+        static void textureCoords(int theUnit, Vector3f v);
         static void vertex(float x, float y);
         static void vertex(float theX, float theY, float theU, float theV);
         static void beginShape(GLenum type); 

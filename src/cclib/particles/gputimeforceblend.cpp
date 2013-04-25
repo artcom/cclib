@@ -12,6 +12,8 @@ GPUTimeForceBlend::GPUTimeForceBlend() :
     _myEndTime(Property_<float>::create("endTime", 0.0f)),
     _myPower(Property_<float>::create("power", 0.0f))
 {
+    std::cout << "tfb: " << std::endl;
+
     registerProperty(_myStartTime);
     registerProperty(_myEndTime);
     registerProperty(_myPower);
@@ -101,7 +103,7 @@ GPUTimeForceBlend::setSize(int theWidth, int theHeight) {
 
 void
 GPUTimeForceBlend::update(float theDeltaTime) {
-    GPUTimeForceBlend::update(theDeltaTime);
+    GPUForce::update(theDeltaTime);
     
     _myVelocityShader->parameter(_myStartTimeParameter, _myStartTime);
     _myVelocityShader->parameter(_myEndTimeParameter, _myEndTime);
