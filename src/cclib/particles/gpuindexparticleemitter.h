@@ -88,7 +88,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         void update(float theDeltaTime);
         int size();
         GPUParticlePtr particle(int theID);
-        void fillPositionData(BufferPtr theBuffer);
+        virtual void fillPositionData(BufferPtr theBuffer);
         void fillColorData(BufferPtr theBuffer);
         void fillInfoData(BufferPtr theBuffer);
         void fillVelocityData(BufferPtr theBuffer);
