@@ -7,7 +7,6 @@
 
 #include <stringified_shaders/points/display.fp.h>
 #include <stringified_shaders/points/display.vp.h>
-#include <stringified_shaders/points/display1.vp.h>
 
 namespace cclib {
 
