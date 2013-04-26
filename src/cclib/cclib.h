@@ -2,6 +2,7 @@
 #define __CCLIB_HEADER_DEFINED__
 
 #include <math.h>
+#include <cstdio>
 #include <string>
 #include <cstring>
 #include <iostream>
