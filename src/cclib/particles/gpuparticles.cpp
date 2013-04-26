@@ -137,7 +137,7 @@ GPUParticles::size() {
 }
 
 ShaderBufferPtr
-GPUParticles::dataTexture() {
+GPUParticles::dataBuffer() {
     return _myCurrentDataTexture;
 }
 

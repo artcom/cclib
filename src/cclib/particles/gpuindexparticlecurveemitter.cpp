@@ -115,11 +115,11 @@ void cclib::GPUIndexParticleCurveEmitter::transferData()
 {
 //    cclib::GPUIndexParticleEmitter::transferData();return;
 
-    _myParticles->dataTexture()->beginDraw();
+    _myParticles->dataBuffer()->beginDraw();
     _myCurveEmitShader->start();
     
     _myEmitMesh->draw();
     
     _myCurveEmitShader->end();
-    _myParticles->dataTexture()->endDraw();
+    _myParticles->dataBuffer()->endDraw();
 }

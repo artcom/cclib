@@ -284,7 +284,7 @@ GPUIndexParticleEmitter::fillVelocityData(BufferPtr theBuffer) {
 
 void 
 GPUIndexParticleEmitter::transferData() {
-    _myParticles->dataTexture()->beginDraw();
+    _myParticles->dataBuffer()->beginDraw();
     Graphics::checkError();
     
     _myParticles->initValueShader()->start();
@@ -296,7 +296,7 @@ GPUIndexParticleEmitter::transferData() {
     _myParticles->initValueShader()->end();
     Graphics::checkError();
 
-    _myParticles->dataTexture()->endDraw();
+    _myParticles->dataBuffer()->endDraw();
     Graphics::checkError();
 }
 

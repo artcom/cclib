@@ -32,6 +32,7 @@ class Graphics {
         static void vertex(float theX, float theY, float theU, float theV);
         static void beginShape(GLenum type); 
         static void endShape(); 
+        static void texture(unsigned int theTextureUnit, TexturePtr theTexture);
         static void texture(TexturePtr theTexture);
         static void noTexture();
         static void imageImplementation(TexturePtr theImage, 

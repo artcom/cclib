@@ -59,7 +59,7 @@ class GPUParticles {
         int width();
         int height();
         int size();
-        ShaderBufferPtr dataTexture();
+        ShaderBufferPtr dataBuffer();
         Vector3fPtr position(GPUParticlePtr theParticle);
         ShaderBufferPtr destinationDataTexture();
         void setPosition(int theIndex, Vector3fPtr thePosition);
