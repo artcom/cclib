@@ -1,28 +1,0 @@
-TALL_BUILD
-v5
-r1
-cCheck dependencies
-cPhaseScriptExecution "CMake Rules" /Users/frank/DEV/cclib/cclib/build-xcode/cclib.build/Debug/ALL_BUILD.build/Script-4C8CEB165F224CC385D8BB3C.sh
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/cclib.build/Debug/ALL_BUILD.build/Script-4C8CEB165F224CC385D8BB3C.sh
-c00000000517E2AA600000000000000AA
-t1367222950
-s170
-
-CCheck dependencies
-r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesfa284726622eb741^e6764726622eb741^---0#1#0#--18"Check dependencies36"3F7241E0-9369-4BCA-A549-CC6E5CF7D281-
-
-CPhaseScriptExecution "CMake Rules" /Users/frank/DEV/cclib/cclib/build-xcode/cclib.build/Debug/ALL_BUILD.build/Script-4C8CEB165F224CC385D8BB3C.sh
-s388915750.280624
-e388915750.304648
-r1
-xPhaseScriptExecution
-xCMake Rules
-x/Users/frank/DEV/cclib/cclib/build-xcode/cclib.build/Debug/ALL_BUILD.build/Script-4C8CEB165F224CC385D8BB3C.sh
-oecho ""
-o
-oecho Build\ all\ projects
-oBuild all projects
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection37"Run custom shell script 'CMake Rules'0f424826622eb741^37fd4d26622eb741^-54"echo ""echo Build\ all\ projectsBuild all projects3(21%IDEActivityLogMessage2@8"echo ""-388915750#0#8#-0#-----2@26"echo Build\ all\ projects-388915750#9#26#-0#-----2@19"Build all projects-388915750#35#19#-0#-----0#0#0#--277"PhaseScriptExecution "CMake Rules" build-xcode/cclib.build/Debug/ALL_BUILD.build/Script-4C8CEB165F224CC385D8BB3C.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/cclib.build/Debug/ALL_BUILD.build/Script-4C8CEB165F224CC385D8BB3C.sh36"25FB2AE1-66B7-4099-A3DB-01C59FD7C143-
-

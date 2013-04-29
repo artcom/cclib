@@ -1,101 +1,0 @@
-Tvec2
-v5
-r1
-cCheck dependencies
-cCompileC build-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.tst.o /Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/vec2 normal x86_64
-cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Script-776A961D27DE4DD09F3A3549.sh
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
-c00000000503F1B7700000000000000AA
-t1346313079
-s170
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/vec2
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.LinkFileList
-c00000000517E2AA40000000000000071
-t1367222948
-s113
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.tst.o
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Script-776A961D27DE4DD09F3A3549.sh
-c00000000517E2AA400000000000000B3
-t1367222948
-s179
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/math/vec2.h
-c00000000516E735A000000000000215D
-t1366192986
-s8541
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp
-c00000000516E735A00000000000008B8
-t1366192986
-s2232
-i<boost/test/unit_test.hpp>
-i<math/vec2.h>
-
-N/usr/local/include/boost/test/unit_test.hpp
-c000000005111B2380000000000000982
-t1360114232
-s2434
-
-CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp
-r0
-
-CCheck dependencies
-r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies3d2a3624622eb741^4f783924622eb741^---0#1#0#--18"Check dependencies36"1CDF27F1-DE7C-4091-B4AC-D9BB609F6F72-
-
-CCompileC build-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.tst.o /Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s388915748.227470
-e388915749.437928
-r1
-xCompileC
-xbuild-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.tst.o
-x/Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp:6:
-oIn file included from /usr/local/include/boost/test/unit_test.hpp:19:
-oIn file included from /usr/local/include/boost/test/test_tools.hpp:21:
-o/usr/local/include/boost/test/floating_point_comparison.hpp:251:25: warning: unused variable 'check_is_close' [-Wunused-variable]
-ocheck_is_close_t const& check_is_close = unit_test::ut_detail::static_constant<check_is_close_t>::value;
-o                        ^
-o/usr/local/include/boost/test/floating_point_comparison.hpp:273:25: warning: unused variable 'check_is_small' [-Wunused-variable]
-ocheck_is_small_t const& check_is_small = unit_test::ut_detail::static_constant<check_is_small_t>::value;
-o                        ^
-o2 warnings generated.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection64"Compile /Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp8f553a24622eb741^691a7025622eb741^-767"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp:6:In file included from /usr/local/include/boost/test/unit_test.hpp:19:In file included from /usr/local/include/boost/test/test_tools.hpp:21:/usr/local/include/boost/test/floating_point_comparison.hpp:251:25: warning: unused variable 'check_is_close' [-Wunused-variable]check_is_close_t const& check_is_close = unit_test::ut_detail::static_constant<check_is_close_t>::value;                        ^/usr/local/include/boost/test/floating_point_comparison.hpp:273:25: warning: unused variable 'check_is_small' [-Wunused-variable]check_is_small_t const& check_is_small = unit_test::ut_detail::static_constant<check_is_small_t>::value;                        ^2 warnings generated.2(36%IDEClangDiagnosticActivityLogMessage2@32"Unused variable 'check_is_close'-388915749#18446744073709551615#0#3(2@81"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp:6:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp0000000000000000^5#9#5#9#97#0#21"Clang LLVM 1.0 Notice--2@69"In file included from /usr/local/include/boost/test/unit_test.hpp:19:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@59"file://localhost/usr/local/include/boost/test/unit_test.hpp0000000000000000^18#9#18#9#615#0#21"Clang LLVM 1.0 Notice--2@70"In file included from /usr/local/include/boost/test/test_tools.hpp:21:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@60"file://localhost/usr/local/include/boost/test/test_tools.hpp0000000000000000^20#9#20#9#696#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@75"file://localhost/usr/local/include/boost/test/floating_point_comparison.hpp0000000000000000^250#24#250#24#8711#0#19"Unused Entity Issue--2@32"Unused variable 'check_is_small'-388915749#18446744073709551615#0#3(2@81"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp:6:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp0000000000000000^5#9#5#9#97#0#21"Clang LLVM 1.0 Notice--2@69"In file included from /usr/local/include/boost/test/unit_test.hpp:19:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@59"file://localhost/usr/local/include/boost/test/unit_test.hpp0000000000000000^18#9#18#9#615#0#21"Clang LLVM 1.0 Notice--2@70"In file included from /usr/local/include/boost/test/test_tools.hpp:21:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@60"file://localhost/usr/local/include/boost/test/test_tools.hpp0000000000000000^20#9#20#9#696#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@75"file://localhost/usr/local/include/boost/test/floating_point_comparison.hpp0000000000000000^272#24#272#24#9428#0#19"Unused Entity Issue--0#0#0#-19%DVTDocumentLocation4@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp0000000000000000^2146"CompileC build-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.tst.o src/cclib/test/vec2.tst.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.tst.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.tst.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/test/vec2.tst.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.tst.o36"ABFFD5DC-B731-46BB-B88C-31FC656FD568-
-
-CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/vec2 normal x86_64
-s388915749.444121
-e388915749.495543
-r1
-xLd
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/vec2
-xnormal
-xx86_64
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection66"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/vec260c97125622eb741^42768225622eb741^---0#0#0#--996"Ld build-xcode/src/cclib/Debug/vec2 normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Objects-normal/x86_64/vec2.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/vec236"9DBE52D6-DC02-4EC5-B306-042F0A52ED1C-
-
-CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Script-776A961D27DE4DD09F3A3549.sh
-s388915749.525346
-e388915749.584513
-r1
-xPhaseScriptExecution
-xCMake PostBuild Rules
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Script-776A961D27DE4DD09F3A3549.sh
-oecho "Depend check for xcode"
-oDepend check for xcode
-ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.vec2.Debug
-omake[1]: Nothing to be done for `PostBuild.vec2.Debug'.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'815e8825622eb741^88a19525622eb741^-308"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.vec2.Debugmake[1]: Nothing to be done for `PostBuild.vec2.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388915749#0#30#-0#-----2@23"Depend check for xcode-388915749#30#23#-0#-----2@199"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.vec2.Debug-388915749#53#199#-0#-----2@56"make[1]: Nothing to be done for `PostBuild.vec2.Debug'.-388915749#252#56#-0#-----0#0#0#--297"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/vec2.build/Script-776A961D27DE4DD09F3A3549.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/vec2.build/Script-776A961D27DE4DD09F3A3549.sh36"E7D790AB-0EE5-42A7-8479-188D91DEBC63-
-

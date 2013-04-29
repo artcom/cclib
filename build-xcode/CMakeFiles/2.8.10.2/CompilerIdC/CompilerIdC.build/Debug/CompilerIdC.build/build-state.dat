@@ -1,68 +1,0 @@
-TCompilerIdC
-v5
-r1
-cCheck dependencies
-cCompileC ./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.o /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c normal i386 c com.apple.compilers.llvm.clang.1_0.compiler
-cLd /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC normal i386
-cPhaseScriptExecution "Run Script" /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.o
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CompilerIdC.LinkFileList
-c00000000517E24AC000000000000009C
-t1367221420
-s156
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
-c00000000517E24AC000000000000002A
-t1367221420
-s42
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c
-c00000000517E24AC0000000000002F20
-t1367221420
-s12064
-
-CCheck dependencies
-r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesc4b0db2c5c2eb741^79ace92c5c2eb741^---0#1#0#--18"Check dependencies36"9ED44428-1AC1-46D1-B110-C74D2BB7ED02-
-
-CCompileC ./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.o /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c normal i386 c com.apple.compilers.llvm.clang.1_0.compiler
-s388914220.917158
-e388914220.934320
-r1
-xCompileC
-x./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.o
-x/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection99"Compile /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c3ee7ea2c5c2eb741^012fef2c5c2eb741^---0#0#0#-19%DVTDocumentLocation2@107"file://localhost/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c0000000000000000^2464"CompileC ./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.o CMakeCCompilerId.c normal i386 c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c -arch i386 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -g -fvisibility=hidden -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/CompilerIdC.hmap -I/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/DerivedSources/i386 -I/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/DerivedSources -F/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.dia -c /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/CMakeCCompilerId.c -o /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.o36"9610DD5B-1325-4999-877F-0FB5B0030062-
-
-CLd /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC normal i386
-s388914220.941462
-e388914220.958420
-r1
-xLd
-x/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC
-xnormal
-xi386
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection91"Link /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC4d14f12c5c2eb741^795bf52c5c2eb741^---0#0#0#--629"Ld ./CompilerIdC normal i386    cd /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -L/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC -F/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC -filelist /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Objects-normal/i386/CompilerIdC.LinkFileList -o /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC36"1E37399E-6602-43EE-B316-2C35A771C674-
-
-CPhaseScriptExecution "Run Script" /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
-s388914220.967403
-e388914220.989597
-r1
-xPhaseScriptExecution
-xRun Script
-x/Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
-oGCC_VERSION=com.apple.compilers.llvm.clang.1_0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection36"Run custom shell script 'Run Script'2d79f82c5c2eb741^9b57fd2c5c2eb741^-47"GCC_VERSION=com.apple.compilers.llvm.clang.1_01(21%IDEActivityLogMessage2@47"GCC_VERSION=com.apple.compilers.llvm.clang.1_0-388914220#0#47#-0#-----0#0#0#--360"PhaseScriptExecution "Run Script" ./CompilerIdC.build/Debug/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh    cd /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/CMakeFiles/2.8.10.2/CompilerIdC/./CompilerIdC.build/Debug/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh36"D7E57CBC-2223-4DB7-BE44-766E2005CC1C-
-

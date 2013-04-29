@@ -1,121 +1,0 @@
-Tglsl_shader_test
-v5
-r1
-cCheck dependencies
-cCompileC build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glslshader.tst.o /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/glsl_shader_test normal x86_64
-cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Script-8AF95CC585504546B6C9D534.sh
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
-c00000000503F1B7700000000000000AA
-t1346313079
-s170
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/glsl_shader_test
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glsl_shader_test.LinkFileList
-c00000000517E4F470000000000000083
-t1367232327
-s131
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glslshader.tst.o
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Script-8AF95CC585504546B6C9D534.sh
-c00000000517E4F4700000000000000BF
-t1367232327
-s191
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/cclib.h
-c00000000517E4E9C0000000000000F91
-t1367232156
-s3985
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/glslshader.h
-c00000000517E4F3B000000000000052C
-t1367232315
-s1324
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shader.h
-c00000000517E4BCB0000000000000416
-t1367231435
-s1046
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp
-c00000000517E4D2F0000000000001A1B
-t1367231791
-s6683
-i<boost/test/unit_test.hpp>
-i<vector>
-i<string>
-i<stdexcept>
-i<cclib.h>
-i<gl/shader.h>
-i<gl/glslshader.h>
-
-N/usr/local/include/boost/test/unit_test.hpp
-c000000005111B2380000000000000982
-t1360114232
-s2434
-
-CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp
-r0
-
-CCheck dependencies
-r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesf17f17c7862eb741^263518c7862eb741^---0#1#0#--18"Check dependencies36"AD5EB22D-3268-47F7-94CC-873E5045C01A-
-
-CCompileC build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glslshader.tst.o /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s388925127.095960
-e388925127.624518
-r1
-xCompileC
-xbuild-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glslshader.tst.o
-x/Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp:7:
-oIn file included from /usr/local/include/boost/test/unit_test.hpp:19:
-oIn file included from /usr/local/include/boost/test/test_tools.hpp:21:
-o/usr/local/include/boost/test/floating_point_comparison.hpp:251:25: warning: unused variable 'check_is_close' [-Wunused-variable]
-ocheck_is_close_t const& check_is_close = unit_test::ut_detail::static_constant<check_is_close_t>::value;
-o                        ^
-o/usr/local/include/boost/test/floating_point_comparison.hpp:273:25: warning: unused variable 'check_is_small' [-Wunused-variable]
-ocheck_is_small_t const& check_is_small = unit_test::ut_detail::static_constant<check_is_small_t>::value;
-o                        ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp:7:
-oIn file included from /usr/local/include/boost/test/unit_test.hpp:19:
-o/usr/local/include/boost/test/test_tools.hpp:309:18: warning: variable 'dummy_cond' is not needed and will not be emitted [-Wunneeded-internal-declaration]
-onamespace { bool dummy_cond = false; }
-o                 ^
-o3 warnings generated.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection70"Compile /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cppcaa618c7862eb741^f4df9fc7862eb741^-1145"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp:7:In file included from /usr/local/include/boost/test/unit_test.hpp:19:In file included from /usr/local/include/boost/test/test_tools.hpp:21:/usr/local/include/boost/test/floating_point_comparison.hpp:251:25: warning: unused variable 'check_is_close' [-Wunused-variable]check_is_close_t const& check_is_close = unit_test::ut_detail::static_constant<check_is_close_t>::value;                        ^/usr/local/include/boost/test/floating_point_comparison.hpp:273:25: warning: unused variable 'check_is_small' [-Wunused-variable]check_is_small_t const& check_is_small = unit_test::ut_detail::static_constant<check_is_small_t>::value;                        ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp:7:In file included from /usr/local/include/boost/test/unit_test.hpp:19:/usr/local/include/boost/test/test_tools.hpp:309:18: warning: variable 'dummy_cond' is not needed and will not be emitted [-Wunneeded-internal-declaration]namespace { bool dummy_cond = false; }                 ^3 warnings generated.3(36%IDEClangDiagnosticActivityLogMessage2@32"Unused variable 'check_is_close'-388925127#18446744073709551615#0#3(2@87"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp:7:-388925127#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@78"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp0000000000000000^6#9#6#9#99#0#21"Clang LLVM 1.0 Notice--2@69"In file included from /usr/local/include/boost/test/unit_test.hpp:19:-388925127#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@59"file://localhost/usr/local/include/boost/test/unit_test.hpp0000000000000000^18#9#18#9#615#0#21"Clang LLVM 1.0 Notice--2@70"In file included from /usr/local/include/boost/test/test_tools.hpp:21:-388925127#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@60"file://localhost/usr/local/include/boost/test/test_tools.hpp0000000000000000^20#9#20#9#696#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@75"file://localhost/usr/local/include/boost/test/floating_point_comparison.hpp0000000000000000^250#24#250#24#8711#0#19"Unused Entity Issue--2@32"Unused variable 'check_is_small'-388925127#18446744073709551615#0#3(2@87"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp:7:-388925127#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@78"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp0000000000000000^6#9#6#9#99#0#21"Clang LLVM 1.0 Notice--2@69"In file included from /usr/local/include/boost/test/unit_test.hpp:19:-388925127#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@59"file://localhost/usr/local/include/boost/test/unit_test.hpp0000000000000000^18#9#18#9#615#0#21"Clang LLVM 1.0 Notice--2@70"In file included from /usr/local/include/boost/test/test_tools.hpp:21:-388925127#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@60"file://localhost/usr/local/include/boost/test/test_tools.hpp0000000000000000^20#9#20#9#696#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@75"file://localhost/usr/local/include/boost/test/floating_point_comparison.hpp0000000000000000^272#24#272#24#9428#0#19"Unused Entity Issue--2@59"Variable 'dummy_cond' is not needed and will not be emitted-388925127#18446744073709551615#0#2(2@87"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp:7:-388925127#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@78"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp0000000000000000^6#9#6#9#99#0#21"Clang LLVM 1.0 Notice--2@69"In file included from /usr/local/include/boost/test/unit_test.hpp:19:-388925127#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@59"file://localhost/usr/local/include/boost/test/unit_test.hpp0000000000000000^18#9#18#9#615#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@60"file://localhost/usr/local/include/boost/test/test_tools.hpp0000000000000000^308#17#308#17#15859#0#19"Unused Entity Issue--0#0#0#-19%DVTDocumentLocation4@78"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp0000000000000000^2254"CompileC build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glslshader.tst.o src/cclib/test/glslshader.tst.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glslshader.tst.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glslshader.tst.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/test/glslshader.tst.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glslshader.tst.o36"72BEC937-F94E-4E03-99BE-56BF6118B349-
-
-CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/glsl_shader_test normal x86_64
-s388925127.631175
-e388925127.679421
-r1
-xLd
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/glsl_shader_test
-xnormal
-xx86_64
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection78"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/glsl_shader_testeca5a1c7862eb741^0fefadc7862eb741^---0#0#0#--1044"Ld build-xcode/src/cclib/Debug/glsl_shader_test normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Objects-normal/x86_64/glsl_shader_test.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/glsl_shader_test36"3C814A9B-743F-4542-A3D6-22C851FC1092-
-
-CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Script-8AF95CC585504546B6C9D534.sh
-s388925127.687783
-e388925127.713430
-r1
-xPhaseScriptExecution
-xCMake PostBuild Rules
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Script-8AF95CC585504546B6C9D534.sh
-oecho "Depend check for xcode"
-oDepend check for xcode
-ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.glsl_shader_test.Debug
-omake[1]: Nothing to be done for `PostBuild.glsl_shader_test.Debug'.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'2270b0c7862eb741^2aaab6c7862eb741^-332"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.glsl_shader_test.Debugmake[1]: Nothing to be done for `PostBuild.glsl_shader_test.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388925127#0#30#-0#-----2@23"Depend check for xcode-388925127#30#23#-0#-----2@211"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.glsl_shader_test.Debug-388925127#53#211#-0#-----2@68"make[1]: Nothing to be done for `PostBuild.glsl_shader_test.Debug'.-388925127#264#68#-0#-----0#0#0#--321"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Script-8AF95CC585504546B6C9D534.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/glsl_shader_test.build/Script-8AF95CC585504546B6C9D534.sh36"DF55107F-7A59-481A-A3E4-88D4B419A11E-
-

@@ -1,171 +1,0 @@
-TcclibShaderBufferDemo
-v5
-r1
-cCheck dependencies
-cCompileC build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/ShaderBufferDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/ShaderBufferDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibShaderBufferDemo normal x86_64
-cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-B3AAD0A159B745F490DC071C.sh
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
-c00000000503F1B7700000000000000AA
-t1346313079
-s170
-
-N/Library/Frameworks/Cg.framework/Headers/cg.h
-c000000004F323C8C000000000000FDC1
-t1328692364
-s64961
-
-N/Library/Frameworks/Cg.framework/Headers/cgGL.h
-c000000004F2BA9310000000000003555
-t1328261425
-s13653
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibShaderBufferDemo
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/ShaderBufferDemo.o
-t1367222948
-s116424
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/cclibShaderBufferDemo.LinkFileList
-c00000000517E2AA4000000000000008A
-t1367222948
-s138
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-B3AAD0A159B745F490DC071C.sh
-c00000000517E4BE700000000000000C4
-t1367231463
-s196
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-F0B71AE1EBD14ACAAA8B9E38.sh
-c00000000517E2AA400000000000000C4
-t1367222948
-s196
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/cclib.h
-c00000000517E4A8A0000000000000F42
-t1367231114
-s3906
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/demo/ShaderBufferDemo.cpp
-c00000000516E735A0000000000000834
-t1366192986
-s2100
-i<cclib.h>
-i<GL/glfw.h>
-i<gl/shaderbuffer.h>
-i<gl/graphics.h>
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/framebufferobject.h
-c00000000517901350000000000000E06
-t1366884661
-s3590
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/graphics.h
-c00000000517E271E00000000000010C9
-t1367222046
-s4297
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/pixelstoragemodes.h
-c00000000516E735A0000000000000576
-t1366192986
-s1398
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shaderbuffer.h
-c00000000516E735A0000000000001391
-t1366192986
-s5009
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/texture.h
-c00000000516E735A0000000000000FAF
-t1366192986
-s4015
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/texture2d.h
-c000000005178DB3C000000000000091C
-t1366874940
-s2332
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/math/math.h
-c000000005178E9F6000000000000020D
-t1366878710
-s525
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/math/vec2.h
-c00000000516E735A000000000000215D
-t1366192986
-s8541
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/math/vec3.h
-c00000000516FA9540000000000002325
-t1366272340
-s8997
-
-N/usr/local/include/GL/glew.h
-c000000005130B26C00000000000D7FC6
-t1362145900
-s884678
-
-N/usr/local/include/GL/glfw.h
-c00000000516C0A2C0000000000004DD9
-t1366034988
-s19929
-
-CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/demo/ShaderBufferDemo.cpp
-r0
-
-CCheck dependencies
-r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesdbf70c67832eb741^aaf41367832eb741^---0#1#0#--18"Check dependencies36"464AEE44-BB72-4320-B105-41AE0DE73BD9-
-
-CCompileC build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/ShaderBufferDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/ShaderBufferDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s388924263.079722
-e388924263.856773
-r1
-xCompileC
-xbuild-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/ShaderBufferDemo.o
-x/Users/frank/DEV/cclib/cclib/src/cclib/demo/ShaderBufferDemo.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection72"Compile /Users/frank/DEV/cclib/cclib/src/cclib/demo/ShaderBufferDemo.cppc2891467832eb741^19e3db67832eb741^---0#0#0#-19%DVTDocumentLocation2@80"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/ShaderBufferDemo.cpp0000000000000000^2296"CompileC build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/ShaderBufferDemo.o src/cclib/demo/ShaderBufferDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/ShaderBufferDemo.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/ShaderBufferDemo.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/demo/ShaderBufferDemo.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/ShaderBufferDemo.o36"6A4FE473-7FD1-4F12-9CB6-7F0B5477F5E4-
-
-CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibShaderBufferDemo normal x86_64
-s388924263.863459
-e388924263.908275
-r1
-xLd
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibShaderBufferDemo
-xnormal
-xx86_64
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection83"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibShaderBufferDemo0f26dd67832eb741^d191e867832eb741^---0#0#0#--1064"Ld build-xcode/src/cclib/Debug/cclibShaderBufferDemo normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Objects-normal/x86_64/cclibShaderBufferDemo.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibShaderBufferDemo36"7FC9A0FC-D679-45A0-A8D5-0160C77DE024-
-
-CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-B3AAD0A159B745F490DC071C.sh
-s388924263.915787
-e388924263.971912
-r1
-xPhaseScriptExecution
-xCMake PostBuild Rules
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-B3AAD0A159B745F490DC071C.sh
-oecho "Depend check for xcode"
-oDepend check for xcode
-ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibShaderBufferDemo.Debug
-omake[1]: Nothing to be done for `PostBuild.cclibShaderBufferDemo.Debug'.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'b515eb67832eb741^44e0f867832eb741^-342"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibShaderBufferDemo.Debugmake[1]: Nothing to be done for `PostBuild.cclibShaderBufferDemo.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388924263#0#30#-0#-----2@23"Depend check for xcode-388924263#30#23#-0#-----2@216"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibShaderBufferDemo.Debug-388924263#53#216#-0#-----2@73"make[1]: Nothing to be done for `PostBuild.cclibShaderBufferDemo.Debug'.-388924263#269#73#-0#-----0#0#0#--331"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-B3AAD0A159B745F490DC071C.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-B3AAD0A159B745F490DC071C.sh36"AD55BAC8-BDDD-49D4-BF9C-F97739C80969-
-
-CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-F0B71AE1EBD14ACAAA8B9E38.sh
-s388916465.160589
-e388916465.223255
-r1
-xPhaseScriptExecution
-xCMake PostBuild Rules
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-F0B71AE1EBD14ACAAA8B9E38.sh
-oecho "Depend check for xcode"
-oDepend check for xcode
-ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibShaderBufferDemo.Debug
-omake[1]: Nothing to be done for `PostBuild.cclibShaderBufferDemo.Debug'.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'8cbb29f1642eb741^802b39f1642eb741^-342"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibShaderBufferDemo.Debugmake[1]: Nothing to be done for `PostBuild.cclibShaderBufferDemo.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388916465#0#30#-0#-----2@23"Depend check for xcode-388916465#30#23#-0#-----2@216"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibShaderBufferDemo.Debug-388916465#53#216#-0#-----2@73"make[1]: Nothing to be done for `PostBuild.cclibShaderBufferDemo.Debug'.-388916465#269#73#-0#-----0#0#0#--331"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-F0B71AE1EBD14ACAAA8B9E38.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibShaderBufferDemo.build/Script-F0B71AE1EBD14ACAAA8B9E38.sh36"AE96A93F-1747-482E-9EBE-D07C8F02A19F-
-

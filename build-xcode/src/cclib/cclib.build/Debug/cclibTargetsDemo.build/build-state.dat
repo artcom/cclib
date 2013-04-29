@@ -1,766 +1,0 @@
-TcclibTargetsDemo
-v5
-r1
-cCheck dependencies
-cCompileC build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/targets.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibTargetsDemo normal x86_64
-cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-FFF2B2AD15004CD1B7256FC7.sh
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
-c00000000503F1B7700000000000000AA
-t1346313079
-s170
-
-N/Library/Frameworks/Cg.framework/Headers/cg.h
-c000000004F323C8C000000000000FDC1
-t1328692364
-s64961
-
-N/Library/Frameworks/Cg.framework/Headers/cgGL.h
-c000000004F2BA9310000000000003555
-t1328261425
-s13653
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibTargetsDemo
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/cclibTargetsDemo.LinkFileList
-c00000000517E2AA5000000000000007C
-t1367222949
-s124
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/targets.o
-t1367222950
-s577380
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-D10F9D856A0D4B199B6D59C8.sh
-c00000000517E2AA500000000000000BF
-t1367222949
-s191
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-FFF2B2AD15004CD1B7256FC7.sh
-c00000000517E4BE700000000000000BF
-t1367231463
-s191
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/base/component.h
-c000000005177B6B6000000000000088B
-t1366800054
-s2187
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/base/property.h
-c00000000516E735A000000000000267E
-t1366192986
-s9854
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/cclib.h
-c00000000517E4A8A0000000000000F42
-t1367231114
-s3906
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp
-c00000000517E4A8A0000000000002802
-t1367231114
-s10242
-i<cclib.h>
-i<GL/glfw.h>
-i<particles/gpunoise.h>
-i<stringified_shaders/initvalue.fp.h>
-i<gl/cgshader.h>
-i<gl/mesh.h>
-i<gl/vbomesh.h>
-i<gl/graphics.h>
-i<gl/shaderbuffer.h>
-i<particles/gpugravity.h>
-i<particles/gpuviscousdrag.h>
-i<particles/gpuforcefield.h>
-i<particles/gpuparticlepointrenderer.h>
-i<particles/gpuparticle.h>
-i<particles/gpuindexparticleemitter.h>
-i<particles/gpucombinedforce.h>
-i<particles/gputargetforce.h>
-i<particles/gputimeforceblend.h>
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h
-c0000000051754C9B0000000000001136
-t1366641819
-s4406
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/cgshader.h
-c00000000517E4A8A0000000000000DC0
-t1367231114
-s3520
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/framebufferobject.h
-c00000000517901350000000000000E06
-t1366884661
-s3590
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/graphics.h
-c00000000517E271E00000000000010C9
-t1367222046
-s4297
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h
-c00000000516FCF430000000000001ABB
-t1366282051
-s6843
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/pixelstoragemodes.h
-c00000000516E735A0000000000000576
-t1366192986
-s1398
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shader.h
-c00000000517E4BCB0000000000000416
-t1367231435
-s1046
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shaderbuffer.h
-c00000000516E735A0000000000001391
-t1366192986
-s5009
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/texture.h
-c00000000516E735A0000000000000FAF
-t1366192986
-s4015
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/texture2d.h
-c000000005178DB3C000000000000091C
-t1366874940
-s2332
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h
-c000000005177B6B60000000000000AE5
-t1366800054
-s2789
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/math/math.h
-c000000005178E9F6000000000000020D
-t1366878710
-s525
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/math/vec2.h
-c00000000516E735A000000000000215D
-t1366192986
-s8541
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/math/vec3.h
-c00000000516FA9540000000000002325
-t1366272340
-s8997
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpucombinedforce.h
-c00000000516E735A0000000000000395
-t1366192986
-s917
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuforce.h
-c00000000516FB94500000000000005FA
-t1366276421
-s1530
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuforcefield.h
-c00000000516E735A00000000000003F0
-t1366192986
-s1008
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpugravity.h
-c00000000516E735A000000000000025D
-t1366192986
-s605
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuindexparticleemitter.h
-c000000005178EC120000000000000EF8
-t1366879250
-s3832
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpunoise.h
-c00000000517E4A8A00000000000002FA
-t1367231114
-s762
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticle.h
-c000000005178DB3C0000000000000565
-t1366874940
-s1381
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticleemitter.h
-c00000000516E735A0000000000000122
-t1366192986
-s290
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticlepointrenderer.h
-c0000000051751094000000000000030C
-t1366626452
-s780
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticlerenderer.h
-c00000000516FCBE00000000000000182
-t1366281184
-s386
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticles.h
-c00000000517E4A8A00000000000009F1
-t1367231114
-s2545
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gputargetforce.h
-c00000000517E4A8A0000000000000A48
-t1367231114
-s2632
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gputargetsetup.h
-c00000000516E735A0000000000000192
-t1366192986
-s402
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gputimeforceblend.h
-c000000005177B6B600000000000005A0
-t1366800054
-s1440
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuupdateshader.h
-c00000000517E4A8A0000000000000516
-t1367231114
-s1302
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuviscousdrag.h
-c00000000516E735A0000000000000260
-t1366192986
-s608
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/stringified_shaders/initvalue.fp.h
-c00000000517E4BCF000000000000004B
-t1367231439
-s75
-
-N/usr/local/include/GL/glew.h
-c000000005130B26C00000000000D7FC6
-t1362145900
-s884678
-
-N/usr/local/include/GL/glfw.h
-c00000000516C0A2C0000000000004DD9
-t1366034988
-s19929
-
-N/usr/local/include/boost/any.hpp
-c000000005111B22D0000000000001969
-t1360114221
-s6505
-
-N/usr/local/include/boost/config.hpp
-c000000005111B22D000000000000081A
-t1360114221
-s2074
-
-N/usr/local/include/boost/config/compiler/clang.hpp
-c000000005111B23C0000000000000DDC
-t1360114236
-s3548
-
-N/usr/local/include/boost/config/no_tr1/utility.hpp
-c000000005111B23C0000000000000356
-t1360114236
-s854
-
-N/usr/local/include/boost/config/platform/macos.hpp
-c000000005111B23C0000000000000927
-t1360114236
-s2343
-
-N/usr/local/include/boost/config/posix_features.hpp
-c000000005111B22F0000000000000E98
-t1360114223
-s3736
-
-N/usr/local/include/boost/config/select_compiler_config.hpp
-c000000005111B22F0000000000000E75
-t1360114223
-s3701
-
-N/usr/local/include/boost/config/select_platform_config.hpp
-c000000005111B22F0000000000000C97
-t1360114223
-s3223
-
-N/usr/local/include/boost/config/select_stdlib_config.hpp
-c000000005111B22F0000000000000BA8
-t1360114223
-s2984
-
-N/usr/local/include/boost/config/stdlib/libstdcpp3.hpp
-c000000005111B23C00000000000017F9
-t1360114236
-s6137
-
-N/usr/local/include/boost/config/suffix.hpp
-c000000005111B22F0000000000007EC4
-t1360114223
-s32452
-
-N/usr/local/include/boost/config/user.hpp
-c000000005111B22F0000000000001425
-t1360114223
-s5157
-
-N/usr/local/include/boost/detail/workaround.hpp
-c000000005111B2300000000000001C75
-t1360114224
-s7285
-
-N/usr/local/include/boost/mpl/aux_/adl_barrier.hpp
-c000000005111B2410000000000000685
-t1360114241
-s1669
-
-N/usr/local/include/boost/mpl/aux_/config/adl.hpp
-c000000005111B24D00000000000005EE
-t1360114253
-s1518
-
-N/usr/local/include/boost/mpl/aux_/config/ctps.hpp
-c000000005111B24D000000000000039E
-t1360114253
-s926
-
-N/usr/local/include/boost/mpl/aux_/config/gcc.hpp
-c000000005111B24D00000000000002B5
-t1360114253
-s693
-
-N/usr/local/include/boost/mpl/aux_/config/intel.hpp
-c000000005111B24D0000000000000267
-t1360114253
-s615
-
-N/usr/local/include/boost/mpl/aux_/config/lambda.hpp
-c000000005111B24D00000000000003F7
-t1360114253
-s1015
-
-N/usr/local/include/boost/mpl/aux_/config/msvc.hpp
-c000000005111B24D000000000000025B
-t1360114253
-s603
-
-N/usr/local/include/boost/mpl/aux_/config/nttp.hpp
-c000000005111B24D0000000000000458
-t1360114253
-s1112
-
-N/usr/local/include/boost/mpl/aux_/config/overload_resolution.hpp
-c000000005111B24D00000000000003A8
-t1360114253
-s936
-
-N/usr/local/include/boost/mpl/aux_/config/preprocessor.hpp
-c000000005111B24D00000000000004C4
-t1360114253
-s1220
-
-N/usr/local/include/boost/mpl/aux_/config/static_constant.hpp
-c000000005111B24D000000000000031A
-t1360114253
-s794
-
-N/usr/local/include/boost/mpl/aux_/config/ttp.hpp
-c000000005111B24D00000000000004F6
-t1360114253
-s1270
-
-N/usr/local/include/boost/mpl/aux_/config/workaround.hpp
-c000000005111B24D000000000000025E
-t1360114253
-s606
-
-N/usr/local/include/boost/mpl/aux_/integral_wrapper.hpp
-c000000005111B2420000000000000E22
-t1360114242
-s3618
-
-N/usr/local/include/boost/mpl/aux_/lambda_support.hpp
-c000000005111B2420000000000001561
-t1360114242
-s5473
-
-N/usr/local/include/boost/mpl/aux_/nttp_decl.hpp
-c000000005111B24200000000000003B8
-t1360114242
-s952
-
-N/usr/local/include/boost/mpl/aux_/preprocessor/params.hpp
-c000000005111B24E00000000000007EF
-t1360114254
-s2031
-
-N/usr/local/include/boost/mpl/aux_/static_cast.hpp
-c000000005111B242000000000000036E
-t1360114242
-s878
-
-N/usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp
-c000000005111B24200000000000002A8
-t1360114242
-s680
-
-N/usr/local/include/boost/mpl/bool.hpp
-c000000005111B234000000000000041B
-t1360114228
-s1051
-
-N/usr/local/include/boost/mpl/bool_fwd.hpp
-c000000005111B2340000000000000369
-t1360114228
-s873
-
-N/usr/local/include/boost/mpl/int.hpp
-c000000005111B234000000000000026E
-t1360114228
-s622
-
-N/usr/local/include/boost/mpl/int_fwd.hpp
-c000000005111B2340000000000000310
-t1360114228
-s784
-
-N/usr/local/include/boost/mpl/integral_c.hpp
-c000000005111B2340000000000000650
-t1360114228
-s1616
-
-N/usr/local/include/boost/mpl/integral_c_fwd.hpp
-c000000005111B23400000000000003E8
-t1360114228
-s1000
-
-N/usr/local/include/boost/mpl/integral_c_tag.hpp
-c000000005111B2340000000000000346
-t1360114228
-s838
-
-N/usr/local/include/boost/preprocessor/arithmetic/inc.hpp
-c000000005111B2430000000000002069
-t1360114243
-s8297
-
-N/usr/local/include/boost/preprocessor/cat.hpp
-c000000005111B23500000000000003BD
-t1360114229
-s957
-
-N/usr/local/include/boost/preprocessor/comma_if.hpp
-c000000005111B23500000000000002F0
-t1360114229
-s752
-
-N/usr/local/include/boost/preprocessor/config/config.hpp
-c000000005111B243000000000000121E
-t1360114243
-s4638
-
-N/usr/local/include/boost/preprocessor/control/if.hpp
-c000000005111B243000000000000038A
-t1360114243
-s906
-
-N/usr/local/include/boost/preprocessor/control/iif.hpp
-c000000005111B243000000000000052D
-t1360114243
-s1325
-
-N/usr/local/include/boost/preprocessor/debug/error.hpp
-c000000005111B2430000000000000626
-t1360114243
-s1574
-
-N/usr/local/include/boost/preprocessor/detail/auto_rec.hpp
-c000000005111B2430000000000006618
-t1360114243
-s26136
-
-N/usr/local/include/boost/preprocessor/facilities/empty.hpp
-c000000005111B2430000000000000204
-t1360114243
-s516
-
-N/usr/local/include/boost/preprocessor/inc.hpp
-c000000005111B23500000000000002E0
-t1360114229
-s736
-
-N/usr/local/include/boost/preprocessor/logical/bool.hpp
-c000000005111B2440000000000001FD9
-t1360114244
-s8153
-
-N/usr/local/include/boost/preprocessor/punctuation/comma.hpp
-c000000005111B2440000000000000208
-t1360114244
-s520
-
-N/usr/local/include/boost/preprocessor/punctuation/comma_if.hpp
-c000000005111B24400000000000003F4
-t1360114244
-s1012
-
-N/usr/local/include/boost/preprocessor/repeat.hpp
-c000000005111B23500000000000002E9
-t1360114229
-s745
-
-N/usr/local/include/boost/preprocessor/repetition/repeat.hpp
-c000000005111B244000000000000ED92
-t1360114244
-s60818
-
-N/usr/local/include/boost/preprocessor/tuple/eat.hpp
-c000000005111B244000000000000327B
-t1360114244
-s12923
-
-N/usr/local/include/boost/static_assert.hpp
-c000000005111B22E000000000000148E
-t1360114222
-s5262
-
-N/usr/local/include/boost/throw_exception.hpp
-c000000005111B22E0000000000000B52
-t1360114222
-s2898
-
-N/usr/local/include/boost/type_traits/broken_compiler_spec.hpp
-c000000005111B23800000000000015B1
-t1360114232
-s5553
-
-N/usr/local/include/boost/type_traits/config.hpp
-c000000005111B2380000000000000A0B
-t1360114232
-s2571
-
-N/usr/local/include/boost/type_traits/detail/bool_trait_def.hpp
-c000000005111B2480000000000001552
-t1360114248
-s5458
-
-N/usr/local/include/boost/type_traits/detail/bool_trait_undef.hpp
-c000000005111B24800000000000003D8
-t1360114248
-s984
-
-N/usr/local/include/boost/type_traits/detail/ice_and.hpp
-c000000005111B24800000000000003E4
-t1360114248
-s996
-
-N/usr/local/include/boost/type_traits/detail/ice_eq.hpp
-c000000005111B24800000000000003CC
-t1360114248
-s972
-
-N/usr/local/include/boost/type_traits/detail/ice_not.hpp
-c000000005111B2480000000000000309
-t1360114248
-s777
-
-N/usr/local/include/boost/type_traits/detail/ice_or.hpp
-c000000005111B24800000000000003E7
-t1360114248
-s999
-
-N/usr/local/include/boost/type_traits/detail/template_arity_spec.hpp
-c000000005111B24800000000000003AA
-t1360114248
-s938
-
-N/usr/local/include/boost/type_traits/detail/type_trait_def.hpp
-c000000005111B248000000000000062A
-t1360114248
-s1578
-
-N/usr/local/include/boost/type_traits/detail/type_trait_undef.hpp
-c000000005111B2480000000000000271
-t1360114248
-s625
-
-N/usr/local/include/boost/type_traits/detail/yes_no_type.hpp
-c000000005111B24800000000000002D6
-t1360114248
-s726
-
-N/usr/local/include/boost/type_traits/ice.hpp
-c000000005111B2390000000000000300
-t1360114233
-s768
-
-N/usr/local/include/boost/type_traits/integral_constant.hpp
-c000000005111B2390000000000000583
-t1360114233
-s1411
-
-N/usr/local/include/boost/type_traits/is_lvalue_reference.hpp
-c000000005111B2390000000000001249
-t1360114233
-s4681
-
-N/usr/local/include/boost/type_traits/is_reference.hpp
-c000000005111B2390000000000000545
-t1360114233
-s1349
-
-N/usr/local/include/boost/type_traits/is_rvalue_reference.hpp
-c000000005111B2390000000000000372
-t1360114233
-s882
-
-N/usr/local/include/boost/type_traits/remove_reference.hpp
-c000000005111B23900000000000008A5
-t1360114233
-s2213
-
-CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp
-r0
-
-CCheck dependencies
-r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesfcfb0c67832eb741^971b1467832eb741^---0#1#0#--18"Check dependencies36"790942FF-DCBD-4065-A833-A81F7F8FB241-
-
-CCompileC build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/targets.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s388924263.082507
-e388924264.358890
-r1
-xCompileC
-xbuild-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/targets.o
-x/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:7:
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:5:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h:81:2: warning: XXX Buffer Port incomplete. [-W#warnings]
-o#warning XXX Buffer Port incomplete.
-o ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:42:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
-o        void vertices(ShaderBufferPtr theShaderBuffer);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual BufferPtr vertices();
-o                          ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:43:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
-o        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual BufferPtr vertices();
-o                          ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:44:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
-o        void vertices(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual BufferPtr vertices();
-o                          ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:45:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
-o        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID, int theX, int theY, int theWidth, int theHeight);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual BufferPtr vertices();
-o                          ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:54:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
-o        void colors(ShaderBufferPtr theShaderBuffer);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
-o        virtual void colors(BufferPtr theColors);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:55:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
-o        void colors(ShaderBufferPtr theShaderBuffer, int theID);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
-o        virtual void colors(BufferPtr theColors);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:56:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
-o        void colors(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
-o        virtual void colors(BufferPtr theColors);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:57:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
-o        void colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
-o        virtual void colors(BufferPtr theColors);
-o                     ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:246:9: warning: unused variable 'myColorLookUpX' [-Wunused-variable]
-o                                int myColorLookUpX = (int)(myTargetX - _cTargetX);
-o                                    ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:247:9: warning: unused variable 'myColorLookUpY' [-Wunused-variable]
-o                                int myColorLookUpY = (int)(myTargetY - _cTargetY);
-o                                    ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:42:13: warning: private field 'frame' is not used [-Wunused-private-field]
-o        int frame;
-o            ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:60:15: warning: private field '_cLookUpLookAhead' is not used [-Wunused-private-field]
-o        float _cLookUpLookAhead;
-o              ^
-o13 warnings generated.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection63"Compile /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp37381567832eb741^d4ee5b68832eb741^-6406"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:7:In file included from /Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:5:/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h:81:2: warning: XXX Buffer Port incomplete. [-W#warnings]#warning XXX Buffer Port incomplete. ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:42:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:43:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:44:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:45:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:54:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:55:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer, int theID);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:56:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:57:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:246:9: warning: unused variable 'myColorLookUpX' [-Wunused-variable]                                int myColorLookUpX = (int)(myTargetX - _cTargetX);                                    ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:247:9: warning: unused variable 'myColorLookUpY' [-Wunused-variable]                                int myColorLookUpY = (int)(myTargetY - _cTargetY);                                    ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:42:13: warning: private field 'frame' is not used [-Wunused-private-field]        int frame;            ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:60:15: warning: private field '_cLookUpLookAhead' is not used [-Wunused-private-field]        float _cLookUpLookAhead;              ^13 warnings generated.13(36%IDEClangDiagnosticActivityLogMessage2@27"XXX Buffer Port incomplete.-388924264#18446744073709551615#0#2(2@80"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:7:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^6#9#6#9#153#0#21"Clang LLVM 1.0 Notice--2@73"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:5:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^4#9#4#9#93#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h0000000000000000^80#1#80#1#1803#0#18"#warning Directive--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388924264#18446744073709551615#0#3(2@80"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^7#9#7#9#174#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^41#13#41#13#1421#0#14"Semantic Issue--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388924264#18446744073709551615#0#3(2@80"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^7#9#7#9#174#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^42#13#42#13#1477#0#14"Semantic Issue--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388924264#18446744073709551615#0#3(2@80"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^7#9#7#9#174#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^43#13#43#13#1547#0#14"Semantic Issue--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388924264#18446744073709551615#0#3(2@80"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^7#9#7#9#174#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^44#13#44#13#1652#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388924264#18446744073709551615#0#2(2@80"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^7#9#7#9#174#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^53#13#53#13#2371#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388924264#18446744073709551615#0#2(2@80"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^7#9#7#9#174#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^54#13#54#13#2425#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388924264#18446744073709551615#0#2(2@80"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^7#9#7#9#174#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^55#13#55#13#2490#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388924264#18446744073709551615#0#2(2@80"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp:8:-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^7#9#7#9#174#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388924264#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^56#13#56#13#2593#0#14"Semantic Issue--2@32"Unused variable 'myColorLookUpX'-388924264#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^245#8#245#8#8193#0#19"Unused Entity Issue--2@32"Unused variable 'myColorLookUpY'-388924264#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^246#8#246#8#8248#0#19"Unused Entity Issue--2@33"Private field 'frame' is not used-388924264#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^41#12#41#12#1139#0#19"Unused Entity Issue--2@45"Private field '_cLookUpLookAhead' is not used-388924264#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^59#14#59#14#1576#0#19"Unused Entity Issue--0#0#0#-19%DVTDocumentLocation4@71"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp0000000000000000^2212"CompileC build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/targets.o src/cclib/demo/targets.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/targets.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/targets.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/demo/targets.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/targets.o36"D38B0614-4755-4055-8D29-572CE66296A1-
-
-CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibTargetsDemo normal x86_64
-s388924264.365803
-e388924264.412741
-r1
-xLd
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibTargetsDemo
-xnormal
-xx86_64
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection78"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibTargetsDemoa4c15d68832eb741^54ad6968832eb741^---0#0#0#--1044"Ld build-xcode/src/cclib/Debug/cclibTargetsDemo normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Objects-normal/x86_64/cclibTargetsDemo.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibTargetsDemo36"7AC841D0-3340-40DE-B388-B1F7883DCD13-
-
-CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-D10F9D856A0D4B199B6D59C8.sh
-s388916465.201435
-e388916465.246070
-r1
-xPhaseScriptExecution
-xCMake PostBuild Rules
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-D10F9D856A0D4B199B6D59C8.sh
-oecho "Depend check for xcode"
-oDepend check for xcode
-ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibTargetsDemo.Debug
-omake[1]: Nothing to be done for `PostBuild.cclibTargetsDemo.Debug'.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'db3634f1642eb741^2efe3ef1642eb741^-332"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibTargetsDemo.Debugmake[1]: Nothing to be done for `PostBuild.cclibTargetsDemo.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388916465#0#30#-0#-----2@23"Depend check for xcode-388916465#30#23#-0#-----2@211"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibTargetsDemo.Debug-388916465#53#211#-0#-----2@68"make[1]: Nothing to be done for `PostBuild.cclibTargetsDemo.Debug'.-388916465#264#68#-0#-----0#0#0#--321"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-D10F9D856A0D4B199B6D59C8.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-D10F9D856A0D4B199B6D59C8.sh36"A39A1FD8-83DC-4B69-82B0-0F018BC8B94F-
-
-CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-FFF2B2AD15004CD1B7256FC7.sh
-s388924264.420937
-e388924264.460580
-r1
-xPhaseScriptExecution
-xCMake PostBuild Rules
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-FFF2B2AD15004CD1B7256FC7.sh
-oecho "Depend check for xcode"
-oDepend check for xcode
-ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibTargetsDemo.Debug
-omake[1]: Nothing to be done for `PostBuild.cclibTargetsDemo.Debug'.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'6a316c68832eb741^fbe77568832eb741^-332"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibTargetsDemo.Debugmake[1]: Nothing to be done for `PostBuild.cclibTargetsDemo.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388924264#0#30#-0#-----2@23"Depend check for xcode-388924264#30#23#-0#-----2@211"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibTargetsDemo.Debug-388924264#53#211#-0#-----2@68"make[1]: Nothing to be done for `PostBuild.cclibTargetsDemo.Debug'.-388924264#264#68#-0#-----0#0#0#--321"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-FFF2B2AD15004CD1B7256FC7.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibTargetsDemo.build/Script-FFF2B2AD15004CD1B7256FC7.sh36"B65C8531-A2DB-48AB-BC67-D596D18C9774-
-

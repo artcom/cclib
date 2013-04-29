@@ -1,201 +1,0 @@
-TcclibFragmentNoiseDemo
-v5
-r1
-cCheck dependencies
-cCompileC build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/fragmentNoise.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibFragmentNoiseDemo normal x86_64
-cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Script-2F1C98D9B89E49CD8C24646A.sh
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
-c00000000503F1B7700000000000000AA
-t1346313079
-s170
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibFragmentNoiseDemo
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/cclibFragmentNoiseDemo.LinkFileList
-c00000000517E2AA50000000000000088
-t1367222949
-s136
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/fragmentNoise.o
-t2
-s0
-
-N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Script-2F1C98D9B89E49CD8C24646A.sh
-c00000000517E2AA500000000000000C5
-t1367222949
-s197
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/cclib.h
-c00000000517E271E0000000000000F3C
-t1367222046
-s3900
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp
-c00000000516E735A0000000000000B91
-t1366192986
-s2961
-i<cclib.h>
-i<GL/glfw.h>
-i<particles/gpunoise.h>
-i<gl/shader.h>
-i<gl/mesh.h>
-i<gl/vbomesh.h>
-i<gl/graphics.h>
-i"fragmentNoise.h"
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.h
-c00000000516E735A0000000000002F27
-t1366192986
-s12071
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/graphics.h
-c00000000517E271E00000000000010C9
-t1367222046
-s4297
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h
-c00000000516FCF430000000000001ABB
-t1366282051
-s6843
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shader.h
-c00000000517E271E0000000000000E2D
-t1367222046
-s3629
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h
-c000000005177B6B60000000000000AE5
-t1366800054
-s2789
-
-N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpunoise.h
-c00000000516E735A00000000000002F6
-t1366192986
-s758
-
-N/usr/local/include/GL/glfw.h
-c00000000516C0A2C0000000000004DD9
-t1366034988
-s19929
-
-CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp
-r0
-
-CCheck dependencies
-r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies58ca6225622eb741^0b987025622eb741^---0#1#0#--18"Check dependencies36"A1FE736B-EC6D-4C15-A573-A994487061F0-
-
-CCompileC build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/fragmentNoise.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-s388915749.441714
-e388915749.947854
-r1
-xCompileC
-xbuild-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/fragmentNoise.o
-x/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.llvm.clang.1_0.compiler
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:7:
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:5:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h:81:2: warning: XXX Buffer Port incomplete. [-W#warnings]
-o#warning XXX Buffer Port incomplete.
-o ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:42:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
-o        void vertices(ShaderBufferPtr theShaderBuffer);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual BufferPtr vertices();
-o                          ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:43:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
-o        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual BufferPtr vertices();
-o                          ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:44:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
-o        void vertices(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual BufferPtr vertices();
-o                          ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:45:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
-o        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID, int theX, int theY, int theWidth, int theHeight);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual BufferPtr vertices();
-o                          ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
-o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:54:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
-o        void colors(ShaderBufferPtr theShaderBuffer);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
-o        virtual void colors(BufferPtr theColors);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:55:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
-o        void colors(ShaderBufferPtr theShaderBuffer, int theID);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
-o        virtual void colors(BufferPtr theColors);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:56:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
-o        void colors(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
-o        virtual void colors(BufferPtr theColors);
-o                     ^
-oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:57:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
-o        void colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight);
-o             ^
-o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
-o        virtual void colors(BufferPtr theColors);
-o                     ^
-o9 warnings generated.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Compile /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp9b3c7125622eb741^94a5f225622eb741^-5611"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:7:In file included from /Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:5:/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h:81:2: warning: XXX Buffer Port incomplete. [-W#warnings]#warning XXX Buffer Port incomplete. ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:42:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:43:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:44:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:45:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:54:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:55:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer, int theID);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:56:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:57:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^9 warnings generated.9(36%IDEClangDiagnosticActivityLogMessage2@27"XXX Buffer Port incomplete.-388915749#18446744073709551615#0#2(2@86"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:7:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^6#9#6#9#152#0#21"Clang LLVM 1.0 Notice--2@73"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:5:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^4#9#4#9#93#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h0000000000000000^80#1#80#1#1803#0#18"#warning Directive--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388915749#18446744073709551615#0#3(2@86"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^7#9#7#9#173#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^41#13#41#13#1421#0#14"Semantic Issue--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388915749#18446744073709551615#0#3(2@86"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^7#9#7#9#173#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^42#13#42#13#1477#0#14"Semantic Issue--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388915749#18446744073709551615#0#3(2@86"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^7#9#7#9#173#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^43#13#43#13#1547#0#14"Semantic Issue--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388915749#18446744073709551615#0#3(2@86"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^7#9#7#9#173#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^44#13#44#13#1652#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388915749#18446744073709551615#0#2(2@86"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^7#9#7#9#173#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^53#13#53#13#2371#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388915749#18446744073709551615#0#2(2@86"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^7#9#7#9#173#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^54#13#54#13#2425#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388915749#18446744073709551615#0#2(2@86"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^7#9#7#9#173#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^55#13#55#13#2490#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388915749#18446744073709551615#0#2(2@86"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^7#9#7#9#173#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^56#13#56#13#2593#0#14"Semantic Issue--0#0#0#-19%DVTDocumentLocation4@77"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp0000000000000000^2284"CompileC build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/fragmentNoise.o src/cclib/demo/fragmentNoise.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/fragmentNoise.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/fragmentNoise.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/demo/fragmentNoise.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/fragmentNoise.o36"588C6156-3A1F-4BA7-987A-67065ABE779E-
-
-CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibFragmentNoiseDemo normal x86_64
-s388915749.954855
-e388915749.982078
-r1
-xLd
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibFragmentNoiseDemo
-xnormal
-xx86_64
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibFragmentNoiseDemo0682f425622eb741^cb69fb25622eb741^---0#0#0#--1068"Ld build-xcode/src/cclib/Debug/cclibFragmentNoiseDemo normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Objects-normal/x86_64/cclibFragmentNoiseDemo.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibFragmentNoiseDemo36"E1223112-A400-45F0-927D-3D8F9EF7A0ED-
-
-CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Script-2F1C98D9B89E49CD8C24646A.sh
-s388915749.990181
-e388915750.017817
-r1
-xPhaseScriptExecution
-xCMake PostBuild Rules
-x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Script-2F1C98D9B89E49CD8C24646A.sh
-oecho "Depend check for xcode"
-oDepend check for xcode
-ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibFragmentNoiseDemo.Debug
-omake[1]: Nothing to be done for `PostBuild.cclibFragmentNoiseDemo.Debug'.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'5ad6fd25622eb741^ef8e0426622eb741^-344"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibFragmentNoiseDemo.Debugmake[1]: Nothing to be done for `PostBuild.cclibFragmentNoiseDemo.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388915750#0#30#-0#-----2@23"Depend check for xcode-388915750#30#23#-0#-----2@217"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibFragmentNoiseDemo.Debug-388915750#53#217#-0#-----2@74"make[1]: Nothing to be done for `PostBuild.cclibFragmentNoiseDemo.Debug'.-388915750#270#74#-0#-----0#0#0#--333"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Script-2F1C98D9B89E49CD8C24646A.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibFragmentNoiseDemo.build/Script-2F1C98D9B89E49CD8C24646A.sh36"B391A714-E38C-4D57-94BC-2B3B673D9E7F-
-
