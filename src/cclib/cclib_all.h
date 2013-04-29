@@ -43,6 +43,7 @@
 #include "particles/gpuparticle.h"
 
 #include "particles/gpuindexparticleemitter.h"
+#include "particles/gpuindexparticlecurveemitter.h"
 
 #include "particles/gpuparticlerenderer.h"
 #include "particles/gpuparticlepointrenderer.h"
