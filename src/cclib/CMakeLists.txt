@@ -165,9 +165,9 @@ add_executable(vec3 test/vec3.tst.cpp)
 target_link_libraries(vec3 ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_test(vec3 vec3) 
 
-add_executable(shader_test test/shader.tst.cpp)
-target_link_libraries(shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
-add_test(shader_test shader_test) 
+add_executable(cg_shader_test test/cgshader.tst.cpp)
+target_link_libraries(cg_shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
+add_test(cg_shader_test cg_shader_test) 
 
 add_executable(shaderbuffer_test test/shaderbuffer.tst.cpp)
 target_link_libraries(shaderbuffer_test ${CCLIB_NAME} ${TEST_LIBRARIES})
