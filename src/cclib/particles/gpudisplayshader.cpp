@@ -16,7 +16,7 @@ GPUDisplayShader::GPUDisplayShader(const std::vector<std::string> & theVertexFil
 
     // XXX pointsize not quite working yet [sh].
     pointSize(1.0);
-    minPointSize(1.0f);
+    minPointSize(0.00001f);
     maxPointSize(2.5f);
 }
 
