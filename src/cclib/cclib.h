@@ -138,7 +138,7 @@ class Exception: public std::runtime_error
         Exception(std::string const& msg):
             std::runtime_error(msg)
         {
-            std::cout << "Exception: " << this->what() << std::endl;
+            std::cout << "Exception:\n" << this->what() << std::endl;
         }
 };
     

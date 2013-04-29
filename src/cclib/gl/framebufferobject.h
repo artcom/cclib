@@ -29,11 +29,23 @@ class FrameBufferObjectAttributes {
             coverageSamples(0),
             numberOfColorBuffers(numberOfAttachments),
             depthBuffer(true),
-            stencilBuffer(false)
+            stencilBuffer(false),
+            numberOfBits(32),
+            numberOfChannels(4)
         {
             for (unsigned int i=0; i<numberOfAttachments; i++) {
                 textureAttributes.push_back(theAttributes);
             }
+            
+//            printf("%s\n\tnumberOfSamples %d\n\tnumberOfBits %d\n\tnumberOfChannels %d\n\tnumberOfAttachments %d\n\tnumberOfSamples %d\n",__PRETTY_FUNCTION__,
+//                   theAttributes->numberOfSamples,theAttributes->numberOfBits,theAttributes->numberOfChannels,
+//                   numberOfAttachments,
+//                   numberOfSamples);
+        };
+    
+        static FrameBufferObjectAttributesPtr create(TextureAttributesPtr theAttributes, int numberOfAttachments=1)
+        {
+            return cclib::FrameBufferObjectAttributesPtr(new cclib::FrameBufferObjectAttributes(theAttributes, numberOfAttachments));
         };
     
         virtual ~FrameBufferObjectAttributes() {
