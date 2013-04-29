@@ -3,7 +3,7 @@
 
 #include <particles/gpunoise.h>
 // #include <stringified_shaders/simplex.fp.h>
-#include <gl/shader.h>
+#include <gl/cgshader.h>
 #include <gl/mesh.h>
 #include <gl/vbomesh.h>
 #include <gl/graphics.h>
@@ -14,7 +14,7 @@ using namespace cclib;
 class FragmentNoiseDemo {
 
     private:    
-        ShaderPtr _myShader;
+        CGShaderPtr _myShader;
         CGparameter _myNoiseScaleParameter;
         CGparameter _myNoiseOffsetParameter;
 
@@ -53,7 +53,7 @@ class FragmentNoiseDemo {
             
             std::vector<std::string> noFiles;
             
-            _myShader = Shader::create(noFiles, ffiles);
+            _myShader = CGShader::create(noFiles, ffiles);
             _myShader->load();
 
             _myNoiseScaleParameter = _myShader->fragmentParameter("noiseScale");

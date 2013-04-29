@@ -1,6 +1,6 @@
 
 #include <gl/mesh.h>
-#include <gl/shader.h>
+#include <gl/cgshader.h>
 #include <gl/shaderbuffer.h>
 #include <gl/bufferobject.h>
 #include <gl/graphics.h>

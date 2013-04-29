@@ -1,42 +1,38 @@
 
-#include "shader.h"
+#include "cgshader.h"
 
 using namespace cclib;
 
 // initialize static variables
-CGcontext Shader::cg_context = 0;
-CGprofile Shader::cg_vertex_profile; // XXX is there a default or zero profile?
-CGprofile Shader::cg_fragment_profile;
+CGcontext CGShader::cg_context = 0;
+CGprofile CGShader::cg_vertex_profile; // XXX is there a default or zero profile?
+CGprofile CGShader::cg_fragment_profile;
 
-ShaderPtr 
-Shader::create(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
-        const std::string & vertexEntry, const std::string & fragmentEntry) 
+CGShaderPtr 
+CGShader::create(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
+        const std::string & vertexEntry, const std::string & fragmentEntry)  
 {
     std::vector<std::string> vertexShaderFiles   = std::vector<std::string>(1, vertexShaderFile);
     std::vector<std::string> fragmentShaderFiles = std::vector<std::string>(1, fragmentShaderFile);
     
-    ShaderPtr shader = ShaderPtr(new Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry));
+    CGShaderPtr shader = CGShaderPtr(new CGShader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry));
     return shader;
 }
 
-ShaderPtr
-Shader::create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
+CGShaderPtr
+CGShader::create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
         const std::string & vertexEntry, const std::string & fragmentEntry) 
 {
-    ShaderPtr shader = ShaderPtr(new Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry));
+    CGShaderPtr shader = CGShaderPtr(new CGShader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry));
     return shader;
 }
     
-Shader::Shader(const std::vector<std::string> & vertexShaderFiles, 
+CGShader::CGShader(const std::vector<std::string> & vertexShaderFiles, 
         const std::vector<std::string> & fragmentShaderFiles,
         const std::string & vertexEntry, const std::string & fragmentEntry) :
-   _vertexEntry(vertexEntry), _fragmentEntry(fragmentEntry),
+   Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry),
    _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
 {   
-    if (!glewIsSupported("GL_ARB_vertex_shader") || !glewIsSupported("GL_ARB_fragment_shader")) {
-        throw cclib::Exception("Shaders are not supported by your hardware.");
-    }
-    
     initShader();
 
     if (!vertexShaderFiles.empty()) {
@@ -56,20 +52,8 @@ Shader::Shader(const std::vector<std::string> & vertexShaderFiles,
     // }
 }
 
-std::string 
-Shader::combineSources(const std::vector<std::string> & shaders) 
-{
-    std::string result = "";
-    for (std::vector<std::string>::size_type i=0; i<shaders.size(); i++) {
-        result += shaders[i];
-        result += "\n";
-    }
-
-    return result;
-}
-
 void 
-Shader::initShader() {
+CGShader::initShader() {
     if(!cg_context){
         cg_context = cgCreateContext();
 
@@ -90,7 +74,7 @@ Shader::initShader() {
 }
 
 void
-Shader::loadFragmentShader(const std::vector<std::string> & fragmentPrograms) {
+CGShader::loadFragmentShader(const std::vector<std::string> & fragmentPrograms) {
     if(fragmentPrograms.empty()) {
         return;
     }
@@ -99,7 +83,7 @@ Shader::loadFragmentShader(const std::vector<std::string> & fragmentPrograms) {
 }
 
 void
-Shader::loadVertexShader(const std::vector<std::string> & vertexPrograms) {
+CGShader::loadVertexShader(const std::vector<std::string> & vertexPrograms) {
     if(vertexPrograms.empty()) {
         return;
     }
@@ -108,7 +92,7 @@ Shader::loadVertexShader(const std::vector<std::string> & vertexPrograms) {
 }
 
 CGprogram
-Shader::loadShader(const std::string & entry, CGprofile profile, const std::vector<std::string> & programs) {
+CGShader::loadShader(const std::string & entry, CGprofile profile, const std::vector<std::string> & programs) {
     // set the current Profile
     cgGLSetContextOptimalOptions(cg_context, profile);
     cgSetAutoCompile(cg_context, CG_COMPILE_MANUAL);
@@ -129,7 +113,7 @@ Shader::loadShader(const std::string & entry, CGprofile profile, const std::vect
 }
 
 void 
-Shader::checkError(const std::string & message) {
+CGShader::checkError(const std::string & message) {
     CGerror error = cgGetError();
 
     if(error!= CG_NO_ERROR) {
@@ -144,7 +128,7 @@ Shader::checkError(const std::string & message) {
 }
 
 void 
-Shader::load() {
+CGShader::load() {
     if(_fragmentProgram) { //  != NULL) {
         cgGLLoadProgram(_fragmentProgram); 
         checkError("loading fragment program");
@@ -157,7 +141,7 @@ Shader::load() {
 }
 	
 void 
-Shader::start() {
+CGShader::start() {
     if (_vertexProgram) {
         //activate vertex shader profile
         cgGLEnableProfile(cg_vertex_profile);
@@ -202,7 +186,7 @@ Shader::start() {
 
 // XXX untested --------------------------------------------------------------------------------------
 void 
-Shader::texture(const CGparameter & parameter, int textureID) {
+CGShader::texture(const CGparameter & parameter, int textureID) {
     cgGLSetTextureParameter(parameter, textureID);
     checkError("Problem setting texture ");
     
@@ -210,7 +194,7 @@ Shader::texture(const CGparameter & parameter, int textureID) {
 }
 
 void 
-Shader::end() {
+CGShader::end() {
     std::set<CGparameter>::iterator it;
     for (it = _usedTextureParameters.begin(); it!=_usedTextureParameters.end(); ++it) {
         cgGLDisableTextureParameter(*(it));
@@ -236,22 +220,22 @@ Shader::end() {
 }
 	
 CGprogram 
-Shader::vertexProgram() {
+CGShader::vertexProgram() {
     return _vertexProgram;
 }
 	
 CGprogram 
-Shader::fragmentProgram() {
+CGShader::fragmentProgram() {
     return _fragmentProgram;
 }
 
 void 
-Shader::destroy(){
+CGShader::destroy(){
     cgDestroyContext(cg_context);
 }
 	
 void
-Shader::finalize(){
+CGShader::finalize(){
     if(_vertexProgram) {
         cgDestroyProgram(_vertexProgram);
     }
@@ -261,14 +245,14 @@ Shader::finalize(){
 }
 	
 CGparameter 
-Shader::vertexParameter(const std::string & name) {
+CGShader::vertexParameter(const std::string & name) {
     CGparameter myResult = cgGetNamedParameter(_vertexProgram, name.c_str());
     checkError("could not get vertex parameter");
     return myResult;
 }
 
 CGparameter 
-Shader::fragmentParameter(const std::string & name) {
+CGShader::fragmentParameter(const std::string & name) {
     CGparameter result = cgGetNamedParameter(_fragmentProgram, name.c_str());
     
     checkError("could not get fragment parameter: " + name + " : ");
@@ -276,67 +260,67 @@ Shader::fragmentParameter(const std::string & name) {
 }
 	
 CGparameter 
-Shader::createFragmentParameter(const std::string & typestring) {
+CGShader::createFragmentParameter(const std::string & typestring) {
     CGtype type = cgGetNamedUserType(fragmentProgram() /*.getBuffer()*/, typestring.c_str());
     return cgCreateParameter(cg_context, type);
 }
 
 CGparameter 
-Shader::createVertexParameter(const std::string & typestring) {
+CGShader::createVertexParameter(const std::string & typestring) {
     CGtype type = cgGetNamedUserType(vertexProgram() /*.getBuffer()*/, typestring.c_str());
     return cgCreateParameter(cg_context, type);
 }
 	
 void 
-Shader::parameter(const CGparameter & parameter, const int & value){
+CGShader::parameter(const CGparameter & parameter, const int & value){
     cgSetParameter1i(parameter, value);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter & parameter, const float & value){
+CGShader::parameter(const CGparameter & parameter, const float & value){
     cgSetParameter1f(parameter, value);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter & parameter, const float & v1, const float & v2){
+CGShader::parameter(const CGparameter & parameter, const float & v1, const float & v2){
     cgSetParameter2f(parameter, v1, v2);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3){
+CGShader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3){
     cgSetParameter3f(parameter, v1, v2, v3);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3, const float & v4){
+CGShader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3, const float & v4){
     cgSetParameter4f(parameter, v1, v2, v3, v4);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter & parameter, const Vector3f & vector){
+CGShader::parameter(const CGparameter & parameter, const Vector3f & vector){
     cgSetParameter3f(parameter, vector.x(), vector.y(), vector.z());
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter & parameter, const bool & value){
+CGShader::parameter(const CGparameter & parameter, const bool & value){
     cgSetParameter1i(parameter, value?1:0);
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter(const CGparameter & parameter, const Vector2f & vector){
+CGShader::parameter(const CGparameter & parameter, const Vector2f & vector){
     cgSetParameter2f(parameter, vector.x(), vector.y());
     checkError("Problem setting parameters ");
 }
 
 void 
-Shader::parameter1(const CGparameter & parameter, const std::vector<float> & values) {
+CGShader::parameter1(const CGparameter & parameter, const std::vector<float> & values) {
     cgGLSetParameterArray1f(parameter, 0, values.size(), &(values[0]));
 }
 	

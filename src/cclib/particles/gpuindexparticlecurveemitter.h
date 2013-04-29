@@ -21,7 +21,7 @@ namespace cclib {
     
     class GPUIndexParticleCurveEmitter : public cclib::GPUIndexParticleEmitter
     {
-        cclib::ShaderPtr _myCurveEmitShader;
+        cclib::CGShaderPtr _myCurveEmitShader;
         CGparameter _myRadiusParameter;
         CGparameter _myOffsetParameter;
         CGparameter _myScaleParameter;

@@ -1,11 +1,11 @@
 
 #include "gpudisplayshader.h"
-#include <gl/shader.h>
+#include <gl/cgshader.h>
 
 using namespace cclib;
 
 GPUDisplayShader::GPUDisplayShader(const std::vector<std::string> & theVertexFile, const std::vector<std::string> & theFragmentFile) :
-    Shader(theVertexFile, theFragmentFile)
+    CGShader(theVertexFile, theFragmentFile)
 {
     _myPointSizeParameter = vertexParameter("pointSize");
     _myMinPointSizeParameter = vertexParameter("minPointSize");

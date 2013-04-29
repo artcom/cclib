@@ -71,7 +71,7 @@ GPUTargetForce::setSize(int theWidth, int theHeight) {
     std::vector<std::string> ffiles;
     ffiles.push_back(initvalue01_fp);
     
-    _myInitValueShader = Shader::create(vfiles, ffiles);
+    _myInitValueShader = CGShader::create(vfiles, ffiles);
     _myInitValueShader->load();
     
     for(int i = 0; i < _myInitialTargetTextures; i++) {

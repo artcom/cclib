@@ -31,8 +31,8 @@ typedef std::tr1::shared_ptr<FrameBufferObject> FrameBufferObjectPtr;
 class PixelStorageModes;
 typedef std::tr1::shared_ptr<PixelStorageModes> PixelStorageModesPtr;
 
-class Shader;
-typedef std::tr1::shared_ptr<Shader> ShaderPtr;
+class CGShader;
+typedef std::tr1::shared_ptr<CGShader> CGShaderPtr;
 
 class PBO;
 typedef std::tr1::shared_ptr<PBO> PBOPtr;

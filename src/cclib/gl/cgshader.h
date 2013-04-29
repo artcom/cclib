@@ -1,27 +1,26 @@
-#ifndef __CCLIB_SHADER_INCLUDED__
-#define __CCLIB_SHADER_INCLUDED__
+#ifndef __CCLIB_CGSHADER_INCLUDED__
+#define __CCLIB_CGSHADER_INCLUDED__
 
 #include <cclib.h>
+#include <gl/shader.h>
 #include <set>
 
 namespace cclib {
 
-class Shader {
+class CGShader : public Shader {
 
     public:
-        static ShaderPtr create(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
+        // factory 
+        static CGShaderPtr create(const std::string & vertexShaderFile, const std::string fragmentShaderFile, 
                 const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
         
-        static ShaderPtr create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
+        static CGShaderPtr create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
                 const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
         
-    
-        Shader() {};
-        Shader(const std::string & vertexShaderFile, const std::string fragmentShaderFile,
+        CGShader(const std::string & vertexShaderFile, const std::string fragmentShaderFile,
                const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main");
     
-        virtual ~Shader() {};
-        static std::string combineSources(const std::vector<std::string> & shaders);
+        virtual ~CGShader() {};
 
         void load();
         void start();
@@ -53,20 +52,16 @@ class Shader {
         void checkError(const std::string & message);
         
     protected:
-        Shader(const std::vector<std::string> & vertexShaderFiles, 
-                const std::vector<std::string> & fragmentShaderFiles,
-                const std::string & vertexEntry = "", 
-                const std::string & fragmentEntry = "" );
+        CGShader( const std::vector<std::string> & vertexShaderFiles, 
+                  const std::vector<std::string> & fragmentShaderFiles,
+                  const std::string & vertexEntry = "", 
+                  const std::string & fragmentEntry = "" );
    
     private:
         void initShader();
         void loadVertexShader(const std::vector<std::string> & vertexPrograms);
         void loadFragmentShader(const std::vector<std::string> & fragmentPrograms);
         CGprogram loadShader(const std::string & entry, CGprofile profile, const std::vector<std::string> & fragmentPrograms);
-        
-
-        std::string _vertexEntry;
-        std::string _fragmentEntry;
         
         static CGcontext cg_context;
         static CGprofile cg_vertex_profile;

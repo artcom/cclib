@@ -3,7 +3,7 @@
 
 #include <particles/gpunoise.h>
 #include <stringified_shaders/initvalue.fp.h>
-#include <gl/shader.h>
+#include <gl/cgshader.h>
 #include <gl/mesh.h>
 #include <gl/vbomesh.h>
 #include <gl/graphics.h>
@@ -37,7 +37,7 @@ class TargetsDemo {
 
         float _myRadius;
         // TextureDataPtr _myTargetTextureData;
-        ShaderPtr _myInitValueShader;
+        CGShaderPtr _myInitValueShader;
         float myREs;
         int frame;
         double time;
@@ -159,7 +159,7 @@ class TargetsDemo {
             std::vector<std::string> vfiles, ffiles; 
             ffiles.push_back(initvalue_fp);
 
-            _myInitValueShader = Shader::create(vfiles, ffiles);
+            _myInitValueShader = CGShader::create(vfiles, ffiles);
 			_myInitValueShader->load();
         }
 

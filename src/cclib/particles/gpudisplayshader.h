@@ -3,14 +3,14 @@
 #define __CCLIB_GPUDISPLAY_SHADER_INCLUDED__
 
 #include <cclib.h>
-#include <gl/shader.h>
+#include <gl/cgshader.h>
 
 #include <stringified_shaders/points/display.fp.h>
 #include <stringified_shaders/points/display.vp.h>
 
 namespace cclib {
 
-class GPUDisplayShader : public Shader {
+class GPUDisplayShader : public CGShader {
 
     private:
         CGparameter _myPointSizeParameter;

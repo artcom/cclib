@@ -13,6 +13,7 @@
 #include "gl/bufferobject.h"
 #include "math/math.h"
 #include "particles/gpuparticle.h"
+#include "gl/cgshader.h"
 #include "gl/shaderbuffer.h"
 #include "particles/gpuparticles.h"
 #include "gl/mesh.h"
@@ -39,7 +40,7 @@ _mySpeed(1)
     ffiles.push_back(std::string(curvefield_emit_fp));
     
 //    super(theParticles, theStart, theNumberParticles);
-    _myCurveEmitShader = cclib::Shader::create(
+    _myCurveEmitShader = cclib::CGShader::create(
                             //"shader/simplex.fp","shader/emit/curvefield_emit.fp"
                             vfiles, ffiles
                                                );
@@ -50,7 +51,7 @@ _mySpeed(1)
     _myOutputScaleParameter = _myCurveEmitShader->fragmentParameter("outputScale");
     _myCurveEmitShader->load();
 
-    cclib::GPUNoise::attachFragmentNoise((cclib::Shader*)_myCurveEmitShader.get());
+    cclib::GPUNoise::attachFragmentNoise((cclib::CGShader*)_myCurveEmitShader.get());
 }
 
 //public CCGPUIndexParticleCurveEmitter(CCGPUParticles theParticles) {

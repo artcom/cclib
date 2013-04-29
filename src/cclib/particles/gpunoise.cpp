@@ -1,7 +1,7 @@
 // in parts shamelessly stolen from here (or from any other revision)
 // http://procedural-misc.googlecode.com/svn-history/r30/sandbox/trunk/hm_terrain_via_tex/main.cpp
 
-#include <gl/shader.h>
+#include <gl/cgshader.h>
 #include "gpunoise.h"
 
 using namespace cclib;
@@ -83,7 +83,7 @@ GPUNoise::get() {
 }
 
 void 
-GPUNoise::attachFragmentNoise(Shader * theShader) {
+GPUNoise::attachFragmentNoise(CGShader * theShader) {
     CGparameter myPermTextureParam = theShader->fragmentParameter("permTexture");
     CGparameter mySimplexTextureParam = theShader->fragmentParameter("simplexTexture");
     CGparameter myGradTextureParam = theShader->fragmentParameter("gradTexture");
@@ -96,7 +96,7 @@ GPUNoise::attachFragmentNoise(Shader * theShader) {
 }
 
 void 
-GPUNoise::attachVertexNoise(Shader * theShader) {
+GPUNoise::attachVertexNoise(CGShader * theShader) {
     CGparameter myPermTextureParam = theShader->vertexParameter("permTexture");
     CGparameter mySimplexTextureParam = theShader->vertexParameter("simplexTexture");
     CGparameter myGradTextureParam = theShader->vertexParameter("gradTexture");

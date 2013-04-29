@@ -3,6 +3,7 @@
 #define __CCLIB_GPUTARGETFORCE_INCLUDED__
 
 #include <cclib.h>
+#include <gl/cgshader.h>
 #include <particles/gpuforce.h>
 #include <particles/gputargetsetup.h>
 
@@ -20,7 +21,7 @@ class GPUTargetForce : public GPUForce {
         CGparameter _myNearMaxForceParameter;
 
         int _myInitialTargetTextures;
-        ShaderPtr _myInitValueShader;
+        CGShaderPtr _myInitValueShader;
         std::vector<ShaderBufferPtr> _myTargetPositionTextures;
         Property_<float>::Ptr _myScale;
         Property_<Vector3f>::Ptr _myCenter;

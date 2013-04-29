@@ -3,7 +3,7 @@
 
 #include <particles/gpunoise.h>
 #include <stringified_shaders/simplex.fp.h>
-#include <gl/shader.h>
+#include <gl/cgshader.h>
 #include <gl/mesh.h>
 #include <gl/vbomesh.h>
 #include <gl/graphics.h>
@@ -35,7 +35,7 @@ using namespace cclib;
 class NoiseFieldDemo {
 
     private:    
-        ShaderPtr _myShader;
+        CGShaderPtr _myShader;
         CGparameter _myNoiseScaleParameter;
         CGparameter _myNoiseOffsetParameter;
 
@@ -94,7 +94,7 @@ class NoiseFieldDemo {
             
             std::vector<std::string> noFiles;
             
-            _myShader = Shader::create(vfiles, noFiles);
+            _myShader = CGShader::create(vfiles, noFiles);
             _myShader->load();
 
             _myNoiseScaleParameter = _myShader->vertexParameter("noiseScale");

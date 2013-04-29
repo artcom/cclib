@@ -65,6 +65,7 @@ FILE(GLOB_RECURSE SHADER_SOURCES ABSOLUTE ${SHADER_PATH} *.fp.cpp *.vp.cpp *.gls
 set(SOURCES 
     base/component.cpp
     gl/shader.cpp    
+    gl/cgshader.cpp    
     gl/texture.cpp
     gl/texture2d.cpp
     gl/pixelstoragemodes.cpp
@@ -104,6 +105,7 @@ set(HEADERS
     math/vec3.h
     math/math.h
     gl/shader.h
+    gl/cgshader.h
     gl/texture.h    
     gl/texture2d.h    
     gl/pixelstoragemodes.h

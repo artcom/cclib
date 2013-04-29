@@ -2,11 +2,11 @@
 #define __CCLIB_GPUUPDATESHADER_INCLUDED__
 
 #include <cclib.h>
-#include <gl/shader.h>
+#include <gl/cgshader.h>
 
 namespace cclib {
 
-class GPUUpdateShader : public Shader {
+class GPUUpdateShader : public CGShader {
 
     public: 
         void data(ShaderBufferPtr theDataBuffer);

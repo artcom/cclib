@@ -9,7 +9,7 @@
 #include <particles/gpuconstraint.h>
 #include <particles/gpuimpulse.h>
 #include <gl/graphics.h>
-#include <gl/shader.h>
+#include <gl/cgshader.h>
 #include <gl/shaderbuffer.h>
 #include <stringified_shaders/initvalue01.fp.h>
 #include <stringified_shaders/initvalue.fp.h>
@@ -30,11 +30,11 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     std::vector<std::string> vfiles, ffiles;
     ffiles.push_back(std::string(initvalue01_fp));
 
-    _myInitValue01Shader = Shader::create(vfiles, ffiles, "main", "main");
+    _myInitValue01Shader = CGShader::create(vfiles, ffiles, "main", "main");
     _myInitValue01Shader->load();
 
     ffiles.clear(); ffiles.push_back(std::string(initvalue_fp));
-    _myInitValue0Shader = Shader::create(vfiles, ffiles);
+    _myInitValue0Shader = CGShader::create(vfiles, ffiles);
     _myInitValue0Shader->load();
 
     _myCurrentDataTexture = ShaderBuffer::create( _myWidth, _myHeight, 32, 4, 4);
@@ -86,7 +86,7 @@ GPUParticles::addEmitter(GPUParticleEmitterPtr theEmitter) {
     _myEmitter.push_back(theEmitter);
 }
 
-ShaderPtr 
+CGShaderPtr 
 GPUParticles::initValueShader() {
     return _myInitValue01Shader;
 }

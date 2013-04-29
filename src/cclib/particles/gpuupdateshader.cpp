@@ -30,7 +30,7 @@ GPUUpdateShader::deltaTime(float theDeltaTime) {
 GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUForcePtr> & theForces ,
         std::vector<GPUConstraintPtr> & theConstrains, std::vector<GPUImpulsePtr> & theImpulses,
         const std::vector<std::string> & theShaderFile, int theWidth, int theHeight) 
-: Shader(std::vector<std::string>(), theShaderFile),
+: CGShader(std::vector<std::string>(), theShaderFile),
     _myVelocityTextureParameter(),
     _myPositionTextureParameter(),
     _myInfoTextureParameter(),

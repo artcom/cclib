@@ -28,8 +28,8 @@ class GPUParticles {
 	    
         GPUUpdateShaderPtr _myUpdateShader;
 	    
-        ShaderPtr _myInitValue01Shader;
-        ShaderPtr _myInitValue0Shader;
+        CGShaderPtr _myInitValue01Shader;
+        CGShaderPtr _myInitValue0Shader;
 	    
         ShaderBufferPtr _myCurrentDataTexture;
         ShaderBufferPtr _myDestinationDataTexture;
@@ -53,7 +53,7 @@ class GPUParticles {
 		    std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight); 
 
         void addEmitter(GPUParticleEmitterPtr theEmitter); 
-        ShaderPtr initValueShader();
+        CGShaderPtr initValueShader();
         double currentTime();
         void reset();
         int width();
