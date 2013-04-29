@@ -17,8 +17,8 @@ class CGShader : public Shader {
         static CGShaderPtr create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
                 const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
         
-        CGShader(const std::string & vertexShaderFile, const std::string fragmentShaderFile,
-               const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main");
+//        CGShader(const std::string & vertexShaderFile, const std::string fragmentShaderFile,
+//               const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main");
     
         virtual ~CGShader() {};
 

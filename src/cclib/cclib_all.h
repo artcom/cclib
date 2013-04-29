@@ -17,7 +17,8 @@
 #include "math/vec3.h"
 #include "math/math.h"
 
-#include "gl/shader.h"
+#include "gl/cgshader.h"
+#include "gl/glslshader.h"
 
 #include "gl/texture.h"
 #include "gl/texture2d.h"

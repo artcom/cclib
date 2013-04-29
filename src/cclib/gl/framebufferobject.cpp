@@ -30,11 +30,11 @@ FrameBufferObject::FrameBufferObject(GLenum theTarget, FrameBufferObjectAttribut
         Graphics::checkError();
     }
 
-    printf("%s\n\ttheTarget %#x\n\tmyFramebuffers[0] %d\n\tnumberOfSamples %d\n\tnumberOfBits %d\n\tnumberOfChannels %d\n\t_myUseMultisampling %d\n",__PRETTY_FUNCTION__,
-           (int)theTarget,
-           _myFramebuffers[0],
-           _myAttributes->numberOfSamples,_myAttributes->numberOfBits,_myAttributes->numberOfChannels,
-           (int)_myUseMultisampling);
+//    printf("%s\n\ttheTarget %#x\n\tmyFramebuffers[0] %d\n\tnumberOfSamples %d\n\tnumberOfBits %d\n\tnumberOfChannels %d\n\t_myUseMultisampling %d\n",__PRETTY_FUNCTION__,
+//           (int)theTarget,
+//           _myFramebuffers[0],
+//           _myAttributes->numberOfSamples,_myAttributes->numberOfBits,_myAttributes->numberOfChannels,
+//           (int)_myUseMultisampling);
     
     if( !(_myUseMultisampling) || !initMultisampling()) {
         _myUseMultisampling = false;

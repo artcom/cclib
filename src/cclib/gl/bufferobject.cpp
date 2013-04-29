@@ -12,7 +12,7 @@ BufferObject::BufferObject(int theSize) :
     glGenBuffers(1, &(_myBufferID));
     _myData = Buffer::create(theSize);
     
-    printf("%s\n\tmyBufferID %d\n",__PRETTY_FUNCTION__,_myBufferID);
+//    printf("%s\n\tmyBufferID %d\n",__PRETTY_FUNCTION__,_myBufferID);
     
     if (theSize>0) {
         bind(GL_ARRAY_BUFFER);
@@ -151,7 +151,7 @@ BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, 
         ptr = theData->data();
     }
     
-    printf("%s\n\tmyCurrentTarget %d, %s\n",__PRETTY_FUNCTION__,_myCurrentTarget,(ptr == NULL) ? "data is empty" : "data is available");
+//    printf("%s\n\tmyCurrentTarget %d, %s\n",__PRETTY_FUNCTION__,_myCurrentTarget,(ptr == NULL) ? "data is empty" : "data is available");
     
     GLenum usage = glUsage(theUsageFrequency, theUsageType);
     glBufferData(_myCurrentTarget, _mySize * sizeof(float), ptr, usage);

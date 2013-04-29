@@ -66,6 +66,7 @@ set(SOURCES
     base/component.cpp
     gl/shader.cpp    
     gl/cgshader.cpp    
+    gl/glslshader.cpp
     gl/texture.cpp
     gl/texture2d.cpp
     gl/pixelstoragemodes.cpp
@@ -106,6 +107,7 @@ set(HEADERS
     math/math.h
     gl/shader.h
     gl/cgshader.h
+    gl/glslshader.h
     gl/texture.h    
     gl/texture2d.h    
     gl/pixelstoragemodes.h
@@ -168,6 +170,10 @@ add_test(vec3 vec3)
 add_executable(cg_shader_test test/cgshader.tst.cpp)
 target_link_libraries(cg_shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_test(cg_shader_test cg_shader_test) 
+
+add_executable(glsl_shader_test test/glslshader.tst.cpp)
+target_link_libraries(glsl_shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
+add_test(glsl_shader_test glsl_shader_test) 
 
 add_executable(shaderbuffer_test test/shaderbuffer.tst.cpp)
 target_link_libraries(shaderbuffer_test ${CCLIB_NAME} ${TEST_LIBRARIES})
