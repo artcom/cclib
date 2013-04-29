@@ -1,0 +1,201 @@
+TcclibNoiseFieldDemo
+v5
+r1
+cCheck dependencies
+cCompileC build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/gpuNoiseFieldDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibNoiseFieldDemo normal x86_64
+cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Script-365E01C3020E46AC9BC3F72F.sh
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c00000000503F1B7700000000000000AA
+t1346313079
+s170
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibNoiseFieldDemo
+t2
+s0
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/cclibNoiseFieldDemo.LinkFileList
+c00000000517E2AA50000000000000089
+t1367222949
+s137
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/gpuNoiseFieldDemo.o
+t2
+s0
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Script-365E01C3020E46AC9BC3F72F.sh
+c00000000517E2AA500000000000000C2
+t1367222949
+s194
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/cclib.h
+c00000000517E271E0000000000000F3C
+t1367222046
+s3900
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp
+c000000005177B6B6000000000000196D
+t1366800054
+s6509
+i<cclib.h>
+i<GL/glfw.h>
+i<particles/gpunoise.h>
+i<stringified_shaders/simplex.fp.h>
+i<gl/shader.h>
+i<gl/mesh.h>
+i<gl/vbomesh.h>
+i<gl/graphics.h>
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/graphics.h
+c00000000517E271E00000000000010C9
+t1367222046
+s4297
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h
+c00000000516FCF430000000000001ABB
+t1366282051
+s6843
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shader.h
+c00000000517E271E0000000000000E2D
+t1367222046
+s3629
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h
+c000000005177B6B60000000000000AE5
+t1366800054
+s2789
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpunoise.h
+c00000000516E735A00000000000002F6
+t1366192986
+s758
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/stringified_shaders/simplex.fp.h
+c00000000517E27630000000000000049
+t1367222115
+s73
+
+N/usr/local/include/GL/glfw.h
+c00000000516C0A2C0000000000004DD9
+t1366034988
+s19929
+
+CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesc2be6125622eb741^10937025622eb741^---0#1#0#--18"Check dependencies36"5FCF0A05-5D97-4018-83E5-08C4A842E7B2-
+
+CCompileC build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/gpuNoiseFieldDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s388915749.441707
+e388915749.971328
+r1
+xCompileC
+xbuild-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/gpuNoiseFieldDemo.o
+x/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:7:
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:5:
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h:81:2: warning: XXX Buffer Port incomplete. [-W#warnings]
+o#warning XXX Buffer Port incomplete.
+o ^
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:42:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
+o        void vertices(ShaderBufferPtr theShaderBuffer);
+o             ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
+o        virtual BufferPtr vertices();
+o                          ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
+o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
+o                     ^
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:43:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
+o        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID);
+o             ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
+o        virtual BufferPtr vertices();
+o                          ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
+o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
+o                     ^
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:44:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
+o        void vertices(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);
+o             ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
+o        virtual BufferPtr vertices();
+o                          ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
+o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
+o                     ^
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:45:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]
+o        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID, int theX, int theY, int theWidth, int theHeight);
+o             ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
+o        virtual BufferPtr vertices();
+o                          ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here
+o        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);
+o                     ^
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:54:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
+o        void colors(ShaderBufferPtr theShaderBuffer);
+o             ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
+o        virtual void colors(BufferPtr theColors);
+o                     ^
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:55:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
+o        void colors(ShaderBufferPtr theShaderBuffer, int theID);
+o             ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
+o        virtual void colors(BufferPtr theColors);
+o                     ^
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:56:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
+o        void colors(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);
+o             ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
+o        virtual void colors(BufferPtr theColors);
+o                     ^
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:57:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]
+o        void colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight);
+o             ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here
+o        virtual void colors(BufferPtr theColors);
+o                     ^
+o9 warnings generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection73"Compile /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cppce347125622eb741^93a7f825622eb741^-5647"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:7:In file included from /Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:5:/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h:81:2: warning: XXX Buffer Port incomplete. [-W#warnings]#warning XXX Buffer Port incomplete. ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:42:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:43:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:44:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:45:14: warning: 'cclib::VBOMesh::vertices' hides overloaded virtual functions [-Woverloaded-virtual]        void vertices(ShaderBufferPtr theShaderBuffer, GLuint theID, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:39:27: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual BufferPtr vertices();                          ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:40:22: note: hidden overloaded virtual function 'cclib::Mesh::vertices' declared here        virtual void vertices(BufferPtr theVertices, int theVertexSize=3);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:54:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:55:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer, int theID);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:56:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h:57:14: warning: 'cclib::VBOMesh::colors' hides overloaded virtual function [-Woverloaded-virtual]        void colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight);             ^/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:74:22: note: hidden overloaded virtual function 'cclib::Mesh::colors' declared here        virtual void colors(BufferPtr theColors);                     ^9 warnings generated.9(36%IDEClangDiagnosticActivityLogMessage2@27"XXX Buffer Port incomplete.-388915749#18446744073709551615#0#2(2@90"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:7:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^6#9#6#9#149#0#21"Clang LLVM 1.0 Notice--2@73"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h:5:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^4#9#4#9#93#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/bufferobject.h0000000000000000^80#1#80#1#1803#0#18"#warning Directive--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388915749#18446744073709551615#0#3(2@90"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^7#9#7#9#170#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^41#13#41#13#1421#0#14"Semantic Issue--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388915749#18446744073709551615#0#3(2@90"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^7#9#7#9#170#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^42#13#42#13#1477#0#14"Semantic Issue--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388915749#18446744073709551615#0#3(2@90"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^7#9#7#9#170#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^43#13#43#13#1547#0#14"Semantic Issue--2@61"'cclib::VBOMesh::vertices' hides overloaded virtual functions-388915749#18446744073709551615#0#3(2@90"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^7#9#7#9#170#0#21"Clang LLVM 1.0 Notice--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^38#26#38#26#1192#0#14"Semantic Issue--2@72"Hidden overloaded virtual function 'cclib::Mesh::vertices' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^39#21#39#21#1225#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^44#13#44#13#1652#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388915749#18446744073709551615#0#2(2@90"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^7#9#7#9#170#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^53#13#53#13#2371#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388915749#18446744073709551615#0#2(2@90"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^7#9#7#9#170#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^54#13#54#13#2425#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388915749#18446744073709551615#0#2(2@90"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^7#9#7#9#170#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^55#13#55#13#2490#0#14"Semantic Issue--2@58"'cclib::VBOMesh::colors' hides overloaded virtual function-388915749#18446744073709551615#0#2(2@90"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp:8:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^7#9#7#9#170#0#21"Clang LLVM 1.0 Notice--2@70"Hidden overloaded virtual function 'cclib::Mesh::colors' declared here-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@64"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/mesh.h0000000000000000^73#21#73#21#3168#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@67"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/gl/vbomesh.h0000000000000000^56#13#56#13#2593#0#14"Semantic Issue--0#0#0#-19%DVTDocumentLocation4@81"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp0000000000000000^2290"CompileC build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/gpuNoiseFieldDemo.o src/cclib/demo/gpuNoiseFieldDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/gpuNoiseFieldDemo.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/gpuNoiseFieldDemo.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/demo/gpuNoiseFieldDemo.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/gpuNoiseFieldDemo.o36"BF6CE2A4-AD16-431C-88A0-FAC433C76215-
+
+CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibNoiseFieldDemo normal x86_64
+s388915749.978367
+e388915750.006102
+r1
+xLd
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibNoiseFieldDemo
+xnormal
+xx86_64
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection81"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibNoiseFieldDemo4086fa25622eb741^ff910126622eb741^---0#0#0#--1056"Ld build-xcode/src/cclib/Debug/cclibNoiseFieldDemo normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Objects-normal/x86_64/cclibNoiseFieldDemo.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibNoiseFieldDemo36"6BFC7EC5-F1C8-4188-B312-AA72B04BFC52-
+
+CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Script-365E01C3020E46AC9BC3F72F.sh
+s388915750.014164
+e388915750.047625
+r1
+xPhaseScriptExecution
+xCMake PostBuild Rules
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Script-365E01C3020E46AC9BC3F72F.sh
+oecho "Depend check for xcode"
+oDepend check for xcode
+ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibNoiseFieldDemo.Debug
+omake[1]: Nothing to be done for `PostBuild.cclibNoiseFieldDemo.Debug'.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'b1340426622eb741^1a300c26622eb741^-338"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibNoiseFieldDemo.Debugmake[1]: Nothing to be done for `PostBuild.cclibNoiseFieldDemo.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388915750#0#30#-0#-----2@23"Depend check for xcode-388915750#30#23#-0#-----2@214"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibNoiseFieldDemo.Debug-388915750#53#214#-0#-----2@71"make[1]: Nothing to be done for `PostBuild.cclibNoiseFieldDemo.Debug'.-388915750#267#71#-0#-----0#0#0#--327"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Script-365E01C3020E46AC9BC3F72F.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibNoiseFieldDemo.build/Script-365E01C3020E46AC9BC3F72F.sh36"AECC96D4-778F-4CAF-885B-4DCA2D2DF26C-
+

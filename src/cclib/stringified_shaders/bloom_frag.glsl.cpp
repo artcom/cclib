@@ -1,0 +1,33 @@
+/* Generated file, do not edit! */
+
+#include "bloom_frag.glsl.h"
+
+char const* const bloom_frag_glsl = 
+   "uniform sampler2D texture;\n"
+   "uniform float highlightRange;\n"
+   "uniform float highlightScale;\n"
+   "uniform float highlightPow;\n"
+   "		\n"
+   "vec4 saturate(vec4 inp) { \n"
+   "  return clamp(inp, 0.0, 1.0); \n"
+   "} \n"
+   "void main(void) { \n"
+   "  // Texturen auslesen \n"
+   "  vec4 color = texture2D(texture, gl_TexCoord[0].xy ); \n"
+   "  //Kontrast \n"
+   "  /*\n"
+   "  vec4 c = vec4(2.0,2.0,2.0,1.0) * (vec4(1.0,1.0,1.0,1.0) - contrast); \n"
+   "  outp = saturate((outp - vec4(0.5,0.5,0.5,0.5)) * c + vec4(0.5,0.5,0.5,0.5)); \n"
+   "  //Farben pushen \n"
+   "  outp *= brightness; \n"
+   "  //Helligkeit \n"
+   "  vec4 b = (vec4(1.0,1.0,1.0,1.0) - contrast * vec4(2.0,2.0,2.0,1.0)); \n"
+   "  outp = saturate(outp + b); \n"
+   "*/\n"
+   "	float brightness = 0.3 * color.r + 0.59 * color.g + 0.11 * color.b;\n"
+   "	brightness -= highlightRange;\n"
+   "	brightness /= 1.0 - highlightRange;\n"
+   "	brightness = pow(brightness,highlightPow) * highlightScale;\n"
+   "  gl_FragColor =  color * brightness; \n"
+   "} \n"
+   ;

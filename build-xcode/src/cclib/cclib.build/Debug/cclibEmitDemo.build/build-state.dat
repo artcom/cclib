@@ -1,0 +1,621 @@
+TcclibEmitDemo
+v5
+r1
+cCheck dependencies
+cCompileC build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo normal x86_64
+cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-E1BBFC0B06E14E9CA3ADEFE2.sh
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c00000000503F1B7700000000000000AA
+t1346313079
+s170
+
+N/Library/Frameworks/Cg.framework/Headers/cg.h
+c000000004F323C8C000000000000FDC1
+t1328692364
+s64961
+
+N/Library/Frameworks/Cg.framework/Headers/cgGL.h
+c000000004F2BA9310000000000003555
+t1328261425
+s13653
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo
+t2
+s0
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/cclibEmitDemo.LinkFileList
+c00000000517E2AA4000000000000007A
+t1367222948
+s122
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o
+t1367222949
+s392384
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh
+c00000000517E2AA400000000000000BC
+t1367222948
+s188
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-E1BBFC0B06E14E9CA3ADEFE2.sh
+c00000000517E4BE700000000000000BC
+t1367231463
+s188
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/base/component.h
+c000000005177B6B6000000000000088B
+t1366800054
+s2187
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/base/property.h
+c00000000516E735A000000000000267E
+t1366192986
+s9854
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/cclib.h
+c00000000517E4A8A0000000000000F42
+t1367231114
+s3906
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp
+c00000000516E735A000000000000116A
+t1366192986
+s4458
+i<cclib.h>
+i<GL/glfw.h>
+i<particles/gpuparticles.h>
+i<particles/gpuparticlerenderer.h>
+i<particles/gpuparticlepointrenderer.h>
+i<particles/gpuparticleemitter.h>
+i<particles/gpuindexparticleemitter.h>
+i<particles/gpuforce.h>
+i<particles/gpuforcefield.h>
+i<gl/shaderbuffer.h>
+i<gl/graphics.h>
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/framebufferobject.h
+c00000000517901350000000000000E06
+t1366884661
+s3590
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/graphics.h
+c00000000517E271E00000000000010C9
+t1367222046
+s4297
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/pixelstoragemodes.h
+c00000000516E735A0000000000000576
+t1366192986
+s1398
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shader.h
+c00000000517E4BCB0000000000000416
+t1367231435
+s1046
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shaderbuffer.h
+c00000000516E735A0000000000001391
+t1366192986
+s5009
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/texture.h
+c00000000516E735A0000000000000FAF
+t1366192986
+s4015
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/texture2d.h
+c000000005178DB3C000000000000091C
+t1366874940
+s2332
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/math/math.h
+c000000005178E9F6000000000000020D
+t1366878710
+s525
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/math/vec2.h
+c00000000516E735A000000000000215D
+t1366192986
+s8541
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/math/vec3.h
+c00000000516FA9540000000000002325
+t1366272340
+s8997
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuforce.h
+c00000000516FB94500000000000005FA
+t1366276421
+s1530
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuforcefield.h
+c00000000516E735A00000000000003F0
+t1366192986
+s1008
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuindexparticleemitter.h
+c000000005178EC120000000000000EF8
+t1366879250
+s3832
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticleemitter.h
+c00000000516E735A0000000000000122
+t1366192986
+s290
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticlepointrenderer.h
+c0000000051751094000000000000030C
+t1366626452
+s780
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticlerenderer.h
+c00000000516FCBE00000000000000182
+t1366281184
+s386
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticles.h
+c00000000517E4A8A00000000000009F1
+t1367231114
+s2545
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuupdateshader.h
+c00000000517E4A8A0000000000000516
+t1367231114
+s1302
+
+N/usr/local/include/GL/glew.h
+c000000005130B26C00000000000D7FC6
+t1362145900
+s884678
+
+N/usr/local/include/GL/glfw.h
+c00000000516C0A2C0000000000004DD9
+t1366034988
+s19929
+
+N/usr/local/include/boost/any.hpp
+c000000005111B22D0000000000001969
+t1360114221
+s6505
+
+N/usr/local/include/boost/config.hpp
+c000000005111B22D000000000000081A
+t1360114221
+s2074
+
+N/usr/local/include/boost/config/compiler/clang.hpp
+c000000005111B23C0000000000000DDC
+t1360114236
+s3548
+
+N/usr/local/include/boost/config/no_tr1/utility.hpp
+c000000005111B23C0000000000000356
+t1360114236
+s854
+
+N/usr/local/include/boost/config/platform/macos.hpp
+c000000005111B23C0000000000000927
+t1360114236
+s2343
+
+N/usr/local/include/boost/config/posix_features.hpp
+c000000005111B22F0000000000000E98
+t1360114223
+s3736
+
+N/usr/local/include/boost/config/select_compiler_config.hpp
+c000000005111B22F0000000000000E75
+t1360114223
+s3701
+
+N/usr/local/include/boost/config/select_platform_config.hpp
+c000000005111B22F0000000000000C97
+t1360114223
+s3223
+
+N/usr/local/include/boost/config/select_stdlib_config.hpp
+c000000005111B22F0000000000000BA8
+t1360114223
+s2984
+
+N/usr/local/include/boost/config/stdlib/libstdcpp3.hpp
+c000000005111B23C00000000000017F9
+t1360114236
+s6137
+
+N/usr/local/include/boost/config/suffix.hpp
+c000000005111B22F0000000000007EC4
+t1360114223
+s32452
+
+N/usr/local/include/boost/config/user.hpp
+c000000005111B22F0000000000001425
+t1360114223
+s5157
+
+N/usr/local/include/boost/detail/workaround.hpp
+c000000005111B2300000000000001C75
+t1360114224
+s7285
+
+N/usr/local/include/boost/mpl/aux_/adl_barrier.hpp
+c000000005111B2410000000000000685
+t1360114241
+s1669
+
+N/usr/local/include/boost/mpl/aux_/config/adl.hpp
+c000000005111B24D00000000000005EE
+t1360114253
+s1518
+
+N/usr/local/include/boost/mpl/aux_/config/ctps.hpp
+c000000005111B24D000000000000039E
+t1360114253
+s926
+
+N/usr/local/include/boost/mpl/aux_/config/gcc.hpp
+c000000005111B24D00000000000002B5
+t1360114253
+s693
+
+N/usr/local/include/boost/mpl/aux_/config/intel.hpp
+c000000005111B24D0000000000000267
+t1360114253
+s615
+
+N/usr/local/include/boost/mpl/aux_/config/lambda.hpp
+c000000005111B24D00000000000003F7
+t1360114253
+s1015
+
+N/usr/local/include/boost/mpl/aux_/config/msvc.hpp
+c000000005111B24D000000000000025B
+t1360114253
+s603
+
+N/usr/local/include/boost/mpl/aux_/config/nttp.hpp
+c000000005111B24D0000000000000458
+t1360114253
+s1112
+
+N/usr/local/include/boost/mpl/aux_/config/overload_resolution.hpp
+c000000005111B24D00000000000003A8
+t1360114253
+s936
+
+N/usr/local/include/boost/mpl/aux_/config/preprocessor.hpp
+c000000005111B24D00000000000004C4
+t1360114253
+s1220
+
+N/usr/local/include/boost/mpl/aux_/config/static_constant.hpp
+c000000005111B24D000000000000031A
+t1360114253
+s794
+
+N/usr/local/include/boost/mpl/aux_/config/ttp.hpp
+c000000005111B24D00000000000004F6
+t1360114253
+s1270
+
+N/usr/local/include/boost/mpl/aux_/config/workaround.hpp
+c000000005111B24D000000000000025E
+t1360114253
+s606
+
+N/usr/local/include/boost/mpl/aux_/integral_wrapper.hpp
+c000000005111B2420000000000000E22
+t1360114242
+s3618
+
+N/usr/local/include/boost/mpl/aux_/lambda_support.hpp
+c000000005111B2420000000000001561
+t1360114242
+s5473
+
+N/usr/local/include/boost/mpl/aux_/nttp_decl.hpp
+c000000005111B24200000000000003B8
+t1360114242
+s952
+
+N/usr/local/include/boost/mpl/aux_/preprocessor/params.hpp
+c000000005111B24E00000000000007EF
+t1360114254
+s2031
+
+N/usr/local/include/boost/mpl/aux_/static_cast.hpp
+c000000005111B242000000000000036E
+t1360114242
+s878
+
+N/usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp
+c000000005111B24200000000000002A8
+t1360114242
+s680
+
+N/usr/local/include/boost/mpl/bool.hpp
+c000000005111B234000000000000041B
+t1360114228
+s1051
+
+N/usr/local/include/boost/mpl/bool_fwd.hpp
+c000000005111B2340000000000000369
+t1360114228
+s873
+
+N/usr/local/include/boost/mpl/int.hpp
+c000000005111B234000000000000026E
+t1360114228
+s622
+
+N/usr/local/include/boost/mpl/int_fwd.hpp
+c000000005111B2340000000000000310
+t1360114228
+s784
+
+N/usr/local/include/boost/mpl/integral_c.hpp
+c000000005111B2340000000000000650
+t1360114228
+s1616
+
+N/usr/local/include/boost/mpl/integral_c_fwd.hpp
+c000000005111B23400000000000003E8
+t1360114228
+s1000
+
+N/usr/local/include/boost/mpl/integral_c_tag.hpp
+c000000005111B2340000000000000346
+t1360114228
+s838
+
+N/usr/local/include/boost/preprocessor/arithmetic/inc.hpp
+c000000005111B2430000000000002069
+t1360114243
+s8297
+
+N/usr/local/include/boost/preprocessor/cat.hpp
+c000000005111B23500000000000003BD
+t1360114229
+s957
+
+N/usr/local/include/boost/preprocessor/comma_if.hpp
+c000000005111B23500000000000002F0
+t1360114229
+s752
+
+N/usr/local/include/boost/preprocessor/config/config.hpp
+c000000005111B243000000000000121E
+t1360114243
+s4638
+
+N/usr/local/include/boost/preprocessor/control/if.hpp
+c000000005111B243000000000000038A
+t1360114243
+s906
+
+N/usr/local/include/boost/preprocessor/control/iif.hpp
+c000000005111B243000000000000052D
+t1360114243
+s1325
+
+N/usr/local/include/boost/preprocessor/debug/error.hpp
+c000000005111B2430000000000000626
+t1360114243
+s1574
+
+N/usr/local/include/boost/preprocessor/detail/auto_rec.hpp
+c000000005111B2430000000000006618
+t1360114243
+s26136
+
+N/usr/local/include/boost/preprocessor/facilities/empty.hpp
+c000000005111B2430000000000000204
+t1360114243
+s516
+
+N/usr/local/include/boost/preprocessor/inc.hpp
+c000000005111B23500000000000002E0
+t1360114229
+s736
+
+N/usr/local/include/boost/preprocessor/logical/bool.hpp
+c000000005111B2440000000000001FD9
+t1360114244
+s8153
+
+N/usr/local/include/boost/preprocessor/punctuation/comma.hpp
+c000000005111B2440000000000000208
+t1360114244
+s520
+
+N/usr/local/include/boost/preprocessor/punctuation/comma_if.hpp
+c000000005111B24400000000000003F4
+t1360114244
+s1012
+
+N/usr/local/include/boost/preprocessor/repeat.hpp
+c000000005111B23500000000000002E9
+t1360114229
+s745
+
+N/usr/local/include/boost/preprocessor/repetition/repeat.hpp
+c000000005111B244000000000000ED92
+t1360114244
+s60818
+
+N/usr/local/include/boost/preprocessor/tuple/eat.hpp
+c000000005111B244000000000000327B
+t1360114244
+s12923
+
+N/usr/local/include/boost/static_assert.hpp
+c000000005111B22E000000000000148E
+t1360114222
+s5262
+
+N/usr/local/include/boost/throw_exception.hpp
+c000000005111B22E0000000000000B52
+t1360114222
+s2898
+
+N/usr/local/include/boost/type_traits/broken_compiler_spec.hpp
+c000000005111B23800000000000015B1
+t1360114232
+s5553
+
+N/usr/local/include/boost/type_traits/config.hpp
+c000000005111B2380000000000000A0B
+t1360114232
+s2571
+
+N/usr/local/include/boost/type_traits/detail/bool_trait_def.hpp
+c000000005111B2480000000000001552
+t1360114248
+s5458
+
+N/usr/local/include/boost/type_traits/detail/bool_trait_undef.hpp
+c000000005111B24800000000000003D8
+t1360114248
+s984
+
+N/usr/local/include/boost/type_traits/detail/ice_and.hpp
+c000000005111B24800000000000003E4
+t1360114248
+s996
+
+N/usr/local/include/boost/type_traits/detail/ice_eq.hpp
+c000000005111B24800000000000003CC
+t1360114248
+s972
+
+N/usr/local/include/boost/type_traits/detail/ice_not.hpp
+c000000005111B2480000000000000309
+t1360114248
+s777
+
+N/usr/local/include/boost/type_traits/detail/ice_or.hpp
+c000000005111B24800000000000003E7
+t1360114248
+s999
+
+N/usr/local/include/boost/type_traits/detail/template_arity_spec.hpp
+c000000005111B24800000000000003AA
+t1360114248
+s938
+
+N/usr/local/include/boost/type_traits/detail/type_trait_def.hpp
+c000000005111B248000000000000062A
+t1360114248
+s1578
+
+N/usr/local/include/boost/type_traits/detail/type_trait_undef.hpp
+c000000005111B2480000000000000271
+t1360114248
+s625
+
+N/usr/local/include/boost/type_traits/detail/yes_no_type.hpp
+c000000005111B24800000000000002D6
+t1360114248
+s726
+
+N/usr/local/include/boost/type_traits/ice.hpp
+c000000005111B2390000000000000300
+t1360114233
+s768
+
+N/usr/local/include/boost/type_traits/integral_constant.hpp
+c000000005111B2390000000000000583
+t1360114233
+s1411
+
+N/usr/local/include/boost/type_traits/is_lvalue_reference.hpp
+c000000005111B2390000000000001249
+t1360114233
+s4681
+
+N/usr/local/include/boost/type_traits/is_reference.hpp
+c000000005111B2390000000000000545
+t1360114233
+s1349
+
+N/usr/local/include/boost/type_traits/is_rvalue_reference.hpp
+c000000005111B2390000000000000372
+t1360114233
+s882
+
+N/usr/local/include/boost/type_traits/remove_reference.hpp
+c000000005111B23900000000000008A5
+t1360114233
+s2213
+
+CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies3c4f4c67832eb741^19014d67832eb741^---0#1#0#--18"Check dependencies36"3398BDA8-1063-4FD6-8B1C-EBAF0584C121-
+
+CCompileC build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s388924263.305410
+e388924264.351446
+r1
+xCompileC
+xbuild-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o
+x/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+o/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:22:15: warning: private field '_cX' is not used [-Wunused-private-field]
+o        float _cX;
+o              ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:23:15: warning: private field '_cY' is not used [-Wunused-private-field]
+o        float _cY;
+o              ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:24:15: warning: private field '_cZ' is not used [-Wunused-private-field]
+o        float _cZ;
+o              ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:25:15: warning: private field '_cGStrength' is not used [-Wunused-private-field]
+o        float _cGStrength;
+o              ^
+o4 warnings generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection64"Compile /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp874f4e67832eb741^62f75968832eb741^-698"/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:22:15: warning: private field '_cX' is not used [-Wunused-private-field]        float _cX;              ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:23:15: warning: private field '_cY' is not used [-Wunused-private-field]        float _cY;              ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:24:15: warning: private field '_cZ' is not used [-Wunused-private-field]        float _cZ;              ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:25:15: warning: private field '_cGStrength' is not used [-Wunused-private-field]        float _cGStrength;              ^4 warnings generated.4(36%IDEClangDiagnosticActivityLogMessage2@31"Private field '_cX' is not used-388924264#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^21#14#21#14#507#0#19"Unused Entity Issue--2@31"Private field '_cY' is not used-388924264#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^22#14#22#14#526#0#19"Unused Entity Issue--2@31"Private field '_cZ' is not used-388924264#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^23#14#23#14#545#0#19"Unused Entity Issue--2@39"Private field '_cGStrength' is not used-388924264#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^24#14#24#14#564#0#19"Unused Entity Issue--0#0#0#-19%DVTDocumentLocation4@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^2200"CompileC build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o src/cclib/demo/emitDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o36"1A998A53-917F-4D64-8A55-6E14EC9CBB75-
+
+CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo normal x86_64
+s388924264.358540
+e388924264.398025
+r1
+xLd
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo
+xnormal
+xx86_64
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection75"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo54e55b68832eb741^a4e46568832eb741^---0#0#0#--1032"Ld build-xcode/src/cclib/Debug/cclibEmitDemo normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/cclibEmitDemo.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo36"037B02C3-8685-4B25-B681-C3D217DD1C64-
+
+CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh
+s388916465.182615
+e388916465.230827
+r1
+xPhaseScriptExecution
+xCMake PostBuild Rules
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh
+oecho "Depend check for xcode"
+oDepend check for xcode
+ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibEmitDemo.Debug
+omake[1]: Nothing to be done for `PostBuild.cclibEmitDemo.Debug'.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'3f572ff1642eb741^df173bf1642eb741^-326"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibEmitDemo.Debugmake[1]: Nothing to be done for `PostBuild.cclibEmitDemo.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388916465#0#30#-0#-----2@23"Depend check for xcode-388916465#30#23#-0#-----2@208"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibEmitDemo.Debug-388916465#53#208#-0#-----2@65"make[1]: Nothing to be done for `PostBuild.cclibEmitDemo.Debug'.-388916465#261#65#-0#-----0#0#0#--315"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh36"9588A9D5-0764-4BC5-8437-D4ABEBF0626F-
+
+CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-E1BBFC0B06E14E9CA3ADEFE2.sh
+s388924264.406133
+e388924264.450053
+r1
+xPhaseScriptExecution
+xCMake PostBuild Rules
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-E1BBFC0B06E14E9CA3ADEFE2.sh
+oecho "Depend check for xcode"
+oDepend check for xcode
+ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibEmitDemo.Debug
+omake[1]: Nothing to be done for `PostBuild.cclibEmitDemo.Debug'.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'3eb36868832eb741^ce367368832eb741^-326"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibEmitDemo.Debugmake[1]: Nothing to be done for `PostBuild.cclibEmitDemo.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388924264#0#30#-0#-----2@23"Depend check for xcode-388924264#30#23#-0#-----2@208"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibEmitDemo.Debug-388924264#53#208#-0#-----2@65"make[1]: Nothing to be done for `PostBuild.cclibEmitDemo.Debug'.-388924264#261#65#-0#-----0#0#0#--315"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-E1BBFC0B06E14E9CA3ADEFE2.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-E1BBFC0B06E14E9CA3ADEFE2.sh36"04C271F5-75F9-41D2-9D70-B6825265F025-
+

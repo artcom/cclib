@@ -1,0 +1,128 @@
+Tshaderbuffer_test
+v5
+r1
+cCheck dependencies
+cCompileC build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer.tst.o /Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/shaderbuffer_test normal x86_64
+cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Script-C8C9CC126E5A418F8698AD70.sh
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c00000000503F1B7700000000000000AA
+t1346313079
+s170
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/shaderbuffer_test
+t2
+s0
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer.tst.o
+t2
+s0
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer_test.LinkFileList
+c00000000517E2AA40000000000000086
+t1367222948
+s134
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Script-C8C9CC126E5A418F8698AD70.sh
+c00000000517E2AA400000000000000C0
+t1367222948
+s192
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/cclib.h
+c00000000517E271E0000000000000F3C
+t1367222046
+s3900
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/graphics.h
+c00000000517E271E00000000000010C9
+t1367222046
+s4297
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shader.h
+c00000000517E271E0000000000000E2D
+t1367222046
+s3629
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shaderbuffer.h
+c00000000516E735A0000000000001391
+t1366192986
+s5009
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/test/gl_fixture.h
+c00000000516E735A0000000000000311
+t1366192986
+s785
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp
+c00000000516E735A00000000000006BE
+t1366192986
+s1726
+i<boost/test/unit_test.hpp>
+i<vector>
+i<string>
+i<stdexcept>
+i<cclib.h>
+i<gl/shader.h>
+i<gl/shaderbuffer.h>
+i<gl/graphics.h>
+i"gl_fixture.h"
+
+N/usr/local/include/boost/test/unit_test.hpp
+c000000005111B2380000000000000982
+t1360114232
+s2434
+
+CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesa8343624622eb741^c1ca3924622eb741^---0#1#0#--18"Check dependencies36"2E1C25BD-F815-4D55-A4CE-B00D05CE692E-
+
+CCompileC build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer.tst.o /Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s388915748.228118
+e388915749.612602
+r1
+xCompileC
+xbuild-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer.tst.o
+x/Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+oIn file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp:7:
+oIn file included from /usr/local/include/boost/test/unit_test.hpp:19:
+oIn file included from /usr/local/include/boost/test/test_tools.hpp:21:
+o/usr/local/include/boost/test/floating_point_comparison.hpp:251:25: warning: unused variable 'check_is_close' [-Wunused-variable]
+ocheck_is_close_t const& check_is_close = unit_test::ut_detail::static_constant<check_is_close_t>::value;
+o                        ^
+o/usr/local/include/boost/test/floating_point_comparison.hpp:273:25: warning: unused variable 'check_is_small' [-Wunused-variable]
+ocheck_is_small_t const& check_is_small = unit_test::ut_detail::static_constant<check_is_small_t>::value;
+o                        ^
+o2 warnings generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection72"Compile /Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp34813a24622eb741^e5d29c25622eb741^-775"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp:7:In file included from /usr/local/include/boost/test/unit_test.hpp:19:In file included from /usr/local/include/boost/test/test_tools.hpp:21:/usr/local/include/boost/test/floating_point_comparison.hpp:251:25: warning: unused variable 'check_is_close' [-Wunused-variable]check_is_close_t const& check_is_close = unit_test::ut_detail::static_constant<check_is_close_t>::value;                        ^/usr/local/include/boost/test/floating_point_comparison.hpp:273:25: warning: unused variable 'check_is_small' [-Wunused-variable]check_is_small_t const& check_is_small = unit_test::ut_detail::static_constant<check_is_small_t>::value;                        ^2 warnings generated.2(36%IDEClangDiagnosticActivityLogMessage2@32"Unused variable 'check_is_close'-388915749#18446744073709551615#0#3(2@89"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp:7:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@80"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp0000000000000000^6#9#6#9#104#0#21"Clang LLVM 1.0 Notice--2@69"In file included from /usr/local/include/boost/test/unit_test.hpp:19:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@59"file://localhost/usr/local/include/boost/test/unit_test.hpp0000000000000000^18#9#18#9#615#0#21"Clang LLVM 1.0 Notice--2@70"In file included from /usr/local/include/boost/test/test_tools.hpp:21:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@60"file://localhost/usr/local/include/boost/test/test_tools.hpp0000000000000000^20#9#20#9#696#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@75"file://localhost/usr/local/include/boost/test/floating_point_comparison.hpp0000000000000000^250#24#250#24#8711#0#19"Unused Entity Issue--2@32"Unused variable 'check_is_small'-388915749#18446744073709551615#0#3(2@89"In file included from /Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp:7:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@80"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp0000000000000000^6#9#6#9#104#0#21"Clang LLVM 1.0 Notice--2@69"In file included from /usr/local/include/boost/test/unit_test.hpp:19:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@59"file://localhost/usr/local/include/boost/test/unit_test.hpp0000000000000000^18#9#18#9#615#0#21"Clang LLVM 1.0 Notice--2@70"In file included from /usr/local/include/boost/test/test_tools.hpp:21:-388915749#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@60"file://localhost/usr/local/include/boost/test/test_tools.hpp0000000000000000^20#9#20#9#696#0#21"Clang LLVM 1.0 Notice--1#27"com.apple.dt.IDE.diagnostic3@75"file://localhost/usr/local/include/boost/test/floating_point_comparison.hpp0000000000000000^272#24#272#24#9428#0#19"Unused Entity Issue--0#0#0#-19%DVTDocumentLocation4@80"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp0000000000000000^2272"CompileC build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer.tst.o src/cclib/test/shaderbuffer.tst.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer.tst.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer.tst.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/test/shaderbuffer.tst.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer.tst.o36"9ACE3F6C-329A-478A-BC45-FC19C12B3DC7-
+
+CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/shaderbuffer_test normal x86_64
+s388915749.618870
+e388915749.657041
+r1
+xLd
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/shaderbuffer_test
+xnormal
+xx86_64
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection79"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/shaderbuffer_test95829e25622eb741^e833a825622eb741^---0#0#0#--1048"Ld build-xcode/src/cclib/Debug/shaderbuffer_test normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Objects-normal/x86_64/shaderbuffer_test.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/shaderbuffer_test36"58813C68-0008-46D2-B345-AA6B52C102ED-
+
+CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Script-C8C9CC126E5A418F8698AD70.sh
+s388915749.665185
+e388915749.700693
+r1
+xPhaseScriptExecution
+xCMake PostBuild Rules
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Script-C8C9CC126E5A418F8698AD70.sh
+oecho "Depend check for xcode"
+oDepend check for xcode
+ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.shaderbuffer_test.Debug
+omake[1]: Nothing to be done for `PostBuild.shaderbuffer_test.Debug'.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'e1ecaa25622eb741^915fb325622eb741^-334"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.shaderbuffer_test.Debugmake[1]: Nothing to be done for `PostBuild.shaderbuffer_test.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388915749#0#30#-0#-----2@23"Depend check for xcode-388915749#30#23#-0#-----2@212"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.shaderbuffer_test.Debug-388915749#53#212#-0#-----2@69"make[1]: Nothing to be done for `PostBuild.shaderbuffer_test.Debug'.-388915749#265#69#-0#-----0#0#0#--323"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Script-C8C9CC126E5A418F8698AD70.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/shaderbuffer_test.build/Script-C8C9CC126E5A418F8698AD70.sh36"AFA47242-D8ED-4BE8-9921-76D5E7005E9D-
+

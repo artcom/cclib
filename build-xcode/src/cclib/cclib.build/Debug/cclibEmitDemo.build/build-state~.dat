@@ -1,0 +1,158 @@
+TcclibEmitDemo
+v5
+r1
+cCheck dependencies
+cCompileC build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo normal x86_64
+cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c00000000503F1B7700000000000000AA
+t1346313079
+s170
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo
+t2
+s0
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/cclibEmitDemo.LinkFileList
+c00000000517E2AA4000000000000007A
+t1367222948
+s122
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o
+t2
+s0
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh
+c00000000517E2AA400000000000000BC
+t1367222948
+s188
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/cclib.h
+c00000000517E271E0000000000000F3C
+t1367222046
+s3900
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp
+c00000000516E735A000000000000116A
+t1366192986
+s4458
+i<cclib.h>
+i<GL/glfw.h>
+i<particles/gpuparticles.h>
+i<particles/gpuparticlerenderer.h>
+i<particles/gpuparticlepointrenderer.h>
+i<particles/gpuparticleemitter.h>
+i<particles/gpuindexparticleemitter.h>
+i<particles/gpuforce.h>
+i<particles/gpuforcefield.h>
+i<gl/shaderbuffer.h>
+i<gl/graphics.h>
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/graphics.h
+c00000000517E271E00000000000010C9
+t1367222046
+s4297
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shaderbuffer.h
+c00000000516E735A0000000000001391
+t1366192986
+s5009
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuforce.h
+c00000000516FB94500000000000005FA
+t1366276421
+s1530
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuforcefield.h
+c00000000516E735A00000000000003F0
+t1366192986
+s1008
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuindexparticleemitter.h
+c000000005178EC120000000000000EF8
+t1366879250
+s3832
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticleemitter.h
+c00000000516E735A0000000000000122
+t1366192986
+s290
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticlepointrenderer.h
+c0000000051751094000000000000030C
+t1366626452
+s780
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticlerenderer.h
+c00000000516FCBE00000000000000182
+t1366281184
+s386
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticles.h
+c00000000517E271E00000000000009EB
+t1367222046
+s2539
+
+N/usr/local/include/GL/glfw.h
+c00000000516C0A2C0000000000004DD9
+t1366034988
+s19929
+
+CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesc4773624622eb741^f8503a24622eb741^---0#1#0#--18"Check dependencies36"85432AB0-45B3-4D00-8FA7-70DE383AE2A3-
+
+CCompileC build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s388915748.229380
+e388915749.130857
+r1
+xCompileC
+xbuild-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o
+x/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+o/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:22:15: warning: private field '_cX' is not used [-Wunused-private-field]
+o        float _cX;
+o              ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:23:15: warning: private field '_cY' is not used [-Wunused-private-field]
+o        float _cY;
+o              ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:24:15: warning: private field '_cZ' is not used [-Wunused-private-field]
+o        float _cZ;
+o              ^
+o/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:25:15: warning: private field '_cGStrength' is not used [-Wunused-private-field]
+o        float _cGStrength;
+o              ^
+o4 warnings generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection64"Compile /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp84d33a24622eb741^ffe73425622eb741^-698"/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:22:15: warning: private field '_cX' is not used [-Wunused-private-field]        float _cX;              ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:23:15: warning: private field '_cY' is not used [-Wunused-private-field]        float _cY;              ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:24:15: warning: private field '_cZ' is not used [-Wunused-private-field]        float _cZ;              ^/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp:25:15: warning: private field '_cGStrength' is not used [-Wunused-private-field]        float _cGStrength;              ^4 warnings generated.4(36%IDEClangDiagnosticActivityLogMessage2@31"Private field '_cX' is not used-388915749#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^21#14#21#14#507#0#19"Unused Entity Issue--2@31"Private field '_cY' is not used-388915749#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^22#14#22#14#526#0#19"Unused Entity Issue--2@31"Private field '_cZ' is not used-388915749#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^23#14#23#14#545#0#19"Unused Entity Issue--2@39"Private field '_cGStrength' is not used-388915749#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^24#14#24#14#564#0#19"Unused Entity Issue--0#0#0#-19%DVTDocumentLocation4@72"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp0000000000000000^2200"CompileC build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o src/cclib/demo/emitDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/demo/emitDemo.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/emitDemo.o36"9BA8DDA2-E359-409A-AED9-E36D9AB76AA0-
+
+CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo normal x86_64
+s388915749.137889
+e388915749.175117
+r1
+xLd
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo
+xnormal
+xx86_64
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection75"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo166c2325622eb741^6ef93425622eb741^---0#0#0#--1032"Ld build-xcode/src/cclib/Debug/cclibEmitDemo normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Objects-normal/x86_64/cclibEmitDemo.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibEmitDemo36"8F1B7951-60D0-482F-9F3E-C763D860DA4B-
+
+CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh
+s388915749.206225
+e388915749.250270
+r1
+xPhaseScriptExecution
+xCMake PostBuild Rules
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh
+oecho "Depend check for xcode"
+oDepend check for xcode
+ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibEmitDemo.Debug
+omake[1]: Nothing to be done for `PostBuild.cclibEmitDemo.Debug'.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'44153625622eb741^10044425622eb741^-326"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibEmitDemo.Debugmake[1]: Nothing to be done for `PostBuild.cclibEmitDemo.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388915749#0#30#-0#-----2@23"Depend check for xcode-388915749#30#23#-0#-----2@208"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibEmitDemo.Debug-388915749#53#208#-0#-----2@65"make[1]: Nothing to be done for `PostBuild.cclibEmitDemo.Debug'.-388915749#261#65#-0#-----0#0#0#--315"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibEmitDemo.build/Script-93AAE4DC09C649348486BB06.sh36"EAE4E4FE-DE7A-4747-82F1-B5CE5D05FA0B-
+

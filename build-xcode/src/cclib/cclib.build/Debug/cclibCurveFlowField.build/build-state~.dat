@@ -1,0 +1,169 @@
+TcclibCurveFlowField
+v5
+r1
+cCheck dependencies
+cCompileC build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/curveFlowFieldDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/curveFlowFieldDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibCurveFlowField normal x86_64
+cPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Script-19CF427DE83649859B25EABC.sh
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c00000000503F1B7700000000000000AA
+t1346313079
+s170
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibCurveFlowField
+t2
+s0
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/cclibCurveFlowField.LinkFileList
+c00000000517E2AA4000000000000008A
+t1367222948
+s138
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/curveFlowFieldDemo.o
+t2
+s0
+
+N/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Script-19CF427DE83649859B25EABC.sh
+c00000000517E2AA400000000000000C2
+t1367222948
+s194
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/cclib.h
+c00000000517E271E0000000000000F3C
+t1367222046
+s3900
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/demo/curveFlowFieldDemo.cpp
+c000000005178DB3C0000000000001983
+t1366874940
+s6531
+i<cclib.h>
+i<GL/glfw.h>
+i<particles/gpuparticles.h>
+i<particles/gpuparticlerenderer.h>
+i<particles/gpuparticlepointrenderer.h>
+i<particles/gpuparticleemitter.h>
+i<particles/gpuindexparticleemitter.h>
+i<particles/gpuforce.h>
+i<particles/gpuforcefield.h>
+i<particles/gpugravity.h>
+i<particles/gpucurvefield.h>
+i<particles/gpuattractor.h>
+i<particles/gpuviscousdrag.h>
+i<gl/shaderbuffer.h>
+i<gl/graphics.h>
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/graphics.h
+c00000000517E271E00000000000010C9
+t1367222046
+s4297
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/gl/shaderbuffer.h
+c00000000516E735A0000000000001391
+t1366192986
+s5009
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuattractor.h
+c00000000516E735A0000000000000394
+t1366192986
+s916
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpucurvefield.h
+c00000000516E735A000000000000051D
+t1366192986
+s1309
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuforce.h
+c00000000516FB94500000000000005FA
+t1366276421
+s1530
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuforcefield.h
+c00000000516E735A00000000000003F0
+t1366192986
+s1008
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpugravity.h
+c00000000516E735A000000000000025D
+t1366192986
+s605
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuindexparticleemitter.h
+c000000005178EC120000000000000EF8
+t1366879250
+s3832
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticleemitter.h
+c00000000516E735A0000000000000122
+t1366192986
+s290
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticlepointrenderer.h
+c0000000051751094000000000000030C
+t1366626452
+s780
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticlerenderer.h
+c00000000516FCBE00000000000000182
+t1366281184
+s386
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuparticles.h
+c00000000517E271E00000000000009EB
+t1367222046
+s2539
+
+N/Users/frank/DEV/cclib/cclib/src/cclib/particles/gpuviscousdrag.h
+c00000000516E735A0000000000000260
+t1366192986
+s608
+
+N/usr/local/include/GL/glfw.h
+c00000000516C0A2C0000000000004DD9
+t1366034988
+s19929
+
+CBuild AST from /Users/frank/DEV/cclib/cclib/src/cclib/demo/curveFlowFieldDemo.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies419d3624622eb741^826f3a24622eb741^---0#1#0#--18"Check dependencies36"E89DB8D5-5DC8-4CA2-A379-B2D29198DE9B-
+
+CCompileC build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/curveFlowFieldDemo.o /Users/frank/DEV/cclib/cclib/src/cclib/demo/curveFlowFieldDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s388915748.229380
+e388915749.144533
+r1
+xCompileC
+xbuild-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/curveFlowFieldDemo.o
+x/Users/frank/DEV/cclib/cclib/src/cclib/demo/curveFlowFieldDemo.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"Compile /Users/frank/DEV/cclib/cclib/src/cclib/demo/curveFlowFieldDemo.cppe5d43a24622eb741^e0f23425622eb741^---0#0#0#-19%DVTDocumentLocation2@82"file://localhost/Users/frank/DEV/cclib/cclib/src/cclib/demo/curveFlowFieldDemo.cpp0000000000000000^2296"CompileC build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/curveFlowFieldDemo.o src/cclib/demo/curveFlowFieldDemo.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/frank/DEV/cclib/cclib    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions "-DCMAKE_INTDIR=\"Debug\"" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -Wno-sign-conversion -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/include -I/usr/local/include -I/Users/frank/DEV/cclib/cclib/src/cclib -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/DerivedSources/x86_64 -I/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -Wno-reorder -MMD -MT dependencies -MF /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/curveFlowFieldDemo.d --serialize-diagnostics /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/curveFlowFieldDemo.dia -c /Users/frank/DEV/cclib/cclib/src/cclib/demo/curveFlowFieldDemo.cpp -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/curveFlowFieldDemo.o36"2DE2FCBE-9A3E-44B8-A138-773A50CA73D4-
+
+CLd /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibCurveFlowField normal x86_64
+s388915749.151323
+e388915749.205994
+r1
+xLd
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibCurveFlowField
+xnormal
+xx86_64
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection81"Link /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibCurveFlowField5fd42625622eb741^f4fd3425622eb741^---0#0#0#--1056"Ld build-xcode/src/cclib/Debug/cclibCurveFlowField normal x86_64    cd /Users/frank/DEV/cclib/cclib    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug -F/Library/Frameworks -filelist /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Objects-normal/x86_64/cclibCurveFlowField.LinkFileList -mmacosx-version-min=10.8 -Wl,-search_paths_first -Wl,-headerpad_max_install_names /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/libcclib.dylib /usr/local/lib/libboost_unit_test_framework-mt.dylib -framework Cg /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw.dylib -framework AGL -framework OpenGL -o /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/Debug/cclibCurveFlowField36"39A0511D-6BCD-4905-A3BC-59C3078CDE8A-
+
+CPhaseScriptExecution "CMake PostBuild Rules" /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Script-19CF427DE83649859B25EABC.sh
+s388915749.213538
+e388915749.255525
+r1
+xPhaseScriptExecution
+xCMake PostBuild Rules
+x/Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Script-19CF427DE83649859B25EABC.sh
+oecho "Depend check for xcode"
+oDepend check for xcode
+ocd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibCurveFlowField.Debug
+omake[1]: Nothing to be done for `PostBuild.cclibCurveFlowField.Debug'.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Run custom shell script 'CMake PostBuild Rules'df513725622eb741^ee074425622eb741^-338"echo "Depend check for xcode"Depend check for xcodecd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibCurveFlowField.Debugmake[1]: Nothing to be done for `PostBuild.cclibCurveFlowField.Debug'.4(21%IDEActivityLogMessage2@30"echo "Depend check for xcode"-388915749#0#30#-0#-----2@23"Depend check for xcode-388915749#30#23#-0#-----2@214"cd /Users/frank/DEV/cclib/cclib/build-xcode && make -C /Users/frank/DEV/cclib/cclib/build-xcode -f /Users/frank/DEV/cclib/cclib/build-xcode/CMakeScripts/XCODE_DEPEND_HELPER.make PostBuild.cclibCurveFlowField.Debug-388915749#53#214#-0#-----2@71"make[1]: Nothing to be done for `PostBuild.cclibCurveFlowField.Debug'.-388915749#267#71#-0#-----0#0#0#--327"PhaseScriptExecution "CMake PostBuild Rules" build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Script-19CF427DE83649859B25EABC.sh    cd /Users/frank/DEV/cclib/cclib    /bin/sh -c /Users/frank/DEV/cclib/cclib/build-xcode/src/cclib/cclib.build/Debug/cclibCurveFlowField.build/Script-19CF427DE83649859B25EABC.sh36"A58E7428-2E2E-4B73-8191-82BF813CDF40-
+
