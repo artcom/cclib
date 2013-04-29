@@ -8,6 +8,7 @@ TextureAttributesPtr
 TextureAttributes::create(int theNumberOfBits, int theNumberOfChannels) {
     TextureAttributesPtr myTextureAttributes = TextureAttributesPtr(new TextureAttributes());
     
+//    printf("%s\n%d %d\n",__PRETTY_FUNCTION__, theNumberOfBits, theNumberOfChannels);
     myTextureAttributes->type = GL_FLOAT;
     myTextureAttributes->wrapS = GL_CLAMP;
     myTextureAttributes->wrapT = GL_CLAMP;

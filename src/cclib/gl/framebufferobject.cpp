@@ -30,10 +30,17 @@ FrameBufferObject::FrameBufferObject(GLenum theTarget, FrameBufferObjectAttribut
         Graphics::checkError();
     }
 
+    printf("%s\n\ttheTarget %#x\n\tmyFramebuffers[0] %d\n\tnumberOfSamples %d\n\tnumberOfBits %d\n\tnumberOfChannels %d\n\t_myUseMultisampling %d\n",__PRETTY_FUNCTION__,
+           (int)theTarget,
+           _myFramebuffers[0],
+           _myAttributes->numberOfSamples,_myAttributes->numberOfBits,_myAttributes->numberOfChannels,
+           (int)_myUseMultisampling);
+    
     if( !(_myUseMultisampling) || !initMultisampling()) {
         _myUseMultisampling = false;
         init();
     }
+    
     Graphics::checkError();
 }
 
@@ -98,7 +105,8 @@ void
 FrameBufferObject::init() {
     // allocate and attach depth texture
     if(_myAttributes->depthBuffer) {
-        TextureAttributesPtr depthTextureAttributes = TextureAttributes::create(24, 1);
+//        TextureAttributesPtr depthTextureAttributes = TextureAttributes::create(24, 1); // not supported ?
+        TextureAttributesPtr depthTextureAttributes = TextureAttributes::create(32, 4);
         depthTextureAttributes->filter = GL_LINEAR;
         depthTextureAttributes->wrapS = GL_CLAMP_TO_EDGE;
         depthTextureAttributes->wrapT = GL_CLAMP_TO_EDGE;
@@ -259,6 +267,7 @@ FrameBufferObject::bindFBO() {
     // Directing rendering to the texture...
     glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[_myRenderFramebufferID]);
     glDrawBuffers(_myNumberOfAttachments, &(_myDrawBuffers[0]));
+    Graphics::checkError();
 }
 
 void 
