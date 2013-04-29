@@ -6,7 +6,7 @@
 
 using namespace cclib;
 
-std::vector<TexturePtr> Graphics::_myTextures = std::vector<TexturePtr>();
+std::vector<TexturePtr> Graphics::_myTextures = std::vector<TexturePtr>(8, TexturePtr());
 bool Graphics::_myDrawTexture = false;
 int Graphics::_myRectMode = CORNER;
 
@@ -203,10 +203,23 @@ Graphics::imageImplementation(TexturePtr theImage,
 }
 
 void 
-Graphics::texture(TexturePtr theTexture) {
-    Graphics::_myTextures = std::vector<TexturePtr>();
+Graphics::texture(unsigned int theTextureUnit, TexturePtr theTexture) {
+    // GL_TEXTURE_RECTANGLE_ARB
     
-    _myTextures.push_back( theTexture );
+    _myTextures[theTextureUnit] = theTexture;
+    glActiveTexture(GL_TEXTURE0 + theTextureUnit);
+    glEnable(_myTextures[theTextureUnit]->target());
+
+    _myTextures[theTextureUnit]->bind();
+    // applyTextureTransformation(theTextureUnit, theTexture);
+    glActiveTexture(GL_TEXTURE0);
+
+    _myDrawTexture = true;
+}
+
+void 
+Graphics::texture(TexturePtr theTexture) {
+    _myTextures[0] = theTexture;
     glEnable( _myTextures[0]->target() );
     _myTextures[0]->bind();
     _myDrawTexture = true;
@@ -223,9 +236,9 @@ Graphics::noTexture() {
             // _myTextures[i] = null; // getting cleared later
             // removeTextureTransformation();
         }
-    }
     
-    _myTextures.clear();
+        _myTextures[i] = TexturePtr();
+    }
 
     glActiveTexture(GL_TEXTURE0);
     glDisable(GL_TEXTURE_2D);

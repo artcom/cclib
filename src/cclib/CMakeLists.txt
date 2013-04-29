@@ -82,6 +82,7 @@ set(SOURCES
     particles/gpuparticles.cpp
     particles/gpuparticle.cpp
     particles/gpuindexparticleemitter.cpp
+    particles/gpuindexparticlecurveemitter.cpp
     particles/gpuparticlepointrenderer.cpp
     particles/gpudisplayshader.cpp
     particles/gpuforcefield.cpp
@@ -120,6 +121,7 @@ set(HEADERS
     particles/gpuparticles.h
     particles/gpuparticle.h
     particles/gpuindexparticleemitter.h
+    particles/gpuindexparticlecurveemitter.h
     particles/gpuparticlerenderer.h
     particles/gpuparticlepointrenderer.h
     particles/gpudisplayshader.h

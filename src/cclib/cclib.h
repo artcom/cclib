@@ -2,6 +2,7 @@
 #define __CCLIB_HEADER_DEFINED__
 
 #include <math.h>
+#include <cstdio>
 #include <string>
 #include <cstring>
 #include <iostream>
@@ -98,6 +99,9 @@ typedef std::tr1::shared_ptr<ParticleWaitingList> ParticleWaitingListPtr;
 
 class GPUIndexParticleEmitter;
 typedef std::tr1::shared_ptr<GPUIndexParticleEmitter> GPUIndexParticleEmitterPtr;
+
+class GPUIndexParticleCurveEmitter;
+typedef std::tr1::shared_ptr<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
 	
 class GPUParticlePointRenderer;
 typedef std::tr1::shared_ptr<GPUParticlePointRenderer> GPUParticlePointRendererPtr;
