@@ -36,11 +36,18 @@ BOOST_FIXTURE_TEST_CASE(testShaderConstruction, GL_Fixture)
 
     BOOST_TEST_MESSAGE(">> it should throw an exception for syntax errors");
     vfiles.push_back(std::string("Syntax error? \n Wait, this is not even a shader!"));
+    
     BOOST_CHECK_THROW(GLSLShader::create(vfiles, ffiles), std::exception);
-    vfiles.clear();
+}
+
+BOOST_FIXTURE_TEST_CASE(testShaderUniform, GL_Fixture)
+{
+    std::vector<std::string> vfiles;
+    std::vector<std::string> ffiles;
     
     BOOST_TEST_MESSAGE(">> it should compile correct shaders without complaining");
     ffiles.push_back(std::string(
+        "uniform float testValue;\n" \
         "void main(void) \n" \
         "{\n" \
         "  gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n" 
@@ -53,6 +60,11 @@ BOOST_FIXTURE_TEST_CASE(testShaderConstruction, GL_Fixture)
          " } "));
     GLSLShaderPtr compiled = GLSLShader::create(vfiles, ffiles);
     BOOST_CHECK(compiled != NULL);
+    
+    compiled->start();
+    compiled->setUniform1f("testValue", 99.f);
+    compiled->end();
+    
 }
 
 #define COMPILE_FP(x) vfiles.clear(); ffiles.clear();  \

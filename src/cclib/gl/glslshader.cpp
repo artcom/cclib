@@ -48,6 +48,8 @@ void GLSLShader::initShader()
 {
     _program = glCreateProgramObjectARB();
     CHECK_GL_ERROR;
+    
+//    printf("%s\n\tprogram %d\n",__PRETTY_FUNCTION__,_program);
 }
 
 void GLSLShader::loadVertexShader(const std::vector<std::string> & vertexPrograms)
@@ -81,10 +83,11 @@ bool GLSLShader::loadShader(const std::string & source, GLenum shaderType)
     
     glCompileShaderARB(shader);
     CHECK_GL_ERROR;
-    
+
 #if 0
     glGetObjectParameterivARB(shader, GL_COMPILE_STATUS, &compiled);
     CHECK_GL_ERROR();
+    if (!compiled) return false;
 #else
     GLint result = 0;
     glGetObjectParameterivARB(shader, GL_OBJECT_COMPILE_STATUS_ARB, &result);
@@ -100,13 +103,13 @@ bool GLSLShader::loadShader(const std::string & source, GLenum shaderType)
     }
 #endif
     
-    if (!compiled) return false;
-    
     glAttachObjectARB(_program, shader);
     CHECK_GL_ERROR;
     
     glLinkProgramARB(_program);
     CHECK_GL_ERROR;
+   
+//    printf("%s\n\tSUCCESS\n",__PRETTY_FUNCTION__);
     
     return true;
 }
@@ -114,23 +117,25 @@ bool GLSLShader::loadShader(const std::string & source, GLenum shaderType)
 void GLSLShader::start()
 {
     glUseProgramObjectARB(_program);
+    CHECK_GL_ERROR;
 }
 
 void GLSLShader::end()
 {
     glUseProgramObjectARB(0);
+    CHECK_GL_ERROR;
 }
 
 void GLSLShader::setUniform1i(const std::string& name, int value)
 {
-    GLint location = glGetUniformLocationARB(_program, name.c_str());
+    GLint location = glGetUniformLocationARB(_program, (const GLcharARB*)name.c_str());
     glUniform1iARB(location, value);
     CHECK_GL_ERROR;
 }
 
 void GLSLShader::setUniform1f(const std::string& name, float value)
 {
-    GLint location = glGetUniformLocationARB(_program, name.c_str());
+    GLint location = glGetUniformLocationARB(_program, (const GLcharARB*)name.c_str());
     glUniform1fARB(location, value);
     CHECK_GL_ERROR;
 }

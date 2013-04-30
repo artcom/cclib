@@ -14,6 +14,8 @@ char const* const bloom_frag_glsl =
    "void main(void) { \n"
    "  // Texturen auslesen \n"
    "  vec4 color = texture2D(texture, gl_TexCoord[0].xy ); \n"
+   "  gl_FragColor = color; return;\n"
+   "  \n"
    "  //Kontrast \n"
    "  /*\n"
    "  vec4 c = vec4(2.0,2.0,2.0,1.0) * (vec4(1.0,1.0,1.0,1.0) - contrast); \n"
