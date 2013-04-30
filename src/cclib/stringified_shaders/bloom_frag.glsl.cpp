@@ -3,7 +3,8 @@
 #include "bloom_frag.glsl.h"
 
 char const* const bloom_frag_glsl = 
-   "uniform sampler2D texture;\n"
+   "//uniform sampler2D texture;\n"
+   "uniform sampler2DRect texture;\n"
    "uniform float highlightRange;\n"
    "uniform float highlightScale;\n"
    "uniform float highlightPow;\n"
@@ -13,8 +14,9 @@ char const* const bloom_frag_glsl =
    "} \n"
    "void main(void) { \n"
    "  // Texturen auslesen \n"
-   "  vec4 color = texture2D(texture, gl_TexCoord[0].xy ); \n"
-   "  gl_FragColor = color; return;\n"
+   "  //vec4 color = texture2D(texture, gl_TexCoord[0].xy ); \n"
+   "  vec4 color = texture2DRect(texture, gl_FragCoord.xy ); \n"
+   "  //gl_FragColor = color; return;\n"
    "  \n"
    "  //Kontrast \n"
    "  /*\n"

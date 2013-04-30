@@ -26,22 +26,31 @@ CGShader::create(const std::vector<std::string> & vertexShaderFiles, const std::
     CGShaderPtr shader = CGShaderPtr(new CGShader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry));
     return shader;
 }
+
+CGShader::CGShader()
+    : Shader(),
+   _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
+{
     
-CGShader::CGShader(const std::vector<std::string> & vertexShaderFiles, 
+}
+
+CGShader::CGShader(const std::vector<std::string> & vertexShaderFiles,
         const std::vector<std::string> & fragmentShaderFiles,
         const std::string & vertexEntry, const std::string & fragmentEntry) :
    Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry),
    _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
-{   
-    initShader();
-
-    if (!vertexShaderFiles.empty()) {
-        loadVertexShader(vertexShaderFiles);
-    }
+{
+    init(vertexShaderFiles, fragmentShaderFiles);
     
-    if (!fragmentShaderFiles.empty()) {
-        loadFragmentShader(fragmentShaderFiles);
-    }
+//    initShader();
+//
+//    if (!vertexShaderFiles.empty()) {
+//        loadVertexShader(vertexShaderFiles);
+//    }
+//    
+//    if (!fragmentShaderFiles.empty()) {
+//        loadFragmentShader(fragmentShaderFiles);
+//    }
     
     // from CCCGShader
     // if(_myVertexProgram != null) {
@@ -52,7 +61,22 @@ CGShader::CGShader(const std::vector<std::string> & vertexShaderFiles,
     // }
 }
 
-void 
+void
+CGShader::init( const std::vector<std::string> & vertexShaderFiles,
+          const std::vector<std::string> & fragmentShaderFiles)
+{
+    initShader();
+    
+    if (!vertexShaderFiles.empty()) {
+        loadVertexShader(vertexShaderFiles);
+    }
+    
+    if (!fragmentShaderFiles.empty()) {
+        loadFragmentShader(fragmentShaderFiles);
+    }
+}
+
+void
 CGShader::initShader() {
     if(!cg_context){
         cg_context = cgCreateContext();
@@ -323,7 +347,13 @@ void
 CGShader::parameter1(const CGparameter & parameter, const std::vector<float> & values) {
     cgGLSetParameterArray1f(parameter, 0, values.size(), &(values[0]));
 }
-	
+
+void
+CGShader::parameter2(const CGparameter & parameter, const std::vector<cclib::Vector2f*> & values)
+{
+    cgGLSetParameterArray2f(parameter, 0, values.size(), (float*)&(values[0]));
+}
+
 // JAVA LINE -- DO NOT CROSS!
 #if 0
 public void addMatrix(const String parameterName, const CCCGMatrixType theMatrixType, const CCCGMatrixTransform theMatrixTransform) {

@@ -1,4 +1,5 @@
-uniform sampler2D texture;
+//uniform sampler2D texture;
+uniform sampler2DRect texture;
 
 uniform float highlightRange;
 uniform float highlightScale;
@@ -11,8 +12,9 @@ vec4 saturate(vec4 inp) {
 void main(void) { 
 
   // Texturen auslesen 
-  vec4 color = texture2D(texture, gl_TexCoord[0].xy ); 
-  gl_FragColor = color; return;
+  //vec4 color = texture2D(texture, gl_TexCoord[0].xy ); 
+  vec4 color = texture2DRect(texture, gl_FragCoord.xy ); 
+  //gl_FragColor = color; return;
   
   //Kontrast 
   /*

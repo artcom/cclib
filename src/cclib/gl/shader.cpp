@@ -3,7 +3,15 @@
    
 using namespace cclib;
 
-Shader::Shader(const std::vector<std::string> & vertexShaderFiles, 
+Shader::Shader() :
+_vertexEntry("main"), _fragmentEntry("main")
+{
+    if (!glewIsSupported("GL_ARB_vertex_shader") || !glewIsSupported("GL_ARB_fragment_shader")) {
+        throw cclib::Exception("Shaders are not supported by your hardware.");
+    }
+}
+
+Shader::Shader(const std::vector<std::string> & vertexShaderFiles,
                const std::vector<std::string> & fragmentShaderFiles, 
                const std::string & vertexEntry, 
                const std::string & fragmentEntry) :

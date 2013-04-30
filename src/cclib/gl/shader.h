@@ -41,7 +41,8 @@ class Shader {
         std::string _vertexEntry;
         std::string _fragmentEntry;
 
-        Shader(const std::vector<std::string> & vertexShaderFiles, 
+        Shader();
+        Shader(const std::vector<std::string> & vertexShaderFiles,
                const std::vector<std::string> & fragmentShaderFiles, 
                const std::string & vertexEntry = "main", 
                const std::string & fragmentEntry = "main");

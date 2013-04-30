@@ -46,8 +46,8 @@ void main (
 		o.PointSize = 1;
 	}*/
 
-	//oColor = min(iColor * (myPointSize * 3.0), iColor);
-	oColor = iColor;
+	oColor = min(iColor * (myPointSize * 3.0), iColor);
+	//oColor = iColor;
 	//oPointSize = max(myPointSize, 1);
 	oPointSize = myPointSize;
 }

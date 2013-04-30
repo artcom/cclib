@@ -22,6 +22,9 @@ class CGShader : public Shader {
     
         virtual ~CGShader() {};
 
+        void init( const std::vector<std::string> & vertexShaderFiles,
+             const std::vector<std::string> & fragmentShaderFiles);
+    
         void load();
         void start();
         void end();
@@ -47,12 +50,14 @@ class CGShader : public Shader {
         void parameter(const CGparameter & parameter, const bool & value);
         void parameter(const CGparameter & parameter, const Vector2f & vector);
         void parameter1(const CGparameter & parameter, const std::vector<float> & values);
-	
+        void parameter2(const CGparameter & parameter, const std::vector<cclib::Vector2f*> & values);
+    
         void texture(const CGparameter & parameter, int textureID);
         void checkError(const std::string & message);
         
-    protected:
-        CGShader( const std::vector<std::string> & vertexShaderFiles, 
+    public:
+        CGShader();
+        CGShader( const std::vector<std::string> & vertexShaderFiles,
                   const std::vector<std::string> & fragmentShaderFiles,
                   const std::string & vertexEntry = "", 
                   const std::string & fragmentEntry = "" );
