@@ -162,6 +162,8 @@ CGShader::load() {
         cgGLLoadProgram(_vertexProgram); 
         checkError("loading vertex program");
     }
+    
+    checkError("load");
 }
 	
 void 
@@ -351,7 +353,16 @@ CGShader::parameter1(const CGparameter & parameter, const std::vector<float> & v
 void
 CGShader::parameter2(const CGparameter & parameter, const std::vector<cclib::Vector2f*> & values)
 {
-    cgGLSetParameterArray2f(parameter, 0, values.size(), (float*)&(values[0]));
+    std::vector<float> values_;
+    for(int i=0; i<values.size(); i++)
+    {
+        values_.push_back(values[i]->x());
+        values_.push_back(values[i]->y());
+    }
+    
+//    printf("%s\n\t%d -> %d\n",__PRETTY_FUNCTION__,values.size(),values_.size());
+    
+    cgGLSetParameterArray2f(parameter, 0, values.size(), (float*)&(values_[0]));
 }
 
 // JAVA LINE -- DO NOT CROSS!

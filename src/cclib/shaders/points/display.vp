@@ -12,7 +12,7 @@ void main (
 	in float4 iColor : COLOR0,
 	out float4 oPosition : POSITION,
 	out float2 oTexCoord : TEXCOORD0,
-	out float oPointSize : PSIZ,
+	out float oPointSize : PSIZE,
 	out float4 oColor : COLOR0
 ){
 	oPosition = mul(modelViewProjection,iPosition);
