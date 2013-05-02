@@ -15,7 +15,7 @@ char const* const display_vp =
    "	in float4 iColor : COLOR0,\n"
    "	out float4 oPosition : POSITION,\n"
    "	out float2 oTexCoord : TEXCOORD0,\n"
-   "	out float oPointSize : PSIZ,\n"
+   "	out float oPointSize : PSIZE,\n"
    "	out float4 oColor : COLOR0\n"
    "){\n"
    "	oPosition = mul(modelViewProjection,iPosition);\n"
