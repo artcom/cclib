@@ -15,13 +15,12 @@ GPUDisplayShader::GPUDisplayShader(const std::vector<std::string> & theVertexFil
     load();
 
     // XXX pointsize not quite working yet [sh].
-    pointSize(1.0);
-    minPointSize(0.00001f);
-    maxPointSize(2.5f);
-    
-//    pointSize(10.0);
-//    minPointSize(5.00001f);
-//    maxPointSize(20.5f);
+//    pointSize(1.0);
+//    minPointSize(0.00001f);
+//    maxPointSize(2.5f);
+    pointSize(10.0);
+    minPointSize(5.00001f);
+    maxPointSize(20.5f);
 }
 
 GPUDisplayShaderPtr 
