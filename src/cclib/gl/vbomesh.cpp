@@ -305,12 +305,10 @@ VBOMesh::enable(){
     if(_myHasColors) {
         // std::cout << "vbo:color" << std::endl;
         if(_myHasUpdatedColors) {
-            _myColorBuffer->bind(GL_ARRAY_BUFFER);
-            Graphics::checkError();
-            _myColorBuffer->bufferData();
-            Graphics::checkError();
-            _myColorBuffer->unbind();
-            Graphics::checkError();
+        // see below.. "That block causes crashes, but if I comment it out, it works. Maybe we don't need it then? [sh]"
+        //    _myColorBuffer->bind(GL_ARRAY_BUFFER);
+        //    _myColorBuffer->bufferData();
+        //    _myColorBuffer->unbind();
             _myHasUpdatedColors = false;
         }
         _myColorBuffer->bind(GL_ARRAY_BUFFER);
@@ -341,12 +339,13 @@ VBOMesh::enable(){
     
     if(_myHasVertices){
         // std::cout << "vbo:vertices" << std::endl;
+#warning "That block causes crashes, but if I comment it out, it works. Maybe we don't need it then? [sh]"
         if(_myHasUpdatedVertices) {
+#if 0
             _myVertexBuffer->bind(GL_ARRAY_BUFFER);
-//            _myVertexBuffer->bufferData(); //_myVertices.size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
-            // _myVertexBuffer->bufferData(_myVertices.size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
             _myVertexBuffer->bufferData(_myVertices->size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
             _myVertexBuffer->unbind();
+#endif 
             _myHasUpdatedVertices = false;
         }
         _myVertexBuffer->bind(GL_ARRAY_BUFFER);

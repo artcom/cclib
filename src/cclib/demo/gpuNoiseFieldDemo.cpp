@@ -113,9 +113,9 @@ class NoiseFieldDemo {
             Graphics::checkError();
             for(float x = -1000; x < 1000; x +=2){
                 for(float y = -500; y < 500; y +=2){
-                    // _myMesh->addColor(0.1, 0.1, 0.1);
+                    _myMesh->addColor(0.1, 0.1, 0.1);
                     _myMesh->addVertex(x, y, -30);
-                    // _myMesh->addColor(0.1, 0.05, 0.0, 0.15f);
+                    _myMesh->addColor(0.1, 0.05, 0.0, 0.15f);
                     _myMesh->addVertex(x, y, 30);
                 }
             }

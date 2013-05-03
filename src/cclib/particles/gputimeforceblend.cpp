@@ -12,8 +12,6 @@ GPUTimeForceBlend::GPUTimeForceBlend() :
     _myEndTime(Property_<float>::create("endTime", 0.0f)),
     _myPower(Property_<float>::create("power", 0.0f))
 {
-    std::cout << "tfb: " << std::endl;
-
     registerProperty(_myStartTime);
     registerProperty(_myEndTime);
     registerProperty(_myPower);
@@ -25,6 +23,11 @@ GPUTimeForceBlend::GPUTimeForceBlend() :
         _myBlendInfoData[i+2] = 0;
         _myBlendInfoData[i+3] = 0;
     }
+
+    _myBlendInfoData[4  ] = 0;
+    _myBlendInfoData[4+1] = 0;
+    _myBlendInfoData[4+2] = 255;
+    _myBlendInfoData[4+3] = 0;
 
     _myBlendInfos = Texture2D::create(_myBlendInfoData, GL_TEXTURE_RECTANGLE, GPUTimeForceBlend::MAX_STATES, 1);
 }
@@ -105,12 +108,12 @@ void
 GPUTimeForceBlend::update(float theDeltaTime) {
     GPUForce::update(theDeltaTime);
     
-    _myVelocityShader->parameter(_myStartTimeParameter, _myStartTime);
-    _myVelocityShader->parameter(_myEndTimeParameter, _myEndTime);
+    _myVelocityShader->parameter(_myStartTimeParameter, _myStartTime->getValue<float>());
+    _myVelocityShader->parameter(_myEndTimeParameter, _myEndTime->getValue<float>());
     
     _myVelocityShader->texture(_myBlendInfosParameter, _myBlendInfos->id());
     
-    _myVelocityShader->parameter(_myPowerParameter, _myPower);
+    _myVelocityShader->parameter(_myPowerParameter, _myPower->getValue<float>());
     
     _myForce1->update(theDeltaTime);
     _myForce2->update(theDeltaTime);
@@ -119,16 +122,16 @@ GPUTimeForceBlend::update(float theDeltaTime) {
 void
 GPUTimeForceBlend::setBlend(int theState, float theMinBlend, float theMaxBlend) {
 
-    float r = theMinBlend;
-    float g = theMaxBlend;
-    
-    int index = theState * 4;
-    _myBlendInfoData[index + 0] = r * 255;
-    _myBlendInfoData[index + 1] = g * 255;
-    _myBlendInfoData[index + 2] = 0;
-    _myBlendInfoData[index + 3] = 0;
-    
-    _myBlendInfos->data(_myBlendInfoData);
+    // float r = theMinBlend;
+    // float g = theMaxBlend;
+    // 
+    // int index = theState * 4;
+    // _myBlendInfoData[index + 0] = r * 255;
+    // _myBlendInfoData[index + 1] = g * 255;
+    // _myBlendInfoData[index + 2] = 0;
+    // _myBlendInfoData[index + 3] = 0;
+    // 
+    // _myBlendInfos->data(_myBlendInfoData);
 }
 
 void

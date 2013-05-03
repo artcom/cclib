@@ -94,7 +94,7 @@ BufferObject::bind(GLenum theTarget){
     // Graphics::checkError();
 }
 
-void 
+void
 BufferObject::unbind(){
     glBindBuffer(_myCurrentTarget, 0);
     Graphics::checkError();
@@ -151,7 +151,7 @@ BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, 
         ptr = theData->data();
     }
     
-//    printf("%s\n\tmyCurrentTarget %d, %s\n",__PRETTY_FUNCTION__,_myCurrentTarget,(ptr == NULL) ? "data is empty" : "data is available");
+    // printf("%s\n\tmyCurrentTarget %d, %s\n",__PRETTY_FUNCTION__,_myCurrentTarget,(ptr == NULL) ? "data is empty" : "data is available");
     
     GLenum usage = glUsage(theUsageFrequency, theUsageType);
     glBufferData(_myCurrentTarget, _mySize * sizeof(float), ptr, usage);

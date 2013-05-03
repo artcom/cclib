@@ -5,8 +5,12 @@
 using namespace cclib;
 
 GPUParticle::GPUParticle(GPUParticlesPtr theParticles, int theIndex):
-    _myParticles(theParticles), _myIndex(theIndex), _myIsAllocated(false), 
-    _myStep(0), _myAge(0), _myIsPermanent(false)
+    _myParticles(theParticles), 
+    _myIndex(theIndex), 
+    _myIsAllocated(false), 
+    _myStep(0), 
+    _myAge(0), 
+    _myIsPermanent(false)
 {
     _myPosition = Vector3fPtr( new Vector3f() );
     _myVelocity = Vector3fPtr( new Vector3f() );
