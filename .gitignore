@@ -7,13 +7,14 @@
 *.swn
 *.swm
 *.i60
+*.pbxproj
 .DS_Store
 
 CMakeFiles/
 CMakeCache.txt
-_builds
-build
-build-xcode
-xcode
-obj
-stringified_shaders
+_builds/
+build/
+build-xcode/
+xcode/
+obj/
+stringified_shaders/
