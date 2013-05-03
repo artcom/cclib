@@ -287,9 +287,9 @@ VBOMesh::enable(){
         if(_myHasTextureCoords[i]){
             // std::cout << "vbo:textureCoords " << i << std::endl;
             if(_myHasUpdatedTextureCoords[i]) {
-                _myTextureCoordBuffers[i]->bind(GL_ARRAY_BUFFER);
-                _myTextureCoordBuffers[i]->bufferData();
-                _myTextureCoordBuffers[i]->unbind();
+//                _myTextureCoordBuffers[i]->bind(GL_ARRAY_BUFFER);
+//                _myTextureCoordBuffers[i]->bufferData();
+//                _myTextureCoordBuffers[i]->unbind();
                 _myHasUpdatedTextureCoords[i] = false;
             }
             _myTextureCoordBuffers[i]->bind(GL_ARRAY_BUFFER);
@@ -324,9 +324,9 @@ VBOMesh::enable(){
     if(_myHasNormals){
         // std::cout << "vbo:normal" << std::endl;
         if(_myHasUpdatedNormals) {
-            _myNormalBuffer->bind(GL_ARRAY_BUFFER);
-            _myNormalBuffer->bufferData();
-            _myNormalBuffer->unbind();
+//            _myNormalBuffer->bind(GL_ARRAY_BUFFER);
+//            _myNormalBuffer->bufferData();
+//            _myNormalBuffer->unbind();
             _myHasUpdatedNormals = false;
         }
         _myNormalBuffer->bind(GL_ARRAY_BUFFER);
