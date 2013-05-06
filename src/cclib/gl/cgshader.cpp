@@ -81,19 +81,19 @@ CGShader::initShader() {
     if(!cg_context){
         cg_context = cgCreateContext();
 
-        checkError("Could not create CG Shader. Failed To Create Cg Context");
+        checkCGError("Could not create CG Shader. Failed To Create Cg Context");
 
         // get the latest available vertex profile
         cg_vertex_profile = cgGLGetLatestProfile(CG_GL_VERTEX); 
 
         // check if we got a valid profile 
-        checkError("Could not create CG shader. Invalid vertex profile type");
+        checkCGError("Could not create CG shader. Invalid vertex profile type");
 
         // get the latest available vertex profile
         cg_fragment_profile = cgGLGetLatestProfile(CG_GL_FRAGMENT); 
 
         // check if we got a valid profile 
-        checkError("Could not create CG shader. Invalid fragment profile type");
+        checkCGError("Could not create CG shader. Invalid fragment profile type");
     }
 }
 
@@ -130,14 +130,14 @@ CGShader::loadShader(const std::string & entry, CGprofile profile, const std::ve
             entry.size()==0 ? "main" : entry.c_str(), 
             0);
 
-    checkError("Cg error(s)");
+    checkCGError("Cg error(s)");
 
     return program;
 
 }
 
 void 
-CGShader::checkError(const std::string & message) {
+CGShader::checkCGError(const std::string & message) {
     CGerror error = cgGetError();
 
     if(error!= CG_NO_ERROR) {
@@ -155,15 +155,15 @@ void
 CGShader::load() {
     if(_fragmentProgram) { //  != NULL) {
         cgGLLoadProgram(_fragmentProgram); 
-        checkError("loading fragment program");
+        checkCGError("loading fragment program");
     }
     
     if(_vertexProgram) { //  != NULL) {
         cgGLLoadProgram(_vertexProgram); 
-        checkError("loading vertex program");
+        checkCGError("loading vertex program");
     }
     
-    checkError("load");
+    checkCGError("load");
 }
 	
 void 
@@ -171,28 +171,28 @@ CGShader::start() {
     if (_vertexProgram) {
         //activate vertex shader profile
         cgGLEnableProfile(cg_vertex_profile);
-        checkError("enabling vertex profile");
+        checkCGError("enabling vertex profile");
 
         // bind the shader program 
         cgGLBindProgram(_vertexProgram); 
-        checkError("binding vertex program");
+        checkCGError("binding vertex program");
     }
 
     if(_fragmentProgram) {
         //activate fragment shader profile
         cgGLEnableProfile(cg_fragment_profile);
-        checkError("enabling fragment profile");
+        checkCGError("enabling fragment profile");
 
         // bind the shader program 
         cgGLBindProgram(_fragmentProgram); 
-        checkError("binding fragment program");
+        checkCGError("binding fragment program");
     }
 
     std::set<CGparameter>::iterator it;
     for (it = _usedTextureParameters.begin(); it!=_usedTextureParameters.end(); ++it) {
         cgGLEnableTextureParameter(*(it));
         
-        checkError("disable texture paramters");
+        checkCGError("disable texture paramters");
     }
 
 #if 0 // XXX do we need listeners?
@@ -214,7 +214,7 @@ CGShader::start() {
 void 
 CGShader::texture(const CGparameter & parameter, int textureID) {
     cgGLSetTextureParameter(parameter, textureID);
-    checkError("Problem setting texture ");
+    checkCGError("Problem setting texture ");
     
     _usedTextureParameters.insert(parameter);
 }
@@ -225,17 +225,17 @@ CGShader::end() {
     for (it = _usedTextureParameters.begin(); it!=_usedTextureParameters.end(); ++it) {
         cgGLDisableTextureParameter(*(it));
         
-        checkError("disable texture paramters");
+        checkCGError("disable texture paramters");
     }
 
     if(_vertexProgram) {
         cgGLDisableProfile(cg_vertex_profile);
-        checkError("disabling vertex profile");
+        checkCGError("disabling vertex profile");
     }
 
     if(_fragmentProgram) {
         cgGLDisableProfile(cg_fragment_profile);
-        checkError("disabling fragment profile");
+        checkCGError("disabling fragment profile");
     }
 
 #if 0 // XXX do we need listeners?
@@ -273,7 +273,7 @@ CGShader::finalize(){
 CGparameter 
 CGShader::vertexParameter(const std::string & name) {
     CGparameter myResult = cgGetNamedParameter(_vertexProgram, name.c_str());
-    checkError("could not get vertex parameter");
+    checkCGError("could not get vertex parameter");
     return myResult;
 }
 
@@ -281,7 +281,7 @@ CGparameter
 CGShader::fragmentParameter(const std::string & name) {
     CGparameter result = cgGetNamedParameter(_fragmentProgram, name.c_str());
     
-    checkError("could not get fragment parameter: " + name + " : ");
+    checkCGError("could not get fragment parameter: " + name + " : ");
     return result;
 }
 	
@@ -300,49 +300,49 @@ CGShader::createVertexParameter(const std::string & typestring) {
 void 
 CGShader::parameter(const CGparameter & parameter, const int & value){
     cgSetParameter1i(parameter, value);
-    checkError("Problem setting parameters ");
+    checkCGError("Problem setting parameters ");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const float & value){
     cgSetParameter1f(parameter, value);
-    checkError("Problem setting parameters ");
+    checkCGError("Problem setting parameters ");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const float & v1, const float & v2){
     cgSetParameter2f(parameter, v1, v2);
-    checkError("Problem setting parameters ");
+    checkCGError("Problem setting parameters ");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3){
     cgSetParameter3f(parameter, v1, v2, v3);
-    checkError("Problem setting parameters ");
+    checkCGError("Problem setting parameters ");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3, const float & v4){
     cgSetParameter4f(parameter, v1, v2, v3, v4);
-    checkError("Problem setting parameters ");
+    checkCGError("Problem setting parameters ");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const Vector3f & vector){
     cgSetParameter3f(parameter, vector.x(), vector.y(), vector.z());
-    checkError("Problem setting parameters ");
+    checkCGError("Problem setting parameters ");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const bool & value){
     cgSetParameter1i(parameter, value?1:0);
-    checkError("Problem setting parameters ");
+    checkCGError("Problem setting parameters ");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const Vector2f & vector){
     cgSetParameter2f(parameter, vector.x(), vector.y());
-    checkError("Problem setting parameters ");
+    checkCGError("Problem setting parameters ");
 }
 
 void 
@@ -387,7 +387,7 @@ public void addMatrix(const String parameterName, const CCCGMatrixType theMatrix
 
 	public void parameter(const CGparameter parameter, const CCColor theColor){
 		cgSetParameter4f(parameter, theColor.r, theColor.g, theColor.b, theColor.a);
-		checkError("Problem setting parameters ");
+		checkCGError("Problem setting parameters ");
 	}
         
 	}

@@ -20,6 +20,12 @@ Graphics::color(float r, float g, float b, float a) {
 	glColor4f(r, g, b, a);
 }
 
+void
+Graphics::color(cclib::Color & color)
+{
+    glColor4f(color.red(), color.green(), color.blue(), color.alpha());
+}
+
 void 
 Graphics::clearColor(float theGray, float theAlpha) {
     glClearColor(theGray, theGray, theGray, theAlpha);
@@ -256,7 +262,9 @@ Graphics::noDepthTest() {
 }
 
 void
-Graphics::checkError() {
+//Graphics::checkError()
+Graphics::checkErrorX(char *file, int line)
+{
     GLenum error = glGetError();
     
     std::string errorStr;
@@ -290,6 +298,8 @@ Graphics::checkError() {
             break;
     }
     
-    throw cclib::Exception("GL check Error: "+ errorStr);
+    std::ostringstream errorString;
+    errorString << "GL check Error: " << errorStr << "\n\tin File " << file << " at line: " << line << std::endl;
+    throw cclib::Exception(errorString.str());
 }
 

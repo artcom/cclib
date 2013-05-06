@@ -28,7 +28,7 @@ GPUImpulse::setShader(GPUUpdateShader * theShader, int theIndex, int theWidth, i
     strength(_myStrength);
 
     setupParameter(theWidth, theHeight);
-    _myVelocityShader->checkError("Problem creating constrain.");
+    _myVelocityShader->checkCGError("Problem creating constrain.");
 }
 
 CGparameter 

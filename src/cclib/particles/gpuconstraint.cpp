@@ -37,7 +37,7 @@ GPUConstraint::setShader(GPUUpdateShader * theShader, int theIndex, int theWidth
     minimalVelocity(_myMinimalVelocity);
 
     setupParameter(theWidth, theHeight);
-    _myVelocityShader->checkError("Problem creating constrain.");
+    _myVelocityShader->checkCGError("Problem creating constrain.");
 }
 	
 CGparameter 

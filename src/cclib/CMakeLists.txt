@@ -83,9 +83,11 @@ set(SOURCES
     particles/gpunoise.cpp
     particles/gpuparticles.cpp
     particles/gpuparticle.cpp
+    particles/gpuparticlesort.cpp
     particles/gpuindexparticleemitter.cpp
     particles/gpuindexparticlecurveemitter.cpp
     particles/gpuparticlepointrenderer.cpp
+    particles/gpuindexedparticlerenderer.cpp
     particles/gpudisplayshader.cpp
     particles/gpuforcefield.cpp
     particles/gpucurvefield.cpp    
@@ -124,10 +126,12 @@ set(HEADERS
     particles/gpunoise.h    
     particles/gpuparticles.h
     particles/gpuparticle.h
+    particles/gpuparticlesort.h
     particles/gpuindexparticleemitter.h
     particles/gpuindexparticlecurveemitter.h
     particles/gpuparticlerenderer.h
     particles/gpuparticlepointrenderer.h
+    particles/gpuindexedparticlerenderer.h
     particles/gpudisplayshader.h
     particles/gpuforcefield.h
     particles/gpucurvefield.h
@@ -146,6 +150,9 @@ FOREACH(HEADER ${HEADERS})
     STRING(REGEX MATCH "(.*)[/\\]" DIR ${HEADER})
     INSTALL(FILES ${HEADER} DESTINATION include/cclib/${DIR})
 ENDFOREACH(HEADER)
+
+# install shaders
+INSTALL(DIRECTORY ${SHADER_PATH} DESTINATION include/cclib/ PATTERN "*.cpp" EXCLUDE)
 
 set(CCLIB_NAME cclib)
 add_library(${CCLIB_NAME} SHARED 
@@ -190,7 +197,7 @@ target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_executable(cclibCurveFlowField demo/curveFlowFieldDemo.cpp)
 target_link_libraries(cclibCurveFlowField ${CCLIB_NAME} ${TEST_LIBRARIES})
 
-add_executable(cclibShaderBufferDemo demo/ShaderBufferDemo.cpp)
+add_executable(cclibShaderBufferDemo demo/shaderBufferDemo.cpp)
 target_link_libraries(cclibShaderBufferDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
 add_executable(cclibNoiseFieldDemo demo/gpuNoiseFieldDemo.cpp)

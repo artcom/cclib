@@ -2,6 +2,7 @@
 #define __CCLIB_GRAPHICS_INCLUDED__
 
 #include <cclib.h>
+#include "gl/texture2d.h"
 
 namespace cclib {
 
@@ -15,12 +16,12 @@ namespace cclib {
 
 #define DEFAULT_FOV 60
     
-    
 class Graphics {
     public:
         static void clearColor(float r, float g, float b, float a = 1.0f);
         static void clearColor(float theGray, float theAlpha=1.0f);
         static void color(float r, float g, float b, float a = 1.0f);
+        static void color(cclib::Color & color);
         static void image(TexturePtr theTexture, float x, float y, float w, float h);
         static void clear();
         static void textureCoords(int theUnit, float theX, float theY);
@@ -39,7 +40,10 @@ class Graphics {
                 float x1, float y1, float x2, float y2,float u1, float v1, float u2, float v2);
         static void depthTest();
         static void noDepthTest();
-        static void checkError();
+//        static void checkError();
+
+        static void checkErrorX(char *file, int line);
+#define checkError() Graphics::checkErrorX((char*)__FILE__, __LINE__)
     
         static void blend(unsigned int theBlendmode) {
             glEnable(GL_BLEND);

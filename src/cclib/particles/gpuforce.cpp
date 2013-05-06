@@ -38,7 +38,7 @@ GPUForce::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
     _myVelocityShader = GPUUpdateShaderPtr(theShader);
     _myParameterIndex = theIndex;
     
-    _myVelocityShader->checkError("Problem creating force.");
+    _myVelocityShader->checkCGError("Problem creating force.");
     
     cgConnectParameter(
         _myVelocityShader->createFragmentParameter(_myShaderTypeName), 
@@ -46,7 +46,7 @@ GPUForce::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
     );
 
     setupParameter(theWidth, theHeight);
-    _myVelocityShader->checkError("Problem creating force.");
+    _myVelocityShader->checkCGError("Problem creating force.");
 }
 
 void 

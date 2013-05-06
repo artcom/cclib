@@ -42,12 +42,14 @@
 
 #include "particles/gpuparticles.h"
 #include "particles/gpuparticle.h"
+#include "particles/gpuparticlesort.h"
 
 #include "particles/gpuindexparticleemitter.h"
 #include "particles/gpuindexparticlecurveemitter.h"
 
 #include "particles/gpuparticlerenderer.h"
 #include "particles/gpuparticlepointrenderer.h"
+#include "particles/gpuindexedparticlerenderer.h"
 
 #include "particles/gpudisplayshader.h"
 

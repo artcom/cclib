@@ -41,11 +41,11 @@ GPUCombinedForce::setShader(GPUParticles * theParticles, GPUUpdateShader * theSh
     _myVelocityShader = GPUUpdateShaderPtr(theShader);
     _myParameterIndex = theIndex;
 
-    _myVelocityShader->checkError("Problem creating force.");
+    _myVelocityShader->checkCGError("Problem creating force.");
     cgConnectParameter(_myVelocityShader->createFragmentParameter(_myShaderTypeName),
                        _myVelocityShader->fragmentParameter(_myParameterIndex));
     
-    _myVelocityShader->checkError("Problem creating force.");
+    _myVelocityShader->checkCGError("Problem creating force.");
     
     std::stringstream fp;
     fp << _myParameterIndex << std::string(".forces");

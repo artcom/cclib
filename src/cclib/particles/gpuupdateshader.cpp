@@ -40,7 +40,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
     _myConstraintsParameter(),
     _myImpulsesParameter()
 {
-    checkError("created velocity shader");
+    checkCGError("created velocity shader");
 
     _myForcesParameter = fragmentParameter("forces");
     cgSetArraySize(_myForcesParameter, theForces.size());
