@@ -151,6 +151,9 @@ FOREACH(HEADER ${HEADERS})
     INSTALL(FILES ${HEADER} DESTINATION include/cclib/${DIR})
 ENDFOREACH(HEADER)
 
+# install shaders
+INSTALL(DIRECTORY ${SHADER_PATH} DESTINATION include/cclib/ PATTERN "*.cpp" EXCLUDE)
+
 set(CCLIB_NAME cclib)
 add_library(${CCLIB_NAME} SHARED 
     ${SHADER_SOURCES} 
@@ -194,7 +197,7 @@ target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 add_executable(cclibCurveFlowField demo/curveFlowFieldDemo.cpp)
 target_link_libraries(cclibCurveFlowField ${CCLIB_NAME} ${TEST_LIBRARIES})
 
-add_executable(cclibShaderBufferDemo demo/ShaderBufferDemo.cpp)
+add_executable(cclibShaderBufferDemo demo/shaderBufferDemo.cpp)
 target_link_libraries(cclibShaderBufferDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
 add_executable(cclibNoiseFieldDemo demo/gpuNoiseFieldDemo.cpp)
