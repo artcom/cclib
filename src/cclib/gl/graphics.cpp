@@ -248,7 +248,7 @@ Graphics::noTexture() {
 
     glActiveTexture(GL_TEXTURE0);
     glDisable(GL_TEXTURE_2D);
-    glDisable(GL_TEXTURE_RECTANGLE);
+//    glDisable(GL_TEXTURE_RECTANGLE);
     _myDrawTexture = false;
 }
 
