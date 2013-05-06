@@ -20,6 +20,12 @@ Graphics::color(float r, float g, float b, float a) {
 	glColor4f(r, g, b, a);
 }
 
+void
+Graphics::color(cclib::Color & color)
+{
+    glColor4f(color.red(), color.green(), color.blue(), color.alpha());
+}
+
 void 
 Graphics::clearColor(float theGray, float theAlpha) {
     glClearColor(theGray, theGray, theGray, theAlpha);

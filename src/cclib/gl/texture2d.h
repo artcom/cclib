@@ -12,10 +12,10 @@ class Color {
         Color(unsigned int red=255, unsigned int green=255, unsigned int blue=255, unsigned int alpha=255) 
             : _red(red/255.0f), _green(green/255.0f), _blue(blue/255.0f), _alpha(alpha/255.0f) {};
 
-        Color(float red, float green, float blue, float alpha = 1.0) 
+        Color(float red, float green, float blue, float alpha = 1.0)
             : _red(red), _green(green), _blue(blue), _alpha() {};
-
-        ~Color() {};  
+        
+        ~Color() {};
 
         float red() { return _red; };
         float green() { return _green; };
@@ -27,10 +27,10 @@ class Color {
         float b() { return _blue; };
         float a() { return _alpha; };
         
-        void red(float value) { _red = value; };
-        void green(float value) { _green = value; };
-        void blue(float value) { _blue = value; };
-        void alpha(float value) { _alpha = value; };
+        void setRed(float value) { _red = value; };
+        void setGreen(float value) { _green = value; };
+        void setBlue(float value) { _blue = value; };
+        void setAlpha(float value) { _alpha = value; };
 
         void set(Color theColor) {
             _red   = theColor.r();
@@ -39,6 +39,8 @@ class Color {
             _alpha = theColor.a();
         };
 
+        void setHSB(float theHue, float theSaturation, float theBrightness, float theAlpha=1.0);
+    
     private:
         float _red;
         float _green;

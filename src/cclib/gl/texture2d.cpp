@@ -4,6 +4,82 @@
 
 using namespace cclib;
 
+/**
+ * Sets the color using values specified by the HSB model.
+ * <ul>
+ * <li>hue should be floating-point values between zero and one</li>
+ * <li>saturation should be floating-point values between zero and one</li>
+ * <li>brightness should be floating-point values between zero and one</li>
+ * </ul>
+ * The <code>saturation</code> and <code>brightness</code> components
+ * should be floating-point values between zero and one
+ * (numbers in the range 0.0-1.0).  The <code>hue</code> component
+ * can be any floating-point number.  The floor of this number is
+ * subtracted from it to create a fraction between 0 and 1.  This
+ * fractional number is then multiplied by 360 to produce the hue
+ * angle in the HSB color model.
+ * <p>
+ * The integer that is returned by <code>HSBtoRGB</code> encodes the
+ * value of a color in bits 0-23 of an integer value that is the same
+ * format used by the method {@link #getRGB() <code>getRGB</code>}.
+ * This integer can be supplied as an argument to the
+ * <code>Color</code> constructor that takes a single integer argument.
+ * @param     theHue   the hue component of the color
+ * @param     theSaturation   the saturation of the color
+ * @param     theBrightness   the brightness of the color
+ * @return    the RGB value of the color with the indicated hue,
+ *                            saturation, and brightness.
+ */
+void cclib::Color::setHSB(float theHue, float theSaturation, float theBrightness, float theAlpha)
+{
+    _alpha = theAlpha;
+    
+    if (theSaturation == 0) {
+        _red = _green = _blue = theBrightness;
+    } else {
+        float which = (theHue - (int) theHue) * 6.0f;
+        float f = which - (int) which;
+        float p = theBrightness * (1.0f - theSaturation);
+        float q = theBrightness * (1.0f - theSaturation * f);
+        float t = theBrightness * (1.0f - (theSaturation * (1.0f - f)));
+        
+        switch ((int) which)
+        {
+			case 0:
+				_red = theBrightness;
+				_green = t;
+				_blue = p;
+				break;
+			case 1:
+				_red = q;
+				_green = theBrightness;
+				_blue = p;
+				break;
+			case 2:
+				_red = p;
+				_green = theBrightness;
+				_blue = t;
+				break;
+			case 3:
+				_red = p;
+				_green = q;
+				_blue = theBrightness;
+				break;
+			case 4:
+				_red = t;
+				_green = p;
+				_blue = theBrightness;
+				break;
+			case 5:
+				_red = theBrightness;
+				_green = p;
+				_blue = q;
+				break;
+        }
+    }
+
+}
+
 Texture2DPtr 
 Texture2D::create(TextureAttributesPtr attributes, int width, int height, 
         unsigned int numberOfTextures, GLenum target)

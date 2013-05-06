@@ -2,6 +2,7 @@
 #define __CCLIB_GRAPHICS_INCLUDED__
 
 #include <cclib.h>
+#include "gl/texture2d.h"
 
 namespace cclib {
 
@@ -21,6 +22,7 @@ class Graphics {
         static void clearColor(float r, float g, float b, float a = 1.0f);
         static void clearColor(float theGray, float theAlpha=1.0f);
         static void color(float r, float g, float b, float a = 1.0f);
+        static void color(cclib::Color & color);
         static void image(TexturePtr theTexture, float x, float y, float w, float h);
         static void clear();
         static void textureCoords(int theUnit, float theX, float theY);
