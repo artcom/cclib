@@ -83,9 +83,11 @@ set(SOURCES
     particles/gpunoise.cpp
     particles/gpuparticles.cpp
     particles/gpuparticle.cpp
+    particles/gpuparticlesort.cpp
     particles/gpuindexparticleemitter.cpp
     particles/gpuindexparticlecurveemitter.cpp
     particles/gpuparticlepointrenderer.cpp
+    particles/gpuindexedparticlerenderer.cpp
     particles/gpudisplayshader.cpp
     particles/gpuforcefield.cpp
     particles/gpucurvefield.cpp    
@@ -124,10 +126,12 @@ set(HEADERS
     particles/gpunoise.h    
     particles/gpuparticles.h
     particles/gpuparticle.h
+    particles/gpuparticlesort.h
     particles/gpuindexparticleemitter.h
     particles/gpuindexparticlecurveemitter.h
     particles/gpuparticlerenderer.h
     particles/gpuparticlepointrenderer.h
+    particles/gpuindexedparticlerenderer.h
     particles/gpudisplayshader.h
     particles/gpuforcefield.h
     particles/gpucurvefield.h
