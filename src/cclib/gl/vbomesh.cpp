@@ -282,7 +282,9 @@ VBOMesh::colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, 
 void 
 VBOMesh::enable(){
     
-//#define DO_BUFFER_DATA
+#ifndef __APPLE__
+#define DO_BUFFER_DATA
+#endif
     
     // Enable Pointers
     for(int i = 0; i < 8; i++) {
