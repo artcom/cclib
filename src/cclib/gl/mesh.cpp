@@ -167,18 +167,21 @@ void
 Mesh::disable() {
 
     // Disable Pointers
-    if(!_myVertices->empty()) {
+//    if(!_myVertices->empty())
+    {
         glDisableClientState(GL_VERTEX_ARRAY);
         Graphics::checkError();
     }
 
-    if(!_myNormals->empty()) {
+//    if(!_myNormals->empty())
+    {
         glDisableClientState(GL_NORMAL_ARRAY);
         Graphics::checkError();
     }
 
     for(int i = 0; i < 8; i++) {
-        if(!_myTextureCoords[i]->empty()) {
+//        if(!_myTextureCoords[i]->empty())
+        {
             glClientActiveTexture(GL_TEXTURE0 + i);
             glDisableClientState(GL_TEXTURE_COORD_ARRAY);
             Graphics::checkError();
@@ -186,7 +189,11 @@ Mesh::disable() {
     }
 
     glClientActiveTexture(GL_TEXTURE0);
-    if(!_myColors->empty()){
+    glDisable(GL_TEXTURE_2D);
+    glDisable(GL_TEXTURE_RECTANGLE);
+    
+//    if(!_myColors->empty())
+    {
         glDisableClientState(GL_COLOR_ARRAY);
         Graphics::checkError();
     }
