@@ -19,16 +19,16 @@ const char * noisefield_vp = "uniform float noiseScale = 1; \n"
                              "	out float4 ocolor		: COLOR\n"
                              ") { \n"
                              "\n"
-                             "	float3 noiseOffset2 = noiseOffset.yzx;\n"
-                             "	float myNoiseX = noise((iPosition).xyz * noiseScale + noiseOffset) + noise((iPosition).xyz * noiseScale + noiseOffset2);\n"
-                             "	float myNoiseY = noise((iPosition).xyz * noiseScale + noiseOffset+100) + noise((iPosition).xyz * noiseScale + noiseOffset2+100);\n"
-                             "	float myNoiseZ = noise((iPosition).xyz * noiseScale + noiseOffset+200) + noise((iPosition).xyz * noiseScale + noiseOffset2+200);\n"
-                             "	\n"
-                             "	iPosition += float4(myNoiseX,myNoiseY,myNoiseZ,0) * 30 * iColor.x;\n"
-                             "	// Transform position from object space to clip space\n"
+//                             "	float3 noiseOffset2 = noiseOffset.yzx;\n"
+//                             "	float myNoiseX = noise((iPosition).xyz * noiseScale + noiseOffset) + noise((iPosition).xyz * noiseScale + noiseOffset2);\n"
+//                             "	float myNoiseY = noise((iPosition).xyz * noiseScale + noiseOffset+100) + noise((iPosition).xyz * noiseScale + noiseOffset2+100);\n"
+//                             "	float myNoiseZ = noise((iPosition).xyz * noiseScale + noiseOffset+200) + noise((iPosition).xyz * noiseScale + noiseOffset2+200);\n"
+//                             "	\n"
+//                             "	iPosition += float4(myNoiseX,myNoiseY,myNoiseZ,0) * 30 * iColor.x;\n"
+//                             "	// Transform position from object space to clip space\n"
                              "  	oPosition = mul(modelViewProjectionMatrix, iPosition);\n"
                              "	ocolor = iColor; \n"
-                             "}\n";     
+                             "}\n";
 
 using namespace cclib;
 
@@ -96,7 +96,8 @@ class NoiseFieldDemo {
             
             _myShader = CGShader::create(vfiles, noFiles);
             _myShader->load();
-
+            Graphics::checkError();
+            
             _myNoiseScaleParameter = _myShader->vertexParameter("noiseScale");
             _myNoiseOffsetParameter = _myShader->vertexParameter("noiseOffset");
             GPUNoise::attachVertexNoise(_myShader.get());

@@ -282,14 +282,18 @@ VBOMesh::colors(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, 
 void 
 VBOMesh::enable(){
     
+//#define DO_BUFFER_DATA
+    
     // Enable Pointers
     for(int i = 0; i < 8; i++) {
         if(_myHasTextureCoords[i]){
             // std::cout << "vbo:textureCoords " << i << std::endl;
             if(_myHasUpdatedTextureCoords[i]) {
-//                _myTextureCoordBuffers[i]->bind(GL_ARRAY_BUFFER);
-//                _myTextureCoordBuffers[i]->bufferData();
-//                _myTextureCoordBuffers[i]->unbind();
+#ifdef DO_BUFFER_DATA
+                _myTextureCoordBuffers[i]->bind(GL_ARRAY_BUFFER);
+                _myTextureCoordBuffers[i]->bufferData();
+                _myTextureCoordBuffers[i]->unbind();
+#endif
                 _myHasUpdatedTextureCoords[i] = false;
             }
             _myTextureCoordBuffers[i]->bind(GL_ARRAY_BUFFER);
@@ -305,10 +309,12 @@ VBOMesh::enable(){
     if(_myHasColors) {
         // std::cout << "vbo:color" << std::endl;
         if(_myHasUpdatedColors) {
+#ifdef DO_BUFFER_DATA
         // see below.. "That block causes crashes, but if I comment it out, it works. Maybe we don't need it then? [sh]"
-        //    _myColorBuffer->bind(GL_ARRAY_BUFFER);
-        //    _myColorBuffer->bufferData();
-        //    _myColorBuffer->unbind();
+            _myColorBuffer->bind(GL_ARRAY_BUFFER);
+            _myColorBuffer->bufferData();
+            _myColorBuffer->unbind();
+#endif
             _myHasUpdatedColors = false;
         }
         _myColorBuffer->bind(GL_ARRAY_BUFFER);
@@ -324,9 +330,11 @@ VBOMesh::enable(){
     if(_myHasNormals){
         // std::cout << "vbo:normal" << std::endl;
         if(_myHasUpdatedNormals) {
-//            _myNormalBuffer->bind(GL_ARRAY_BUFFER);
-//            _myNormalBuffer->bufferData();
-//            _myNormalBuffer->unbind();
+#ifdef DO_BUFFER_DATA
+            _myNormalBuffer->bind(GL_ARRAY_BUFFER);
+            _myNormalBuffer->bufferData();
+            _myNormalBuffer->unbind();
+#endif
             _myHasUpdatedNormals = false;
         }
         _myNormalBuffer->bind(GL_ARRAY_BUFFER);
@@ -341,7 +349,7 @@ VBOMesh::enable(){
         // std::cout << "vbo:vertices" << std::endl;
 #warning "That block causes crashes, but if I comment it out, it works. Maybe we don't need it then? [sh]"
         if(_myHasUpdatedVertices) {
-#if 0
+#ifdef DO_BUFFER_DATA
             _myVertexBuffer->bind(GL_ARRAY_BUFFER);
             _myVertexBuffer->bufferData(_myVertices->size(), _myVertices, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
             _myVertexBuffer->unbind();
@@ -370,6 +378,7 @@ VBOMesh::disable() {
 
 void
 VBOMesh::draw() {
+    
     // std::cout << "draw1 ";
     enable();
     // std::cout << "2 ";
