@@ -16,7 +16,6 @@ namespace cclib {
 
 #define DEFAULT_FOV 60
     
-    
 class Graphics {
     public:
         static void clearColor(float r, float g, float b, float a = 1.0f);
@@ -42,8 +41,9 @@ class Graphics {
         static void depthTest();
         static void noDepthTest();
 //        static void checkError();
-        static void checkError(char *file = (char*)__FILE__, int line = __LINE__);
-        //#define CHECK_GL_ERROR checkGLError((char*)__FILE__, __LINE__)
+
+        static void checkErrorX(char *file, int line);
+#define checkError() Graphics::checkErrorX((char*)__FILE__, __LINE__)
     
         static void blend(unsigned int theBlendmode) {
             glEnable(GL_BLEND);

@@ -53,7 +53,7 @@ class CGShader : public Shader {
         void parameter2(const CGparameter & parameter, const std::vector<cclib::Vector2f*> & values);
     
         void texture(const CGparameter & parameter, int textureID);
-        void checkError(const std::string & message);
+        void checkCGError(const std::string & message);
         
     public:
         CGShader();

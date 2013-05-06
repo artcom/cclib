@@ -56,7 +56,7 @@ GPUTimeForceBlend::setShader(GPUParticles * theParticles, GPUUpdateShader * theS
     cgConnectParameter( _myVelocityShader->createFragmentParameter(_myShaderTypeName), _myVelocityShader->fragmentParameter(_myParameterIndex));
 
     setupParameter(theWidth, theHeight);
-    _myVelocityShader->checkError("Problem creating force.");
+    _myVelocityShader->checkCGError("Problem creating force.");
     
     std::stringstream ss1;
     ss1 << _myParameterIndex << ".force1";
@@ -72,12 +72,12 @@ void
 GPUTimeForceBlend::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, std::string theIndex, int theWidth, int theHeight) {
     _myVelocityShader = GPUUpdateShaderPtr(theShader);
     _myParameterIndex = theIndex;
-    _myVelocityShader->checkError("Problem creating force.");
+    _myVelocityShader->checkCGError("Problem creating force.");
     
     cgConnectParameter(_myVelocityShader->createFragmentParameter(_myShaderTypeName), _myVelocityShader->fragmentParameter(_myParameterIndex));
 
     setupParameter(0, 0);
-    _myVelocityShader->checkError("Problem creating force.");
+    _myVelocityShader->checkCGError("Problem creating force.");
     
     std::stringstream ss1;
     ss1 << _myParameterIndex << ".force1";

@@ -263,7 +263,7 @@ Graphics::noDepthTest() {
 
 void
 //Graphics::checkError()
-Graphics::checkError(char *file, int line)
+Graphics::checkErrorX(char *file, int line)
 {
     GLenum error = glGetError();
     
