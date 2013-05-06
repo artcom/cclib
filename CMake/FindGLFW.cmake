@@ -31,7 +31,7 @@ FIND_PATH(GLFW_INCLUDE_DIRS GL/glfw.h DOC "Path to GLFW include directory."
   /usr/include/GL
   /usr/local/include/GL
   ${GLFW_ROOT_DIR}/include/ # added by ptr
- 
+  /usr/local/Cellar
 )
 
 FIND_LIBRARY(GLFW_LIBRARIES DOC "Absolute path to GLFW library."
@@ -43,6 +43,7 @@ FIND_LIBRARY(GLFW_LIBRARIES DOC "Absolute path to GLFW library."
   /usr/local/lib
   /usr/lib
   ${GLFW_ROOT_DIR}/lib-msvc100/release # added by ptr
+  /usr/local/Cellar
 )
 
 SET(GLFW_FOUND 0)
