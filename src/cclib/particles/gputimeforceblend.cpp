@@ -24,12 +24,8 @@ GPUTimeForceBlend::GPUTimeForceBlend() :
         _myBlendInfoData[i+3] = 0;
     }
 
-    _myBlendInfoData[4  ] = 0;
-    _myBlendInfoData[4+1] = 0;
-    _myBlendInfoData[4+2] = 255;
-    _myBlendInfoData[4+3] = 0;
-
     _myBlendInfos = Texture2D::create(_myBlendInfoData, GL_TEXTURE_RECTANGLE, GPUTimeForceBlend::MAX_STATES, 1);
+    _myBlendInfos->data(_myBlendInfoData);
 }
 
 void
@@ -122,16 +118,16 @@ GPUTimeForceBlend::update(float theDeltaTime) {
 void
 GPUTimeForceBlend::setBlend(int theState, float theMinBlend, float theMaxBlend) {
 
-    // float r = theMinBlend;
-    // float g = theMaxBlend;
-    // 
-    // int index = theState * 4;
-    // _myBlendInfoData[index + 0] = r * 255;
-    // _myBlendInfoData[index + 1] = g * 255;
-    // _myBlendInfoData[index + 2] = 0;
-    // _myBlendInfoData[index + 3] = 0;
-    // 
-    // _myBlendInfos->data(_myBlendInfoData);
+    float r = theMinBlend;
+    float g = theMaxBlend;
+    
+    int index = theState * 4;
+    _myBlendInfoData[index + 0] = r * 255;
+    _myBlendInfoData[index + 1] = g * 255;
+    _myBlendInfoData[index + 2] = 0;
+    _myBlendInfoData[index + 3] = 0;
+    
+    _myBlendInfos->data(_myBlendInfoData);
 }
 
 void

@@ -44,12 +44,15 @@ class ShaderBufferDemo {
             
             int size=128;
             std::vector<unsigned char> data;
-            for (unsigned int i=0; i<size*size*4; i++) {
-//                data.push_back(cclib::random(0, 255));
+            for (unsigned int i=0; i<size*size; i++) {
+                data.push_back(255);
+                data.push_back(128);
+                data.push_back(0);
                 data.push_back(255);
             }
             
             _myTexture = Texture2D::create(data, GL_TEXTURE_RECTANGLE, size, size );
+            _myTexture->data(data);
         }
 
         ~ShaderBufferDemo() { 
@@ -68,7 +71,7 @@ class ShaderBufferDemo {
             
             _myShaderBuffer->endDraw();
                     
-            Graphics::color(1.0f, 1.0f, 0.0f, 1.0f); // yellow. should not be visible 
+            Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
             Graphics::image(_myShaderBuffer->attachment(0), -0.5, 0.5, 0.5, 0.5);
             Graphics::image(_myTexture, 0, 0.5, 0.5, 0.5);
             

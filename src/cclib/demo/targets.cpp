@@ -106,42 +106,35 @@ class TargetsDemo {
 
         void setup() {
 
-            _myGravity = GPUGravity::create(Vector3f(2,0,0));
             _myForceField = GPUForceField::create(0.01, 1, Vector3f());
-            _myViscousDrag = GPUViscousDrag::create(0.1f);	
             _myTargetForce = GPUTargetForce::create();
-
-            /*std::vector<GPUForcePtr> myCombinedForces;
-            myCombinedForces.push_back(_myGravity);
-			myCombinedForces.push_back(_myForceField);
-			
-            _myCombinedForce = GPUCombinedForce::create(myCombinedForces);
-			*/
+            _myViscousDrag = GPUViscousDrag::create();
+            _myViscousDrag->setDrag(0.28);
             
 			_myTimeBlendForce = GPUTimeForceBlend::create();
-            float startTime = 0.0f;
-            float endTime = 2.0f;
-            float power = 6.0f;
+            float startTime = 3.0f;
+            float endTime = 5.0f;
+            float power = 1;
 			
             _myTimeBlendForce->set<float>("startTime", startTime);
 			_myTimeBlendForce->set<float>("endTime", endTime);
-            _myTimeBlendForce->setBlend(0.005f, 1.0f);
+            _myTimeBlendForce->setBlend(0, 1.0f, 0.0f);
+            _myTimeBlendForce->setBlend(1, 0.0f, 1.0f);
 			_myTimeBlendForce->set<float>("power", power);
 			
-            // _myTimeBlendForce->initialize( _myCombinedForce, _myTargetForce );
-            _myTimeBlendForce->initialize(_myGravity, _myViscousDrag); 
-            
-			// _myTargetTextureData = CCTextureIO.newTextureData("squarepusher.png");
+            //   _myTimeBlendForce->initialize(_myTargetForce, _myForceField);
+            _myTimeBlendForce->initialize(_myForceField, _myTargetForce);
 
             std::vector<GPUForcePtr> myForces;
             std::vector<GPUImpulsePtr> myImpulses;
             std::vector<GPUConstraintPtr> myConstraints;
 
 			myForces.push_back(_myTimeBlendForce);
-			myForces.push_back(_myTargetForce);
-			myForces.push_back(_myForceField);
-			// myForces.push_back(_myViscousDrag);
-			
+
+//			myForces.push_back(_myTargetForce);
+            myForces.push_back(_myViscousDrag);
+//			myForces.push_back(_myForceField);
+            
             GPUParticlePointRendererPtr myRenderer = GPUParticlePointRenderer::create();
             _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 700, 700);
 
@@ -161,6 +154,31 @@ class TargetsDemo {
 
             _myInitValueShader = CGShader::create(vfiles, ffiles);
 			_myInitValueShader->load();
+            
+            ///
+			Vector3f myVelocity;
+			
+			_myInitValueShader->start();
+			_myTargetBuffer->beginDraw();
+            
+            Graphics::beginShape(GL_POINTS);
+            
+			for (unsigned int i=0; i<700; i++) {
+                for (unsigned int j=0; j<700; j++) {
+                    Vector3f myVelocity;
+                    myVelocity.randomize();
+                    myVelocity.scale(3);
+                                  
+                    GPUParticlePtr myParticle = _myEmitter->emit(Vector3f(0, 0, 0), myVelocity, 50, false);
+                
+                    Graphics::textureCoords(0, 350 - (float)i, 350 - (float)j);
+                    Graphics::vertex(myParticle->x() + 0.5f, myParticle->y() + 0.5f);
+                }
+            }
+            
+            Graphics::endShape();
+			_myTargetBuffer->endDraw();
+			_myInitValueShader->end();
         }
 
         ~TargetsDemo() { 
@@ -175,26 +193,18 @@ class TargetsDemo {
             int width, height = 0;
             glfwGetWindowSize(&width, &height);
             glViewport(0, 0, width, height);
-            gluPerspective(60, (float)width/(float)height, 1, 10000);
+            gluPerspective(60, (float)width/(float)height, 0.1, 1000);
             gluLookAt(0.0, 0.0, 650, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 );
             
             ///////
 
             time += theDeltaTime;
-            // if(time > max ){
-            //     time -= max;
-            //     _myOldOffset = _myNewOffset;
-            //     _myNewOffset = CCVecMath.random(-10, 10, -10, 10, -10, 10);
-            // }
 
-            // blend = (CCMath.cos((time / max) * CCMath.PI + CCMath.PI) +1) / 2;
-            // _myOffset = CCVecMath.blend(blend, _myOldOffset, _myNewOffset);
-           
             // draw
-
             Graphics::clear();
+            
             // _myArcball.draw(g);
-            Graphics::color(1.0f, 1.0f, 1.0f, 0.2f);
+            Graphics::color(1.0f, 1.0f, 1.0f, 0.5f);
             Graphics::noDepthTest();
             
             Graphics::blend(BLEND_MODE_ADD);
@@ -203,61 +213,7 @@ class TargetsDemo {
 ////////////
             _myParticles->update(theDeltaTime);
 			myREs += theDeltaTime;
-			_myRadius += theDeltaTime * _cOpenSpeed;
-			if(_myRadius > _cStartRadius + _cRadiusRange){
-				_myRadius = _cStartRadius;
-			}
-			
-			Vector3f myVelocity;
-			
-			float myPerimeter = 2.0 * M_PI * _myRadius;
-			float myNumberOfParticles = myPerimeter / _cParticlePerimeterDensity;
-			float myStep = 360 / myNumberOfParticles;
-			
-			_myInitValueShader->start();
-			_myTargetBuffer->beginDraw();
-			
-			// float myTargetX2 = _myTargetTextureData->width() + _cTargetX;
-			// float myTargetY2 = _myTargetTextureData->height() + _cTargetY;
-			float myTargetX2 = 400 + _cTargetX;
-			float myTargetY2 = 400 + _cTargetY;
-			
-            Graphics::beginShape(GL_POINTS);
-			for(float angle = 0; angle < 360; angle += myStep){
-				float radAng = radians(angle);
-				float myX = sin(radAng) * _myRadius;
-				float myY = cos(radAng) * _myRadius;
-				
-				myVelocity.set(myX, myY, 0);
-				myVelocity.normalize();
-				myVelocity.scale(_cOpenSpeed * _cStartVelocity);
-				myVelocity = myVelocity + Vector3f(
-                    random(-_cEmitRandomVel, _cEmitRandomVel), random(-_cEmitRandomVel, _cEmitRandomVel), 0);
-				
-				myX += _cEmitX + random(-_cEmitRandomPos, _cEmitRandomPos);
-				myY += _cEmitY + random(-_cEmitRandomPos, _cEmitRandomPos);
-				
-				float myTargetX = myX + myVelocity.x() * _cEmitTargetLookAhead;
-				float myTargetY = myY + myVelocity.y() * _cEmitTargetLookAhead;
-				if(myTargetX <= _cTargetX || myTargetX >= myTargetX2 || myTargetY <= _cTargetY || myTargetY >= myTargetY2){
-					continue;
-				}
-				
-				int myColorLookUpX = (int)(myTargetX - _cTargetX);
-				int myColorLookUpY = (int)(myTargetY - _cTargetY);
-				
-				Color myParticleColor(1.0f , 1.0f, 1.0f, 1.0f); // = _myTargetTextureData->getPixel(myColorLookUpX, myColorLookUpY);
-				// GPUParticlePtr myParticle = _myEmitter->emit(myParticleColor, Vector3f(myX, myY,0), myVelocity, 10, false);
-				GPUParticlePtr myParticle = _myEmitter->emit(Vector3f(myX, myY,0), myVelocity, 10, false);
-                
-                Graphics::textureCoords(0, myTargetX, myTargetY);
-				Graphics::vertex(myParticle->x() + 0.5f, myParticle->y() + 0.5f);
-			}
-            
-            Graphics::endShape();
-			_myTargetBuffer->endDraw();
-			_myInitValueShader->end();
-			
+					
 			_myTargetForce->set<float>("strength", _cTargetStrength);
 			_myTargetForce->set<float>("lookAhead", _cLookAhead);
 			_myTargetForce->set<float>("maxForce", _cMaxForce);
@@ -272,16 +228,17 @@ class TargetsDemo {
 			
             _myTimeBlendForce->set<float>("power", _cLifeTimeBlendPow);
 			
-			_myViscousDrag->setDrag(_cDrag);
+		//	_myViscousDrag->setDrag(_cDrag);
             
  /////////////           
             Graphics::blend();
-
-        	// g.ellipse(_cEmitX, _cEmitY, 20,20);
-			// g.ellipse(_cTargetX, _cTargetY, 20,20);
-            Graphics::pointSize(1.0f);
+            Graphics::noDepthTest();
+        
+            Graphics::pointSize(2.0f);
 			_myParticles->draw();
             
+            Graphics::depthTest();
+
             //
             glfwSwapBuffers();
             running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
