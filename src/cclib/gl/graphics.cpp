@@ -262,7 +262,9 @@ Graphics::noDepthTest() {
 }
 
 void
-Graphics::checkError() {
+//Graphics::checkError()
+Graphics::checkError(char *file, int line)
+{
     GLenum error = glGetError();
     
     std::string errorStr;
@@ -296,6 +298,8 @@ Graphics::checkError() {
             break;
     }
     
-    throw cclib::Exception("GL check Error: "+ errorStr);
+    std::ostringstream errorString;
+    errorString << "GL check Error: " << errorStr << "\n\tin File " << file << " at line: " << line << std::endl;
+    throw cclib::Exception(errorString.str());
 }
 

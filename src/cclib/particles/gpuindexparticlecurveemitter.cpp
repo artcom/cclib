@@ -33,7 +33,7 @@ _myRadius(1),
 _mySpeed(1)
 
 {
-    printf("%s\n",__PRETTY_FUNCTION__);
+//    printf("%s\n",__PRETTY_FUNCTION__);
     
     std::vector<std::string> vfiles, ffiles;
     ffiles.push_back(std::string(simplex_fp));

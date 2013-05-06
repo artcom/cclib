@@ -41,7 +41,9 @@ class Graphics {
                 float x1, float y1, float x2, float y2,float u1, float v1, float u2, float v2);
         static void depthTest();
         static void noDepthTest();
-        static void checkError();
+//        static void checkError();
+        static void checkError(char *file = (char*)__FILE__, int line = __LINE__);
+        //#define CHECK_GL_ERROR checkGLError((char*)__FILE__, __LINE__)
     
         static void blend(unsigned int theBlendmode) {
             glEnable(GL_BLEND);
