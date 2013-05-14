@@ -27,13 +27,13 @@ class FrameBufferObjectAttributes {
             depthInternalFormat(GL_DEPTH_COMPONENT24),
             numberOfSamples(0),
             coverageSamples(0),
-            numberOfColorBuffers(numberOfAttachments),
             depthBuffer(true),
             stencilBuffer(false),
+            numberOfColorBuffers(numberOfAttachments),
             numberOfBits(32),
             numberOfChannels(4)
         {
-            for (unsigned int i=0; i<numberOfAttachments; i++) {
+            for (int i=0; i<numberOfAttachments; i++) {
                 textureAttributes.push_back(theAttributes);
             }
             
