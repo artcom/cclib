@@ -20,14 +20,14 @@ void main ()
 	
 	vec4 myValues = texture2DRect(infos, gl_Vertex.xy);
 
-	float myAlpha = clamp(1 - myValues.x / myValues.y * (1 - myValues.z), 0.2, 1); // <-
-	//float myAlpha = clamp(1 - myValues.x / myValues.y, 0.3, 1); 
+	//float myAlpha = clamp(1 - myValues.x / myValues.y * (1 - myValues.z), 0.2, 1); // <-
+	float myAlpha = clamp(1 - myValues.x / myValues.y, 0.3, 1); 
 	//myAlpha = 0.5;
 	//float myAlpha = clamp(myValues.x, 0.2, 1); 
 
 	gl_FrontColor = texture2DRect(colors, gl_Vertex.xy) * gl_Color;
 	//gl_FrontColor.a = 1;
-	//gl_FrontColor.r = myAlpha;
+	//gl_FrontColor.a = myAlpha;
 	//gl_FrontColor.a *= myAlpha * myAlpha;
 	gl_FrontColor.a = (1. - myAlpha);
 	
