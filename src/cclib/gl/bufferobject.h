@@ -23,10 +23,11 @@ typedef std::tr1::shared_ptr<Buffer> BufferPtr;
 class Buffer {
 public:
     Buffer(unsigned int theSize, bool theInitializedFlag) :
+        _myIsSelfAllocated(false),
         _myData(NULL),
-         _myIsEmpty(!theInitializedFlag),
-         _mySize(theSize),
-        _myCurrentIndex(0), _myIsSelfAllocated(false)
+        _myIsEmpty(!theInitializedFlag),
+        _mySize(theSize),
+        _myCurrentIndex(0)
     {
 //        printf("%s\n\tsize %d\n",__PRETTY_FUNCTION__, _mySize);
         
