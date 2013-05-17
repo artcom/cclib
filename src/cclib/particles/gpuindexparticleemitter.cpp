@@ -284,6 +284,9 @@ GPUIndexParticleEmitter::fillVelocityData(BufferPtr theBuffer) {
 
 void 
 GPUIndexParticleEmitter::transferData() {
+    
+    //printf("%s\n",__PRETTY_FUNCTION__);
+    
     _myParticles->dataBuffer()->beginDraw();
     Graphics::checkError();
     
@@ -298,10 +301,15 @@ GPUIndexParticleEmitter::transferData() {
 
     _myParticles->dataBuffer()->endDraw();
     Graphics::checkError();
+    
+//    printf("%s END END END END END END END END END END\n",__PRETTY_FUNCTION__);
 }
 
 void 
 GPUIndexParticleEmitter::setData() {
+    
+    //printf("%s\n",__PRETTY_FUNCTION__);
+    
     int myEmitSize = _myAllocatedParticles.size();
     if (myEmitSize == 0) {
         return;
@@ -333,7 +341,7 @@ GPUIndexParticleEmitter::setData() {
         _myVertexBuffer->put(myParticle->y() + 0.5f);
         _myVertexBuffer->put(0.0f);
     }
-
+    
     fillPositionData(_myPositionBuffer);
     fillColorData(_myColorBuffer);
     fillInfoData(_myInfoBuffer);
@@ -344,7 +352,7 @@ GPUIndexParticleEmitter::setData() {
     _myPositionBuffer->rewind();
     _myInfoBuffer->rewind();
     _myVelocityBuffer->rewind();
-    
+
     _myEmitMesh->clearAll();
     _myEmitMesh->vertices(_myVertexBuffer);
     _myEmitMesh->textureCoords(0, _myPositionBuffer, 3);
@@ -353,7 +361,7 @@ GPUIndexParticleEmitter::setData() {
     _myEmitMesh->textureCoords(3, _myColorBuffer, 4);
 
     transferData();
-    
+
     _myAllocatedParticles.clear();
 }
 

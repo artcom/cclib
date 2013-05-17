@@ -14,7 +14,8 @@ namespace cclib {
 #define RADIUS  3
 #define CENTER  4
 
-#define DEFAULT_FOV 60
+//#define DEFAULT_FOV 60
+#define DEFAULT_FOV 20
     
 class Graphics {
     public:

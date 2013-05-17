@@ -13,7 +13,7 @@ class Color {
             : _red(red/255.0f), _green(green/255.0f), _blue(blue/255.0f), _alpha(alpha/255.0f) {};
 
         Color(float red, float green, float blue, float alpha = 1.0)
-            : _red(red), _green(green), _blue(blue), _alpha() {};
+            : _red(red), _green(green), _blue(blue), _alpha(alpha) {};
         
         ~Color() {};
 

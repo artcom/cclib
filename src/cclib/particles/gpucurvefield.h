@@ -23,11 +23,21 @@ class GPUCurveField : public GPUForce {
         CGparameter _myOutputScaleParameter;
         CGparameter _myRadiusParameter;
 
-        GPUCurveField(); 
+    
+        bool _myUseNoiseTexture;
+        Texture2DPtr _myNoiseTexture;
+        std::vector<unsigned char> _myNoiseData;
+        CGparameter _myNoiseParameter;
+        CGparameter _myNoiseTextureSizeParameter;
+        CGparameter _myUseNoiseParameter;
+        
+        void updateNoise();
+    
+        GPUCurveField();
 
     public:
         static GPUCurveFieldPtr create();
-
+    
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);
         void setPrediction(float thePrediction);
@@ -37,6 +47,8 @@ class GPUCurveField : public GPUForce {
         void setSpeed(float theSpeed);
         void setOffset(float theOffset);
 
+//        void setUseNoiseTexture(bool flag) { _myUseNoiseTexture = flag; };
+    
         float getPrediction();
         float getScale();
         float getOutputScale();

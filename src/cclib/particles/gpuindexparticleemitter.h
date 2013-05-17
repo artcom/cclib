@@ -63,7 +63,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
     
         ~GPUIndexParticleEmitter() {
-            std::cout << "hueh??" << std::endl;
+//            std::cout << "hueh??" << std::endl;
         }
         static GPUIndexParticleEmitterPtr create(GPUParticlesPtr theParticles, int theStart=0, int theNumberParticles=-1);
         std::vector<GPUParticlePtr> & pendingParticles();
@@ -85,7 +85,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         GPUParticlePtr emit(int theIndex, const Color & theColor, const Vector3f & thePosition, const Vector3f & theVelocity,
                 float theLifeTime, bool theIsPermanent);
         
-        void update(float theDeltaTime);
+        virtual void update(float theDeltaTime);
         int size();
         GPUParticlePtr particle(int theID);
         virtual void fillPositionData(BufferPtr theBuffer);

@@ -63,6 +63,8 @@ FILE(GLOB_RECURSE SHADER_SOURCES ABSOLUTE ${SHADER_PATH} *.fp.cpp *.vp.cpp *.gls
 
 
 set(SOURCES 
+    math/simplexnoise.cpp
+    math/math.cpp
     base/component.cpp
     gl/shader.cpp    
     gl/cgshader.cpp    
@@ -107,6 +109,7 @@ set(HEADERS
     math/vec2.h
     math/vec3.h
     math/math.h
+    math/simplexnoise.h
     gl/shader.h
     gl/cgshader.h
     gl/glslshader.h

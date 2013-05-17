@@ -76,11 +76,13 @@ Graphics::vertex(float theX, float theY, float theU, float theV){
 void 
 Graphics::beginShape(GLenum type) {
     glBegin(type);
+//    printf("%s glBegin\n\ttype 0x%x\n",__PRETTY_FUNCTION__,type);
 }
 
 void 
 Graphics::endShape(){
     glEnd();
+//    printf("%s glEnd\n",__PRETTY_FUNCTION__);
 }
 
 void 
@@ -248,7 +250,7 @@ Graphics::noTexture() {
 
     glActiveTexture(GL_TEXTURE0);
     glDisable(GL_TEXTURE_2D);
-//    glDisable(GL_TEXTURE_RECTANGLE);
+    glDisable(GL_TEXTURE_RECTANGLE);
     _myDrawTexture = false;
 }
 

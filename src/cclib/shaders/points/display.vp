@@ -4,6 +4,7 @@ uniform float4x4 modelView : state.matrix.modelview[0];
 uniform float minPointSize;
 uniform float maxPointSize;
 uniform float pointSize;
+
 uniform float tanHalfFov;
 
 void main (
@@ -19,26 +20,17 @@ void main (
 	oTexCoord = iTexCoord;
 	
 	float4 posViewSpace = mul(modelView, iPosition);
-	//oPointSize = clamp(pointSize * tanHalfFov / -oPosition.z, minPointSize, maxPointSize);
+	//float myPointSize = clamp(pointSize * tanHalfFov / -oPosition.z, minPointSize, maxPointSize);
 	// Compute point size.
 	
-	const float fieldOfView = radians(60.0);
-	float myPointSize = pointSize * tan(fieldOfView / 2) / -posViewSpace.z;
-	
-	//float myPointSize = tanHalfFov / -posViewSpace.z * pointSize;
-/*
-	if (myPointSize > maxPointSize)
-	{
-		myPointSize = maxPointSize;
-	}
-	else if (myPointSize < minPointSize)
-	{
-		myPointSize = minPointSize;
-	}
-*/
+	float myPointSize = ((tanHalfFov / -posViewSpace.z) * pointSize);
 
-	myPointSize = clamp(myPointSize,minPointSize,maxPointSize);
-	
+	//const float fieldOfView = radians(60.0);
+	//float myPointSize = (tan(fieldOfView / 2) / -posViewSpace.z) * pointSize;
+
+	//myPointSize = clamp(myPointSize,minPointSize,maxPointSize);
+	myPointSize = clamp(myPointSize,-maxPointSize,maxPointSize);
+
 	// Do fake antialiasing if point size is below 1.	
 	/*o.Color = color;
 	o.PointSize = pointSize;
@@ -50,7 +42,7 @@ void main (
 
 	//oColor = min(iColor * (myPointSize * 2.0), iColor);
 	oColor = iColor;
-	//oPointSize = max(myPointSize, 1);
-	oPointSize = myPointSize;
+
+	oPointSize = 1 + myPointSize;
 }
 	           

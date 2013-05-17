@@ -23,18 +23,21 @@ typedef std::tr1::shared_ptr<Buffer> BufferPtr;
 class Buffer {
 public:
     Buffer(unsigned int theSize, bool theInitializedFlag) :
-        _myData(NULL), _myEmpty(!theInitializedFlag), _mySize(theSize),
+        _myData(NULL),
+         _myIsEmpty(!theInitializedFlag),
+         _mySize(theSize),
         _myCurrentIndex(0), _myIsSelfAllocated(false)
     {
 //        printf("%s\n\tsize %d\n",__PRETTY_FUNCTION__, _mySize);
         
         if (_mySize == 0) {
+
             return;
         }
         
         _myData = new float[_mySize]();
         _myIsSelfAllocated = true;
-        _myEmpty = false;
+        _myIsEmpty = false;
     };
     
     static BufferPtr create(unsigned int theSize, bool theInitializedFlag = false) {
@@ -51,11 +54,13 @@ public:
         
         if (_myData != NULL && _myIsSelfAllocated) {
             delete _myData;
+            _myData = NULL;
+            _myIsEmpty = true;
         }
         
         if (theData) {
             _myData = theData;
-            _myEmpty = false;
+            _myIsEmpty = false;
             _myIsSelfAllocated = false;
         }
     };
@@ -74,16 +79,17 @@ public:
     };
     
     bool empty() {
-        return _myEmpty;
+        return _myIsEmpty;
     };
     
     void clear() {
 #warning XXX Buffer Port incomplete.
         // std::cerr << "XXX Buffer Port incomplete." << std::endl;
+        if(_myData == NULL) return;
         
         delete _myData;
         _myData = NULL;
-        _myEmpty = true;
+        _myIsEmpty = true;
         _myIsSelfAllocated = false;
         _mySize = _myCurrentIndex = 0;
     };
@@ -91,6 +97,7 @@ public:
     void put(float theValue) {
         
 //        printf("%s\n\tcurrent %d size %d\n",__PRETTY_FUNCTION__, _myCurrentIndex, _mySize);
+//        printf("current %d size %d\n", _myCurrentIndex, _mySize);
         
         if (_myCurrentIndex < _mySize) {
             _myData[_myCurrentIndex] = theValue;
@@ -103,9 +110,12 @@ public:
     void put(BufferPtr theData) {
         if (theData->size() + _myCurrentIndex > size()) {
             std::cerr << "Color->put out of bounds" << std::endl;
+            return;
         }
     
         memcpy(_myData + _myCurrentIndex, theData->data(), theData->size());
+        _myCurrentIndex += theData->size();
+        
     };
     
     void rewind() {
@@ -115,7 +125,7 @@ public:
 private:
     bool _myIsSelfAllocated;
     float * _myData;
-    bool _myEmpty;
+    bool _myIsEmpty;
     unsigned int _mySize;
     unsigned int _myCurrentIndex;
 };

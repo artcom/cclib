@@ -26,8 +26,8 @@ class GPUParticlePointRenderer : public GPUParticleRenderer {
         void draw();
 	
         VBOMeshPtr mesh();
-        void pointSize(float thePointSize);
-        void pointSizeClamp(float theMinPointSize, float theMaxPointSize);
+        void setPointSize(float thePointSize);
+        void setPointSizeClamp(float theMinPointSize, float theMaxPointSize);
 };
 }; // namespace
 #endif

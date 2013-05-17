@@ -11,6 +11,7 @@ BufferObject::BufferObject(int theSize) :
     _mySize = theSize;
     glGenBuffers(1, &(_myBufferID));
     _myData = Buffer::create(theSize);
+    Graphics::checkError();
     
 //    printf("%s\n\tmyBufferID %d\n",__PRETTY_FUNCTION__,_myBufferID);
     
@@ -19,6 +20,7 @@ BufferObject::BufferObject(int theSize) :
         bufferData(theSize, _myData, BUFFERFREQ_DYNAMIC, BUFFERUSAGE_DRAW);
         unbind();
         updateData();
+        Graphics::checkError();
     }
 }
 
@@ -35,9 +37,11 @@ BufferObject::updateData() {
     mapBuffer(_myData);
 
     if (_myData->empty()) {
-        Graphics::checkError();
+        
     }
 
+    Graphics::checkError();
+    
     // XXX
     // if(!_myData.empty()) {
     //     _myData.order(ByteOrder.nativeOrder());
@@ -60,6 +64,7 @@ BufferObject::mapBuffer(BufferPtr targetData) {
     _myIsMapped = true;
    
     float * mappedBuffer = (float*) glMapBuffer(_myCurrentTarget, GL_WRITE_ONLY);
+    Graphics::checkError();
     
     // std::cerr << "BufferObject.cpp - port incomplete." << std::endl;
     if (targetData->size() != _mySize) {
@@ -74,7 +79,9 @@ BufferObject::mapBuffer(BufferPtr targetData) {
 bool 
 BufferObject::unmapBuffer() {
     _myIsMapped = false;
-    return glUnmapBuffer(_myCurrentTarget);
+    bool result = glUnmapBuffer(_myCurrentTarget);
+    Graphics::checkError();
+    return result;
 }
 
 bool 
@@ -91,7 +98,7 @@ void
 BufferObject::bind(GLenum theTarget){
     _myCurrentTarget = theTarget;
     glBindBuffer(theTarget, _myBufferID);
-    // Graphics::checkError();
+    Graphics::checkError();
 }
 
 void
@@ -151,9 +158,10 @@ BufferObject::bufferData(int theSize, BufferPtr theData, int theUsageFrequency, 
         ptr = theData->data();
     }
     
-    // printf("%s\n\tmyCurrentTarget %d, %s\n",__PRETTY_FUNCTION__,_myCurrentTarget,(ptr == NULL) ? "data is empty" : "data is available");
-    
     GLenum usage = glUsage(theUsageFrequency, theUsageType);
+    
+//    printf("%s\n\tmyCurrentTarget %d, usage 0x%x, %s\n",__PRETTY_FUNCTION__,_myCurrentTarget,usage,(ptr == NULL) ? "data is empty" : "data is available");
+    
     glBufferData(_myCurrentTarget, _mySize * sizeof(float), ptr, usage);
     
     Graphics::checkError();
@@ -177,6 +185,10 @@ BufferObject::bufferSubData(GLenum theTarget, int theOffset, int theSize, Buffer
 
 void 
 BufferObject::copyDataFromTexture(ShaderBufferPtr theShaderBuffer, int theID, int theX, int theY, int theWidth, int theHeight) {
+    
+    
+//    //printf("%s\n",__PRETTY_FUNCTION__);
+    
     int myNewBufferSize = theWidth * theHeight * theShaderBuffer->numberOfChannels() * sizeof(float);
 
     if(myNewBufferSize != _mySize){
@@ -206,7 +218,11 @@ BufferObject::copyDataFromTexture(ShaderBufferPtr theShaderBuffer, int theID, in
 
         
 BufferObject::~BufferObject() {
+    
+    //printf("%s\n",__PRETTY_FUNCTION__);
     glDeleteBuffers(1, &_myBufferID);
+    _myData->clear();
+    
 }
 
 

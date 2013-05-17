@@ -41,7 +41,7 @@ namespace cclib {
         virtual void draw();
         
         cclib::VBOMeshPtr mesh() { return _myMesh; };
-        virtual void pointSize(float thePointSize) { _myPointsize = thePointSize; };
+        void setPointSize(float thePointSize) { _myPointsize = thePointSize; };
     };
     
 }; // namespace cclib

@@ -15,9 +15,10 @@
 #include "stringified_shaders/sorted_display_fragment.glsl.h"
 
 cclib::GPUIndexedParticleRenderer::GPUIndexedParticleRenderer()
-: cclib::GPUParticleRenderer()
+: cclib::GPUParticleRenderer(),
+_myPointsize(1)
 {
-//    printf("%s\n",__PRETTY_FUNCTION__);
+    //printf("%s\n",__PRETTY_FUNCTION__);
     
     std::vector<std::string> vfiles, ffiles;
     
@@ -46,19 +47,20 @@ cclib::GPUIndexedParticleRenderer::GPUIndexedParticleRenderer()
 
 void cclib::GPUIndexedParticleRenderer::setup(cclib::GPUParticles* theParticles) {
     
-//    printf("%s\n",__PRETTY_FUNCTION__);
+    //printf("%s\n",__PRETTY_FUNCTION__);
     
     _myParticles = cclib::GPUParticlesPtr(theParticles);
     _myMesh = cclib::VBOMesh::create(GL_POINTS, _myParticles->size());
     _myMesh->prepareVertexData(_myParticles->size(), 3);
     
-    for(int y = 0; y < _myParticles->height();y++) {
-        for(int x = 0; x < _myParticles->width();x++) {
+    for(int y = 0; y < theParticles->height();y++) {
+        for(int x = 0; x < theParticles->width();x++) {
             _myMesh->addVertex(x,y,0);
             _myMesh->addTextureCoords(
+//            _myParticles->renderer()->mesh()->addTextureCoords(
                             0,
-                            (x + 0.5f) / _myParticles->width(),
-                            (y + 0.5f) / _myParticles->height()
+                            ((float)x + 0.5f) / theParticles->width(),
+                            ((float)y + 0.5f) / theParticles->height()
                             );
         }
     }
@@ -69,12 +71,12 @@ void cclib::GPUIndexedParticleRenderer::update(float theDeltaTime) {
 }
 
 void cclib::GPUIndexedParticleRenderer::draw(){
-    
-//    printf("%s\n",__PRETTY_FUNCTION__);
-    
-//    g.gl.glEnable(GL2.GL_VERTEX_PROGRAM_POINT_SIZE);
-    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 
+    //printf("%s\n",__PRETTY_FUNCTION__);
+    
+//    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+    
     _myShader->start();
     cclib::Graphics::texture(0, _myParticles->dataBuffer()->attachment(0));
     cclib::Graphics::texture(1, _myParticles->dataBuffer()->attachment(1));
@@ -92,10 +94,13 @@ void cclib::GPUIndexedParticleRenderer::draw(){
     float height = viewport[3];
     
     _myShader->setUniform1f("tanHalfFOV", tan(DEFAULT_FOV) * height);
+    
     _myMesh->draw();
+    
     cclib::Graphics::noTexture();
     _myShader->end();
 
+//    glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
     glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
 }
 

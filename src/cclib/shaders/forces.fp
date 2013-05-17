@@ -160,9 +160,31 @@ struct CurveForceFieldFollow : Force{
 	float scale;
 	float outputScale;
 	
+	float useNoiseTexture;
+	samplerRECT noiseTexture;
+	float noiseTextureSize;
+
 	float3 curveAtPoint(float x){
-		float y = outputScale * (snoise(float2(x * scale + offset,0)));
-		float z = outputScale * (snoise(float2(x * scale + offset + 100, 0)));
+
+		float y=0;
+		float z=0;
+
+		if(useNoiseTexture == 1)
+		{
+			// convert x from modelview space to texture space
+			float x_ = ((noiseTextureSize - x) * noiseTextureSize) / (noiseTextureSize*2.);
+
+			float4 noise = texRECT(noiseTexture, float2(x_,0));
+
+			y = outputScale * (noise.x - 0.25);
+			z = outputScale * (noise.y - 0.25);
+		}
+		else
+		{
+			y = outputScale * (snoise(float2(x * scale + offset,0)));
+			z = outputScale * (snoise(float2(x * scale + offset + 100, 0)));
+		}
+
 		return float3(x, y, z);
 	}
 	
@@ -183,7 +205,9 @@ struct CurveForceFieldFollow : Force{
 		return result;
 	}
 	
+	// called from from velocity.fp
 	float3 force(float3 thePosition, float3 theVelocity, float2 theTexID, float theDeltaTime){
+
 		float3 futurePosition = thePosition + theVelocity * prediction;
 		float3 result = flowAtPoint(futurePosition) * strength;
 		return result;

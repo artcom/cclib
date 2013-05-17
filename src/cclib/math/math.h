@@ -3,6 +3,7 @@
 #define __CCLIB_MATH_INCLUDED__
 
 #include <cstdlib>
+#include <math.h>
 
 namespace cclib {
 
@@ -21,11 +22,17 @@ T random(T theMax=1) {
     return cclib::random<T>(0, theMax);
 };
 
+// simplex noise random, [-1,1]
+float random3d(float x, float y, float z,float min=-1, float max=1);
+float random2d(float x, float y, float min=-1, float max=1);
+    
 template<typename T>
 T radians(T theDegrees) {
     return theDegrees * (M_PI / 180.0);
 }
+ 
     
+
 }; // namespace
 
 
