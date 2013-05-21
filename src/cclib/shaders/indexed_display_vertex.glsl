@@ -43,7 +43,8 @@ void main ()
 	//float tanHalfFOV_ = tan(radians(20.0) / 2.0);
 
 	float z = (posViewSpace.z == 0) ? -1 : posViewSpace.z; 
-	float myPointSize = ((tanHalfFOV / -z) * pointSize) * myValues.x; // <-
+	//float myPointSize = ((tanHalfFOV / -z) * pointSize) * myValues.x; // <-
+	float myPointSize = ((tanHalfFOV / -z) * pointSize) * (myValues.x / 2.); // <-
 	//float myPointSize = ((tanHalfFOV / -posViewSpace.z) * pointSize) * myValues.y;
 	//float myPointSize = ((tanHalfFOV / -posViewSpace.z) * pointSize) * myValues.z;
 

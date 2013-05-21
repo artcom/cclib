@@ -57,11 +57,16 @@ class FrameBufferObject {
     public:
         FrameBufferObject() {};
         FrameBufferObject(GLenum target, FrameBufferObjectAttributesPtr attributes,
-                      unsigned int width, unsigned int height);
+                          unsigned int width, unsigned int height);
     
         virtual ~FrameBufferObject() {
         };
     
+        static FrameBufferObjectPtr create(GLenum target, FrameBufferObjectAttributesPtr attributes,
+                                                  unsigned int width, unsigned int height) {
+            return FrameBufferObjectPtr(new FrameBufferObject(target, attributes, width, height));
+        };
+        
         static int getMaxSamples();
 
         void checkStatusException();
@@ -85,8 +90,8 @@ class FrameBufferObject {
         unsigned int width();
         unsigned int height();
 
-        virtual void beginDraw() = 0;
-        virtual void endDraw() = 0;
+        virtual void beginDraw() {};
+        virtual void endDraw() {};
     
     public:
         int _myWidth;

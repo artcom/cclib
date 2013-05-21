@@ -98,7 +98,8 @@ set(SOURCES
     particles/gpuviscousdrag.cpp    
     particles/gpucombinedforce.cpp        
     particles/gputargetforce.cpp        
-    particles/gputimeforceblend.cpp        
+    particles/gputimeforceblend.cpp 
+    particles/gpubloom.cpp        
 )
  
 set(HEADERS
@@ -146,6 +147,7 @@ set(HEADERS
     particles/gputargetforce.h        
     particles/gputimeforceblend.h        
     particles/gputargetsetup.h
+    particles/gpubloom.h
 )
 
 MESSAGE("Stringify shaders")

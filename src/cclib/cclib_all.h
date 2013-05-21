@@ -66,4 +66,6 @@
 #include "particles/gputimeforceblend.h"
 #include "particles/gputargetsetup.h"
 
+#include "particles/gpubloom.h"
+
 #endif
