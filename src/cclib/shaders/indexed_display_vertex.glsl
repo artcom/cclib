@@ -21,7 +21,7 @@ void main ()
 	vec4 myValues = texture2DRect(infos, gl_Vertex.xy);
 
 	//float myAlpha = clamp(1 - myValues.x / myValues.y * (1 - myValues.z), 0.2, 1); // <-
-	float myAlpha = clamp(1 - myValues.x / myValues.y, 0.3, 1); 
+	float myAlpha = clamp(1 - myValues.x / myValues.y, 0.5, 1); 
 	//myAlpha = 0.5;
 	//float myAlpha = clamp(myValues.x, 0.2, 1); 
 
@@ -44,13 +44,14 @@ void main ()
 
 	float z = (posViewSpace.z == 0) ? -1 : posViewSpace.z; 
 	//float myPointSize = ((tanHalfFOV / -z) * pointSize) * myValues.x; // <-
-	float myPointSize = ((tanHalfFOV / -z) * pointSize) * (myValues.x / 2.); // <-
+	//float myPointSize = ((tanHalfFOV / -z) * pointSize) * (myValues.x / 2.); // <-
 	//float myPointSize = ((tanHalfFOV / -posViewSpace.z) * pointSize) * myValues.y;
 	//float myPointSize = ((tanHalfFOV / -posViewSpace.z) * pointSize) * myValues.z;
 
 
 	//float myPointSize = (tanHalfFOV / posViewSpace.z) * pointSize;
 	//float myPointSize = max(tanHalfFOV / -posViewSpace.z * pointSize, 1) * myValues.y;
+	float myPointSize = max(tanHalfFOV / -posViewSpace.z * pointSize * myValues.y, 1);
 
 	//float fieldOfView = radians(20.0);
 	//float myPointSize =  ( (tan(fieldOfView / 2) / -posViewSpace.z) * pointSize ) * myValues.y;
