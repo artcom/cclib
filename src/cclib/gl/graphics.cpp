@@ -255,6 +255,7 @@ Graphics::noTexture() {
 void
 Graphics::depthTest() {
     glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
 }
 
 void 

@@ -26,10 +26,10 @@ void main ()
 	//float myAlpha = clamp(myValues.x, 0.2, 1); 
 
 	gl_FrontColor = texture2DRect(colors, gl_Vertex.xy) * gl_Color;
-	//gl_FrontColor.a = 1;
+	gl_FrontColor.a = 1;
 	//gl_FrontColor.a = myAlpha;
 	//gl_FrontColor.a *= myAlpha * myAlpha;
-	gl_FrontColor.a = (1. - myAlpha);
+	//gl_FrontColor.a = (1. - myAlpha);
 	
 
 
