@@ -31,7 +31,7 @@ GPUTimeForceBlend::GPUTimeForceBlend() :
 GPUTimeForceBlend::GPUTimeForceBlend(float theStartTime,float theEndTime,GPUForcePtr theForce1,GPUForcePtr theForce2)
 : GPUForce("TimeForceBlend")
 {
-    GPUTimeForceBlend::GPUTimeForceBlend();
+    GPUTimeForceBlend();
     
     _myStartTime->set(theStartTime);
     _myEndTime->set(theEndTime);
