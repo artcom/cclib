@@ -26,8 +26,8 @@ void main ()
 	//float myAlpha = clamp(myValues.x, 0.2, 1); 
 
 	gl_FrontColor = texture2DRect(colors, gl_Vertex.xy) * gl_Color;
-	gl_FrontColor.a = 1;
-	//gl_FrontColor.a = myAlpha;
+	//gl_FrontColor.a = 1;
+	gl_FrontColor.a = myAlpha;
 	//gl_FrontColor.a *= myAlpha * myAlpha;
 	//gl_FrontColor.a = (1. - myAlpha);
 	
@@ -69,5 +69,9 @@ void main ()
 	//gl_FrontColor.a = myAlpha;
 
 	//gl_FrontColor = min(gl_Color * gl_PointSize * gl_PointSize, gl_Color);
+
+    float far =  3000;//10000.0;
+    float depth = (-posViewSpace.z)/(far); // will map near..far to 0..1    
+	gl_TexCoord[1] = vec4(depth,depth,depth,1); 
 }
 	           
