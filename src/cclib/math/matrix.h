@@ -33,7 +33,7 @@ namespace cclib {
         
 #define DEFAULT_STACK_DEPTH 0
         int _maxStackDepth;
-        int _stackPointer = 0;
+        int _stackPointer;
 //        float stack[][];
         
         // locally allocated version to avoid creating new memory
@@ -41,10 +41,9 @@ namespace cclib {
         
     public:
         
-        Matrix4()
+        Matrix4(): _maxStackDepth(DEFAULT_STACK_DEPTH), _stackPointer(0)
         {
             loadIdentity();
-            _maxStackDepth = DEFAULT_STACK_DEPTH;
         }
         
         ~Matrix4() {};
