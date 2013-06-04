@@ -13,9 +13,6 @@
 
 #include "base/property.h"
 #include "base/component.h"
-#include "math/vec2.h"
-#include "math/vec3.h"
-#include "math/math.h"
 
 #include "gl/cgshader.h"
 #include "gl/glslshader.h"
@@ -30,6 +27,7 @@
 #include "gl/framebufferobject.h"
 #include "gl/shaderbuffer.h"
 #include "gl/bufferobject.h"
+#include "gl/geometrybuffer.h"
 
 #include "gl/mesh.h"
 #include "gl/vbomesh.h"
@@ -39,6 +37,8 @@
 #include "particles/gpuconstraint.h"
 #include "particles/gpuimpulse.h"
 #include "particles/gpunoise.h"
+//#include "particles/gpuyconstraint.h"
+//#include "particles/gpuplaneconstraint.h"
 
 #include "particles/gpuparticles.h"
 #include "particles/gpuparticle.h"

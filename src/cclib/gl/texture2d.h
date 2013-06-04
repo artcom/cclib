@@ -59,8 +59,8 @@ class Texture2D : public Texture {
         virtual ~Texture2D() {
         };
 
-        static Texture2DPtr create(TextureAttributesPtr attributes, int width=0, int height=0,
-                unsigned int numberOfTextures=1, GLenum target=GL_TEXTURE_2D);
+        static Texture2DPtr create(TextureAttributesPtr attributes, int width, int height,
+                unsigned int numberOfTextures, GLenum target);
     
         static Texture2DPtr create(std::vector<unsigned char> theData, GLenum theTarget,
                 unsigned int theWidth, unsigned int theHeight);

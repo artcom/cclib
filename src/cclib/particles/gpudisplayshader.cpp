@@ -12,12 +12,16 @@ GPUDisplayShader::GPUDisplayShader(const std::vector<std::string> & theVertexFil
     _myMaxPointSizeParameter = vertexParameter("maxPointSize");
 
     _myTangHalfFovParameter = vertexParameter("tanHalfFov");
+    
+//    _myColorTextureParameter = vertexParameter("colorTexture");
+    
     load();
 
     // XXX pointsize not quite working yet [sh].
-    pointSize(1.0);
-    minPointSize(0.00001f);
-    maxPointSize(2.5f);
+    setPointSize(1.0);
+    setMinPointSize(0.00001f);
+    setMaxPointSize(2.5f);
+//    setColorBufferTarget(0);
 //    pointSize(10.0);
 //    minPointSize(5.00001f);
 //    maxPointSize(20.5f);
@@ -35,22 +39,27 @@ GPUDisplayShader::create(const std::string & theVertexFile, const std::string & 
 }
 
 void 
-GPUDisplayShader::pointSize(float thePointSize) {
+GPUDisplayShader::setPointSize(float thePointSize) {
     parameter(_myPointSizeParameter, thePointSize);
 }
 
 void 
-GPUDisplayShader::minPointSize(float theMinPointSize) {
+GPUDisplayShader::setMinPointSize(float theMinPointSize) {
     parameter(_myMinPointSizeParameter, theMinPointSize);
 }
 
 void 
-GPUDisplayShader::maxPointSize(float theMaxPointSize) {
+GPUDisplayShader::setMaxPointSize(float theMaxPointSize) {
     parameter(_myMaxPointSizeParameter, theMaxPointSize);
 }
 
 void 
-GPUDisplayShader::tangHalfFov(float theTangHalfFov) {
+GPUDisplayShader::setTangHalfFov(float theTangHalfFov) {
     parameter(_myTangHalfFovParameter, theTangHalfFov);
 }
 
+//void
+//GPUDisplayShader::setColorTexture(int theID)
+//{
+//    texture(_myColorTextureParameter, theID);
+//}

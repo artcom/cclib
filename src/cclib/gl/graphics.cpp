@@ -151,8 +151,24 @@ Graphics::image( TexturePtr theImage, float theX, float theY,
 {
     // TextureMode myStoredTextureMode = _myTextureMode;
     // _myTextureMode = CCTextureMode.IMAGE;
-    Graphics::imageImplementation( theImage, theX, theY, theWidth, theHeight, 
-        0, 0, theImage->width(), theImage->height());
+    
+    if(theImage->target() == GL_TEXTURE_2D)
+    {
+        Graphics::imageImplementation( theImage, theX, theY, theWidth, theHeight,
+                                      0, 0,1,1);
+    }
+    else if(theImage->target() == GL_TEXTURE_RECTANGLE)
+    {
+        Graphics::imageImplementation( theImage, theX, theY, theWidth, theHeight,
+                                      0, 0,theImage->width(), theImage->height());
+    }
+    else
+    {
+        std::ostringstream errorString;
+        errorString << __PRETTY_FUNCTION__ << "\n\tunsupported texture target"<< std::endl;
+        throw cclib::Exception(errorString.str());
+    }
+    
     // _myTextureMode = myStoredTextureMode;
 }
 
@@ -214,6 +230,13 @@ void
 Graphics::texture(unsigned int theTextureUnit, TexturePtr theTexture) {
     // GL_TEXTURE_RECTANGLE_ARB
     
+//    GLenum theTarget = _myTextures[theTextureUnit]->target();
+//    printf("%s\n\ttarget %s%#x\n",
+//           __PRETTY_FUNCTION__,
+//           (theTarget == GL_TEXTURE_2D) ? "GL_TEXTURE_2D " : ( (theTarget == GL_TEXTURE_RECTANGLE) ? "GL_TEXTURE_RECTANGLE " : "" ),
+//           theTarget
+//           );
+    
     _myTextures[theTextureUnit] = theTexture;
     glActiveTexture(GL_TEXTURE0 + theTextureUnit);
     glEnable(_myTextures[theTextureUnit]->target());
@@ -227,6 +250,14 @@ Graphics::texture(unsigned int theTextureUnit, TexturePtr theTexture) {
 
 void 
 Graphics::texture(TexturePtr theTexture) {
+    
+//    GLenum theTarget = theTexture->target();
+//    printf("%s\n\ttarget %s%#x\n",
+//           __PRETTY_FUNCTION__,
+//           (theTarget == GL_TEXTURE_2D) ? "GL_TEXTURE_2D " : ( (theTarget == GL_TEXTURE_RECTANGLE) ? "GL_TEXTURE_RECTANGLE " : "" ),
+//           theTarget
+//           );
+    
     _myTextures[0] = theTexture;
     glEnable( _myTextures[0]->target() );
     _myTextures[0]->bind();

@@ -48,7 +48,7 @@ GPUParticlePointRenderer::draw() {
     glGetIntegerv(GL_VIEWPORT, viewport);
     
     float height = viewport[3];
-    _myDisplayShader->tangHalfFov( tan(DEFAULT_FOV) * height );
+    _myDisplayShader->setTangHalfFov( tan(DEFAULT_FOV) * height );
     
     _myMesh->draw();
     _myDisplayShader->end();
@@ -64,12 +64,18 @@ GPUParticlePointRenderer::mesh(){
 void 
 GPUParticlePointRenderer::setPointSize(float thePointSize) {
 
-    _myDisplayShader->pointSize(thePointSize);
+    _myDisplayShader->setPointSize(thePointSize);
 }
 
 void 
 GPUParticlePointRenderer::setPointSizeClamp(float theMinPointSize, float theMaxPointSize) {
-    _myDisplayShader->minPointSize(theMinPointSize);
-    _myDisplayShader->maxPointSize(theMinPointSize);
+    _myDisplayShader->setMinPointSize(theMinPointSize);
+    _myDisplayShader->setMaxPointSize(theMinPointSize);
 }
+
+//void
+//GPUParticlePointRenderer::setColorTexture(int theID)
+//{
+//    _myDisplayShader->setColorTexture(theID);
+//}
 

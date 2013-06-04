@@ -27,6 +27,7 @@ GLSLShader::GLSLShader(const std::vector<std::string> & vertexShaderFiles,
     Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry),
     _program(0)
 {
+    printf("%s\n\tvertexShaderFiles %d, fragmentShaderFiles %d\n",__PRETTY_FUNCTION__, (int)vertexShaderFiles.size(), (int)fragmentShaderFiles.size());
     initShader();
     
     if (!vertexShaderFiles.empty()) {
@@ -139,3 +140,16 @@ void GLSLShader::setUniform1f(const std::string& name, float value)
     glUniform1fARB(location, value);
     CHECK_GL_ERROR;
 }
+
+void GLSLShader::setUniformMatrix4fv(const std::string& name, const std::vector<float>& matrix)
+{
+    setUniformMatrix4fv(name, (float*)matrix.data());
+}
+
+void GLSLShader::setUniformMatrix4fv(const std::string& name, const float* matrix)
+{
+    GLint location = glGetUniformLocationARB(_program, (const GLcharARB*)name.c_str());
+    glUniformMatrix4fv(location, 1, false, matrix);
+    CHECK_GL_ERROR;
+}
+

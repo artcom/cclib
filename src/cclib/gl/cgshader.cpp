@@ -65,6 +65,8 @@ void
 CGShader::init( const std::vector<std::string> & vertexShaderFiles,
           const std::vector<std::string> & fragmentShaderFiles)
 {
+    printf("%s\n\tvertexShaderFiles %d, fragmentShaderFiles %d\n",__PRETTY_FUNCTION__, (int)vertexShaderFiles.size(), (int)fragmentShaderFiles.size());
+    
     initShader();
     
     if (!vertexShaderFiles.empty()) {
@@ -348,6 +350,7 @@ CGShader::parameter(const CGparameter & parameter, const Vector2f & vector){
 void 
 CGShader::parameter1(const CGparameter & parameter, const std::vector<float> & values) {
     cgGLSetParameterArray1f(parameter, 0, values.size(), &(values[0]));
+    checkCGError("Problem setting parameters ");
 }
 
 void
@@ -363,6 +366,15 @@ CGShader::parameter2(const CGparameter & parameter, const std::vector<cclib::Vec
 //    printf("%s\n\t%d -> %d\n",__PRETTY_FUNCTION__,values.size(),values_.size());
     
     cgGLSetParameterArray2f(parameter, 0, values.size(), (float*)&(values_[0]));
+}
+
+void
+CGShader::parameterfc(const CGparameter & parameter, const float *matrix)
+{
+    if(matrix == NULL) return;
+    
+    cgGLSetMatrixParameterfc(parameter, matrix);
+    checkCGError("Problem setting parameters ");
 }
 
 // JAVA LINE -- DO NOT CROSS!

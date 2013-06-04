@@ -22,7 +22,7 @@ T random(T theMax=1) {
     return cclib::random<T>(0, theMax);
 };
 
-// simplex noise random, [-1,1]
+// simplex noise random, output range [-1,1]
 float random3d(float x, float y, float z,float min=-1, float max=1);
 float random2d(float x, float y, float min=-1, float max=1);
     

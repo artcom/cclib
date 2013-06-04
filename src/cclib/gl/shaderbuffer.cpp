@@ -41,7 +41,7 @@ ShaderBuffer::beginOrtho2D() {
 void 
 ShaderBuffer::drawQuad() {
     switch (_myTarget) {
-        case GL_TEXTURE_2D:
+        case GL_TEXTURE_2D: // texCoords 0..1
             glBegin(GL_QUADS);
             glTexCoord2f(0.0f, 0.0f);
             glVertex2f(0.0f, 0.0f);
@@ -54,7 +54,7 @@ ShaderBuffer::drawQuad() {
             glEnd();
             break;
 
-        default:
+        default: // GL_TEXTURE_RECTANGLE, texCoords 0..size
             glBegin(GL_QUADS);
             glTexCoord2f(0.0f, 0.0f);
             glVertex2f(0.0f, 0.0f);

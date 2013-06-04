@@ -30,7 +30,11 @@ class GPUTimeForceBlend : public GPUForce {
         GPUTimeForceBlend();
 
     public:
+        GPUTimeForceBlend(float theStartTime,float theEndTime,GPUForcePtr theForce1,GPUForcePtr theForce2);
+    
         static GPUTimeForceBlendPtr create();
+        static GPUTimeForceBlendPtr create(float theStartTime,float theEndTime,GPUForcePtr theForce1,GPUForcePtr theForce2);
+    
         void initialize(GPUForcePtr theForce1, GPUForcePtr theForce2); 
 
         void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight);

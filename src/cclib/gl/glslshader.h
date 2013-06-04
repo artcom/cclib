@@ -34,6 +34,8 @@ namespace cclib {
         
         void setUniform1i(const std::string& name, int value);
         void setUniform1f(const std::string& name, float value);
+        void setUniformMatrix4fv(const std::string& name, const std::vector<float>& matrix);
+        void setUniformMatrix4fv(const std::string& name, const float* matrix);
         
     private:
         GLuint _program;

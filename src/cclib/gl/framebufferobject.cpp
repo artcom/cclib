@@ -6,9 +6,11 @@ using namespace cclib;
 
 FrameBufferObject::FrameBufferObject(GLenum theTarget, FrameBufferObjectAttributesPtr theAttributes,
             unsigned int theWidth, unsigned int theHeight)
-: _myTarget(theTarget), _myRenderFramebufferID(0),
+: _myTarget(theTarget),
+ _myRenderFramebufferID(0),
  _myWidth(theWidth), _myHeight(theHeight),
- _myRenderBufferIDs(), _myAttributes(theAttributes),
+ _myRenderBufferIDs(),
+ _myAttributes(theAttributes),
  _myNumberOfAttachments(theAttributes->numberOfColorBuffers)
 {
     for (unsigned int i=0; i<_myNumberOfAttachments; i++) {
@@ -30,11 +32,15 @@ FrameBufferObject::FrameBufferObject(GLenum theTarget, FrameBufferObjectAttribut
         Graphics::checkError();
     }
 
-//    printf("%s\n\ttheTarget %#x\n\tmyFramebuffers[0] %d\n\tnumberOfSamples %d\n\tnumberOfBits %d\n\tnumberOfChannels %d\n\t_myUseMultisampling %d\n",__PRETTY_FUNCTION__,
-//           (int)theTarget,
-//           _myFramebuffers[0],
-//           _myAttributes->numberOfSamples,_myAttributes->numberOfBits,_myAttributes->numberOfChannels,
-//           (int)_myUseMultisampling);
+    printf("%s\n\t%d x %d\n\ttheTarget %s%#x\n\tmyFramebuffers %d, %d\n\tnumberOfAttachments %d\n\tnumberOfSamples %d\n\tnumberOfBits %d\n\tnumberOfChannels %d\n\tuse Multisampling %d\n",
+           __PRETTY_FUNCTION__,
+           theWidth,theHeight,
+           (theTarget == GL_TEXTURE_2D) ? "GL_TEXTURE_2D " : ( (theTarget == GL_TEXTURE_RECTANGLE) ? "GL_TEXTURE_RECTANGLE " : "" ),
+           theTarget,
+           _myFramebuffers[0],_myFramebuffers[1],
+           _myNumberOfAttachments,
+           _myAttributes->numberOfSamples,_myAttributes->numberOfBits,_myAttributes->numberOfChannels,
+           (int)_myUseMultisampling);
     
     if( !(_myUseMultisampling) || !initMultisampling()) {
         _myUseMultisampling = false;
@@ -267,11 +273,13 @@ FrameBufferObject::bindFBO() {
     // Directing rendering to the texture...
     glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[_myRenderFramebufferID]);
     glDrawBuffers(_myNumberOfAttachments, &(_myDrawBuffers[0]));
+//    printf("%s\n\tnumberOfAttachments %d\n",__PRETTY_FUNCTION__,_myNumberOfAttachments);
     Graphics::checkError();
 }
 
 void 
 FrameBufferObject::bindFBO(int theTexture) {
+    
     glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[0]);
 
     Graphics::checkError();
@@ -288,7 +296,7 @@ FrameBufferObject::releaseFBO() {
         glBlitFramebuffer(0, 0, _myWidth, _myHeight, 0, 0, _myWidth, _myHeight, GL_COLOR_BUFFER_BIT, GL_NEAREST);
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
+    
     updateMipmaps();
 }
 

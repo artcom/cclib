@@ -17,16 +17,18 @@ class GPUDisplayShader : public CGShader {
         CGparameter _myMinPointSizeParameter;
         CGparameter _myMaxPointSizeParameter;
         CGparameter _myTangHalfFovParameter;
-	
+//        CGparameter _myColorTextureParameter;
+    
         GPUDisplayShader(const std::vector<std::string> & theVertexFile, const std::vector<std::string> & theFragmentFile);
 
     public:
         static GPUDisplayShaderPtr create(const std::string & theVertexFile = std::string(display_vp), 
                                           const std::string & theFragmentFile = std::string(display_fp));
-        void pointSize(float thePointSize);
-        void minPointSize(float theMinPointSize);
-        void maxPointSize(float theMaxPointSize);
-        void tangHalfFov(float theTangHalfFov);
+        void setPointSize(float thePointSize);
+        void setMinPointSize(float theMinPointSize);
+        void setMaxPointSize(float theMaxPointSize);
+        void setTangHalfFov(float theTangHalfFov);
+//        void setColorTexture(int theID);
 };
 };
 

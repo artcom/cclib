@@ -78,6 +78,7 @@ set(SOURCES
     gl/mesh.cpp
     gl/bufferobject.cpp
     gl/vbomesh.cpp
+    gl/geometrybuffer.cpp
     particles/gpuupdateshader.cpp
     particles/gpuforce.cpp
     particles/gpuconstraint.cpp
@@ -99,7 +100,9 @@ set(SOURCES
     particles/gpucombinedforce.cpp        
     particles/gputargetforce.cpp        
     particles/gputimeforceblend.cpp 
-    particles/gpubloom.cpp        
+    particles/gpubloom.cpp
+    particles/gpuyconstraint.cpp
+    particles/gpuplaneconstraint.cpp
 )
  
 set(HEADERS
@@ -111,6 +114,8 @@ set(HEADERS
     math/vec3.h
     math/math.h
     math/simplexnoise.h
+    math/plane3.h
+    math/matrix.h
     gl/shader.h
     gl/cgshader.h
     gl/glslshader.h
@@ -123,6 +128,7 @@ set(HEADERS
     gl/mesh.h
     gl/bufferobject.h
     gl/vbomesh.h
+    gl/geometrybuffer.h
     particles/gpuupdateshader.h
     particles/gpuforce.h
     particles/gpuconstraint.h
@@ -148,6 +154,8 @@ set(HEADERS
     particles/gputimeforceblend.h        
     particles/gputargetsetup.h
     particles/gpubloom.h
+    particles/gpuyconstraint.h
+    particles/gpuplaneconstraint.h
 )
 
 MESSAGE("Stringify shaders")
