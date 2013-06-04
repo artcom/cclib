@@ -15,6 +15,6 @@ CMakeCache.txt
 _builds/
 build/
 build-xcode/
-xcode/
+*xcode*/
 obj/
 stringified_shaders/
