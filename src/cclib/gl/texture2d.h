@@ -27,6 +27,11 @@ class Color {
         float b() { return _blue; };
         float a() { return _alpha; };
         
+        float r() const { return _red; };
+        float g() const { return _green; };
+        float b() const { return _blue; };
+        float a() const { return _alpha; };
+
         void setRed(float value) { _red = value; };
         void setGreen(float value) { _green = value; };
         void setBlue(float value) { _blue = value; };
