@@ -254,10 +254,10 @@ void GPUIndexParticleEmitter::fillPositionData(BufferPtr theBuffer) {
 void GPUIndexParticleEmitter::fillColorData(BufferPtr theBuffer) {
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
-        theBuffer->data()[i * 3 + 0] = myParticle->color()->red();
-        theBuffer->data()[i * 3 + 1] = myParticle->color()->green();
-        theBuffer->data()[i * 3 + 2] = myParticle->color()->blue();
-        theBuffer->data()[i * 3 + 3] = myParticle->color()->alpha();
+        theBuffer->data()[i * 4 + 0] = myParticle->color()->red();
+        theBuffer->data()[i * 4 + 1] = myParticle->color()->green();
+        theBuffer->data()[i * 4 + 2] = myParticle->color()->blue();
+        theBuffer->data()[i * 4 + 3] = myParticle->color()->alpha();
     }
 }
 
@@ -265,10 +265,10 @@ void
 GPUIndexParticleEmitter::fillInfoData(BufferPtr theBuffer) {
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
-        theBuffer->data()[i * 3 + 0] = myParticle->age();
-        theBuffer->data()[i * 3 + 1] = myParticle->lifeTime();
-        theBuffer->data()[i * 3 + 2] = myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
-        theBuffer->data()[i * 3 + 3] = myParticle->step(); //, myParticle.step();
+        theBuffer->data()[i * 4 + 0] = myParticle->age();
+        theBuffer->data()[i * 4 + 1] = myParticle->lifeTime();
+        theBuffer->data()[i * 4 + 2] = myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
+        theBuffer->data()[i * 4 + 3] = myParticle->step(); //, myParticle.step();
     }
 }
 
@@ -284,12 +284,9 @@ GPUIndexParticleEmitter::fillVelocityData(BufferPtr theBuffer) {
 
 void 
 GPUIndexParticleEmitter::transferData() {
-    
-    //printf("%s\n",__PRETTY_FUNCTION__);
-    
     _myParticles->dataBuffer()->beginDraw();
     Graphics::checkError();
-    
+
     _myParticles->initValueShader()->start();
     Graphics::checkError();
 
@@ -301,15 +298,10 @@ GPUIndexParticleEmitter::transferData() {
 
     _myParticles->dataBuffer()->endDraw();
     Graphics::checkError();
-    
-//    printf("%s END END END END END END END END END END\n",__PRETTY_FUNCTION__);
 }
 
 void 
 GPUIndexParticleEmitter::setData() {
-    
-    //printf("%s\n",__PRETTY_FUNCTION__);
-    
     int myEmitSize = _myAllocatedParticles.size();
     if (myEmitSize == 0) {
         return;
@@ -331,6 +323,7 @@ GPUIndexParticleEmitter::setData() {
     } */
     
     _myVertexBuffer->rewind();
+    _myColorBuffer->rewind();
     _myPositionBuffer->rewind();
     _myInfoBuffer->rewind();
     _myVelocityBuffer->rewind();
