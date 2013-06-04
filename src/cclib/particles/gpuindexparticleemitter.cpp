@@ -284,12 +284,9 @@ GPUIndexParticleEmitter::fillVelocityData(BufferPtr theBuffer) {
 
 void 
 GPUIndexParticleEmitter::transferData() {
-    
-    //printf("%s\n",__PRETTY_FUNCTION__);
-    
     _myParticles->dataBuffer()->beginDraw();
     Graphics::checkError();
-    
+
     _myParticles->initValueShader()->start();
     Graphics::checkError();
 
@@ -301,15 +298,10 @@ GPUIndexParticleEmitter::transferData() {
 
     _myParticles->dataBuffer()->endDraw();
     Graphics::checkError();
-    
-//    printf("%s END END END END END END END END END END\n",__PRETTY_FUNCTION__);
 }
 
 void 
 GPUIndexParticleEmitter::setData() {
-    
-    //printf("%s\n",__PRETTY_FUNCTION__);
-    
     int myEmitSize = _myAllocatedParticles.size();
     if (myEmitSize == 0) {
         return;
