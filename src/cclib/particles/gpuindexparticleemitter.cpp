@@ -331,6 +331,7 @@ GPUIndexParticleEmitter::setData() {
     } */
     
     _myVertexBuffer->rewind();
+    _myColorBuffer->rewind();
     _myPositionBuffer->rewind();
     _myInfoBuffer->rewind();
     _myVelocityBuffer->rewind();
