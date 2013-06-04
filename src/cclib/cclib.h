@@ -10,7 +10,7 @@
 #include <vector>
 #include <list>
 #include <map>
-#include <tr1/memory>
+
 #include <GL/glew.h>
 #include <stdexcept>
 
@@ -19,6 +19,8 @@
 
 #include <math/vec2.h>
 #include <math/vec3.h>
+#include <math/plane3.h>
+#include <math/matrix.h>
 
 namespace cclib {
 
