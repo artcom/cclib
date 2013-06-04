@@ -267,7 +267,7 @@ GPUIndexParticleEmitter::fillInfoData(BufferPtr theBuffer) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
         theBuffer->data()[i * 4 + 0] = myParticle->age();
         theBuffer->data()[i * 4 + 1] = myParticle->lifeTime();
-        theBuffer->data()[i * 4 + 2] = 1;//myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
+        theBuffer->data()[i * 4 + 2] = myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
         theBuffer->data()[i * 4 + 3] = myParticle->step(); //, myParticle.step();
     }
 }
