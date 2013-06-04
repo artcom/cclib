@@ -254,10 +254,10 @@ void GPUIndexParticleEmitter::fillPositionData(BufferPtr theBuffer) {
 void GPUIndexParticleEmitter::fillColorData(BufferPtr theBuffer) {
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
-        theBuffer->data()[i * 3 + 0] = myParticle->color()->red();
-        theBuffer->data()[i * 3 + 1] = myParticle->color()->green();
-        theBuffer->data()[i * 3 + 2] = myParticle->color()->blue();
-        theBuffer->data()[i * 3 + 3] = myParticle->color()->alpha();
+        theBuffer->data()[i * 4 + 0] = myParticle->color()->red();
+        theBuffer->data()[i * 4 + 1] = myParticle->color()->green();
+        theBuffer->data()[i * 4 + 2] = myParticle->color()->blue();
+        theBuffer->data()[i * 4 + 3] = myParticle->color()->alpha();
     }
 }
 
@@ -265,10 +265,10 @@ void
 GPUIndexParticleEmitter::fillInfoData(BufferPtr theBuffer) {
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
-        theBuffer->data()[i * 3 + 0] = myParticle->age();
-        theBuffer->data()[i * 3 + 1] = myParticle->lifeTime();
-        theBuffer->data()[i * 3 + 2] = myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
-        theBuffer->data()[i * 3 + 3] = myParticle->step(); //, myParticle.step();
+        theBuffer->data()[i * 4 + 0] = myParticle->age();
+        theBuffer->data()[i * 4 + 1] = myParticle->lifeTime();
+        theBuffer->data()[i * 4 + 2] = 1;//myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
+        theBuffer->data()[i * 4 + 3] = myParticle->step(); //, myParticle.step();
     }
 }
 
