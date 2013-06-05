@@ -70,8 +70,15 @@ void main ()
 
 	//gl_FrontColor = min(gl_Color * gl_PointSize * gl_PointSize, gl_Color);
 
-    float far =  3000;//10000.0;
+
+
+    float blurDepth =  3000;
+    float depth = (-posViewSpace.z)/(blurDepth);
+    float blur = 1.0 - clamp(depth, 0.0, 1.0);    
+	gl_TexCoord[1] = vec4(blur,blur,blur,1); 
+
+    /*float far =  3000;//10000.0;
     float depth = (-posViewSpace.z)/(far); // will map near..far to 0..1    
-	gl_TexCoord[1] = vec4(depth,depth,depth,1); 
+	gl_TexCoord[1] = vec4(depth,depth,depth,1); */
 }
 	           
