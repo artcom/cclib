@@ -27,7 +27,7 @@ GLSLShader::GLSLShader(const std::vector<std::string> & vertexShaderFiles,
     Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry),
     _program(0)
 {
-    printf("%s\n\tvertexShaderFiles %d, fragmentShaderFiles %d\n",__PRETTY_FUNCTION__, (int)vertexShaderFiles.size(), (int)fragmentShaderFiles.size());
+    //printf("%s\n\tvertexShaderFiles %d, fragmentShaderFiles %d\n",__PRETTY_FUNCTION__, (int)vertexShaderFiles.size(), (int)fragmentShaderFiles.size());
     initShader();
     
     if (!vertexShaderFiles.empty()) {

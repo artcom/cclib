@@ -65,7 +65,7 @@ void
 CGShader::init( const std::vector<std::string> & vertexShaderFiles,
           const std::vector<std::string> & fragmentShaderFiles)
 {
-    printf("%s\n\tvertexShaderFiles %d, fragmentShaderFiles %d\n",__PRETTY_FUNCTION__, (int)vertexShaderFiles.size(), (int)fragmentShaderFiles.size());
+    //printf("%s\n\tvertexShaderFiles %d, fragmentShaderFiles %d\n",__PRETTY_FUNCTION__, (int)vertexShaderFiles.size(), (int)fragmentShaderFiles.size());
     
     initShader();
     
