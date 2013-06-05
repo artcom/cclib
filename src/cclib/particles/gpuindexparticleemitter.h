@@ -86,6 +86,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
                 float theLifeTime, bool theIsPermanent);
         
         virtual void update(float theDeltaTime);
+        void reset(); 
         int size();
         GPUParticlePtr particle(int theID);
         virtual void fillPositionData(BufferPtr theBuffer);

@@ -232,6 +232,18 @@ GPUIndexParticleEmitter::update(float theDeltaTime) {
     _myParticleWaitingList->update(theDeltaTime, this);
 }
 
+void 
+GPUIndexParticleEmitter::reset() {
+    _myAllocatedParticles.clear();
+    _myFreeIndices.clear();
+    _myPendingParticles.clear();
+    _myParticleWaitingList = ParticleWaitingList::create(0.5f);
+    for(int i = 0; i < _myActiveParticlesArray.size(); ++i) {
+        int myIndex = _myStart + i;
+        _myFreeIndices.push_back(myIndex);
+    }
+}
+
 int
 GPUIndexParticleEmitter::size() {
     return _myNumberOfParticles;
