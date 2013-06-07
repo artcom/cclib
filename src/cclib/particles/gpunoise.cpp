@@ -93,6 +93,8 @@ GPUNoise::attachFragmentNoise(CGShader * theShader) {
     theShader->texture(myPermTextureParam, noise->permTextureID);
     theShader->texture(mySimplexTextureParam, noise->simplexTextureID);
     theShader->texture(myGradTextureParam, noise->gradTextureID);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
 }
 
 void 
@@ -106,6 +108,7 @@ GPUNoise::attachVertexNoise(CGShader * theShader) {
     theShader->texture(myPermTextureParam, noise->permTextureID);
     theShader->texture(mySimplexTextureParam, noise->simplexTextureID);
     theShader->texture(myGradTextureParam, noise->gradTextureID);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void 

@@ -78,6 +78,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
     load();
 
     GPUNoise::attachFragmentNoise(this);
+    
 }
 
 GPUUpdateShaderPtr 
