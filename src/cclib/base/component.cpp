@@ -6,20 +6,20 @@ Component::Component(const std::string &theName):
 m_name(theName)
 {}
 
-Component::~Component() 
+Component::~Component()
 {
 }
 
-Property::Ptr 
-Component::getPropertyByName(const std::string & thePropertyName) 
+Property::Ptr
+Component::getPropertyByName(const std::string & thePropertyName)
 {
     std::list<Property::Ptr>::iterator it;
-    for ( it = m_propertyList.begin() ; it != m_propertyList.end(); it++ ) 
+    for ( it = m_propertyList.begin() ; it != m_propertyList.end(); it++ )
     {
-        if ((*it)->getName() == thePropertyName) 
+        if ((*it)->getName() == thePropertyName)
             return (*it);
     }
-    
+
     throw PropertyNotFoundException(thePropertyName);
 }
 
@@ -29,9 +29,9 @@ Component::getPropertyList() const
     return m_propertyList;
 }
 
-void 
-Component::registerProperty(Property::Ptr theProperty) 
+void
+Component::registerProperty(Property::Ptr theProperty)
 {
     m_propertyList.push_back(theProperty);
 }
-    
+

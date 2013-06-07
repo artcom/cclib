@@ -12,35 +12,35 @@
 #include <cclib.h>
 #include "property.h"
 
-namespace cclib 
+namespace cclib
 {
-    
-    class Component 
+
+    class Component
     {
     public:
         typedef std::tr1::shared_ptr<Component> Ptr;
         typedef std::tr1::shared_ptr<const Component> ConstPtr;
-        
+
         Component(const std::string &theName = "Component");
         virtual ~Component();
-        
-        const std::string& getName() const { 
-            return m_name; 
+
+        const std::string& getName() const {
+            return m_name;
         };
-        
-        void setName(const std::string & theName) { 
-            m_name = std::string(theName); 
+
+        void setName(const std::string & theName) {
+            m_name = std::string(theName);
         };
-        
+
         const std::list<Property::Ptr>& getPropertyList() const;
         Property::Ptr getPropertyByName(const std::string & thePropertyName);
-        
+
         template<typename T>
         inline void set(const std::string & thePropertyName, T & theValue) {
             Property::Ptr myProperty = getPropertyByName(thePropertyName);
             myProperty->setValue<T>(theValue);
         }
-        
+
         template<typename T>
         inline T get(const std::string & thePropertyName) {
             Property::Ptr myProperty = getPropertyByName(thePropertyName);
@@ -48,8 +48,8 @@ namespace cclib
         }
 
         virtual void updateProperty(const Property::ConstPtr &theProperty){};
-        
-    protected:        
+
+    protected:
         void registerProperty(Property::Ptr theProperty);
 
     private:
@@ -61,18 +61,18 @@ namespace cclib
     class PropertyNotFoundException : public Exception
     {
     public:
-        PropertyNotFoundException(std::string thePropertyName): 
+        PropertyNotFoundException(std::string thePropertyName):
         Exception(std::string("Named Property not found: ")+thePropertyName)
         {}
-    }; 
-    
+    };
+
     class ComponentError: public Exception
     {
     public:
         ComponentError(std::string theErrorString):
         Exception(std::string("ComponentError: ")+theErrorString)
         {}
-    }; 
+    };
 }
 
 #endif // __CCLIB_COMPONENT_INCLUDED__
