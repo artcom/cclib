@@ -39,7 +39,17 @@ public:
 
         // notifyObservers();
     }
-   
+
+    inline void setValue(const boost::any & theValue)
+    {
+        if(theValue.type() != m_value.type()) {
+            throw WrongTypeSetException(m_name);
+        }
+        m_value = theValue;
+
+        // notifyObservers();
+    }
+
     template <typename T>
     inline const T& getValue() const
     {
@@ -73,7 +83,7 @@ public:
     }
 
     virtual bool checkValue(const boost::any &theVal)
-    {return theVal.type() == m_value.type();};
+    {return theVal.type() == m_value.type();}
 
     // inline void addObserver(const Observer::Ptr &theObs)
     // {m_observers.insert(theObs);};
