@@ -87,14 +87,13 @@ void cclib::GPUIndexParticleCurveEmitter::update(float theDeltaTime)
 }
 
 //void cclib::GPUIndexParticleCurveEmitter::fillPositionData(FloatBuffer theBuffer, List<CCGPUParticle> theParticles)
-//void cclib::GPUIndexParticleCurveEmitter::fillPositionData(cclib::BufferPtr theBuffer, std::vector<cclib::GPUParticle> theParticles)
-void cclib::GPUIndexParticleCurveEmitter::fillPositionData(cclib::BufferPtr theBuffer)
+void cclib::GPUIndexParticleCurveEmitter::fillPositionData(cclib::BufferPtr theBuffer, std::vector<cclib::GPUParticlePtr> & theParticles)
 {
 //    cclib::GPUIndexParticleEmitter::fillPositionData(theBuffer); return;
     
-    for (unsigned int i=0; i<_myAllocatedParticles.size(); i++)
+    for (unsigned int i=0; i<theParticles.size(); i++)
     {
-        cclib::GPUParticlePtr myParticle = _myAllocatedParticles[i];
+        cclib::GPUParticlePtr myParticle = theParticles[i];
         
         theBuffer->data()[i * 3 + 0] = myParticle->position()->x();
         theBuffer->data()[i * 3 + 1] = cclib::random<float>();
@@ -111,8 +110,7 @@ void cclib::GPUIndexParticleCurveEmitter::fillPositionData(cclib::BufferPtr theB
 //    theBuffer.put(_myFillArray, 0, theParticles.size() * 3);
 }
 
-//void cclib::GPUIndexParticleCurveEmitter::transferEmitData()
-void cclib::GPUIndexParticleCurveEmitter::transferData()
+void cclib::GPUIndexParticleCurveEmitter::transferEmitData()
 {
 //    cclib::GPUIndexParticleEmitter::transferData();return;
 

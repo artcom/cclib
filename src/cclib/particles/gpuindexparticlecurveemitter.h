@@ -47,10 +47,8 @@ namespace cclib {
         
         void update(float theDeltaTime);
         
-        void fillPositionData(cclib::BufferPtr theBuffer);
-//        void fillPositionData(cclib::BufferPtr theBuffer, std::vector<cclib::GPUParticle> theParticles);
-//        void transferEmitData();
-        void transferData();
+        virtual void fillPositionData(cclib::BufferPtr theBuffer, std::vector<cclib::GPUParticlePtr> & theParticles);
+        virtual void transferEmitData();
         
         void setScale(float value) { _myScale = value; };
         void setOutputScale(float value) { _myOutputScale = value; };
