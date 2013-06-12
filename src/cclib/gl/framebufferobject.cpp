@@ -284,7 +284,15 @@ FrameBufferObject::bindFBO(int theTexture) {
 
     Graphics::checkError();
 
-    glDrawBuffer(GL_COLOR_ATTACHMENT0 + theTexture);
+    GLuint attachments[_myNumberOfAttachments];
+    for(int i = 0; i < _myNumberOfAttachments; ++i) {
+        if(i == theTexture) {
+            attachments[i] = GL_COLOR_ATTACHMENT0 + theTexture;
+        } else {
+            attachments[i] = GL_NONE;
+        }
+    }
+    glDrawBuffers(_myNumberOfAttachments, attachments);
     Graphics::checkError();
 }
 
