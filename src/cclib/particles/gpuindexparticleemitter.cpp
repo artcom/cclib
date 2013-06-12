@@ -66,7 +66,6 @@ ParticleWaitingList::handleCurrentWaitList(float theDeltaTime, GPUIndexParticleE
 void
 ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE) {
     _myStepTime += theDeltaTime;
-
     handleCurrentWaitList(theDeltaTime, thePE);
 
     if(_myStepTime > _myTimeStep) {
@@ -92,12 +91,6 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
         _myOffset++;
         _myOffset %= _myWaitLists.size();
     }
-
-    // std::cout << "> \t";
-    // for (unsigned int i=0; i<_myWaitLists.size(); i++) {
-    //     std::cout << _myWaitLists[i].size() << "\t";
-    // }
-    // std::cout << std::endl;
 }
 
 // std::vector<GPUParticlePtr>
@@ -360,27 +353,11 @@ GPUIndexParticleEmitter::transferChanges() {
     if (myStateChangeSize == 0) {
         return;
     }
-
-    if (myStateChangeSize > _myEmitMesh->numberOfVertices()) {
-        _myVertexBuffer = Buffer::create(myStateChangeSize * 3, true);
-        _myPositionBuffer = Buffer::create(myStateChangeSize * 3, true);
-        _myInfoBuffer = Buffer::create(myStateChangeSize * 4, true);
-        _myVelocityBuffer = Buffer::create(myStateChangeSize * 3, true);
-        _myColorBuffer = Buffer::create(myStateChangeSize * 4, true);
-    }
-#warning implement correct resizing
-    /* else {
-        _myVertexBuffer.limit(myStateChangeSize * 3);
-        _myPositionBuffer.limit(myStateChangeSize * 3);
-        _myInfoBuffer.limit(myStateChangeSize * 3);
-        _myVelocityBuffer.limit(myStateChangeSize * 3);
-    } */
-
-    _myVertexBuffer->rewind();
-    _myColorBuffer->rewind();
-    _myPositionBuffer->rewind();
-    _myInfoBuffer->rewind();
-    _myVelocityBuffer->rewind();
+    // XXX: this needs improvement by resizing the buffer instead of always
+    // creating a new one
+    _myVertexBuffer = Buffer::create(myStateChangeSize * 3, true);
+    _myInfoBuffer = Buffer::create(myStateChangeSize * 4, true);
+    _myColorBuffer = Buffer::create(myStateChangeSize * 4, true);
 
     for (unsigned int i = 0; i < _myStateChanges.size(); ++i) {
         GPUParticlePtr myParticle = _myStateChanges[i];
@@ -394,6 +371,7 @@ GPUIndexParticleEmitter::transferChanges() {
 
     _myVertexBuffer->rewind();
     _myInfoBuffer->rewind();
+    _myColorBuffer->rewind();
 
     _myEmitMesh->clearAll();
     _myEmitMesh->vertices(_myVertexBuffer);
@@ -413,26 +391,13 @@ GPUIndexParticleEmitter::transferEmits() {
         return;
     }
 
-    if (myEmitSize > _myEmitMesh->numberOfVertices()) {
-        _myVertexBuffer = Buffer::create(myEmitSize * 3, true);
-        _myPositionBuffer = Buffer::create(myEmitSize * 3, true);
-        _myInfoBuffer = Buffer::create(myEmitSize * 4, true);
-        _myVelocityBuffer = Buffer::create(myEmitSize * 3, true);
-        _myColorBuffer = Buffer::create(myEmitSize * 4, true);
-    }
-#warning implement correct resizing
-    /* else {
-        _myVertexBuffer.limit(myEmitSize * 3);
-        _myPositionBuffer.limit(myEmitSize * 3);
-        _myInfoBuffer.limit(myEmitSize * 3);
-        _myVelocityBuffer.limit(myEmitSize * 3);
-    } */
-
-    _myVertexBuffer->rewind();
-    _myColorBuffer->rewind();
-    _myPositionBuffer->rewind();
-    _myInfoBuffer->rewind();
-    _myVelocityBuffer->rewind();
+    // XXX: this needs improvement by resizing the buffer instead of always
+    // creating a new one
+    _myVertexBuffer = Buffer::create(myEmitSize * 3, true);
+    _myPositionBuffer = Buffer::create(myEmitSize * 3, true);
+    _myInfoBuffer = Buffer::create(myEmitSize * 4, true);
+    _myVelocityBuffer = Buffer::create(myEmitSize * 3, true);
+    _myColorBuffer = Buffer::create(myEmitSize * 4, true);
 
     for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
         GPUParticlePtr myParticle = _myAllocatedParticles[i];
