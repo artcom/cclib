@@ -26,7 +26,6 @@ GPUTargetForce::GPUTargetForce(int theTargetTextures) :
     _myNearMaxForce(Property_<float>::create("nearMaxForce", 0.0f))
 {
     registerProperty(_myScale);
-    registerProperty(_myScale);
     registerProperty(_myCenter);
     registerProperty(_myLookAhead);
     registerProperty(_myMaxForce);
