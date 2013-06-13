@@ -7,8 +7,8 @@ varying vec4 pos;
 varying vec3 normal;
 varying float depth;
 
-//uniform sampler2D colorTexture;
-uniform sampler2DRect colorTexture;
+uniform sampler2D colorTexture; // GL_TEXTURE_2D
+//uniform sampler2DRect colorTexture; // GL_TEXTURE_RECTANGLE
 
 void main(){
 	gl_FragData[0] = pos;
@@ -29,7 +29,7 @@ void main(){
 	);
 	*/
 
-	//gl_FragData[2] = gl_Color * texture2D(colorTexture, vec2(gl_TexCoord[0].x, gl_TexCoord[0].y));
-	// ? gl_FragData[2] = gl_Color * texture2D(colorTexture, vec2(gl_TexCoord[0].x, 1.0 - gl_TexCoord[0].y));
-	gl_FragData[2] = texture2DRect(colorTexture, gl_TexCoord[0].xy);
+	gl_FragData[2] = gl_Color * texture2D(colorTexture, vec2(gl_TexCoord[0].x, gl_TexCoord[0].y));
+	//gl_FragData[2] = gl_Color * texture2D(colorTexture, vec2(gl_TexCoord[0].x, 1.0 - gl_TexCoord[0].y));
+	//gl_FragData[2] = texture2DRect(colorTexture, gl_TexCoord[0].xy);
 }
