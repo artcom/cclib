@@ -251,6 +251,11 @@ Graphics::texture(unsigned int theTextureUnit, TexturePtr theTexture) {
 void 
 Graphics::texture(TexturePtr theTexture) {
     
+    if(theTexture == NULL)
+    {
+        _myTextures[0] = TexturePtr();
+        return;
+    }
 //    GLenum theTarget = theTexture->target();
 //    printf("%s\n\ttarget %s%#x\n",
 //           __PRETTY_FUNCTION__,
