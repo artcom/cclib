@@ -47,6 +47,7 @@ FrameBufferObject::FrameBufferObject(GLenum theTarget, FrameBufferObjectAttribut
         init();
     }
     
+    // glBindFramebuffer(GL_FRAMEBUFFER, 0);
     Graphics::checkError();
 }
 
