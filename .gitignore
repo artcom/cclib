@@ -10,11 +10,9 @@
 *.pbxproj
 .DS_Store
 
-CMakeFiles/
-CMakeCache.txt
-_builds/
-build/
-build-xcode/
+CMake*
+CMake*
+*build*/
 *xcode*/
 obj/
 stringified_shaders/

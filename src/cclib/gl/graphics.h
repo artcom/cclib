@@ -46,6 +46,8 @@ class Graphics {
         static void checkErrorX(char *file, int line);
 #define checkError() Graphics::checkErrorX((char*)__FILE__, __LINE__)
     
+        static bool checkFramebufferStatus();
+
         static void blend(unsigned int theBlendmode) {
             glEnable(GL_BLEND);
             Graphics::checkError();

@@ -49,6 +49,8 @@ FrameBufferObject::FrameBufferObject(GLenum theTarget, FrameBufferObjectAttribut
     
     // glBindFramebuffer(GL_FRAMEBUFFER, 0);
     Graphics::checkError();
+
+    // releaseFBO();
 }
 
 unsigned int
@@ -274,7 +276,8 @@ FrameBufferObject::bindFBO() {
     // Directing rendering to the texture...
     glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[_myRenderFramebufferID]);
     glDrawBuffers(_myNumberOfAttachments, &(_myDrawBuffers[0]));
-//    printf("%s\n\tnumberOfAttachments %d\n",__PRETTY_FUNCTION__,_myNumberOfAttachments);
+    
+    // printf("%s\n\tnumberOfAttachments %d\n\tuseMultisampling %d\n",__PRETTY_FUNCTION__,_myNumberOfAttachments,_myUseMultisampling);
     Graphics::checkError();
 }
 
@@ -306,7 +309,11 @@ FrameBufferObject::releaseFBO() {
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     
-    updateMipmaps();
+    // updateMipmaps();
+
+    // printf("%s\n\tnumberOfAttachments %d\n\tuseMultisampling %d\n",__PRETTY_FUNCTION__,_myNumberOfAttachments,_myUseMultisampling);
+
+    // Graphics::checkFramebufferStatus();
 }
 
 int 
