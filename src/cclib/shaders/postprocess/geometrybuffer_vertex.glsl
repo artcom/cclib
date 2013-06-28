@@ -67,7 +67,7 @@ void main(){
 	
 	// https://github.com/silam/OutForDrive/blob/master/spotlight-vshader-transform.glsl
 	
-	vec3 aux = vec3(gl_LightSource[0].position-pos);
+	vec3 aux = vec3(gl_LightSource[0].position - pos);
 	lightDir = normalize(aux);
 	/* compute the distance to the light source to a varying variable*/
 	dist = length(aux);

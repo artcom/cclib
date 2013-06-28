@@ -86,7 +86,7 @@ void cclib::GPUIndexedParticleRenderer::draw(){
     _myShader->setUniform1i("colors", 3);
     
     _myShader->setUniform1f("pointSize", _myPointsize);
-    _myShader->setUniform1f("minPointSize", 0.001);
+    _myShader->setUniform1f("minPointSize", 0.00000001);
     _myShader->setUniform1f("maxPointSize", 2.5);
     
     int viewport[4];
