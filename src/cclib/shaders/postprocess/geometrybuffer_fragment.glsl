@@ -100,8 +100,7 @@ vec4 spot_lighting(vec4 color)
 			color += att * (diffuse * NdotL + ambient);
 
 			halfV = normalize(halfVector);
-			//NdotHV = max(dot(n,halfV),0.0);
-			NdotHV = dot(n,halfV);
+			NdotHV = max(dot(n,halfV),0.0);
 			color += att * gl_FrontMaterial.specular * gl_LightSource[0].specular * pow(NdotHV,gl_FrontMaterial.shininess);
 		}
 		else
