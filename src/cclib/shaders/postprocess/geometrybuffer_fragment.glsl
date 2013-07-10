@@ -136,10 +136,12 @@ void main(){
 	
 	vec4 myColor = texture2D(colorTexture, vec2(gl_TexCoord[0].x, gl_TexCoord[0].y));
 
-// 	vec4 myLightedColor = gl_Color * generic_lighting( pos, myColor, normalize(normal));
-	
+	vec4 myLightedColor = gl_Color * generic_lighting( pos, myColor, normalize(normal));
+
+	gl_FragData[2] = myLightedColor;
 // 	gl_FragData[2] = myColor * multi_lighting();
-	gl_FragData[2] = spot_lighting(myColor);
+	//gl_FragData[2] = spot_lighting(myColor);
+// 	gl_FragData[2] = myColor;
 	
 	
 	//gl_FragData[2] = gl_Color * texture2D(colorTexture, vec2(gl_TexCoord[0].x, 1.0 - gl_TexCoord[0].y));

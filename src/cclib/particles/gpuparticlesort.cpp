@@ -71,13 +71,13 @@ cclib::GPUParticleSort::GPUParticleSort(cclib::GPUParticles* theParticles)
                                                        vfiles,ffiles);
     _myComputeDistanceShader->load();
     
-//    vfiles.clear();
-//    ffiles.clear();
-//    ffiles.push_back(std::string(lookupPosition_fp));
-//    _myLookupPositionPositionShader = cclib::CGShader::create(
-//                                                              //null, CCIOUtil.classPath(this, "shader/sort/lookupPosition.fp")
-//                                                              vfiles,ffiles);
-//    _myLookupPositionPositionShader->load();
+   vfiles.clear();
+   ffiles.clear();
+   ffiles.push_back(std::string(lookupPosition_fp));
+   _myLookupPositionPositionShader = cclib::CGShader::create(
+                                                             //null, CCIOUtil.classPath(this, "shader/sort/lookupPosition.fp")
+                                                             vfiles,ffiles);
+   _myLookupPositionPositionShader->load();
     
     _mySortPassesPerFrame = 5;
     

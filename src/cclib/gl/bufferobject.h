@@ -15,9 +15,6 @@ namespace cclib {
 #define BUFFERUSAGE_READ 0x02
 #define BUFFERUSAGE_COPY 0x03
 
-class Buffer;
-typedef std::tr1::shared_ptr<Buffer> BufferPtr;
-
 // 
     
 class Buffer {

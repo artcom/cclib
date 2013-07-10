@@ -19,9 +19,6 @@
 //#include "ui_uitilities.h"
 
 namespace cclib {
-    
-    class GPUBloom;
-    typedef std::tr1::shared_ptr<GPUBloom> GPUBloomPtr;
 
     class GPUBloom
     {

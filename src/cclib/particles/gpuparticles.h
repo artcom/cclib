@@ -10,9 +10,6 @@ namespace cclib {
 class GPUParticle;
 typedef std::tr1::shared_ptr<GPUParticle> GPUParticlePtr;
 
-class GPUParticles;
-typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
-
 class GPUParticles {
 
     protected: 

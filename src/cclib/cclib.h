@@ -105,6 +105,9 @@ typedef std::tr1::shared_ptr<ParticleWaitingList> ParticleWaitingListPtr;
 class GPUIndexParticleEmitter;
 typedef std::tr1::shared_ptr<GPUIndexParticleEmitter> GPUIndexParticleEmitterPtr;
 
+class GPUIndexedParticleRenderer;
+typedef std::tr1::shared_ptr<GPUIndexedParticleRenderer> GPUIndexedParticleRendererPtr;
+	
 class GPUIndexParticleCurveEmitter;
 typedef std::tr1::shared_ptr<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
 	
@@ -141,6 +144,21 @@ typedef std::tr1::shared_ptr<GPUTargetSetup> GPUTargetSetupPtr;
 class GPUTimeForceBlend;
 typedef std::tr1::shared_ptr<GPUTimeForceBlend> GPUTimeForceBlendPtr;
     
+class GPUBloom;
+typedef std::tr1::shared_ptr<GPUBloom> GPUBloomPtr;
+	
+class GPUIndexParticleCurveEmitter;
+typedef std::tr1::shared_ptr<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
+	
+class GPUParticleSort;
+typedef std::tr1::shared_ptr<GPUParticleSort> GPUParticleSortPtr;
+	
+class GPUParticles;
+typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
+
+class GPUPlaneConstraint;
+typedef std::tr1::shared_ptr<GPUPlaneConstraint> GPUPlaneConstraintPtr;
+	
 class Exception: public std::runtime_error
 {
     public:

@@ -12,9 +12,6 @@
 
 namespace cclib {
     
-    class GPUParticleSort;
-    typedef std::tr1::shared_ptr<GPUParticleSort> GPUParticleSortPtr;
-    
     class GPUParticleSort
     {
         cclib::ShaderBufferPtr _myBuffer;
@@ -34,9 +31,9 @@ namespace cclib {
         CGparameter _mySortEndShaderSizeParameter;
         CGparameter _mySortEndShaderSortStepParameter;
         
-        cclib::CGShaderPtr _myDistanceSortInitShader;
-        cclib::CGShaderPtr _myComputeDistanceShader;
-//        cclib::CGShaderPtr _myLookupPositionPositionShader;
+		cclib::CGShaderPtr _myDistanceSortInitShader;
+		cclib::CGShaderPtr _myComputeDistanceShader;
+		cclib::CGShaderPtr _myLookupPositionPositionShader;
 //        CGparameter DistanceSortCompute_ViewerPosition_Param;
         
         cclib::GPUParticlesPtr _myParticles;
