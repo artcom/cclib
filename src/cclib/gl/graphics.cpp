@@ -224,6 +224,15 @@ Graphics::imageImplementation(TexturePtr theImage,
     Graphics::vertex(x2, y1, u2, v1);
     Graphics::endShape();
     Graphics::noTexture();
+	
+	
+	glColor4f(1,1,1,1);
+	Graphics::beginShape(GL_LINE_LOOP);
+    Graphics::vertex(x1, y1, u1, v1);
+    Graphics::vertex(x1, y2, u1, v2);
+    Graphics::vertex(x2, y2, u2, v2);
+    Graphics::vertex(x2, y1, u2, v1);
+    Graphics::endShape();
 }
 
 void 

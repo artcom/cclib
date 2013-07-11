@@ -24,6 +24,7 @@
 //}
 
 cclib::GPUParticleSort::GPUParticleSort(cclib::GPUParticles* theParticles)
+: _myCurrentPass(0),_myBeginPass(0),_myEndPass(0)
 {
 //    _myGraphics = theGraphics;
     _myParticles = cclib::GPUParticlesPtr(theParticles);
@@ -89,14 +90,17 @@ void cclib::GPUParticleSort::reset()
     cclib::Graphics::noBlend();
     
     _myBuffer->beginDraw();
+	cclib::Graphics::clearColor(0,1,0,1);
     cclib::Graphics::clear();
-    
+    glDisable(GL_LIGHTING);
+	glDisable(GL_BLEND);
+	
 //    // DrawImage();
     _myBuffer->endDraw();
 
     _myCurrentPass = 0;
     _myMaxSortPasses = 100000;
-    
+	
     _myDistanceSortInitShader->start();
     _myBuffer->draw();
     _myDistanceSortInitShader->end();
@@ -142,6 +146,8 @@ void cclib::GPUParticleSort::mergeSort()
     _myBeginPass = _myEndPass;
     _myEndPass = (_myBeginPass + _mySortPassesPerFrame) % _myMaxSortPasses;
     
+	printf("mergeSort: current %10d, Begin  %10d, End  %10d, PassesPerFrame  %10d, MaxSortPasses  %10d\n",_myCurrentPass,_myBeginPass,_myEndPass,_mySortPassesPerFrame,_myMaxSortPasses);
+	
     _mySortRecursionShader->parameter(_mySortRecursionShaderSizeParameter, _myParticles->width(), _myParticles->height());
     _mySortEndShader->parameter(_mySortEndShaderSizeParameter, _myParticles->width(), _myParticles->height());
     
@@ -153,6 +159,8 @@ void cclib::GPUParticleSort::doMergeSortPass(int theCount)
 //    if (DEBUG)
 //        CCLog.info("mergeSort: count=" + theCount);
     
+    printf("\tdoMergeSortPass: count %10d\n",theCount);
+	
     if (theCount > 1) {
         doMergeSortPass(theCount / 2);
         doMergePass(theCount, 1);
@@ -164,30 +172,48 @@ void cclib::GPUParticleSort::doMergeSortPass(int theCount)
 
 bool cclib::GPUParticleSort::doNextPass(){
     
-    if (_myBeginPass < _myEndPass) {
-        if (_myCurrentPass < _myBeginPass || _myCurrentPass >= _myEndPass){
-            return false;
-        }
-    } else {
-        if (_myCurrentPass < _myBeginPass && _myCurrentPass >= _myEndPass){
-            return false;
-        }
-    }
-    return true;
+	if (_myCurrentPass < _mySortPassesPerFrame) 
+	{
+		return true;
+	}
+	return false;
+
+
+//     if (_myBeginPass < _myEndPass) {
+//         if (_myCurrentPass < _myBeginPass || _myCurrentPass >= _myEndPass){
+//             return false;
+//         }
+//     } else {
+//         if (_myCurrentPass < _myBeginPass && _myCurrentPass >= _myEndPass){
+//             return false;
+//         }
+//     }
+//     return true;
 }
 
 void cclib::GPUParticleSort::doMergePass(int theCount, int theStep)
 {
+	printf("\tdoMergePass current %10d, count %10d, step %10d\n",_myCurrentPass,theCount,theStep);
+	
     if (theCount > 2) {
         doMergePass(theCount / 2, theStep * 2);
         
-        _myCurrentPass++;
-        
-        if(!doNextPass())return;
-        
+		_myCurrentPass++;
+		
+        if(!doNextPass())
+		{
+			printf(".");
+// 			_myCurrentPass = 0;
+			return;
+		}
+		
+// 		_myCurrentPass++;
+		
+// 		printf("\tSORT current %10d, count %10d, step %10d\n",_myCurrentPass,theCount,theStep);
+		
 //        if (DEBUG)
 //            CCLog.info(_myCurrentPass + ": mergeRec: count=" + theCount + ", step=" + theStep);
-        
+		
         _mySortRecursionShader->start();
         _mySortRecursionShader->parameter(_mySortRecursionShaderSortStepParameter, (float) theStep);
         _mySortRecursionShader->parameter(_mySortRecursionShaderSortCountParameter, (float) theCount);
@@ -203,13 +229,23 @@ void cclib::GPUParticleSort::doMergePass(int theCount, int theStep)
         
         
     } else {
-        _myCurrentPass++;
         
-        if(!doNextPass())return;
+		_myCurrentPass++;
+		
+        if(!doNextPass())
+		{
+			printf(".");
+// 			_myCurrentPass = 0;
+			return;
+		}
         
+// 		_myCurrentPass++;
+		
+// 		printf("\tEND current %10d, count %10d, step %10d\n",_myCurrentPass,theCount,theStep);
+		
 //        if (DEBUG)
 //            CCLog.info(_myCurrentPass + ": mergeEnd: count="+theCount+", step="+theStep);
-        
+		
         _mySortEndShader->start();
         _mySortEndShader->parameter(_mySortEndShaderSortStepParameter, (float) theStep);
         
