@@ -245,7 +245,6 @@ bool cclib::GPUParticleSort::doNextPass(){
         if (_myCurrentPass < _myBeginPass ||  _myEndPass < _myCurrentPass){
             rc = false;
         }
-		abort();
 		
     } else {
         if (_myCurrentPass < _myBeginPass && _myEndPass < _myCurrentPass){
