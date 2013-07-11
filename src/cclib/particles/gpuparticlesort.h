@@ -14,6 +14,32 @@ namespace cclib {
     
     class GPUParticleSort
     {
+		
+    public:
+//        GPUParticleSort();
+        GPUParticleSort(cclib::GPUParticles* theParticles);
+        
+//        static GPUParticleSortPtr create() {
+//            return cclib::GPUParticleSortPtr(new cclib::GPUParticleSort());
+//        };
+        
+        static GPUParticleSortPtr create(cclib::GPUParticles* theParticles) {
+            return cclib::GPUParticleSortPtr(new cclib::GPUParticleSort(theParticles));
+        };
+        
+        void reset();
+        void update(float theDeltaTime);
+        
+		cclib::ShaderBufferPtr indices();
+		
+	private:
+        bool doNextPass();
+        
+        void mergeSort();
+        void doMergePass(int theCount, int theStep);
+		
+        void doMergeSortPass(int theCount);
+        
         cclib::ShaderBufferPtr _myBuffer;
         cclib::ShaderBufferPtr _myDestinationBuffer;
         
@@ -38,28 +64,11 @@ namespace cclib {
         
         cclib::GPUParticlesPtr _myParticles;
         
-    public:
-//        GPUParticleSort();
-        GPUParticleSort(cclib::GPUParticles* theParticles);
-        
-//        static GPUParticleSortPtr create() {
-//            return cclib::GPUParticleSortPtr(new cclib::GPUParticleSort());
-//        };
-        
-        static GPUParticleSortPtr create(cclib::GPUParticles* theParticles) {
-            return cclib::GPUParticleSortPtr(new cclib::GPUParticleSort(theParticles));
-        };
-        
-        void reset();
-        void update(float theDeltaTime);
-        
-        bool doNextPass();
-        
-        void mergeSort();
-        void doMergePass(int theCount, int theStep);
-        void doMergeSortPass(int theCount);
-        
-        cclib::ShaderBufferPtr indices();
+// 		void sort_tail(int theCount, int theStep);
+// 		void sort_head(int theCount, int theStep);
+		void tail_shader(int theCount, int theStep);
+		void head_shader(int theStep);
+
     };
-    
+	
 }; // namespace cclib

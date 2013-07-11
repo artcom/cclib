@@ -159,109 +159,213 @@ void cclib::GPUParticleSort::doMergeSortPass(int theCount)
 //    if (DEBUG)
 //        CCLog.info("mergeSort: count=" + theCount);
     
-    printf("\tdoMergeSortPass: count %10d\n",theCount);
+#if 0
+	// original
 	
-    if (theCount > 1) {
+	if(theCount > 1) {
+		printf("\tdoMergeSortPass: count %10d\n", theCount);
+		doMergeSortPass(theCount/2);
+// 		printf("\tdoMergePass, count %10d, step %10d\n", theCount, 1);
+		doMergePass(theCount, 1);
+	}
+	
+#else
+
+	// refactored
+	
+#if 1
+
+	for(int c = 2; c < theCount; c <<= 1) {
+		printf("\tdoMergeSortPass: count %10d/%d\n", c, theCount);
+        doMergePass(c, 1);
+	}
+	
+	doMergePass(theCount, 1);
+	
+#else
+	
+	for(int i = 2; i < theCount; i <<= 1) {
+		printf("\tdoMergeSortPass: count %10d\n", i);
+		
+		int count = i;
+		int step = 1;
+		int failed = 0;
+		
+		while(2 < count) {
+			
+			printf("\t\tdoMergePass current %10d, count %10d, step %10d\n", _myCurrentPass, count, step);
+		
+			count >>= 2;
+			step <<= 2;
+			
+			if(!doNextPass()) {
+				printf(".");
+				failed++;
+			}
+			
+			tail_shader(count, step);
+			
+		} // for j
+		
+		printf("\t\tdoMergePass current %10d, count %10d, step %10d\n", _myCurrentPass,count, step);
+		
+		head_shader(step);
+		
+		_myCurrentPass += failed;
+		
+	} // for i
+	
+	printf("\tdoMergeSortPass: count %10d\n", theCount);
+	
+#endif
+	
+#endif
+
+	
+// 	
+// 	doMergePass(theCount, 1);
+
+/*
+    printf("\tdoMergeSortPass: count %10d\n",theCount);
+ *    if (theCount > 1) {
         doMergeSortPass(theCount / 2);
         doMergePass(theCount, 1);
     }
-    
+*/
+
 //    if (DEBUG)
 //        CCLog.info("mergeSort: end");
 }
 
 bool cclib::GPUParticleSort::doNextPass(){
+
+	int rc = true;
+	
+    if (_myBeginPass < _myEndPass) {
+        if (_myCurrentPass < _myBeginPass ||  _myEndPass < _myCurrentPass){
+            rc = false;
+        }
+		abort();
+		
+    } else {
+        if (_myCurrentPass < _myBeginPass && _myEndPass < _myCurrentPass){
+            rc = false;
+        }
+    }
     
-	if (_myCurrentPass < _mySortPassesPerFrame) 
-	{
-		return true;
-	}
-	return false;
+// 	printf("\tnext pass? %8d %8d %8d | %d\n", _myBeginPass, _myEndPass, _myCurrentPass, rc);
+	return rc;
+}
 
+// void cclib::GPUParticleSort::sort_tail(int theCount, int theStep)
+// {
+// 	doMergePass(theCount / 2, theStep * 2);
+// 	
+// 	_myCurrentPass++;
+// 	
+// 	if(!doNextPass()) {
+// 		printf(".");
+// // 			_myCurrentPass = 0;
+// 		return;
+// 	}
+// 	
+// // 		_myCurrentPass++;
+// 	
+// // 		printf("\tSORT current %10d, count %10d, step %10d\n",_myCurrentPass,theCount,theStep);
+// 	
+// //        if (DEBUG)
+// //            CCLog.info(_myCurrentPass + ": mergeRec: count=" + theCount + ", step=" + theStep);
+// 	
+// 	tail_shader(theCount, theStep);
+// }
 
-//     if (_myBeginPass < _myEndPass) {
-//         if (_myCurrentPass < _myBeginPass || _myCurrentPass >= _myEndPass){
-//             return false;
-//         }
-//     } else {
-//         if (_myCurrentPass < _myBeginPass && _myCurrentPass >= _myEndPass){
-//             return false;
-//         }
-//     }
-//     return true;
+void cclib::GPUParticleSort::tail_shader(int theCount, int theStep)
+{
+// 	printf("\ttail_shader, count %10d, step %10d\n", theCount, theStep);
+	
+	_mySortRecursionShader->start();
+	_mySortRecursionShader->parameter(_mySortRecursionShaderSortStepParameter, (float) theStep);
+	_mySortRecursionShader->parameter(_mySortRecursionShaderSortCountParameter, (float) theCount);
+	
+	cclib::Graphics::texture(_myBuffer->attachment(0));
+	_myDestinationBuffer->draw();
+	cclib::Graphics::noTexture();
+	_mySortRecursionShader->end();
+	
+	cclib::ShaderBufferPtr temp = _myBuffer;
+	_myBuffer = _myDestinationBuffer;
+	_myDestinationBuffer = temp;
+}
+
+        
+// void cclib::GPUParticleSort::sort_head(int theCount, int theStep)
+// {
+// 	_myCurrentPass++;
+// 	
+// 	if(!doNextPass()) {
+// 		printf(".");
+// // 			_myCurrentPass = 0;
+// 		return;
+// 	}
+// 	
+// // 		_myCurrentPass++;
+// 	
+// // 		printf("\tEND current %10d, count %10d, step %10d\n",_myCurrentPass,theCount,theStep);
+// 	
+// //        if (DEBUG)
+// //            CCLog.info(_myCurrentPass + ": mergeEnd: count="+theCount+", step="+theStep);
+// 	
+// 	head_shader(theStep);
+// 	
+// }        
+//      
+void cclib::GPUParticleSort::head_shader(int theStep)
+{
+// 	printf("\thead_shader, step %10d\n", theStep);
+	_mySortEndShader->start();
+	_mySortEndShader->parameter(_mySortEndShaderSortStepParameter, (float) theStep);
+	
+	cclib::Graphics::texture(_myBuffer->attachment(0));
+	_myDestinationBuffer->draw();
+	cclib::Graphics::noTexture();
+	
+	_mySortEndShader->end();
+	
+	cclib::ShaderBufferPtr temp = _myBuffer;
+	_myBuffer = _myDestinationBuffer;
+	_myDestinationBuffer = temp;
 }
 
 void cclib::GPUParticleSort::doMergePass(int theCount, int theStep)
 {
-	printf("\tdoMergePass current %10d, count %10d, step %10d\n",_myCurrentPass,theCount,theStep);
+	printf("\tdoMergePass current %10d, count %10d, step %10d\n", _myCurrentPass,theCount, theStep);
 	
-    if (theCount > 2) {
-        doMergePass(theCount / 2, theStep * 2);
-        
-		_myCurrentPass++;
-		
-        if(!doNextPass())
-		{
-			printf(".");
-// 			_myCurrentPass = 0;
-			return;
-		}
-		
-// 		_myCurrentPass++;
-		
-// 		printf("\tSORT current %10d, count %10d, step %10d\n",_myCurrentPass,theCount,theStep);
-		
-//        if (DEBUG)
-//            CCLog.info(_myCurrentPass + ": mergeRec: count=" + theCount + ", step=" + theStep);
-		
-        _mySortRecursionShader->start();
-        _mySortRecursionShader->parameter(_mySortRecursionShaderSortStepParameter, (float) theStep);
-        _mySortRecursionShader->parameter(_mySortRecursionShaderSortCountParameter, (float) theCount);
-        
-        cclib::Graphics::texture(_myBuffer->attachment(0));
-        _myDestinationBuffer->draw();
-        cclib::Graphics::noTexture();
-        _mySortRecursionShader->end();
-        
-        cclib::ShaderBufferPtr temp = _myBuffer;
-        _myBuffer = _myDestinationBuffer;
-        _myDestinationBuffer = temp;
-        
-        
+#if 0	
+    if (2 < theCount) {
+		sort_tail(theCount, theStep);
     } else {
-        
-		_myCurrentPass++;
-		
-        if(!doNextPass())
-		{
-			printf(".");
-// 			_myCurrentPass = 0;
-			return;
-		}
-        
-// 		_myCurrentPass++;
-		
-// 		printf("\tEND current %10d, count %10d, step %10d\n",_myCurrentPass,theCount,theStep);
-		
-//        if (DEBUG)
-//            CCLog.info(_myCurrentPass + ": mergeEnd: count="+theCount+", step="+theStep);
-		
-        _mySortEndShader->start();
-        _mySortEndShader->parameter(_mySortEndShaderSortStepParameter, (float) theStep);
-        
-        cclib::Graphics::texture(_myBuffer->attachment(0));
-        _myDestinationBuffer->draw();
-        cclib::Graphics::noTexture();
-        
-        _mySortEndShader->end();
-        
-        cclib::ShaderBufferPtr temp = _myBuffer;
-        _myBuffer = _myDestinationBuffer;
-        _myDestinationBuffer = temp;
-        
-        
+		sort_head(theCount, theStep);
     }
-    
+#else
+	
+	for(int c = 2, s = theStep; c < theCount; c <<= 1, s >>= 1) {
+		printf("\tdoMergePass: count %10d, setp %d\n", c, s);
+		_myCurrentPass++;
+		if(doNextPass()) {
+			tail_shader(c, s);
+		} else {
+			printf(".");
+		}
+	}
+	
+	_myCurrentPass++;
+	if(doNextPass()) {
+		head_shader(theStep);
+	} else {
+		printf(".");
+	}
+	
+#endif
 //    if(DEBUG){
 //        //			FloatBuffer myData = _myBuffer.getData();
 //        //			while(myData.hasRemaining()){
