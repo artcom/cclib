@@ -237,18 +237,16 @@ void cclib::GPUParticleSort::doMergeSortPass(int theCount)
 //        CCLog.info("mergeSort: end");
 }
 
-bool cclib::GPUParticleSort::doNextPass(){
+bool cclib::GPUParticleSort::doNextPass() {
 
     int rc = true;
 
     if (_myBeginPass < _myEndPass) {
-        if (_myCurrentPass < _myBeginPass ||  _myEndPass < _myCurrentPass){
+        if (_myCurrentPass < _myBeginPass ||  _myEndPass < _myCurrentPass) {
             rc = false;
         }
-        abort();
-
     } else {
-        if (_myCurrentPass < _myBeginPass && _myEndPass < _myCurrentPass){
+        if (_myEndPass < _myCurrentPass && _myCurrentPass < _myBeginPass) {
             rc = false;
         }
     }
