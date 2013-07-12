@@ -19,15 +19,15 @@ void main ()
 
 	vec4 myValues = texture2DRect(infos, gl_Vertex.xy);
 
-	float myAlpha = clamp(1.0 - myValues.x / myValues.y * (1 - myValues.z), 0.5, 1.0); // <-
+	float myAlpha = clamp(1.0 - myValues.x / myValues.y * (1.0 - myValues.z), 0.5, 1.0); // <-
 	gl_FrontColor = texture2DRect(colors, gl_Vertex.xy) * gl_Color;
 // 	gl_FrontColor.a = 1;
-	gl_FrontColor.a = myAlpha;
+	gl_FrontColor.a *= myAlpha * myAlpha;
 
 	// Compute point size.
 	vec4 posViewSpace = gl_ModelViewMatrix * myPosition;
-	float myPointSize = max(tanHalfFOV / -posViewSpace.z * pointSize * myValues.y, 1.0);
-//     float myPointSize = max(tanHalfFOV / -posViewSpace.z * myValues.y, 1) * pointSize;
+// 	float myPointSize = max(tanHalfFOV / -posViewSpace.z * pointSize * myValues.y, 1.0);
+    float myPointSize = max(tanHalfFOV / -posViewSpace.z * myValues.y, 1) * pointSize;
 	gl_PointSize = myPointSize;
 
 
