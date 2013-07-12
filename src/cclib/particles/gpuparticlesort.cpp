@@ -278,12 +278,17 @@ void cclib::GPUParticleSort::doMergePass(int theCount, int theStep)
     printf("\tdoMergePass current %10d, count %10d, step %10d\n", _myCurrentPass,theCount, theStep);
 
 #if 0
+
+    // original
+
     if (2 < theCount) {
         sort_tail(theCount, theStep);
     } else {
         sort_head(theCount, theStep);
     }
 #else
+
+    // refactored
 
     for(int c = 2, s = theStep; c < theCount; c <<= 1, s >>= 1) {
         printf("\tdoMergePass: count %10d, setp %d\n", c, s);
