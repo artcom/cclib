@@ -31,7 +31,7 @@ void main (){
 	//gl_PointSize =  max(tanHalfFOV / -posViewSpace.z * pointSize * myRandoms.y, 1);
 	gl_PointSize =  ((tanHalfFOV / -posViewSpace.z) * pointSize) * myValues.y;
 
-	float myAlpha = clamp(1 - myValues.x / myValues.y,0,1);
+	float myAlpha = clamp(1.0 - myValues.x / myValues.y,0.0,1.0);
 	
 // 	gl_FrontColor = min(myColor * gl_PointSize * gl_PointSize, myColor);
 	gl_FrontColor = myColor;
