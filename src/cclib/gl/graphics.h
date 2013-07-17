@@ -103,8 +103,6 @@ class Graphics {
             glEnable(GL_POINT_SMOOTH);
             glEnable(GL_LINE_SMOOTH);
             glEnable(GL_POLYGON_SMOOTH);
-//             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//             glEnable(GL_BLEND);
 
             // antialiasing
             glEnable (GL_BLEND);
@@ -113,9 +111,9 @@ class Graphics {
 
         static void noSmooth() {
             glDisable(GL_POINT_SMOOTH);
-            // glDisable(GL_LINE_SMOOTH);
+            glDisable(GL_LINE_SMOOTH);
             glDisable(GL_POLYGON_SMOOTH);
-//             glDisable(GL_BLEND);
+            glDisable(GL_BLEND);
         };
 
         static void pushAttribute() {

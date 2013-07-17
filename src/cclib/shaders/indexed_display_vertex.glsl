@@ -4,7 +4,6 @@
 uniform float tanHalfFOV;
 
 uniform float pointSize;
-uniform float alphaFactor;
 
 //uniform sampler2DRect springs;
 uniform sampler2DRect positions;
@@ -26,13 +25,14 @@ void main ()
 
 	// Compute point size.
 	vec4 posViewSpace = gl_ModelViewMatrix * myPosition;
-// 	float myPointSize = max(tanHalfFOV / -posViewSpace.z * pointSize * myValues.y, 1.0);
+
     float myPointSize = max(tanHalfFOV / -posViewSpace.z * myValues.y, 1) * pointSize;
+
 	gl_PointSize = myPointSize;
 
 
 
-    float blurDepth =  3000.0;
+    float blurDepth =  10000.0;
     float depth = (-posViewSpace.z)/(blurDepth);
     float blur = 1.0 - clamp(depth, 0.0, 1.0);
 	gl_TexCoord[1] = vec4(blur,blur,blur,1.0);

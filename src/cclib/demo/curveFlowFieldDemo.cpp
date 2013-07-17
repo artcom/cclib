@@ -20,7 +20,7 @@ using namespace cclib;
 
 class CurveFlowFieldDemo {
 
-    private:    
+    private:
 
         float _cFieldStrength;
         float _cAttractorStrength;
@@ -37,17 +37,17 @@ class CurveFlowFieldDemo {
 
         GPUParticlesPtr _myParticles;
         GPUIndexParticleEmitterPtr _myEmitter;
-        
-        GPUCurveFieldPtr _myCurveField; 
-        GPUForceFieldPtr _myForceField; 
-        GPUGravityPtr _myGravity; 
+
+        GPUCurveFieldPtr _myCurveField;
+        GPUForceFieldPtr _myForceField;
+        GPUGravityPtr _myGravity;
         GPUAttractorPtr _myAttractor;
-    
+
         int frame;
-    
+
     public:
         bool running;
-        
+
         CurveFlowFieldDemo() :
             _cFieldStrength(1.46666f),
             _cAttractorStrength(18.53334f),
@@ -77,24 +77,24 @@ class CurveFlowFieldDemo {
             if (GLEW_OK != err) {
                 running = false;
             }
-            
+
             setup();
         }
 
         void setup() {
-            
+
             _myCurveField = GPUCurveField::create();
             _myForceField = GPUForceField::create(0.005f, 1, Vector3f(100, 20, 30));
             _myGravity = GPUGravity::create(Vector3f(2,0,0));
             _myAttractor = GPUAttractor::create(Vector3f(), 0, 0);
-                
+
             std::vector<GPUForcePtr> myForces;
             myForces.push_back(GPUViscousDrag::create(0.25f));
             // myForces.push_back(_myCurveField);
             myForces.push_back(_myGravity);
             myForces.push_back(_myForceField);
             myForces.push_back(_myAttractor);
-           
+
             std::vector<GPUConstraintPtr> myConstraints;
             std::vector<GPUImpulsePtr> myImpulses;
 
@@ -102,11 +102,11 @@ class CurveFlowFieldDemo {
             _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 800, 800);
             _myEmitter = GPUIndexParticleEmitter::create(_myParticles);
             _myParticles->addEmitter(_myEmitter);
-            
+
             Graphics::smooth();
         }
 
-        ~CurveFlowFieldDemo() { 
+        ~CurveFlowFieldDemo() {
             glfwTerminate();
         }
 
@@ -116,15 +116,15 @@ class CurveFlowFieldDemo {
             glLoadIdentity();
 
             int width, height, mouseX, mouseY = 0;
-            
+
             glfwGetWindowSize(&width, &height);
-            
+
             glViewport(0, 0, width, height);
             gluPerspective(60, (float)width/(float)height, 1, 10000);
             gluLookAt(0.0, 0.0, 650, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 );
-            
+
             glfwGetMousePos( &mouseX, &mouseY );
-            
+
             // update
             _myTime += 1.0f/30.0f * 0.5f;
             for(int i = 0; i < 1500; i++){
@@ -140,14 +140,14 @@ class CurveFlowFieldDemo {
             _myParticles->update(1.0f/60.0f);
 
             _myGravity->setStrength(_cGravityStrength);
-            
+
             _myForceField->setStrength(_cFieldStrength);
             _myForceField->setNoiseOffset(Vector3f(0, 0, _myTime));
             _myForceField->setNoiseScale(0.0025f);
 
             _myAttractor->setStrength(_cAttractorStrength);
             _myAttractor->setRadius(_cAttractorRadius);
-            _myAttractor->setPosition( Vector3f(mouseX - width/2.0f, height/2.0f - mouseY, 0.0f) ); 
+            _myAttractor->setPosition( Vector3f(mouseX - width/2.0f, height/2.0f - mouseY, 0.0f) );
 
             _myCurveField->setStrength(_cCurveStrength);
             _myCurveField->setOutputScale(_cCurveOuputScale);
@@ -155,7 +155,7 @@ class CurveFlowFieldDemo {
             _myCurveField->setScale(_cCurveNoiseScale / 100);
             _myCurveField->setRadius(_cCurveRadius);
             _myCurveField->setPrediction(_cPrediction);
-                
+
             // draw
 
             Graphics::pointSize(1.0f);
@@ -173,16 +173,16 @@ class CurveFlowFieldDemo {
             //		g.noSmooth();
             //		g.noPointSprite();
             // g.popMatrix();
-            
+
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
-            // 
-            
+            //
+
             glfwSwapBuffers();
 
             if (++frame % 60 == 0) {
                 std::cout << "frame: " << frame << std::endl;
             }
-            
+
             running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
             glPopMatrix();
         }
@@ -199,7 +199,7 @@ int main() {
     } catch (Exception & e) {
         std::cout << e.what() << std::endl;
     }
-    
+
     return 0;
 }
 

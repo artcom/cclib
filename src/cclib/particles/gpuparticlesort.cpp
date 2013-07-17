@@ -286,6 +286,7 @@ void cclib::GPUParticleSort::doMergePass(int theCount, int theStep)
     } else {
         sort_head(theCount, theStep);
     }
+
 #else
 
     // refactored
@@ -295,6 +296,7 @@ void cclib::GPUParticleSort::doMergePass(int theCount, int theStep)
         _myCurrentPass++;
         if(doNextPass()) {
             tail_shader(c, s);
+            printf("tail\n");
         } else {
             printf(".");
         }
@@ -303,6 +305,7 @@ void cclib::GPUParticleSort::doMergePass(int theCount, int theStep)
     _myCurrentPass++;
     if(doNextPass()) {
         head_shader(theStep);
+        printf("head\n");
     } else {
         printf(".");
     }

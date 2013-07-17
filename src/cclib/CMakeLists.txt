@@ -1,3 +1,4 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake" ${CMAKE_MODULE_PATH})
 INCLUDE(EqStringifyShaders)
@@ -104,10 +105,10 @@ set(SOURCES
     particles/gpubloom.cpp
     particles/gpuyconstraint.cpp
     particles/gpuplaneconstraint.cpp
+    particles/gpusortedparticlerenderer.cpp
 )
  
 set(HEADERS
-    cclib_all.h
     cclib.h
     base/property.h
     base/component.h
@@ -157,6 +158,7 @@ set(HEADERS
     particles/gpubloom.h
     particles/gpuyconstraint.h
     particles/gpuplaneconstraint.h
+    particles/gpusortedparticlerenderer.h
 )
 
 MESSAGE("Stringify shaders")
@@ -175,7 +177,11 @@ add_library(${CCLIB_NAME} SHARED
     ${HEADERS})
 
 target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${Cg_GL_LIBRARIES} ${OPENGL_LIBRARIES})
-install(TARGETS ${CCLIB_NAME} DESTINATION lib) 
+install(TARGETS ${CCLIB_NAME} 
+	DESTINATION lib
+	PERMISSIONS
+            OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+	) 
 
 set(TEST_LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Cg_LIBRARIES} ${GLEW_LIBRARY} ${GLFW_LIBRARIES}) # ${CCLIB_NAME} 
 

@@ -225,7 +225,7 @@ Graphics::imageImplementation(TexturePtr theImage,
     Graphics::endShape();
     Graphics::noTexture();
 
-
+    // draw a white frame
 // 	glColor4f(1,1,1,1);
 // 	Graphics::beginShape(GL_LINE_LOOP);
 //     Graphics::vertex(x1, y1, u1, v1);
