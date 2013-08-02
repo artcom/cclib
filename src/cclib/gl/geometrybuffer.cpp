@@ -17,45 +17,45 @@ cclib::GeometryBuffer::GeometryBuffer(float theWidth, float theHeight)
 //    myTextureAttributes.internalFormat(CCPixelInternalFormat.RGBA32F);
 //    myTextureAttributes.filter(CCTextureFilter.NEAREST);
 //    myTextureAttributes.wrap(CCTextureWrap.CLAMP);
-    
+
     int theNumberOfTextures = 3;
     int theNumberOfBits = 32, theNumberOfChannels = 4;
-    
+
     cclib::TextureAttributesPtr myTextureAttributes = cclib::TextureAttributes::create(theNumberOfBits, theNumberOfChannels);
-    
+
     cclib::FrameBufferObjectAttributesPtr myAttributes = cclib::FrameBufferObjectAttributes::create(myTextureAttributes,theNumberOfTextures);
-    
-//    myAttributes->numberOfSamples = 0;
+
+//     myAttributes->numberOfSamples = 0;
 //    myAttributes->numberOfBits = theNumberOfBits;
 //    myAttributes->numberOfChannels = theNumberOfChannels;
 //    myAttributes->depthBuffer = true;
-    
-    
+
+
 //    CCFrameBufferObjectAttributes myAttributes = new CCFrameBufferObjectAttributes(myTextureAttributes,3);
 //    myAttributes.enableDepthBuffer(true);
-//    
+//
 //    _myRenderTexture = new CCRenderBuffer(g, myAttributes, theWidth, theHeight);
 
     _myRenderTexture = cclib::FrameBufferObject::create(
                                                         //GL_TEXTURE_2D,
                                                         GL_TEXTURE_RECTANGLE,
                                                         myAttributes, theWidth, theHeight);
-    
+
 //    _myShader = new CCGLSLShader(
 //                                 CCIOUtil.classPath(this, "geometrybuffer_vertex.glsl"),
 //                                 CCIOUtil.classPath(this, "geometrybuffer_fragment.glsl")
 //                                 );
 //    _myShader.load();
 
-    
+
     std::vector<std::string> vfiles, ffiles;
-    
+
     vfiles.push_back(std::string(geometrybuffer_vertex_glsl));
     ffiles.push_back(std::string(geometrybuffer_fragment_glsl));
-    
+
     _myShader = cclib::GLSLShader::create(vfiles,ffiles);
-    
-    
+
+
     _myWidth = theWidth;
     _myHeight = theHeight;
 }
@@ -78,7 +78,7 @@ void cclib::GeometryBuffer::updateMatrix()
     Matrix4f m;
     m.loadModelView();
     m.invert();
-    
+
     updateMatrix(m.toFloatBuffer());
 }
 

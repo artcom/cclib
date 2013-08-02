@@ -6,7 +6,7 @@ void main(
 	out float4 oColor : COLOR0
 ){
 	float4 myValues = texRECT(infoTexture, iTexCoord);
-	float myAlpha = saturate(1 - myValues.x / myValues.y);
+	float myAlpha = saturate(1.0 - myValues.x / myValues.y);
 	//oColor = float4(iColor.xyz, iColor.w * pow(myAlpha,4));
 	oColor = iColor;
 	//oColor = float4(1,1,1, 1);

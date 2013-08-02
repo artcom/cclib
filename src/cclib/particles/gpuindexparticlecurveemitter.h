@@ -16,9 +16,6 @@
 
 namespace cclib {
     
-    class GPUIndexParticleCurveEmitter;
-    typedef std::tr1::shared_ptr<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
-    
     class GPUIndexParticleCurveEmitter : public cclib::GPUIndexParticleEmitter
     {
         cclib::CGShaderPtr _myCurveEmitShader;

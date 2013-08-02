@@ -20,4 +20,5 @@ void main(
 		distanceSqr = 1e6;
 
 	oColor = float4(particleIndex,particlePos.z,1.0);
+
 }

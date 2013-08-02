@@ -16,10 +16,7 @@
 #include "particles/gpuparticles.h"
 
 namespace cclib {
-    
-    class GPUIndexedParticleRenderer;
-    typedef std::tr1::shared_ptr<GPUIndexedParticleRenderer> GPUIndexedParticleRendererPtr;
-    
+      
     class GPUIndexedParticleRenderer : public cclib::GPUParticleRenderer
     {
     protected:

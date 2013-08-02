@@ -4,10 +4,10 @@
 
 using namespace cclib;
 
-FrameBufferObjectAttributesPtr 
+FrameBufferObjectAttributesPtr
 ShaderBuffer::createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures) {
     TextureAttributesPtr myTextureAttributes = TextureAttributes::create(theNumberOfBits, theNumberOfChannels);
-    
+
     FrameBufferObjectAttributesPtr result = FrameBufferObjectAttributesPtr(new FrameBufferObjectAttributes(myTextureAttributes, theNumberOfTextures));
     result->numberOfBits = theNumberOfBits;
     result->numberOfChannels = theNumberOfChannels;
@@ -18,7 +18,7 @@ ShaderBuffer::createAttributes( int theNumberOfBits, int theNumberOfChannels, in
     return result;
 }
 
-void 
+void
 ShaderBuffer::beginOrtho2D() {
     Graphics::checkError();
     glPushAttrib(GL_VIEWPORT_BIT);
@@ -37,8 +37,8 @@ ShaderBuffer::beginOrtho2D() {
     glLoadIdentity();
     Graphics::checkError();
 }
-        
-void 
+
+void
 ShaderBuffer::drawQuad() {
     switch (_myTarget) {
         case GL_TEXTURE_2D: // texCoords 0..1
@@ -67,11 +67,11 @@ ShaderBuffer::drawQuad() {
             glEnd();
             break;
     }
-    
+
     Graphics::checkError();
 }
 
-void 
+void
 ShaderBuffer::clear() {
     Graphics::checkError();
     beginDraw();
@@ -81,29 +81,29 @@ ShaderBuffer::clear() {
     Graphics::checkError();
 }
 
-int 
+int
 ShaderBuffer::numberOfChannels() {
     return _numberOfChannels;
 }
 
-int 
+int
 ShaderBuffer::numberOfBits() {
     return _numberOfBits;
 }
-	
-void 
+
+void
 ShaderBuffer::beginDraw() {
     bindFBO();
     beginOrtho2D();
 }
-	
-void 
+
+void
 ShaderBuffer::beginDraw(int texture) {
     bindFBO(texture);
     beginOrtho2D();
 }
 
-void 
+void
 ShaderBuffer::endOrtho2D() {
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
@@ -115,13 +115,13 @@ ShaderBuffer::endOrtho2D() {
     Graphics::checkError();
 }
 
-void 
+void
 ShaderBuffer::endDraw() {
     endOrtho2D();
     releaseFBO();
 }
 
-void 
+void
 ShaderBuffer::draw() {
     beginDraw();
 
@@ -133,7 +133,7 @@ ShaderBuffer::draw() {
 
 }
 
-std::vector<float> 
+std::vector<float>
 ShaderBuffer::getData(unsigned int theAttachment, unsigned int x, unsigned int y, int width, int height, int texture) {
 	if (width == -1) {
         width = _myWidth;
@@ -141,22 +141,22 @@ ShaderBuffer::getData(unsigned int theAttachment, unsigned int x, unsigned int y
 	if (height == -1) {
         height = _myHeight;
     }
-    
-    std::vector<float> pixels(_myWidth * _myHeight * _numberOfChannels); 
-    
+
+    std::vector<float> pixels(_myWidth * _myHeight * _numberOfChannels);
+
 	glBindFramebuffer(GL_FRAMEBUFFER, _myFramebuffers[0]);
 	glReadBuffer(_myDrawBuffers[texture]);
 	glReadPixels(x, y, width, height, _myAttachments[theAttachment]->format(), GL_FLOAT, &(pixels[0]));
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	
+
     Graphics::checkError();
 
 	return pixels;
 }
 
-ShaderBufferPtr 
-ShaderBuffer::create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits, 
-        int theNumberOfChannels, int theNumberOfTextures, GLenum theTarget) 
+ShaderBufferPtr
+ShaderBuffer::create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits,
+        int theNumberOfChannels, int theNumberOfTextures, GLenum theTarget)
 {
     FrameBufferObjectAttributesPtr attributes = createAttributes(theNumberOfBits, theNumberOfChannels, theNumberOfTextures);
     ShaderBufferPtr shaderTex = ShaderBufferPtr(new ShaderBuffer(theWidth, theHeight, attributes, theTarget));
@@ -164,13 +164,13 @@ ShaderBuffer::create(unsigned int theWidth, unsigned int theHeight, int theNumbe
     return shaderTex;
 }
 
-ShaderBuffer::ShaderBuffer ( unsigned int theWidth, unsigned int theHeight, 
+ShaderBuffer::ShaderBuffer ( unsigned int theWidth, unsigned int theHeight,
         FrameBufferObjectAttributesPtr theAttributes, GLenum theTarget) :
     FrameBufferObject(theTarget, theAttributes, theWidth, theHeight)
 
 {
     _numberOfChannels = theAttributes->numberOfChannels;
-    _numberOfBits = theAttributes->numberOfBits;    
+    _numberOfBits = theAttributes->numberOfBits;
 
     _pbo = std::vector<PBOPtr>();
     _pbo.push_back(PBO::create(_numberOfChannels * theWidth * theHeight * (_numberOfBits == 16 ? 2 : 4)));

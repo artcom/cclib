@@ -11,8 +11,8 @@
 #include "gl/shaderbuffer.h"
 #include "stringified_shaders/indexed_display_vertex.glsl.h"
 #include "stringified_shaders/indexed_display_fragment.glsl.h"
-#include "stringified_shaders/sorted_display_vertex.glsl.h"
-#include "stringified_shaders/sorted_display_fragment.glsl.h"
+// #include "stringified_shaders/sorted_display_vertex.glsl.h"
+// #include "stringified_shaders/sorted_display_fragment.glsl.h"
 
 cclib::GPUIndexedParticleRenderer::GPUIndexedParticleRenderer()
 : cclib::GPUParticleRenderer(),
@@ -25,8 +25,8 @@ _myPointsize(1)
     vfiles.push_back(indexed_display_vertex_glsl);
     ffiles.push_back(indexed_display_fragment_glsl);
     
-//    vfiles.push_back(sorted_display_vertex_glsl);
-//    ffiles.push_back(sorted_display_fragment_glsl);
+// 	vfiles.push_back(sorted_display_vertex_glsl);
+// 	ffiles.push_back(sorted_display_fragment_glsl);
     
     //    super(theParticles, theStart, theNumberParticles);
     _myShader = cclib::GLSLShader::create(vfiles, ffiles);
@@ -86,7 +86,7 @@ void cclib::GPUIndexedParticleRenderer::draw(){
     _myShader->setUniform1i("colors", 3);
     
     _myShader->setUniform1f("pointSize", _myPointsize);
-    _myShader->setUniform1f("minPointSize", 0.00000001);
+    _myShader->setUniform1f("minPointSize", 0.000000000001);
     _myShader->setUniform1f("maxPointSize", 2.5);
     
     int viewport[4];

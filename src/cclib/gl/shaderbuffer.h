@@ -13,32 +13,32 @@ class PBO {
         static PBOPtr create(unsigned int dataSize) {
             return PBOPtr(new PBO(dataSize));
         };
-        
+
         void beginUnpack() {
             glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _id);
         }
-	
+
         void endUnpack() {
             glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
         }
-	
+
         void beginPack() {
             glBindBuffer(GL_PIXEL_PACK_BUFFER, _id);
         }
-	
+
         void endPack() {
             glBindBuffer(GL_PIXEL_PACK_BUFFER, 0);
         }
-	
+
         // ByteBuffer mapBuffer(){
         //     return glMapBuffer(GL_PIXEL_UNPACK_BUFFER, GL_WRITE_ONLY);
         // }
-	
+
         // ByteBuffer mapReadBuffer() {
         //     glBindBuffer(GL_PIXEL_PACK_BUFFER, _id);
         //     return glMapBuffer(GL_PIXEL_PACK_BUFFER, GL_READ_ONLY);
         // }
-	
+
         // void unmapReadBuffer() {
         //     glBindBuffer(GL_PIXEL_PACK_BUFFER, _id);
         //     glUnmapBuffer(GL_PIXEL_PACK_BUFFER);
@@ -49,7 +49,7 @@ class PBO {
             glDeleteBuffers(1, &_id);
         };
 
-    private: 
+    private:
         GLuint _id;
 
         PBO(unsigned int dataSize) {
@@ -64,14 +64,14 @@ class ShaderBuffer : public FrameBufferObject {
 
     public:
 
-        static FrameBufferObjectAttributesPtr createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures); 
+        static FrameBufferObjectAttributesPtr createAttributes( int theNumberOfBits, int theNumberOfChannels, int theNumberOfTextures);
         static ShaderBufferPtr create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits=32,
-            int theNumberOfChannels=3, int theNumberOfTextures=1, GLenum theTarget=GL_TEXTURE_RECTANGLE); 
+            int theNumberOfChannels=3, int theNumberOfTextures=1, GLenum theTarget=GL_TEXTURE_RECTANGLE);
         virtual ~ShaderBuffer() {
         };
 
         void beginOrtho2D();
-        void drawQuad(); 
+        void drawQuad();
         void clear();
         int numberOfChannels();
 	    int numberOfBits();
@@ -81,7 +81,7 @@ class ShaderBuffer : public FrameBufferObject {
         void endDraw();
         void draw();
         std::vector<float> getData(unsigned int theAttachment, unsigned int x=0, unsigned int y=0, int width=-1, int height=-1, int texture=0);
-	
+
         // public void draw(CCAABoundingRectangle theRectangle) {
         //     beginDraw();
         //     GL2 gl = CCGraphics.currentGL();
@@ -98,23 +98,23 @@ class ShaderBuffer : public FrameBufferObject {
         //     endDraw();
         // }
 
-    private: 
+    private:
         ShaderBuffer ( unsigned int theWidth, unsigned int theHeight,
-                FrameBufferObjectAttributesPtr theAttributes, GLenum theTarget=GL_TEXTURE_RECTANGLE ); 
+                FrameBufferObjectAttributesPtr theAttributes, GLenum theTarget=GL_TEXTURE_RECTANGLE );
         std::vector<PBOPtr> _pbo;
         int _numberOfChannels;
         int _numberOfBits;
-    
+
 };
 
 }; // namespace
-	
+
 	// private int i = 0;
-	
+
 	// public FloatBuffer getPBOData(final int theTexture) {
 	// 	return getPBOData(theTexture, 0, 0, _myWidth, _myHeight);
 	// }
-	
+
 	/**
 	 * @param theTexture
 	 * @param theX
@@ -125,22 +125,22 @@ class ShaderBuffer : public FrameBufferObject {
 	 */
 // 	public FloatBuffer getPBOData(final int theTexture, final int theX, final int theY, final int theWidth, final int theHeight) {
 // 		FloatBuffer myResult = FloatBuffer.allocate(theWidth * theHeight * _myNumberOfAttachments);
-// 		
+//
 // 		GL2 gl = CCGraphics.currentGL();
 // 		glBindFramebuffer(GL_FRAMEBUFFER, _myFrameBuffers[0]);
 // 		glReadBuffer(_myDrawBuffers[theTexture]);
-// 		
+//
 // 		_myPBO[i % 2].beginPack();
 // 		glReadPixels(theX, theY, theWidth, theHeight,_myFormat.glID,GL_FLOAT,0);
 // 		_myPBO[i % 2].endPack();
-// 		
+//
 // 		myResult = _myPBO[(i + 1) % 2].mapReadBuffer().asFloatBuffer();
 // 		_myPBO[(i + 1) % 2].unmapReadBuffer();
 // 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 // 		i++;
 // 		return myResult;
 // 	}
-// 	
+//
 // 	/**
 // 	 * Read data from a floatbuffer
 // 	 * @param theData
@@ -154,7 +154,7 @@ class ShaderBuffer : public FrameBufferObject {
 // 		glBindTexture(_myTarget.glID,0);
 // 		glDisable(_myTarget.glID);
 // 	}
-// 
+//
 // }
 
 #endif // includeguard

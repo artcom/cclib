@@ -9,6 +9,7 @@
 *.i60
 *.pbxproj
 .DS_Store
+*.kdev4
 
 CMake*
 CMake*

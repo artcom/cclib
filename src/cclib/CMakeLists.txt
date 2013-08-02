@@ -1,3 +1,4 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake" ${CMAKE_MODULE_PATH})
 INCLUDE(EqStringifyShaders)
@@ -42,8 +43,9 @@ find_package(Boost COMPONENTS unit_test_framework OPTIONAL)
 if (Boost_UNIT_TEST_FRAMEWORK_LIBRARY)
     set(BUILD_TESTS TRUE)
     include_directories(${Boost_INCLUDE_DIRS})
-    include_directories(".")
 endif(Boost_UNIT_TEST_FRAMEWORK_LIBRARY)
+    
+include_directories(".")
 
 # look for OpenGL 
 find_package(OpenGL REQUIRED)
@@ -103,10 +105,10 @@ set(SOURCES
     particles/gpubloom.cpp
     particles/gpuyconstraint.cpp
     particles/gpuplaneconstraint.cpp
+    particles/gpusortedparticlerenderer.cpp
 )
  
 set(HEADERS
-    cclib_all.h
     cclib.h
     base/property.h
     base/component.h
@@ -156,6 +158,7 @@ set(HEADERS
     particles/gpubloom.h
     particles/gpuyconstraint.h
     particles/gpuplaneconstraint.h
+    particles/gpusortedparticlerenderer.h
 )
 
 MESSAGE("Stringify shaders")
@@ -174,50 +177,62 @@ add_library(${CCLIB_NAME} SHARED
     ${HEADERS})
 
 target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${Cg_GL_LIBRARIES} ${OPENGL_LIBRARIES})
-install(TARGETS ${CCLIB_NAME} DESTINATION lib) 
+install(TARGETS ${CCLIB_NAME} 
+	DESTINATION lib
+	PERMISSIONS
+            OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+	) 
 
 set(TEST_LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Cg_LIBRARIES} ${GLEW_LIBRARY} ${GLFW_LIBRARIES}) # ${CCLIB_NAME} 
 
 # XXX add automatic test detection
-add_executable(vec2 test/vec2.tst.cpp)
-target_link_libraries(vec2 ${CCLIB_NAME} ${TEST_LIBRARIES})
-add_test(vec2 vec2) 
+if (Boost_UNIT_TEST_FRAMEWORK_LIBRARY AND GLFW_LIBRARIES)
+	add_executable(vec2 test/vec2.tst.cpp)
+	target_link_libraries(vec2 ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_test(vec2 vec2) 
 
-add_executable(vec3 test/vec3.tst.cpp)
-target_link_libraries(vec3 ${CCLIB_NAME} ${TEST_LIBRARIES})
-add_test(vec3 vec3) 
+	add_executable(vec3 test/vec3.tst.cpp)
+	target_link_libraries(vec3 ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_test(vec3 vec3) 
 
-add_executable(cg_shader_test test/cgshader.tst.cpp)
-target_link_libraries(cg_shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
-add_test(cg_shader_test cg_shader_test) 
+	add_executable(cg_shader_test test/cgshader.tst.cpp)
+	target_link_libraries(cg_shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_test(cg_shader_test cg_shader_test) 
 
-add_executable(glsl_shader_test test/glslshader.tst.cpp)
-target_link_libraries(glsl_shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
-add_test(glsl_shader_test glsl_shader_test) 
+	add_executable(glsl_shader_test test/glslshader.tst.cpp)
+	target_link_libraries(glsl_shader_test ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_test(glsl_shader_test glsl_shader_test) 
 
-add_executable(shaderbuffer_test test/shaderbuffer.tst.cpp)
-target_link_libraries(shaderbuffer_test ${CCLIB_NAME} ${TEST_LIBRARIES})
-add_test(shaderbuffer_test shaderbuffer_test)
+	add_executable(shaderbuffer_test test/shaderbuffer.tst.cpp)
+	target_link_libraries(shaderbuffer_test ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_test(shaderbuffer_test shaderbuffer_test)
 
-add_executable(components_test test/components.tst.cpp)
-target_link_libraries(components_test ${CCLIB_NAME} ${TEST_LIBRARIES})
-add_test(components_test components_test) 
+	add_executable(components_test test/components.tst.cpp)
+	target_link_libraries(components_test ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_test(components_test components_test) 
+else()
+	message("tests are skipped because Boost_UNIT_TEST_FRAMEWORK_LIBRARY and/or GLFW_LIBRARIES are missing")
+endif()
 
 # samples
-add_executable(cclibEmitDemo demo/emitDemo.cpp)
-target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+if (GLFW_LIBRARIES)
+	add_executable(cclibEmitDemo demo/emitDemo.cpp)
+	target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
-add_executable(cclibCurveFlowField demo/curveFlowFieldDemo.cpp)
-target_link_libraries(cclibCurveFlowField ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_executable(cclibCurveFlowField demo/curveFlowFieldDemo.cpp)
+	target_link_libraries(cclibCurveFlowField ${CCLIB_NAME} ${TEST_LIBRARIES})
 
-add_executable(cclibShaderBufferDemo demo/shaderBufferDemo.cpp)
-target_link_libraries(cclibShaderBufferDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_executable(cclibShaderBufferDemo demo/shaderBufferDemo.cpp)
+	target_link_libraries(cclibShaderBufferDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
-add_executable(cclibNoiseFieldDemo demo/gpuNoiseFieldDemo.cpp)
-target_link_libraries(cclibNoiseFieldDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_executable(cclibNoiseFieldDemo demo/gpuNoiseFieldDemo.cpp)
+	target_link_libraries(cclibNoiseFieldDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
-add_executable(cclibFragmentNoiseDemo demo/fragmentNoise.cpp)
-target_link_libraries(cclibFragmentNoiseDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_executable(cclibFragmentNoiseDemo demo/fragmentNoise.cpp)
+	target_link_libraries(cclibFragmentNoiseDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
-add_executable(cclibTargetsDemo demo/targets.cpp)
-target_link_libraries(cclibTargetsDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+	add_executable(cclibTargetsDemo demo/targets.cpp)
+	target_link_libraries(cclibTargetsDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+else()
+	message("sampels are skipped because GLFW_LIBRARIES are missing")
+endif()

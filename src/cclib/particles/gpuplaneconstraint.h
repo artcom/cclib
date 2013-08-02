@@ -14,9 +14,6 @@
 
 namespace cclib {
     
-    class GPUPlaneConstraint;
-    typedef std::tr1::shared_ptr<GPUPlaneConstraint> GPUPlaneConstraintPtr;
-    
     class GPUPlaneConstraint : public cclib::GPUConstraint
     {
         CGparameter _myConstantParameter;
