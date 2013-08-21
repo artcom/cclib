@@ -369,6 +369,20 @@ CGShader::parameter2(const CGparameter & parameter, const std::vector<cclib::Vec
 }
 
 void
+CGShader::parameter2(const CGparameter & parameter, const std::vector<cclib::Vector2f> & values)
+{
+    std::vector<float> values_;
+    for(int i=0; i<values.size(); i++)
+    {
+        values_.push_back(values[i].x());
+        values_.push_back(values[i].y());
+    }
+    
+    cgGLSetParameterArray2f(parameter, 0, values.size(), (float*)&(values_[0]));
+}
+
+
+void
 CGShader::parameterfc(const CGparameter & parameter, const float *matrix)
 {
     if(matrix == NULL) return;

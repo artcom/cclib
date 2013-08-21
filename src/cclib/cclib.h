@@ -45,6 +45,15 @@ typedef std::tr1::shared_ptr<PBO> PBOPtr;
 class ShaderBuffer;
 typedef std::tr1::shared_ptr<ShaderBuffer> ShaderBufferPtr;
 
+class RenderBuffer;
+typedef std::tr1::shared_ptr<RenderBuffer> RenderBufferPtr;
+
+class Camera;
+typedef std::tr1::shared_ptr<Camera> CameraPtr;
+
+class Viewport;
+typedef std::tr1::shared_ptr<Viewport> ViewportPtr;
+
 class TextureAttributes; 
 typedef std::tr1::shared_ptr<TextureAttributes> TextureAttributesPtr; 
 
@@ -147,6 +156,9 @@ typedef std::tr1::shared_ptr<GPUTimeForceBlend> GPUTimeForceBlendPtr;
 class GPUBloom;
 typedef std::tr1::shared_ptr<GPUBloom> GPUBloomPtr;
 	
+class SeparateGaussianBlur;
+typedef std::tr1::shared_ptr<SeparateGaussianBlur> SeparateGaussianBlurPtr;
+
 class GPUIndexParticleCurveEmitter;
 typedef std::tr1::shared_ptr<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
 	

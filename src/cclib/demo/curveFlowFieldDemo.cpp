@@ -15,6 +15,7 @@
 #include <particles/gpuviscousdrag.h>
 #include <gl/shaderbuffer.h>
 #include <gl/graphics.h>
+#include <gl/gpubloom.h>
 
 using namespace cclib;
 
@@ -42,6 +43,7 @@ class CurveFlowFieldDemo {
         GPUForceFieldPtr _myForceField;
         GPUGravityPtr _myGravity;
         GPUAttractorPtr _myAttractor;
+        GPUBloomPtr _myBloom;
 
         int frame;
 
@@ -103,6 +105,8 @@ class CurveFlowFieldDemo {
             _myEmitter = GPUIndexParticleEmitter::create(_myParticles);
             _myParticles->addEmitter(_myEmitter);
 
+            _myBloom = GPUBloom::create(1400, 750);
+
             Graphics::smooth();
         }
 
@@ -111,6 +115,10 @@ class CurveFlowFieldDemo {
         }
 
         void update(double theDeltaTime) {
+            Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
+            Graphics::clearColor(0.0f, 0.0f, 0.0f, 1.0f);
+            Graphics::clear();
+            
             glPushMatrix();
             glMatrixMode(GL_PROJECTION);
             glLoadIdentity();
@@ -157,7 +165,7 @@ class CurveFlowFieldDemo {
             _myCurveField->setPrediction(_cPrediction);
 
             // draw
-
+            _myBloom->start();
             Graphics::pointSize(1.0f);
 
             Graphics::clear();
@@ -173,6 +181,8 @@ class CurveFlowFieldDemo {
             //		g.noSmooth();
             //		g.noPointSprite();
             // g.popMatrix();
+            Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
+            _myBloom->end();
 
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
             //

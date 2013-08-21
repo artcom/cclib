@@ -50,6 +50,7 @@ class CGShader : public Shader {
         void parameter(const CGparameter & parameter, const bool & value);
         void parameter(const CGparameter & parameter, const Vector2f & vector);
         void parameter1(const CGparameter & parameter, const std::vector<float> & values);
+        void parameter2(const CGparameter & parameter, const std::vector<cclib::Vector2f> & values);
         void parameter2(const CGparameter & parameter, const std::vector<cclib::Vector2f*> & values);
         void parameterfc(const CGparameter & parameter, const float *matrix);
     

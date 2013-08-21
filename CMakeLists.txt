@@ -13,6 +13,7 @@ set(CPACK_PACKAGE_VERSION_PATCH "0")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "cclib")
 #set(CMAKE_OSX_ARCHITECTURES "i386")
 
+
 enable_testing()
 project (cclib) 
 

@@ -76,11 +76,16 @@ set(SOURCES
     gl/pixelstoragemodes.cpp
     gl/framebufferobject.cpp
     gl/shaderbuffer.cpp
+    gl/renderbuffer.cpp
+    gl/camera.cpp
     gl/graphics.cpp
     gl/mesh.cpp
     gl/bufferobject.cpp
     gl/vbomesh.cpp
     gl/geometrybuffer.cpp
+    gl/convolutionshader.cpp
+    gl/separategaussianblur.cpp
+    gl/gpubloom.cpp
     particles/gpuupdateshader.cpp
     particles/gpuforce.cpp
     particles/gpuconstraint.cpp
@@ -102,7 +107,7 @@ set(SOURCES
     particles/gpucombinedforce.cpp        
     particles/gputargetforce.cpp        
     particles/gputimeforceblend.cpp 
-    particles/gpubloom.cpp
+    # particles/gpubloom.cpp
     particles/gpuyconstraint.cpp
     particles/gpuplaneconstraint.cpp
     particles/gpusortedparticlerenderer.cpp
@@ -126,11 +131,16 @@ set(HEADERS
     gl/pixelstoragemodes.h
     gl/framebufferobject.h
     gl/shaderbuffer.h
+    gl/renderbuffer.h
+    gl/camera.h
     gl/graphics.h
     gl/mesh.h
     gl/bufferobject.h
     gl/vbomesh.h
     gl/geometrybuffer.h
+    gl/convolutionshader.h
+    gl/separategaussianblur.h
+    gl/gpubloom.h
     particles/gpuupdateshader.h
     particles/gpuforce.h
     particles/gpuconstraint.h
@@ -155,7 +165,7 @@ set(HEADERS
     particles/gputargetforce.h        
     particles/gputimeforceblend.h        
     particles/gputargetsetup.h
-    particles/gpubloom.h
+    # particles/gpubloom.h
     particles/gpuyconstraint.h
     particles/gpuplaneconstraint.h
     particles/gpusortedparticlerenderer.h
