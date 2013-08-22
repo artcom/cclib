@@ -106,6 +106,10 @@ class CurveFlowFieldDemo {
             _myParticles->addEmitter(_myEmitter);
 
             _myBloom = GPUBloom::create(1400, 750);
+            _myBloom->setApplyBloom(true);
+            _myBloom->setDebugBloom(false);
+            
+            _myBloom->setBlurRadius(15);
 
             Graphics::smooth();
         }
@@ -185,8 +189,6 @@ class CurveFlowFieldDemo {
             _myBloom->end();
 
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
-            //
-
             glfwSwapBuffers();
 
             if (++frame % 60 == 0) {

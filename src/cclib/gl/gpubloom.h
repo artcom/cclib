@@ -53,8 +53,12 @@ class GPUBloom
         void endCapture();
         void applyBloom();
         void startBlur();
-        void endBlur();
+        void endBlur(bool renderResultsFlag=true);
 
+        RenderBufferPtr getRenderTexture();
+        Texture2DPtr getBlurredTexture();
+        RenderBufferPtr getBlurredFBO();
+    
         void setHighlightColor(float highlightColor) {
             _highlightColor = highlightColor;
         };

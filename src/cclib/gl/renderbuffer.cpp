@@ -24,7 +24,7 @@ RenderBuffer::beginDraw() {
     glPushMatrix();
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    
+ 
     _camera->draw();
 }
 
@@ -34,7 +34,7 @@ RenderBuffer::endDraw() {
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
-    glPopMatrix();
+    glPopMatrix(); 
     releaseFBO();
 }
 	

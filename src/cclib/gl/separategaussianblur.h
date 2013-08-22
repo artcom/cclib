@@ -18,9 +18,10 @@ class SeparateGaussianBlur : public ConvolutionShader {
         void beginDraw();
         void endFirstPass();
         void endSecondPass();
-        void endDraw();
+        void endDraw(bool renderResultsFlag=true);
         
         Texture2DPtr blurredTexture();
+        RenderBufferPtr blurredFBO(); 
 
     private:
         std::vector<float> calculateKernel(float theRadius);

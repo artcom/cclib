@@ -13,7 +13,7 @@ GPUBloom::GPUBloom(int theWidth, int theHeight) :
     _highlightColor(0.0),
     _highlightScale(2.0),
     _highlightPow(1.0),
-    _debugBloom(false),
+    _debugBloom(true),
     _applyBloom(true),
     _blurRadius(10),
     _blurRadius2(10)
@@ -71,8 +71,13 @@ GPUBloom::endCapture() {
 void
 GPUBloom::applyBloom() {
 	if(_debugBloom) {
-        Graphics::image(_myRenderTexture->attachment(0), -_width/2, -_height/2, _width, _height);
+        Graphics::image(_myRenderTexture->attachment(0), -_width/2, -_height/2, _width/2, _height/2);
         Graphics::blend(BLEND_MODE_ADD);
+        
+        Graphics::image(_myBlur->blurredTexture(), 0, 0, _width/2, _height/2);
+        Graphics::blend(BLEND_MODE_ADD);
+        
+        return;
     }
 		
     _myBloomShader->start();
@@ -82,10 +87,6 @@ GPUBloom::applyBloom() {
     _myBloomShader->setUniform1f("highlightPow", _highlightPow);
   
     Graphics::image(_myBlur->blurredTexture(), -_width/2, -_height/2, _width, _height);
-    
-    // test only.
-    // Graphics::image(_myRenderTexture->attachment(0), -_width/2, -_height/2, _width, _height);
-
     _myBloomShader->end();
     
     Graphics::blend();
@@ -97,7 +98,7 @@ GPUBloom::startBlur() {
 }
 
 void
-GPUBloom::endBlur() {
+GPUBloom::endBlur(bool renderResultsFlag) {
     _myRenderTexture->endDraw();
 
     _myBlur->radius(_blurRadius2);
@@ -105,6 +106,20 @@ GPUBloom::endBlur() {
     _myBlur->beginDraw();
     
     Graphics::image(_myRenderTexture->attachment(0), -_width/2, -_height/2, _width, _height);
-    _myBlur->endDraw();
+    _myBlur->endDraw(renderResultsFlag);
 }
 
+RenderBufferPtr
+GPUBloom::getRenderTexture() {
+    return _myRenderTexture;
+};
+
+RenderBufferPtr
+GPUBloom::getBlurredFBO() {
+    return _myBlur->blurredFBO();
+};
+
+Texture2DPtr
+GPUBloom::getBlurredTexture() {
+    return _myBlur->blurredTexture();
+};

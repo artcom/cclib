@@ -76,15 +76,22 @@ SeparateGaussianBlur::endSecondPass() {
 
 
 void 
-SeparateGaussianBlur::endDraw() {
+SeparateGaussianBlur::endDraw(bool renderResultsFlag) {
     endFirstPass();
     endSecondPass();
-    Graphics::image(_texture1->attachment(0), - _width/2 * _res, -_height/2 * _res, _width * _res, _height * _res);
+    if (renderResultsFlag) {
+        Graphics::image(_texture1->attachment(0), - _width/2 * _res, -_height/2 * _res, _width * _res, _height * _res);
+    }
 }
 
 Texture2DPtr 
 SeparateGaussianBlur::blurredTexture() {
     return _texture1->attachment(0);
+}
+
+RenderBufferPtr 
+SeparateGaussianBlur::blurredFBO() {
+    return _texture1;
 }
 
 std::vector<float> 

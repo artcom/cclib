@@ -42,7 +42,6 @@ ConvolutionShader::flipKernel() {
 
 void 
 ConvolutionShader::updateOffsets() {
-#warning LEAK!!
     std::vector<cclib::Vector2f> offsets;
     int xStart = -_kernelWidth / 2;
     int yStart = -_kernelHeight / 2;
