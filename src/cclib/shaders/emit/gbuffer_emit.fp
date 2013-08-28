@@ -15,24 +15,24 @@ uniform float channelBlend;
 
 uniform float4x4 inverseView;
 
-// uniform float illuminationMin;
-// uniform float illuminationMax;
-// uniform float illuminationPow;
-// uniform float illuminationAmount;
-// 
-// uniform float occlusionMin;
-// uniform float occlusionMax;
-// uniform float occlusionPow;
-// uniform float occlusionAmount;
-// 
-// uniform float shadowMin;
-// uniform float shadowMax;
-// uniform float shadowPow;
-// uniform float shadowAmount;
-// 
-// uniform float colorStart;
-// uniform float colorEnd;
-// uniform float colorRandom;
+uniform float illuminationMin;
+uniform float illuminationMax;
+uniform float illuminationPow;
+uniform float illuminationAmount;
+
+uniform float occlusionMin;
+uniform float occlusionMax;
+uniform float occlusionPow;
+uniform float occlusionAmount;
+
+uniform float shadowMin;
+uniform float shadowMax;
+uniform float shadowPow;
+uniform float shadowAmount;
+
+uniform float colorStart;
+uniform float colorEnd;
+uniform float colorRandom;
 
 float rand(float2 n){
   return fract(sin(dot(n.xy, randomSeed.xy))* randomSeed.z);
@@ -79,34 +79,15 @@ void main (
 	out float3 newVelocity : COLOR2,
 	out float4 newColor : COLOR3
 ){
-    float illuminationMin = 1.0f;
-    float illuminationMax = 1.0f;
-    float illuminationPow = 1.0f;
-    float illuminationAmount = 1.0f;
-
-    float occlusionMin = 1.0f;
-    float occlusionMax = 1.0f;
-    float occlusionPow = 1.0f;
-    float occlusionAmount = 1.0f;
-
-    float shadowMin = 1.0f;
-    float shadowMax = 1.0f;
-    float shadowPow = 1.0f;
-    float shadowAmount = 1.0f;
-
-    float colorStart = 1.0f;
-    float colorEnd = 1.0f;
-    float colorRandom = 1.0f;
-
 	//float3 position = mul(inverseView, texRECT (positionTexture, texID));
 	float3 position =  texRECT (positionTexture, texID);
 	float4 velocity = texRECT (velocityTexture, texID);
 	
 	newVelocity = velocity;
 	newColor = texRECT (colorTexture, texID);
-	
 	newInfo = texRECT(infoTexture, texID);
-	float myAge = newInfo.x;
+	
+    float myAge = newInfo.x;
 	
     if(myAge >= newInfo.y && newInfo.z == 0.0){
 		position = float3(1000000,0,0);
@@ -125,7 +106,10 @@ void main (
             if(length(gBufferPosition) > 1) {// && myBrightNess >= 0.5){
                 float lifeTimeRand = rand(texID + float2(5678,0));
                 float lifeTime = 4; // minLifeTime;
-                if(lifeTimeRand > lifeTimeSpreadPow)lifeTime = maxLifeTime;
+                if(lifeTimeRand > lifeTimeSpreadPow) {
+                    lifeTime = maxLifeTime;
+                }
+
                 position = gBufferPosition;
                 newInfo.x = 0;
                 newInfo.y = lifeTime;
@@ -135,16 +119,15 @@ void main (
                 float myColorBlend = lerp(gBufferColor.r, rand(texID + float2(2345,0)), colorRandom);
                 myColorBlend = lerp(colorStart, colorEnd, myColorBlend);
 
-                newColor = float4(gBufferColor.r, gBufferColor.g, gBufferColor.b,1.0); 
-                /* hsv_to_rgb(
-                        myColorBlend,//rand(texID + float2(2345,0)) * 0.1 + 0.05, 
-                        rand(texID + float2(2346,0)) * 0.1 + 0.8, 
-                        1.0, 
-                        1.0
-                        ) * lerp(1.0,myIllumination,illuminationAmount) *
-                    lerp(1.0,myOcclusion,occlusionAmount) *
-                    lerp(1.0,myShadow,shadowAmount); */ 
-                    // * gBufferColor.r * gBufferColor.b;// * myStartColor;//float4(myBrightNess,myBrightNess,myBrightNess,1.0);
+                // newColor = float4(gBufferColor.r, gBufferColor.g, gBufferColor.b, 1.0); 
+                newColor = hsv_to_rgb(
+                        myColorBlend,
+                        rand(texID + float2(2346, 0.0)) * 0.1 + 0.8, 
+                        1.0, 1.0) * lerp(1.0, myIllumination, illuminationAmount) *
+                                    lerp(1.0, myOcclusion, occlusionAmount) *
+                                    lerp(1.0, myShadow, shadowAmount);  
+                    
+                    // // * gBufferColor.r * gBufferColor.b;// * myStartColor;//float4(myBrightNess,myBrightNess,myBrightNess,1.0);
             }
         }
     }
