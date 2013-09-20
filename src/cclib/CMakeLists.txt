@@ -107,6 +107,7 @@ set(SOURCES
     particles/gpucombinedforce.cpp        
     particles/gputargetforce.cpp        
     particles/gputimeforceblend.cpp 
+    particles/gpuyforceblend.cpp 
     # particles/gpubloom.cpp
     particles/gpuyconstraint.cpp
     particles/gpuplaneconstraint.cpp
@@ -164,6 +165,7 @@ set(HEADERS
     particles/gpucombinedforce.h        
     particles/gputargetforce.h        
     particles/gputimeforceblend.h        
+    particles/gpuyforceblend.h        
     particles/gputargetsetup.h
     # particles/gpubloom.h
     particles/gpuyconstraint.h
@@ -243,6 +245,9 @@ if (GLFW_LIBRARIES)
 
 	add_executable(cclibTargetsDemo demo/targets.cpp)
 	target_link_libraries(cclibTargetsDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+	
+    add_executable(cclibYForceBlendDemo demo/yForceBlendDemo.cpp)
+    target_link_libraries(cclibYForceBlendDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 else()
 	message("sampels are skipped because GLFW_LIBRARIES are missing")
 endif()

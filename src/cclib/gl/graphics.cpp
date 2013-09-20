@@ -393,3 +393,17 @@ bool Graphics::checkFramebufferStatus()
         return false;
     }
 }
+
+void 
+Graphics::lineWidth(float theLineWidth) {
+    glLineWidth(theLineWidth);
+}
+
+void 
+Graphics::line(Vector3f v1, Vector3f v2) {
+    beginShape(GL_LINES);
+    vertex(v1.x(), v2.y());
+    vertex(v2.x(), v2.y());
+    endShape();
+}
+

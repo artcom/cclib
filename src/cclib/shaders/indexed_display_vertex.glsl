@@ -28,9 +28,7 @@ void main ()
 
     float myPointSize = max(tanHalfFOV / -posViewSpace.z * myValues.y, 1) * pointSize;
 
-	gl_PointSize = myPointSize;
-
-
+	gl_PointSize = clamp(myPointSize, 1.0, 16.0);
 
     float blurDepth =  10000.0;
     float depth = (-posViewSpace.z)/(blurDepth);

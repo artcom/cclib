@@ -43,6 +43,9 @@ class Graphics {
         static void noDepthTest();
 //        static void checkError();
 
+        static void lineWidth(float theLineWidth);
+        static void line(Vector3f v1, Vector3f v2);
+
         static void checkErrorX(char *file, int line);
 #define checkError() Graphics::checkErrorX((char*)__FILE__, __LINE__)
 

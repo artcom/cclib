@@ -335,6 +335,35 @@ struct FluidForceField : Force{
 	}
 };
 
+struct YForceBlend : Force{
+	Force force1;
+	Force force2;
+	
+    float y1;
+    float y2;
+	float blendWidth;
+
+    float strength; // unused but needs to stay in there
+
+	float3 force(float3 thePosition, float3 theVelocity, float2 theTexID, float theDeltaTime){
+        
+        float myBlend = 1.0;
+        float y = thePosition.y;
+       
+        float range_half = (y2 - y1) * 0.5;
+        float center = y1 + range_half;
+        float dist = distance(center, y);
+            
+        myBlend = lerp(0.0, 1.0, (dist - range_half) / blendWidth); 
+        myBlend = clamp(myBlend, 0.0, 1.0);
+
+	    return lerp(
+			force1.force(thePosition, theVelocity, theTexID, theDeltaTime),
+			force2.force(thePosition, theVelocity, theTexID, theDeltaTime),
+			myBlend);  // * strength;
+	}
+};
+
 struct ForceBlend : Force{
 	sampler2D texture;
 	

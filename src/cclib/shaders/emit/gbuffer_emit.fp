@@ -127,7 +127,7 @@ void main (
                                     lerp(1.0, myOcclusion, occlusionAmount) *
                                     lerp(1.0, myShadow, shadowAmount);  
                     
-                    // // * gBufferColor.r * gBufferColor.b;// * myStartColor;//float4(myBrightNess,myBrightNess,myBrightNess,1.0);
+                     // * gBufferColor.r * gBufferColor.b;// * myStartColor;//float4(myBrightNess,myBrightNess,myBrightNess,1.0);
             }
         }
     }

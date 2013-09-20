@@ -152,6 +152,9 @@ typedef std::tr1::shared_ptr<GPUTargetSetup> GPUTargetSetupPtr;
     
 class GPUTimeForceBlend;
 typedef std::tr1::shared_ptr<GPUTimeForceBlend> GPUTimeForceBlendPtr;
+
+class GPUYForceBlend;
+typedef std::tr1::shared_ptr<GPUYForceBlend> GPUYForceBlendPtr;
     
 class GPUBloom;
 typedef std::tr1::shared_ptr<GPUBloom> GPUBloomPtr;
