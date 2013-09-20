@@ -25,7 +25,6 @@ class YForceBlendDemo {
         float _cFieldStrength;
         float _cAttractorStrength;
         float _cAttractorRadius;
-        float _cGravityStrength;
         double _myTime;
 
         GPUParticlesPtr _myParticles;
@@ -43,7 +42,6 @@ class YForceBlendDemo {
             _cFieldStrength(1.46666f),
             _cAttractorStrength(18.53334f),
             _cAttractorRadius(242.0f),
-            _cGravityStrength(0.6666f),
             _myTime(0.0f),
             running(true)
         {
@@ -68,14 +66,16 @@ class YForceBlendDemo {
         void setup() {
 
             _myForceField = GPUForceField::create(0.0005f, 5, Vector3f(100, 20, 30));
-            _myGravity = GPUGravity::create(Vector3f(2,0,0));
+            _myGravity = GPUGravity::create(Vector3f(4,0,0));
+            GPUGravityPtr myGravity = GPUGravity::create(Vector3f(-4,0,0));
+
             _myAttractor = GPUAttractor::create(Vector3f(), 0, 0);
             _myYBlend = GPUYForceBlend::create();
-            _myYBlend->initialize(_myForceField, _myGravity);
+            _myYBlend->initialize(myGravity, _myGravity);
 
             float y1 = -40.0f;
             float y2 = 40.0f;
-            float blendWidth = 250.0f;
+            float blendWidth = 100.0f;
 
             _myYBlend->set("y1", y1);
             _myYBlend->set("y2", y2);
@@ -135,8 +135,6 @@ class YForceBlendDemo {
             }
 
             _myParticles->update(1.0f/60.0f);
-
-            _myGravity->setStrength(_cGravityStrength);
 
             _myForceField->setStrength(_cFieldStrength);
             _myForceField->setNoiseOffset(Vector3f(0, 0, _myTime));
