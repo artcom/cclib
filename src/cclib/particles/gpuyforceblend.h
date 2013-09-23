@@ -1,6 +1,6 @@
 
-#ifndef __CCLIB_GPUTIMEFORCEBLEND_INCLUDED__
-#define __CCLIB_GPUTIMEFORCEBLEND_INCLUDED__
+#ifndef __CCLIB_GPUYFORCEBLEND_INCLUDED__
+#define __CCLIB_GPUYFORCEBLEND_INCLUDED__
 
 #include <cclib.h>
 #include <particles/gpuforce.h>
