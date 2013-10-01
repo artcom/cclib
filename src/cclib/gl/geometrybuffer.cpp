@@ -23,7 +23,7 @@ cclib::GeometryBuffer::GeometryBuffer(float theWidth, float theHeight)
 
     cclib::TextureAttributesPtr myTextureAttributes = cclib::TextureAttributes::create(theNumberOfBits, theNumberOfChannels);
 
-    cclib::FrameBufferObjectAttributesPtr myAttributes = cclib::FrameBufferObjectAttributes::create(myTextureAttributes,theNumberOfTextures);
+    cclib::FrameBufferObjectAttributesPtr myAttributes = cclib::FrameBufferObjectAttributes::create(myTextureAttributes, theNumberOfTextures);
 
 //     myAttributes->numberOfSamples = 0;
 //    myAttributes->numberOfBits = theNumberOfBits;

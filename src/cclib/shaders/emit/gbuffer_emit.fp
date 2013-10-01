@@ -34,11 +34,15 @@ uniform float colorStart;
 uniform float colorEnd;
 uniform float colorRandom;
 
+uniform float colorSaturation;
+uniform float colorBrightness;
+uniform float colorAlpha;
+
 float rand(float2 n){
   return fract(sin(dot(n.xy, randomSeed.xy))* randomSeed.z);
 }
 
-float4 hsv_to_rgb(float h, float s, float v, float a){
+float4 hsv_to_rgb(float h, float s, float v, float a) {
 	float c = v * s;
 	h = mod((h * 6.0), 6.0);
 	float x = c * (1.0 - abs(mod(h, 2.0) - 1.0));
@@ -120,10 +124,12 @@ void main (
                 myColorBlend = lerp(colorStart, colorEnd, myColorBlend);
 
                 // newColor = float4(gBufferColor.r, gBufferColor.g, gBufferColor.b, 1.0); 
+                // float4 hsv_to_rgb(float h, float s, float v, float a) {
+                
                 newColor = hsv_to_rgb(
                         myColorBlend,
-                        rand(texID + float2(2346, 0.0)) * 0.1 + 0.8, 
-                        1.0, 1.0) * lerp(1.0, myIllumination, illuminationAmount) *
+                        rand(texID + float2(2346, 0.0)) * 0.1 + colorSaturation, 
+                        colorBrightness, colorAlpha) * lerp(1.0, myIllumination, illuminationAmount) *
                                     lerp(1.0, myOcclusion, occlusionAmount) *
                                     lerp(1.0, myShadow, shadowAmount);  
                     
