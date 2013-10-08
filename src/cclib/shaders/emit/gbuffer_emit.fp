@@ -98,7 +98,7 @@ void main (
 		
 		if(rand(texID) < emitProb){
 			
-            float2 myTexCoord = float2(rand(texID + float2(1234,0)),rand(texID + float2(3456,0)));
+            float2 myTexCoord = float2(rand(texID + float2(1234,0)), rand(texID + float2(3456,0)));
             float4 gBufferPosition = texRECT(geometryTexture, myTexCoord.xy * gBufferSize.xy);
             float4 gBufferColor = texRECT(geometryColorTexture, myTexCoord.xy * gBufferSize.xy);
             float myBrightNess = lerp(gBufferColor.r, gBufferColor.g, channelBlend);
@@ -123,22 +123,19 @@ void main (
                 float myColorBlend = lerp(gBufferColor.r, rand(texID + float2(2345,0)), colorRandom);
                 myColorBlend = lerp(colorStart, colorEnd, myColorBlend);
 
-                // newColor = float4(gBufferColor.r, gBufferColor.g, gBufferColor.b, 1.0); 
-                // float4 hsv_to_rgb(float h, float s, float v, float a) {
-                
                 newColor = hsv_to_rgb(
                         myColorBlend,
                         rand(texID + float2(2346, 0.0)) * 0.1 + colorSaturation, 
                         colorBrightness, colorAlpha) * lerp(1.0, myIllumination, illuminationAmount) *
-                                    lerp(1.0, myOcclusion, occlusionAmount) *
-                                    lerp(1.0, myShadow, shadowAmount);  
-                    
-                     // * gBufferColor.r * gBufferColor.b;// * myStartColor;//float4(myBrightNess,myBrightNess,myBrightNess,1.0);
+                                                       lerp(1.0, myOcclusion, occlusionAmount) *
+                                                       lerp(1.0, myShadow, shadowAmount);  
             }
         }
     }
 	
 	//float2 myTexCoord = float2(rand(texID + float2(3000,0)),rand(texID + float2(4000,0)));
 	//position = tex2D(geometryTexture,myTexCoord);
-	newPosition = float4(position,1); 
+	position.x = position.x + 0.001 * (rand(texID + float2(3000, 0)) - 0.5);
+	position.y = position.y + 0.001 * (rand(texID + float2(4000, 0)) - 0.5);
+    newPosition = float4(position,1); 
 }

@@ -289,11 +289,6 @@ Texture::bind(int id) {
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, _environmentMode);
 
     Graphics::checkError();
-
-
-    // if(_environmentMode == GL_BLEND) {
-    //     glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, _blendColor.array(), 0);
-    // }
 }
 
 void
