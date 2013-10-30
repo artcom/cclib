@@ -31,12 +31,7 @@ namespace cclib {
         float _mySpeed;
         
     public:
-//        GPUIndexParticleCurveEmitter();
         GPUIndexParticleCurveEmitter(cclib::GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
-        
-//        static GPUIndexParticleCurveEmitterPtr create() {
-//            return cclib::GPUIndexParticleCurveEmitterPtr(new cclib::GPUIndexParticleCurveEmitter());
-//        };
         
         static GPUIndexParticleCurveEmitterPtr create(cclib::GPUParticlesPtr theParticles, int theStart, int theNumberParticles) {
             return cclib::GPUIndexParticleCurveEmitterPtr(new cclib::GPUIndexParticleCurveEmitter(theParticles, theStart, theNumberParticles));

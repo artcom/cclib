@@ -54,26 +54,6 @@ _mySpeed(1)
     cclib::GPUNoise::attachFragmentNoise((cclib::CGShader*)_myCurveEmitShader.get());
 }
 
-//public CCGPUIndexParticleCurveEmitter(CCGPUParticles theParticles) {
-//    super(theParticles);
-//}
-
-//public void scale(float theScale) {
-//    _myScale = theScale;
-//}
-//
-//public void outputScale(float theOutputScale) {
-//    _myOutputScale = theOutputScale;
-//}
-
-//public void radius(float theRadius) {
-//    _myRadius = theRadius;
-//}
-//
-//public void speed(float theSpeed) {
-//    _mySpeed = theSpeed;
-//}
-
 void cclib::GPUIndexParticleCurveEmitter::update(float theDeltaTime)
 {
     cclib::GPUIndexParticleEmitter::update(theDeltaTime);

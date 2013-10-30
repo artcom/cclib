@@ -17,8 +17,7 @@ GPUCurveField::GPUCurveField() :
     _myOffsetParameter(0),
     _myScaleParameter(0), 
     _myOutputScaleParameter(0), 
-    _myRadiusParameter(0),
-    _myUseNoiseTexture(true)
+    _myRadiusParameter(0)
 {
     registerProperty(_myPrediction); 
     registerProperty(_myOffset); 
@@ -31,38 +30,6 @@ GPUCurveField::GPUCurveField() :
 GPUCurveFieldPtr
 GPUCurveField::create() {
     return GPUCurveFieldPtr(new GPUCurveField());
-}
-
-void
-GPUCurveField::updateNoise()
-{
-    if(_myUseNoiseTexture == false) return;
-    
-    if(_myNoiseData.size() == 0)
-    {
-        int width = _myParticles->width();
-        _myNoiseData = std::vector<unsigned char>(width * 4, 0);
-        _myNoiseTexture = Texture2D::create(_myNoiseData, GL_TEXTURE_RECTANGLE, width, 1);
-        
-    }
-
-    for (int i=0; i<_myNoiseData.size(); i+=4) {
-        
-        float x1 = i * getScale() + getOffset();
-        float x2 = i * getScale() + getOffset() + 100;
-        
-        float a = cclib::random2d(x1,0, 0,255);
-        float b = cclib::random2d(x2,0, 0,255);
-        
-        _myNoiseData[i] = (int)a;
-        _myNoiseData[i+1] = (int)b;
-        _myNoiseData[i+2] = 0;
-        _myNoiseData[i+3] = 0;
-    }
-
-    _myNoiseTexture->data(_myNoiseData);
-
-
 }
 
 void 
@@ -87,31 +54,11 @@ void
 GPUCurveField::update(float theDeltaTime) {
     GPUForce::update(theDeltaTime);
     
-    float myOffset = getOffset(); 
-    myOffset += theDeltaTime * getSpeed();
-    setOffset(myOffset);
-
     _myVelocityShader->parameter(_myOffsetParameter, getOffset());
     _myVelocityShader->parameter(_myOutputScaleParameter, getOutputScale());
     _myVelocityShader->parameter(_myScaleParameter, getScale());
     _myVelocityShader->parameter(_myRadiusParameter, getRadius());
     _myVelocityShader->parameter(_myPredictionParameter, getPrediction());
-
-    if(_myParticles == NULL || _myUseNoiseTexture == false)
-    {
-        _myVelocityShader->parameter(_myUseNoiseParameter, 0);
-        return;
-    }
-    
-    updateNoise();
-    
-    _myVelocityShader->parameter(_myUseNoiseParameter, (int)_myUseNoiseTexture);
-    
-    _myVelocityShader->parameter(_myNoiseTextureSizeParameter, (float)_myNoiseData.size() / 4.f);
-    _myVelocityShader->texture(_myNoiseParameter, _myNoiseTexture->id());
-    
-
-//    printf("%s \t%2.2f, %2.2f, %2.2f, %2.2f, %2.2f\n",__PRETTY_FUNCTION__,getOffset(),getOutputScale(),getScale(),getRadius(),getPrediction());
 }
 
 void 
