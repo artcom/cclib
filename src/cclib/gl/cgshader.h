@@ -16,9 +16,6 @@ class CGShader : public Shader {
         
         static CGShaderPtr create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
                 const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
-        
-//        CGShader(const std::string & vertexShaderFile, const std::string fragmentShaderFile,
-//               const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main");
     
         virtual ~CGShader() {};
 
@@ -77,9 +74,6 @@ class CGShader : public Shader {
 	    
         CGprogram _vertexProgram;
 	    CGprogram _fragmentProgram;
-        // std::vector<CCCGMatrix> _myMatrices = new ArrayList<CCCGMatrix>();
-        // std::vectorList<CCCGShaderListener> _myListener = new ArrayList<CCCGShaderListener>();
-	    // Set<CGparameter> _myUsedTextureParameters = new HashSet<CGparameter>();
 
         std::set<CGparameter> _usedTextureParameters;
 };

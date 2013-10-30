@@ -41,32 +41,12 @@ CGShader::CGShader(const std::vector<std::string> & vertexShaderFiles,
    _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
 {
     init(vertexShaderFiles, fragmentShaderFiles);
-    
-//    initShader();
-//
-//    if (!vertexShaderFiles.empty()) {
-//        loadVertexShader(vertexShaderFiles);
-//    }
-//    
-//    if (!fragmentShaderFiles.empty()) {
-//        loadFragmentShader(fragmentShaderFiles);
-//    }
-    
-    // from CCCGShader
-    // if(_myVertexProgram != null) {
-    //     CGparameter myModelViewProjParameter = CgGL.cgGetNamedParameter(_myVertexProgram, theMatrixParameter);
-    //     if(myModelViewProjParameter != null) {
-    //         _myMatrices.add(new CCCGMatrix(myModelViewProjParameter, CCCGMatrixType.PROJECTION, CCCGMatrixTransform.IDENTITY));
-    //     }
-    // }
 }
 
 void
 CGShader::init( const std::vector<std::string> & vertexShaderFiles,
           const std::vector<std::string> & fragmentShaderFiles)
 {
-    //printf("%s\n\tvertexShaderFiles %d, fragmentShaderFiles %d\n",__PRETTY_FUNCTION__, (int)vertexShaderFiles.size(), (int)fragmentShaderFiles.size());
-    
     initShader();
     
     if (!vertexShaderFiles.empty()) {
@@ -120,7 +100,9 @@ CGShader::loadVertexShader(const std::vector<std::string> & vertexPrograms) {
 CGprogram
 CGShader::loadShader(const std::string & entry, CGprofile profile, const std::vector<std::string> & programs) {
     // set the current Profile
+    
     cgGLSetContextOptimalOptions(cg_context, profile);
+    
     cgSetAutoCompile(cg_context, CG_COMPILE_MANUAL);
     std::string shaderSource = combineSources(programs);
 
@@ -302,55 +284,56 @@ CGShader::createVertexParameter(const std::string & typestring) {
 void 
 CGShader::parameter(const CGparameter & parameter, const int & value){
     cgSetParameter1i(parameter, value);
-    checkCGError("Problem setting parameters ");
+    
+    checkCGError("Problem setting parameters cgSetParameter1i");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const float & value){
     cgSetParameter1f(parameter, value);
-    checkCGError("Problem setting parameters ");
+    checkCGError("Problem setting parameters cgSetParameter1f");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const float & v1, const float & v2){
     cgSetParameter2f(parameter, v1, v2);
-    checkCGError("Problem setting parameters ");
+    checkCGError("Problem setting parameters cgSetParameter2f");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3){
     cgSetParameter3f(parameter, v1, v2, v3);
-    checkCGError("Problem setting parameters ");
+    checkCGError("Problem setting parameters cgSetParameter3f");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const float & v1, const float & v2, const float & v3, const float & v4){
     cgSetParameter4f(parameter, v1, v2, v3, v4);
-    checkCGError("Problem setting parameters ");
+    checkCGError("Problem setting parameters cgSetParameter4f");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const Vector3f & vector){
     cgSetParameter3f(parameter, vector.x(), vector.y(), vector.z());
-    checkCGError("Problem setting parameters ");
+    checkCGError("Problem setting parameters cgSetParameter3f(Vector3f)");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const bool & value){
     cgSetParameter1i(parameter, value?1:0);
-    checkCGError("Problem setting parameters ");
+    checkCGError("Problem setting parameters cgSetParameter1i(bool)");
 }
 
 void 
 CGShader::parameter(const CGparameter & parameter, const Vector2f & vector){
     cgSetParameter2f(parameter, vector.x(), vector.y());
-    checkCGError("Problem setting parameters ");
+    checkCGError("Problem setting parameters cgSetParameter2f(Vector2f)");
 }
 
 void 
 CGShader::parameter1(const CGparameter & parameter, const std::vector<float> & values) {
     cgGLSetParameterArray1f(parameter, 0, values.size(), &(values[0]));
-    checkCGError("Problem setting parameters ");
+    checkCGError("Problem setting parameters cgGLSetParameterArray1f");
 }
 
 void
