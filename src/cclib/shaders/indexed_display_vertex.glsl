@@ -2,7 +2,7 @@
 #extension GL_ARB_texture_rectangle : enable
 
 uniform float tanHalfFOV;
-
+uniform float alpha;
 uniform float pointSize;
 
 //uniform sampler2DRect springs;
@@ -21,7 +21,7 @@ void main ()
 	float myAlpha = clamp(1.0 - myValues.x / myValues.y * (1.0 - myValues.z), 0.5, 1.0); // <-
 	gl_FrontColor = texture2DRect(colors, gl_Vertex.xy) * gl_Color;
 // 	gl_FrontColor.a = 1;
-	gl_FrontColor.a *= myAlpha * myAlpha;
+	gl_FrontColor.a = alpha * (myAlpha * myAlpha);
 
 	// Compute point size.
 	vec4 posViewSpace = gl_ModelViewMatrix * myPosition;

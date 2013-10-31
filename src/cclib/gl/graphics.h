@@ -6,8 +6,8 @@
 
 namespace cclib {
 
-#define BLEND_MODE_ADD   1 // ADD(CCBlendFactor.SRC_ALPHA, CCBlendFactor.ONE, CCBlendEquation.ADD),
-#define BLEND_MODE_BLEND 2 // BLEND(CCBlendFactor.SRC_ALPHA, CCBlendFactor.ONE_MINUS_SRC_ALPHA, CCBlendEquation.ADD),
+#define BLEND_MODE_ADD   0x3 // ADD(CCBlendFactor.SRC_ALPHA, CCBlendFactor.ONE, CCBlendEquation.ADD),
+#define BLEND_MODE_BLEND 0x4 // BLEND(CCBlendFactor.SRC_ALPHA, CCBlendFactor.ONE_MINUS_SRC_ALPHA, CCBlendEquation.ADD),
 
 #define CORNERS 1
 #define CORNER  2
