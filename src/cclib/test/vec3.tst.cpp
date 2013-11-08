@@ -4,6 +4,7 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
+#include <iostream>
 
 #include <math/vec3.h>
 
@@ -105,3 +106,17 @@ BOOST_AUTO_TEST_CASE(testMoreOperators)
     BOOST_CHECK(v3.z() == -1.0f);
 }
 
+BOOST_AUTO_TEST_CASE(testSimplexNoiseGenerator)
+{
+    cclib::Vector3f v1 = cclib::Vector3f::simplexNoise(1.0f, 1.0f, 2.0f, 1.0f, 10.0f, 1.0f); 
+    BOOST_CHECK(v1.x() == 0.760099828243255615234375f);
+    BOOST_CHECK(v1.y() == 0.0f);
+    BOOST_CHECK(v1.z() == 0.107877723872661590576171875f);
+    
+    // with 10 times the range
+    cclib::Vector3f v2 = cclib::Vector3f::simplexNoise(1.0f, 1.0f, 2.0f, 1.0f, 10.0f, 1.0f, -10.f, 10.0f); 
+    v1 = v1.scale(10.0);
+    BOOST_CHECK(v1.x() == v2.x());
+    BOOST_CHECK(v1.y() == v2.y());
+    BOOST_CHECK(v1.z() == v2.z());
+}

@@ -5,6 +5,7 @@
 #include <math/math.h>
 #include <iostream>
 #include <tr1/memory>
+#include "simplexnoise.h"
 
 namespace cclib {
 
@@ -277,6 +278,16 @@ class Vector3 {
         void z(T z) {
             _z = z;
         };
+
+        // some generators
+        static Vector3<T> 
+        simplexNoise(float x, float y, float z, float ocatve, float persistence, float scale, float loBound=-1.0f, float hiBound=1.0f) {
+            float px = scaled_octave_noise_3d(ocatve, persistence, scale, loBound, hiBound, x, 1+y, 3+z);
+            float py = scaled_octave_noise_3d(ocatve, persistence, scale, loBound, hiBound, y, 2+z, 2+x);
+            float pz = scaled_octave_noise_3d(ocatve, persistence, scale, loBound, hiBound, z, 3+x, 1+y);
+            return Vector3<T>(px, py, pz);
+        };
+
 
     private:
         T _x;

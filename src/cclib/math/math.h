@@ -29,9 +29,8 @@ float random2d(float x, float y, float min=-1, float max=1);
 template<typename T>
 T radians(T theDegrees) {
     return theDegrees * (M_PI / 180.0);
-}
- 
-    
+};
+
 
 }; // namespace
 

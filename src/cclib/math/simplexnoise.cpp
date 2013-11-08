@@ -133,7 +133,10 @@ float scaled_octave_noise_2d( const float octaves, const float persistence, cons
 // 3D Scaled Multi-octave Simplex noise.
 //
 // Returned value will be between loBound and hiBound.
-float scaled_octave_noise_3d( const float octaves, const float persistence, const float scale, const float loBound, const float hiBound, const float x, const float y, const float z ) {
+float scaled_octave_noise_3d( const float octaves, const float persistence, 
+        const float scale, const float loBound, const float hiBound, 
+        const float x, const float y, const float z ) 
+{
     return octave_noise_3d(octaves, persistence, scale, x, y, z) * (hiBound - loBound) / 2 + (hiBound + loBound) / 2;
 }
 
