@@ -20,7 +20,7 @@ void main ()
 
 	float myAlpha = clamp(1.0 - myValues.x / myValues.y * (1.0 - myValues.z), 0.5, 1.0); // <-
 	gl_FrontColor = texture2DRect(colors, gl_Vertex.xy) * gl_Color;
-// 	gl_FrontColor.a = 1;
+ 	// gl_FrontColor.a = 1;
 	gl_FrontColor.a = alpha * (myAlpha * myAlpha);
 
 	// Compute point size.
