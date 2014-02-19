@@ -1,0 +1,50 @@
+#ifndef __CCLIB_CAPI_H__
+#define __CCLIB_CAPI_H__
+
+// Graphics device identifiers in Unity
+enum GfxDeviceRenderer
+{
+	kGfxRendererOpenGL = 0,          // OpenGL
+	kGfxRendererD3D9,                // Direct3D 9
+	kGfxRendererD3D11,               // Direct3D 11
+	kGfxRendererGCM,                 // Sony PlayStation 3 GCM
+	kGfxRendererNull,                // "null" device (used in batch mode)
+	kGfxRendererHollywood,           // Nintendo Wii
+	kGfxRendererXenon,               // Xbox 360
+	kGfxRendererOpenGLES,            // OpenGL ES 1.1
+	kGfxRendererOpenGLES20Mobile,    // OpenGL ES 2.0 mobile variant
+	kGfxRendererMolehill,            // Flash 11 Stage3D
+	kGfxRendererOpenGLES20Desktop,   // OpenGL ES 2.0 desktop variant (i.e. NaCl)
+	kGfxRendererCount
+};
+
+
+// Event types for UnitySetGraphicsDevice
+enum GfxDeviceEventType {
+	kGfxDeviceEventInitialize = 0,
+	kGfxDeviceEventShutdown,
+	kGfxDeviceEventBeforeReset,
+	kGfxDeviceEventAfterReset,
+};
+
+typedef void (*FuncPtr)( const char * );
+extern FuncPtr DebugLog;
+
+// capi calls to simplify binding to other languages
+extern "C" {
+    int cclib_initializeParticleSystem();
+    int cclib_setupParticleSystem(void * texturePointer);
+    int cclib_teardownParticleSystem();
+    int cclib_updateParameterFloat(char * parameterName, float parameterValue);
+    int cclib_addComponent(char * componentName, char * instanceName);
+    int cclib_runParticleSystem();
+    int cclib_updateSimulation();
+    int cclib_copyResults(); // copy simulation results into an external opengl texture id
+
+    // Unity specifics
+    void SetDebugFunction(FuncPtr fp); 
+    void UnitySetGraphicsDevice (void* device, int deviceType, int eventType);
+    void UnityRenderEvent (int eventID);
+}
+
+#endif

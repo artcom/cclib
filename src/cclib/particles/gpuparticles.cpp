@@ -255,7 +255,6 @@ GPUParticles::cleanUpParticles() {
 void 
 GPUParticles::afterUpdate(){
     updateManualPositionChanges();
-    //		updateManualLifetimeReset();
     cleanUpParticles();
 }
 
@@ -265,11 +264,16 @@ GPUParticles::update(float theDeltaTime) {
         return;
     }
 
+    Graphics::checkError();
+
     for (unsigned int e=0; e<_myEmitter.size(); e++) {
         _myEmitter[e]->update(theDeltaTime);
     }
 
+    Graphics::checkError();
     Graphics::noBlend();
+    
+    Graphics::checkError();
     beforeUpdate();
 
     for (unsigned int f=0; f<_myForces.size(); f++) {

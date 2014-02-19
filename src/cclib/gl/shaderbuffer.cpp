@@ -167,7 +167,6 @@ ShaderBuffer::create(unsigned int theWidth, unsigned int theHeight, int theNumbe
 ShaderBuffer::ShaderBuffer ( unsigned int theWidth, unsigned int theHeight,
         FrameBufferObjectAttributesPtr theAttributes, GLenum theTarget) :
     FrameBufferObject(theTarget, theAttributes, theWidth, theHeight)
-
 {
     _numberOfChannels = theAttributes->numberOfChannels;
     _numberOfBits = theAttributes->numberOfBits;

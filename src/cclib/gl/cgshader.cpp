@@ -100,8 +100,9 @@ CGShader::loadVertexShader(const std::vector<std::string> & vertexPrograms) {
 CGprogram
 CGShader::loadShader(const std::string & entry, CGprofile profile, const std::vector<std::string> & programs) {
     // set the current Profile
-    
-    cgGLSetContextOptimalOptions(cg_context, profile);
+   
+#warning "cgGLSetContextOptimalOptions() disabled."
+    // cgGLSetContextOptimalOptions(cg_context, profile);
     
     cgSetAutoCompile(cg_context, CG_COMPILE_MANUAL);
     std::string shaderSource = combineSources(programs);

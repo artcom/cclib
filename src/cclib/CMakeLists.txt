@@ -182,6 +182,7 @@ ENDFOREACH(HEADER)
 # install shaders
 INSTALL(DIRECTORY ${SHADER_PATH} DESTINATION include/cclib/ PATTERN "*.cpp" EXCLUDE)
 
+# build dynamic library for development
 set(CCLIB_NAME cclib)
 add_library(${CCLIB_NAME} SHARED 
     ${SHADER_SOURCES} 
@@ -195,9 +196,32 @@ install(TARGETS ${CCLIB_NAME}
             OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
 	) 
 
+
+# build osx bundle for the unity plugin
+set(CCLIB_BUNDLE_NAME cclib_unity)
+add_library(${CCLIB_BUNDLE_NAME} MODULE 
+    ${SHADER_SOURCES}  
+    ${SOURCES} 
+    capi/capi.cpp
+    capi/particleswrapper.cpp
+)
+
+set_target_properties(${CCLIB_BUNDLE_NAME} PROPERTIES 
+    MACOSX_BUNDLE TRUE
+    SUFFIX .bundle
+    PREFIX ""  
+)
+
+target_link_libraries(${CCLIB_BUNDLE_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${Cg_GL_LIBRARIES} ${OPENGL_LIBRARIES})
+install(TARGETS ${CCLIB_BUNDLE_NAME} 
+	DESTINATION bin 
+	PERMISSIONS
+        OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+) 
+
+
 set(TEST_LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Cg_LIBRARIES} ${GLEW_LIBRARY} ${GLFW_LIBRARIES}) # ${CCLIB_NAME} 
 
-# XXX add automatic test detection
 if (Boost_UNIT_TEST_FRAMEWORK_LIBRARY AND GLFW_LIBRARIES)
 	add_executable(vec2 test/vec2.tst.cpp)
 	target_link_libraries(vec2 ${CCLIB_NAME} ${TEST_LIBRARIES})

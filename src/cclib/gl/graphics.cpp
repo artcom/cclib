@@ -155,12 +155,12 @@ Graphics::image( TexturePtr theImage, float theX, float theY,
     if(theImage->target() == GL_TEXTURE_2D)
     {
         Graphics::imageImplementation( theImage, theX, theY, theWidth, theHeight,
-                                      0, 0,1,1);
+                                      0, 0, 1, 1);
     }
     else if(theImage->target() == GL_TEXTURE_RECTANGLE)
     {
         Graphics::imageImplementation( theImage, theX, theY, theWidth, theHeight,
-                                      0, 0,theImage->width(), theImage->height());
+                                      0, 0, theImage->width(), theImage->height());
     }
     else
     {

@@ -107,9 +107,6 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
 //     }
 // }
 
-
-
-
 GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles) :
     _myCurrentTime(0)
 {
@@ -118,7 +115,6 @@ GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, i
     }
 
     _myParticles = theParticles;
-
     _myStart = theStart;
 
     _myNumberOfParticles = theNumberParticles;
@@ -133,11 +129,13 @@ GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, i
     }
 
     _myEmitMesh = Mesh::create(GL_POINTS);
-    _myVertexBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
-    _myPositionBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
-    _myInfoBuffer = Buffer::create(1000*4); // BufferUtil.newDirectFloatBuffer(1000 * 3);
-    _myVelocityBuffer = Buffer::create(1000*3); // BufferUtil.newDirectFloatBuffer(1000 * 3);
+    _myVertexBuffer = Buffer::create(1000*3); 
+    _myPositionBuffer = Buffer::create(1000*3); 
+    _myInfoBuffer = Buffer::create(1000*4); 
+    _myVelocityBuffer = Buffer::create(1000*3);
     _myColorBuffer = Buffer::create(1000*4);
+    
+    reset();
 }
 
 GPUIndexParticleEmitterPtr
@@ -343,8 +341,11 @@ GPUIndexParticleEmitter::transferColorData() {
 
 void
 GPUIndexParticleEmitter::setData() {
+    Graphics::checkError();
     transferEmits();
+    Graphics::checkError();
     transferChanges();
+    Graphics::checkError();
 }
 
 void
