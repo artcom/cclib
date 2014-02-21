@@ -35,8 +35,13 @@ extern "C" {
     int cclib_initializeParticleSystem();
     int cclib_setupParticleSystem(void * texturePointer);
     int cclib_teardownParticleSystem();
-    int cclib_updateParameterFloat(char * parameterName, float parameterValue);
-    int cclib_addComponent(char * componentName, char * instanceName);
+    
+    int cclib_updateParameterFloat(char * componentName, char * parameterName, float parameterValue);
+    int cclib_updateParameterVector3(char * componentName, char * parameterName, float x, float y, float z);
+    int cclib_updateParameterInt(char * componentName, char * parameterName, float parameterValue);
+    
+    int cclib_addForce(char * forceName, char * instanceName);
+    
     int cclib_runParticleSystem();
     int cclib_updateSimulation();
     int cclib_copyResults(); // copy simulation results into an external opengl texture id

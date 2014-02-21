@@ -12,8 +12,13 @@
 #include <memory>
 #include <iostream>
 #include <vector>
+#include <map>
 #include <tr1/memory>
 #include <cclib.h>
+
+// cclib stuff
+#include <cclib.h>
+#include <base/component.h>
 
 namespace unity_plugin {
 
@@ -35,11 +40,17 @@ namespace unity_plugin {
             void addAnimation(const std::string & animationType);
             void addEmitter();
             void updateSimulation();
-            void setParameter(const std::string & parameterName, float value);
+           
+            template<typename T>
+            inline void setParameter(const std::string & componentName, const std::string & parameterName, T & value) {
+                _componentMap[componentName]->set<T>(parameterName, value);
+            };
+            
             void copyResults();
 
         private:
             void setDefaultGraphicsState();
+            cclib::GPUForcePtr createForceFromString(const std::string & forceType);
 
         private:
             cclib::GPUParticlesPtr _particleSystem;
@@ -48,6 +59,8 @@ namespace unity_plugin {
             // dummy for now
             cclib::GPUIndexParticleEmitterPtr _myEmitter;
             GLuint _gltex;
+    
+            std::map<std::string, cclib::Component::Ptr> _componentMap;
     };
 }
 

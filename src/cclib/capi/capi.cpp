@@ -2,6 +2,8 @@
 #include "capi/capi.h"
 #include "capi/particleswrapper.h"
 
+#include <cclib.h>
+
 // capi calls to simplify binding to other languages
 
 unity_plugin::ParticlesWrapperPtr _particlesWrapper;
@@ -18,16 +20,49 @@ int cclib_initializeParticleSystem() {
     return 0;
 }
 
-int cclib_addComponent(char * componentName, char * instanceName) {
+int cclib_addForce(char * forceName, char * instanceName) {
     try {
+        std::string name(forceName);
+        std::string iname(instanceName);
+        _particlesWrapper->addForce(name, iname); 
+    
+    } catch (cclib::Exception & e) {
+        DebugLog(e.what());
+    }
+    return 0;
+}
+    
+int cclib_updateParameterFloat(char * componentName, char * parameterName, float parameterValue) {
+    try {
+        std::string name(componentName);
+        std::string pname(parameterName);
+        
+        _particlesWrapper->setParameter<float>(name, pname, parameterValue);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 }
 
-int cclib_updateParameterFloat(char * parameterName, float parameterValue) {
+int cclib_updateParameterVector3(char * componentName, char * parameterName, float x, float y, float z) {
     try {
+        std::string name(componentName);
+        std::string pname(parameterName);
+        cclib::Vector3f value(x,y,z);
+
+        _particlesWrapper->setParameter<cclib::Vector3f>(name, pname, value);
+    } catch (cclib::Exception & e) {
+        DebugLog(e.what());
+    }
+    return 0;
+}
+
+int cclib_updateParameterInt(char * componentName, char * parameterName, int parameterValue) {
+    try {
+        std::string name(componentName);
+        std::string pname(parameterName);
+        
+        _particlesWrapper->setParameter<int>(name, pname, parameterValue);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }

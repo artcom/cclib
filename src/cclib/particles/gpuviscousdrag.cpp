@@ -6,7 +6,9 @@ using namespace cclib;
 GPUViscousDrag::GPUViscousDrag(float theCoefficient) :
     GPUForce("ViscousDrag"), 
     _myCoefficient(Property_<float>::create("coefficient", theCoefficient)) 
-{}
+{
+    registerProperty(_myCoefficient);
+}
 
 GPUViscousDragPtr
 GPUViscousDrag::create(float theCoefficient) {
