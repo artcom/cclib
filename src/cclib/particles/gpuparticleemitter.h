@@ -1,6 +1,8 @@
 #ifndef __CCLIB_GPUPARTICLEEMITTER_INCLUDED__
 #define __CCLIB_GPUPARTICLEEMITTER_INCLUDED__
 
+#include <base/property.h>
+#include <base/component.h>
 #include <cclib.h>
 
 namespace cclib {

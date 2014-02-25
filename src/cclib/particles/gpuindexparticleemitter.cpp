@@ -108,6 +108,7 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
 // }
 
 GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles) :
+    Component("emitter"),
     _myCurrentTime(0)
 {
     if (theNumberParticles == -1) {

@@ -22,14 +22,16 @@
 #include <particles/gpuattractor.h>
 #include <particles/gpucurvefield.h>
 
+// the emitters
+#include <particles/gpuindexparticleemitter.h>
+#include <particles/gpuindexparticlecurveemitter.h>
+
 using namespace unity_plugin;
 using namespace cclib;
 
 ParticlesWrapper::ParticlesWrapper():
-    _forces(),
-    _particleSystem(),
-    _gltex(0),
-    _componentMap()
+    _forces(), _emitters(), _emittersToCreate(),
+    _particleSystem(), _gltex(0), _componentMap()
 {
 }
 
@@ -57,7 +59,6 @@ ParticlesWrapper::setup(void* texturePointer) {
     Graphics::checkError();
     setDefaultGraphicsState();
    
-    _forces.push_back(GPUGravity::create());
     std::vector<GPUConstraintPtr> myConstraints;
     std::vector<GPUImpulsePtr> myImpulses;
     
@@ -71,12 +72,37 @@ ParticlesWrapper::setup(void* texturePointer) {
     
     GPUParticlePointRendererPtr myRenderer = GPUParticlePointRenderer::create();
     _particleSystem = GPUParticles::create(myRenderer, _forces, myConstraints, myImpulses, texWidth, texHeight);
-    
-    _myEmitter = GPUIndexParticleEmitter::create(_particleSystem);
-    _particleSystem->addEmitter(_myEmitter);
+   
+    // emitters have to be created using the particle system 
+    createEmitters(texWidth, texHeight);
+
+    // register emitters
+    for (unsigned int i=0; i<_emitters.size(); i++) {
+        _particleSystem->addEmitter(_emitters[i]);
+    }
     
     Graphics::smooth();
     Graphics::checkError();
+}
+
+void
+ParticlesWrapper::createEmitters(unsigned int texWidth, unsigned int texHeight) {
+    for (unsigned int i=0; i<_emittersToCreate.size(); i++) {
+        std::string key = _emittersToCreate[i];
+        std::vector<std::string> typeName;
+    
+        std::istringstream f(key);
+        std::string s;    
+        while (std::getline(f, s, ':')) {
+            typeName.push_back(s);
+        }
+       
+        if (typeName.size() == 2) {
+            GPUIndexParticleEmitterPtr emitter = createEmitterFromString(typeName[0], texWidth, texHeight);
+            _emitters.push_back(emitter);
+            _componentMap[typeName[1]] = emitter;
+        }
+    }
 }
 
 GPUForcePtr
@@ -101,12 +127,22 @@ ParticlesWrapper::addForce(const std::string & forceType, std::string & identifi
     _forces.push_back(force);
 }
 
+GPUIndexParticleEmitterPtr
+ParticlesWrapper::createEmitterFromString(const std::string & emitterType, unsigned int texWidth, unsigned int texHeight) {
+    if (emitterType == "indexparticleemitter") return GPUIndexParticleEmitter::create(_particleSystem, 0, texWidth*texHeight);
+    if (emitterType == "indexparticlecurveemitter") return GPUIndexParticleCurveEmitter::create(_particleSystem, 0, texWidth*texHeight);
+    
+    throw new cclib::Exception("unknown emitter type.");
+}
+            
 void
-ParticlesWrapper::addAnimation(const std::string & animationType) {
+ParticlesWrapper::addEmitter(const std::string & emitterType, std::string & identifier) {
+    std::string emitterKey = emitterType + std::string(":") + identifier;
+    _emittersToCreate.push_back(emitterKey);
 }
 
 void
-ParticlesWrapper::addEmitter() {
+ParticlesWrapper::addAnimation(const std::string & animationType) {
 }
 
 void
@@ -117,25 +153,16 @@ ParticlesWrapper::updateSimulation() {
     
     glDisable(GL_POINT_SMOOTH);
     glPointSize(1.0);
-    
-    // emit new particles
-    for(int x = 0; x < 25; x++){
-        for(int y = 0; y < 25; y++){
-            Vector3f pos = Vector3f(cclib::random<float>(0, 100),
-                                    cclib::random<float>(0, 100),
-                                    cclib::random<float>(0, 100));
-            
-            Vector3f vel;
-            vel.randomize(0.0f);
-            Color c(1.0f, 0.0f, 0.0f, 1.0f);
-            _myEmitter->emit(c, pos, vel, 100000, false);
-        }
-    }
+   
+    // GPUIndexParticleCurveEmitterPtr e = std::tr1::dynamic_pointer_cast<GPUIndexParticleCurveEmitter>(_emitters[0]);
+    // e->update(1.0f/60.0f);
     
     cclib::Graphics::noTexture();
     _particleSystem->update(1.0f/60.0f);
     
     glEnable(GL_POINT_SMOOTH);
+    glEnable (GL_DEPTH_TEST);
+    glDepthMask (GL_TRUE);
 }
             
 void

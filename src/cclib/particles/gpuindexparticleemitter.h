@@ -31,7 +31,7 @@ class ParticleWaitingList {
 };
 
 
-class GPUIndexParticleEmitter : public GPUParticleEmitter {
+class GPUIndexParticleEmitter : public GPUParticleEmitter, public Component {
 
     private:
         int _myNumberOfParticles;
@@ -59,7 +59,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter {
         int _myStart;
 
     public:
-        GPUIndexParticleEmitter() {};
+        GPUIndexParticleEmitter() : Component("emitter") {};
         GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
 
         virtual ~GPUIndexParticleEmitter() {}

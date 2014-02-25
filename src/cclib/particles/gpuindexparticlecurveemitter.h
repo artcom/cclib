@@ -24,11 +24,21 @@ namespace cclib {
         CGparameter _myScaleParameter;
         CGparameter _myOutputScaleParameter;
         
-        float _myOffset;
-        float _myScale;
-        float _myOutputScale;
-        float _myRadius;
-        float _mySpeed;
+        Property_<float>::Ptr _myOffset;
+        Property_<float>::Ptr _myScale;
+        Property_<float>::Ptr _myOutputScale;
+        Property_<float>::Ptr _myRadius;
+        Property_<float>::Ptr _mySpeed;
+        
+        Property_<Vector3f>::Ptr _myVelocity;
+        Property_<Vector3f>::Ptr _myVelocitySpread;
+        Property_<Vector3f>::Ptr _myPosition;
+        Property_<Vector3f>::Ptr _myPositionSpread;
+        Property_<Vector3f>::Ptr _myColor;
+        Property_<Vector3f>::Ptr _myColorSpread;
+        Property_<float>::Ptr _myLifetime;
+        Property_<float>::Ptr _myLifetimeSpread;
+        Property_<float>::Ptr _myParticlesPerSecond;
         
     public:
         GPUIndexParticleCurveEmitter(cclib::GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
@@ -42,11 +52,11 @@ namespace cclib {
         virtual void fillPositionData(cclib::BufferPtr theBuffer, std::vector<cclib::GPUParticlePtr> & theParticles);
         virtual void transferEmitData();
         
-        void setScale(float value) { _myScale = value; };
-        void setOutputScale(float value) { _myOutputScale = value; };
-        void setRadius(float value) { _myRadius = value; };
-        void setSpeed(float value) { _mySpeed = value; };
-        void setOffset(float value) { _myOffset = value; };
+        void setScale(float value) { _myScale->setValue(value); };
+        void setOutputScale(float value) { _myOutputScale->setValue(value); };
+        void setRadius(float value) { _myRadius->setValue(value); };
+        void setSpeed(float value) { _mySpeed->setValue(value); };
+        void setOffset(float value) { _myOffset->setValue(value); };
     };
     
 }; // namespace cclib

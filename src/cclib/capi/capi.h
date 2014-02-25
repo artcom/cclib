@@ -41,6 +41,7 @@ extern "C" {
     int cclib_updateParameterInt(char * componentName, char * parameterName, float parameterValue);
     
     int cclib_addForce(char * forceName, char * instanceName);
+    int cclib_addEmitter(char * emitterName, char * instanceName);
     
     int cclib_runParticleSystem();
     int cclib_updateSimulation();

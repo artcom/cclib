@@ -31,6 +31,18 @@ int cclib_addForce(char * forceName, char * instanceName) {
     }
     return 0;
 }
+
+int cclib_addEmitter(char * emitterName, char * instanceName) {
+    try {
+        std::string name(emitterName);
+        std::string iname(instanceName);
+        _particlesWrapper->addEmitter(name, iname); 
+    
+    } catch (cclib::Exception & e) {
+        DebugLog(e.what());
+    }
+    return 0;
+}
     
 int cclib_updateParameterFloat(char * componentName, char * parameterName, float parameterValue) {
     try {

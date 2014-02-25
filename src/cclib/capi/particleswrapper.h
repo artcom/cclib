@@ -37,8 +37,8 @@ namespace unity_plugin {
 
             void setup(void* texturePointer);
             void addForce(const std::string & forceType, std::string & identifier);
+            void addEmitter(const std::string & emitterType, std::string & identifier);
             void addAnimation(const std::string & animationType);
-            void addEmitter();
             void updateSimulation();
            
             template<typename T>
@@ -51,16 +51,19 @@ namespace unity_plugin {
         private:
             void setDefaultGraphicsState();
             cclib::GPUForcePtr createForceFromString(const std::string & forceType);
+            cclib::GPUIndexParticleEmitterPtr createEmitterFromString(const std::string & emitterType, 
+                    unsigned int texWidth, unsigned int texHeight); 
+            void createEmitters(unsigned int texWidth, unsigned int texHeight);
 
         private:
             cclib::GPUParticlesPtr _particleSystem;
             std::vector<cclib::GPUForcePtr> _forces;
-    
-            // dummy for now
-            cclib::GPUIndexParticleEmitterPtr _myEmitter;
-            GLuint _gltex;
-    
+            std::vector<cclib::GPUIndexParticleEmitterPtr> _emitters;
+            std::vector<std::string> _emittersToCreate;
+
             std::map<std::string, cclib::Component::Ptr> _componentMap;
+    
+            GLuint _gltex;
     };
 }
 

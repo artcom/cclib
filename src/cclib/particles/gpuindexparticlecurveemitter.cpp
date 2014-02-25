@@ -18,32 +18,48 @@
 #include "particles/gpuparticles.h"
 #include "gl/mesh.h"
 
-//cclib::GPUIndexParticleCurveEmitter::GPUIndexParticleCurveEmitter()
-//: cclib::GPUIndexParticleEmitter()
-//{
-//    printf("%s\n",__PRETTY_FUNCTION__);
-//}
+#define MAX(x, y) ((y > x)?y:x)  
 
-cclib::GPUIndexParticleCurveEmitter::GPUIndexParticleCurveEmitter(cclib::GPUParticlesPtr theParticles, int theStart, int theNumberParticles)
-: cclib::GPUIndexParticleEmitter(theParticles, theStart,theNumberParticles),
-_myOffset(0),
-_myScale(1),
-_myOutputScale(1),
-_myRadius(1),
-_mySpeed(1)
-
-{
-//    printf("%s\n",__PRETTY_FUNCTION__);
+cclib::GPUIndexParticleCurveEmitter::GPUIndexParticleCurveEmitter(cclib::GPUParticlesPtr theParticles, int theStart, int theNumberParticles) : 
+    cclib::GPUIndexParticleEmitter(theParticles, theStart,theNumberParticles),
+    _myOffset(Property_<float>::create("offset", 1)),
+    _myScale(Property_<float>::create("scale", 0.001)),
+    _myOutputScale(Property_<float>::create("outputScale", 1)),
+    _myRadius(Property_<float>::create("radius", 129)),
+    _mySpeed(Property_<float>::create("speed", 0.09)),
     
+    // emitting properties
+    _myParticlesPerSecond(Property_<float>::create("particlesPerSecond", 1800)),
+    _myVelocity(Property_<cclib::Vector3f>::create("velocity", Vector3f(0,0,0))),
+    _myVelocitySpread(Property_<cclib::Vector3f>::create("velocitySpread", Vector3f(0,0,0))),
+    _myPosition(Property_<cclib::Vector3f>::create("position", Vector3f(0,0,0))),
+    _myPositionSpread(Property_<cclib::Vector3f>::create("positionSpread", Vector3f(0,0,0))),
+    _myColor(Property_<cclib::Vector3f>::create("color", Vector3f(0,0,0))),
+    _myColorSpread(Property_<cclib::Vector3f>::create("colorSpread", Vector3f(0,0,0))),
+    _myLifetime(Property_<float>::create("lifetime", 10000)),
+    _myLifetimeSpread(Property_<float>::create("lifetimeSpread", 100))
+{
+    registerProperty(_myOffset);
+    registerProperty(_myScale);
+    registerProperty(_myOutputScale);
+    registerProperty(_myRadius);
+    registerProperty(_mySpeed);
+    
+    registerProperty(_myParticlesPerSecond);
+    registerProperty(_myVelocity);
+    registerProperty(_myVelocitySpread);
+    registerProperty(_myPosition);
+    registerProperty(_myPositionSpread);
+    registerProperty(_myColor);
+    registerProperty(_myColorSpread);
+    registerProperty(_myLifetime);
+    registerProperty(_myLifetimeSpread);
+
     std::vector<std::string> vfiles, ffiles;
     ffiles.push_back(std::string(simplex_fp));
     ffiles.push_back(std::string(curvefield_emit_fp));
     
-//    super(theParticles, theStart, theNumberParticles);
-    _myCurveEmitShader = cclib::CGShader::create(
-                            //"shader/simplex.fp","shader/emit/curvefield_emit.fp"
-                            vfiles, ffiles
-                                               );
+    _myCurveEmitShader = cclib::CGShader::create(vfiles, ffiles);
 
     _myRadiusParameter = _myCurveEmitShader->fragmentParameter("radius");
     _myOffsetParameter = _myCurveEmitShader->fragmentParameter("offset");
@@ -56,44 +72,84 @@ _mySpeed(1)
 
 void cclib::GPUIndexParticleCurveEmitter::update(float theDeltaTime)
 {
+    // udpate shader parameters
     cclib::GPUIndexParticleEmitter::update(theDeltaTime);
     
-    _myOffset += theDeltaTime * _mySpeed;
+    _myOffset->setValue( _myOffset->getValue<float>() + theDeltaTime * _mySpeed->getValue<float>());
     
-    _myCurveEmitShader->parameter(_myOffsetParameter, _myOffset);
-    _myCurveEmitShader->parameter(_myOutputScaleParameter, _myOutputScale);
-    _myCurveEmitShader->parameter(_myScaleParameter, _myScale);
-    _myCurveEmitShader->parameter(_myRadiusParameter, _myRadius);
+    _myCurveEmitShader->parameter(_myOffsetParameter,  _myOffset->getValue<float>());
+    _myCurveEmitShader->parameter(_myOutputScaleParameter, _myOutputScale->getValue<float>());
+    _myCurveEmitShader->parameter(_myScaleParameter, _myScale->getValue<float>());
+    _myCurveEmitShader->parameter(_myRadiusParameter, _myRadius->getValue<float>());
+    
+    // emit new particles
+    int numberOfParticles = MAX(0, static_cast<int>(_myParticlesPerSecond->getValue<float>() * theDeltaTime));
+    
+    cclib::Vector3f velocity = _myVelocity->getValue<Vector3f>();
+    cclib::Vector3f velocitySpread = _myVelocitySpread->getValue<Vector3f>();
+    cclib::Vector3f position = _myPosition->getValue<Vector3f>();
+    cclib::Vector3f positionSpread = _myPositionSpread->getValue<Vector3f>();
+    cclib::Vector3f color = _myColor->getValue<Vector3f>();
+    cclib::Vector3f colorSpread = _myColorSpread->getValue<Vector3f>();
+    float lifetime = _myLifetime->getValue<float>(); 
+    float lifetimeSpread = _myLifetimeSpread->getValue<float>();
+    
+    bool spreadVelocity = !(velocitySpread.equalsZero());
+    bool spreadColor    = !(colorSpread.equalsZero());
+    bool spreadPosition = !(positionSpread.equalsZero());
+    bool spreadLifetime = (lifetimeSpread != 0.0f);
+
+    cclib::Vector3f positionRandom;
+    cclib::Vector3f velocityRandom;
+    cclib::Vector3f colorRandom;
+
+    for(int x = 0; x < numberOfParticles; x++) {
+        // position
+        cclib::Vector3f pos = position;
+        if (spreadPosition) {
+            position.randomize(positionSpread);
+            pos = pos + positionRandom; 
+        }
+        
+        // velocity
+        cclib::Vector3f vel = velocity;
+        if (spreadVelocity) {
+            velocityRandom.randomize(velocitySpread);
+            vel = vel + velocityRandom; 
+        }
+        
+        // color
+        cclib::Vector3f colv = color;
+        if (spreadColor) {
+            colorRandom.randomize(colorSpread);
+            colv = colv + colorRandom; 
+        }
+        cclib::Color col(colv.x(), colv.y(), colv.z(), 1.0f);
+        
+        // lifetime
+        float lt = lifetime;
+        if (spreadLifetime) {
+            lt += cclib::random<float>(-lifetimeSpread, lifetimeSpread); 
+        }
+
+        emit(col, pos, vel, lt, false);
+    }
 }
 
-//void cclib::GPUIndexParticleCurveEmitter::fillPositionData(FloatBuffer theBuffer, List<CCGPUParticle> theParticles)
 void cclib::GPUIndexParticleCurveEmitter::fillPositionData(cclib::BufferPtr theBuffer, std::vector<cclib::GPUParticlePtr> & theParticles)
 {
-//    cclib::GPUIndexParticleEmitter::fillPositionData(theBuffer); return;
-    
     for (unsigned int i=0; i<theParticles.size(); i++)
     {
         cclib::GPUParticlePtr myParticle = theParticles[i];
         
         theBuffer->data()[i * 3 + 0] = myParticle->position()->x();
         theBuffer->data()[i * 3 + 1] = cclib::random<float>();
-        theBuffer->data()[i * 3 + 2] = cclib::random<float>(2.*M_PI);
+        theBuffer->data()[i * 3 + 2] = cclib::random<float>(2.0f * M_PI);
     }
-    
-//    int i = 0;
-//    for (CCGPUParticle myParticle:theParticles){
-//        _myFillArray[i * 3 + 0] = myParticle.position().x;
-//        _myFillArray[i * 3 + 1] = CCMath.random();
-//        _myFillArray[i * 3 + 2] = CCMath.random(CCMath.TWO_PI);
-//        i++;
-//    }
-//    theBuffer.put(_myFillArray, 0, theParticles.size() * 3);
 }
 
 void cclib::GPUIndexParticleCurveEmitter::transferEmitData()
 {
-//    cclib::GPUIndexParticleEmitter::transferData();return;
-
     _myParticles->dataBuffer()->beginDraw();
     _myCurveEmitShader->start();
     

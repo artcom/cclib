@@ -78,7 +78,7 @@ class Vector3 {
         }
         
         /**
-         * Returns true if both x and y are zero
+         * Returns true if x, y and z are zero
          * @return boolean, true if the vector is zero
          */
         bool equalsZero() {
@@ -137,7 +137,13 @@ class Vector3 {
             _y = cclib::random<T>(theMax); 
             _z = cclib::random<T>(theMax); 
         }
-        
+       
+        void randomize(Vector3<T> & range) {
+            _x = cclib::random<T>(-range.x(), range.x());
+            _y = cclib::random<T>(-range.y(), range.y());
+            _z = cclib::random<T>(-range.z(), range.z());
+        }
+
         /**
          * Returns the distance between this vector and th one passed as a parameter
          * @param theVector Vector3f, the vector to get the distance to
