@@ -8,6 +8,7 @@
 
 unity_plugin::ParticlesWrapperPtr _particlesWrapper;
 FuncPtr DebugLog = NULL;
+float _deltaT = 0.016667f;
 
 // setup base particle system
 int cclib_initializeParticleSystem() {
@@ -60,9 +61,22 @@ int cclib_updateParameterVector3(char * componentName, char * parameterName, flo
     try {
         std::string name(componentName);
         std::string pname(parameterName);
-        cclib::Vector3f value(x,y,z);
+        cclib::Vector3f value(x, y, z);
 
         _particlesWrapper->setParameter<cclib::Vector3f>(name, pname, value);
+    } catch (cclib::Exception & e) {
+        DebugLog(e.what());
+    }
+    return 0;
+}
+
+int cclib_updateParameterComponentReference(char * componentName, char * parameterName, char * referenceName) {
+    try {
+        std::string name(componentName);
+        std::string pname(parameterName);
+        std::string value(referenceName);
+        
+        _particlesWrapper->setComponentReference(name, pname, value);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
@@ -81,9 +95,43 @@ int cclib_updateParameterInt(char * componentName, char * parameterName, int par
     return 0;
 }
 
+int cclib_updateParameterVectorOfVector2(char * componentName, char * parameterName, 
+       float x, float y, int index) 
+{
+    try {
+        std::string name(componentName);
+        std::string pname(parameterName);
+        
+        // slow but simple.
+        _particlesWrapper->setVector2fIndexParameter(name, pname, x, y, index);
+    } catch (cclib::Exception & e) {
+        DebugLog(e.what());
+    }
+    return 0;
+}
+
 int cclib_setupParticleSystem(void* texturePointer) {
     try {
         _particlesWrapper->setup(texturePointer);
+    } catch (cclib::Exception & e) {
+        DebugLog(e.what());
+    }
+    return 0;
+};
+
+int cclib_setInfoTexture(void* texturePointer) {
+    try {
+        _particlesWrapper->setInfoTexture(texturePointer);
+    } catch (cclib::Exception & e) {
+        DebugLog(e.what());
+    }
+
+    return 0;
+};
+
+int cclib_setColorTexture(void* texturePointer) {
+    try {
+        _particlesWrapper->setColorTexture(texturePointer);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
@@ -93,7 +141,7 @@ int cclib_setupParticleSystem(void* texturePointer) {
 
 int cclib_updateSimulation() {
     try {
-        _particlesWrapper->updateSimulation();
+        _particlesWrapper->updateSimulation(_deltaT);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
@@ -118,6 +166,12 @@ int cclib_teardownParticleSystem() {
     }
     return 0;
 }
+
+int cclib_setSimulationTime(float theDeltaTime) {
+    _deltaT = theDeltaTime;
+    return 0;
+}
+
 
 void SetDebugFunction(FuncPtr fp) {
     DebugLog = fp;

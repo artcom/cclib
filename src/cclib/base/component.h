@@ -42,7 +42,7 @@ namespace cclib
         }
 
         template<typename T>
-        inline T get(const std::string & thePropertyName) {
+        inline T & get(const std::string & thePropertyName) {
             Property::Ptr myProperty = getPropertyByName(thePropertyName);
             return myProperty->getValue<T>();
         }

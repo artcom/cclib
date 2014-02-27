@@ -133,9 +133,12 @@ class Vector3 {
          * between 0 and 1
          */
         void randomize(double theMax=1.0) {
-            _x = cclib::random<T>(theMax); 
-            _y = cclib::random<T>(theMax); 
-            _z = cclib::random<T>(theMax); 
+            _x = cclib::random<T>(-1, 1); 
+            _y = cclib::random<T>(-1, 1); 
+            _z = cclib::random<T>(-1, 1); 
+        
+            normalize();
+            scale(cclib::random<T>(theMax));
         }
        
         void randomize(Vector3<T> & range) {

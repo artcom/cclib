@@ -119,7 +119,13 @@ typedef std::tr1::shared_ptr<GPUIndexedParticleRenderer> GPUIndexedParticleRende
 	
 class GPUIndexParticleCurveEmitter;
 typedef std::tr1::shared_ptr<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
-	
+
+class GPUSimpleEmitter;
+typedef std::tr1::shared_ptr<GPUSimpleEmitter> GPUSimpleEmitterPtr;
+
+class GPUCurveLineEmitter;
+typedef std::tr1::shared_ptr<GPUCurveLineEmitter> GPUCurveLineEmitterPtr;
+		
 class GPUParticlePointRenderer;
 typedef std::tr1::shared_ptr<GPUParticlePointRenderer> GPUParticlePointRendererPtr;
 
@@ -131,6 +137,9 @@ typedef std::tr1::shared_ptr<GPUForceField> GPUForceFieldPtr;
 
 class GPUCurveField;
 typedef std::tr1::shared_ptr<GPUCurveField> GPUCurveFieldPtr;
+
+class GPUCurveLine;
+typedef std::tr1::shared_ptr<GPUCurveLine> GPUCurveLinePtr;
 
 class GPUGravity;
 typedef std::tr1::shared_ptr<GPUGravity> GPUGravityPtr;
@@ -162,9 +171,6 @@ typedef std::tr1::shared_ptr<GPUBloom> GPUBloomPtr;
 class SeparateGaussianBlur;
 typedef std::tr1::shared_ptr<SeparateGaussianBlur> SeparateGaussianBlurPtr;
 
-class GPUIndexParticleCurveEmitter;
-typedef std::tr1::shared_ptr<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
-	
 class GPUParticleSort;
 typedef std::tr1::shared_ptr<GPUParticleSort> GPUParticleSortPtr;
 	

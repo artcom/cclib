@@ -95,12 +95,15 @@ set(SOURCES
     particles/gpuparticle.cpp
     particles/gpuparticlesort.cpp
     particles/gpuindexparticleemitter.cpp
+    particles/gpusimpleemitter.cpp
+    particles/gpucurvelineemitter.cpp
     particles/gpuindexparticlecurveemitter.cpp
     particles/gpuparticlepointrenderer.cpp
     particles/gpuindexedparticlerenderer.cpp
     particles/gpudisplayshader.cpp
     particles/gpuforcefield.cpp
     particles/gpucurvefield.cpp    
+    particles/gpucurveline.cpp    
     particles/gpugravity.cpp    
     particles/gpuattractor.cpp    
     particles/gpuviscousdrag.cpp    
@@ -150,6 +153,8 @@ set(HEADERS
     particles/gpuparticles.h
     particles/gpuparticle.h
     particles/gpuparticlesort.h
+    particles/gpusimpleemitter.h
+    particles/gpucurvelineemitter.h
     particles/gpuindexparticleemitter.h
     particles/gpuindexparticlecurveemitter.h
     particles/gpuparticlerenderer.h
@@ -158,6 +163,7 @@ set(HEADERS
     particles/gpudisplayshader.h
     particles/gpuforcefield.h
     particles/gpucurvefield.h
+    particles/gpucurveline.h
     particles/gpugravity.h   
     particles/gpuattractor.h    
     particles/gpuviscousdrag.h    

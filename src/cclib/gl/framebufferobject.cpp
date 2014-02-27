@@ -296,6 +296,8 @@ FrameBufferObject::bindFBO(int theTexture) {
             attachments[i] = GL_NONE;
         }
     }
+    
+	glReadBuffer(_myDrawBuffers[theTexture]);
     glDrawBuffers(_myNumberOfAttachments, attachments);
     Graphics::checkError();
 }

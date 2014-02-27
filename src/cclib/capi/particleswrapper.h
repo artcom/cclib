@@ -39,14 +39,27 @@ namespace unity_plugin {
             void addForce(const std::string & forceType, std::string & identifier);
             void addEmitter(const std::string & emitterType, std::string & identifier);
             void addAnimation(const std::string & animationType);
-            void updateSimulation();
+            void updateSimulation(float theDeltaT);
            
             template<typename T>
             inline void setParameter(const std::string & componentName, const std::string & parameterName, T & value) {
                 _componentMap[componentName]->set<T>(parameterName, value);
             };
-            
+           
+            void setVector2fIndexParameter(const std::string & componentName, const std::string & parameterName, 
+                    float x, float y, int index) 
+            {
+                cclib::Vector2f vec(x, y);
+                _componentMap[componentName]->get<std::vector<cclib::Vector2f> >(parameterName)[index] = vec; 
+            };
+
+            void setComponentReference(const std::string & componentName, const std::string & parameterName, const std::string & referenceName) {
+                _componentMap[componentName]->set<cclib::Component::Ptr>(parameterName, _componentMap[referenceName]);
+            };
+
             void copyResults();
+            void setColorTexture(void* texturePointer);
+            void setInfoTexture(void* texturePointer);
 
         private:
             void setDefaultGraphicsState();
@@ -63,7 +76,9 @@ namespace unity_plugin {
 
             std::map<std::string, cclib::Component::Ptr> _componentMap;
     
-            GLuint _gltex;
+            GLuint _positionTexture;
+            GLuint _colorTexture;
+            GLuint _infoTexture;
     };
 }
 

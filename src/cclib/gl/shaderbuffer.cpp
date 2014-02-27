@@ -93,8 +93,10 @@ ShaderBuffer::numberOfBits() {
 
 void
 ShaderBuffer::beginDraw() {
+    Graphics::checkError();
     bindFBO();
     beginOrtho2D();
+    Graphics::checkError();
 }
 
 void
@@ -117,8 +119,10 @@ ShaderBuffer::endOrtho2D() {
 
 void
 ShaderBuffer::endDraw() {
+    Graphics::checkError();
     endOrtho2D();
     releaseFBO();
+    Graphics::checkError();
 }
 
 void

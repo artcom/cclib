@@ -25,29 +25,10 @@ _myPointsize(1)
     vfiles.push_back(indexed_display_vertex_glsl);
     ffiles.push_back(indexed_display_fragment_glsl);
     
-// 	vfiles.push_back(sorted_display_vertex_glsl);
-// 	ffiles.push_back(sorted_display_fragment_glsl);
-    
-    //    super(theParticles, theStart, theNumberParticles);
     _myShader = cclib::GLSLShader::create(vfiles, ffiles);
-//    _myShader->load();
 }
 
-//public CCGPUIndexedParticleRenderer(String theVertexShader, String theFragmentShader) {
-//    _myShader = new CCGLSLShader(theVertexShader, theFragmentShader);
-//    _myShader.load();
-//}
-//
-//public CCGPUIndexedParticleRenderer() {
-//    this(
-//         CCIOUtil.classPath(CCGPUDisplayShader.class, "shader/indexed/indexed_display_vertex.glsl"),
-//         CCIOUtil.classPath(CCGPUDisplayShader.class, "shader/indexed/indexed_display_fragment.glsl")
-//         );
-//}
-
 void cclib::GPUIndexedParticleRenderer::setup(cclib::GPUParticles* theParticles) {
-    
-    //printf("%s\n",__PRETTY_FUNCTION__);
     
     _myParticles = cclib::GPUParticlesPtr(theParticles);
     _myMesh = cclib::VBOMesh::create(GL_POINTS, _myParticles->size());
@@ -57,7 +38,6 @@ void cclib::GPUIndexedParticleRenderer::setup(cclib::GPUParticles* theParticles)
         for(int x = 0; x < theParticles->width();x++) {
             _myMesh->addVertex(x,y,0);
             _myMesh->addTextureCoords(
-//            _myParticles->renderer()->mesh()->addTextureCoords(
                             0,
                             ((float)x + 0.5f) / theParticles->width(),
                             ((float)y + 0.5f) / theParticles->height()

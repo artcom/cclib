@@ -93,20 +93,6 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
     }
 }
 
-// std::vector<GPUParticlePtr>
-// ParticleWaitingList::deadParticles() {
-//     return _myDeadParticles;
-// }
-//
-// void
-// ParticleWaitingList::reset() {
-//     _myDeadParticles.clear();
-//
-//     for(int i = 0; i < _myWaitLists.size(); i++) {
-//         _myWaitLists[i].clear();
-//     }
-// }
-
 GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles) :
     Component("emitter"),
     _myCurrentTime(0)
@@ -271,8 +257,8 @@ GPUIndexParticleEmitter::fillInfoData(BufferPtr theBuffer, std::vector<cclib::GP
         GPUParticlePtr myParticle = theParticles[i];
         theBuffer->data()[i * 4 + 0] = myParticle->age();
         theBuffer->data()[i * 4 + 1] = myParticle->lifeTime();
-        theBuffer->data()[i * 4 + 2] = myParticle->isPermanent() ? 1 : 0;//, myParticle.step();
-        theBuffer->data()[i * 4 + 3] = myParticle->step(); //, myParticle.step();
+        theBuffer->data()[i * 4 + 2] = myParticle->isPermanent() ? 1 : 0;
+        theBuffer->data()[i * 4 + 3] = myParticle->step(); 
     }
 }
 

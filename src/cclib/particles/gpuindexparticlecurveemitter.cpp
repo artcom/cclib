@@ -21,7 +21,8 @@
 #define MAX(x, y) ((y > x)?y:x)  
 
 cclib::GPUIndexParticleCurveEmitter::GPUIndexParticleCurveEmitter(cclib::GPUParticlesPtr theParticles, int theStart, int theNumberParticles) : 
-    cclib::GPUIndexParticleEmitter(theParticles, theStart,theNumberParticles),
+    cclib::GPUIndexParticleEmitter(theParticles, theStart, theNumberParticles),
+    _myNumberOfParticles(theNumberParticles),
     _myOffset(Property_<float>::create("offset", 1)),
     _myScale(Property_<float>::create("scale", 0.001)),
     _myOutputScale(Property_<float>::create("outputScale", 1)),
@@ -29,7 +30,7 @@ cclib::GPUIndexParticleCurveEmitter::GPUIndexParticleCurveEmitter(cclib::GPUPart
     _mySpeed(Property_<float>::create("speed", 0.09)),
     
     // emitting properties
-    _myParticlesPerSecond(Property_<float>::create("particlesPerSecond", 1800)),
+    _myParticlesPerSecond(Property_<float>::create("particlesPerSecond", 0.0167f)),
     _myVelocity(Property_<cclib::Vector3f>::create("velocity", Vector3f(0,0,0))),
     _myVelocitySpread(Property_<cclib::Vector3f>::create("velocitySpread", Vector3f(0,0,0))),
     _myPosition(Property_<cclib::Vector3f>::create("position", Vector3f(0,0,0))),
@@ -83,7 +84,7 @@ void cclib::GPUIndexParticleCurveEmitter::update(float theDeltaTime)
     _myCurveEmitShader->parameter(_myRadiusParameter, _myRadius->getValue<float>());
     
     // emit new particles
-    int numberOfParticles = MAX(0, static_cast<int>(_myParticlesPerSecond->getValue<float>() * theDeltaTime));
+    int numberOfParticles = MAX(0, static_cast<int>(_myParticlesPerSecond->getValue<float>() * _myNumberOfParticles * theDeltaTime));
     
     cclib::Vector3f velocity = _myVelocity->getValue<Vector3f>();
     cclib::Vector3f velocitySpread = _myVelocitySpread->getValue<Vector3f>();

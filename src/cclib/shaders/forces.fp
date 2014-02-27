@@ -150,6 +150,48 @@ struct NoiseForceField : Force{
 };
 */
 
+struct PointCurveForceFieldFollow : Force {
+	float strength;
+	float prediction;
+	
+	float radius;
+	float outputScale;
+	sampler2D curveData;
+	
+	float minX;
+	float rangeX;
+	
+	float3 curveAtPoint(float x){
+		float relativeX = (x - minX) / rangeX;
+		float3 myOut = tex2D(curveData, float2(relativeX, 0.5));
+		myOut.yz *= outputScale;
+		return myOut;
+	}
+	
+	float3 flowAtPoint(float3 position) {
+		float3 result = float3(0,0,0);
+		
+		float3 myCurvePoint = curveAtPoint(position.x);
+		float curveDistance = distance(myCurvePoint, position);
+		
+		if(curveDistance > radius * 2) {
+			result = (myCurvePoint - position) / curveDistance;
+		} else if(curveDistance > radius && curveDistance <= radius * 2) {
+			float blend = (curveDistance - radius) / radius;
+			result = result * (1 - blend) + (myCurvePoint-position) / curveDistance * blend;
+		}
+	
+		return result;
+	}
+	
+	float3 force(float3 thePosition, float3 theVelocity, float2 theTexID, float theDeltaTime) {
+		float3 futurePosition = thePosition + theVelocity * prediction;
+		float3 result = flowAtPoint(futurePosition) * strength;
+		return result;
+	}
+};
+
+
 struct CurveForceFieldFollow : Force{
 	float strength;
 	float prediction;

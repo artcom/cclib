@@ -39,7 +39,9 @@ namespace cclib {
         Property_<float>::Ptr _myLifetime;
         Property_<float>::Ptr _myLifetimeSpread;
         Property_<float>::Ptr _myParticlesPerSecond;
-        
+       
+        int _myNumberOfParticles;
+
     public:
         GPUIndexParticleCurveEmitter(cclib::GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
         

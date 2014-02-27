@@ -39,6 +39,9 @@ extern "C" {
     int cclib_updateParameterFloat(char * componentName, char * parameterName, float parameterValue);
     int cclib_updateParameterVector3(char * componentName, char * parameterName, float x, float y, float z);
     int cclib_updateParameterInt(char * componentName, char * parameterName, float parameterValue);
+    int cclib_updateParameterVectorOfVector2(char * componentName, char * parameterName, 
+                 float x, float y, int index); 
+    int cclib_updateParameterComponentReference(char * componentName, char * parameterName, char * referenceName);
     
     int cclib_addForce(char * forceName, char * instanceName);
     int cclib_addEmitter(char * emitterName, char * instanceName);
@@ -46,6 +49,11 @@ extern "C" {
     int cclib_runParticleSystem();
     int cclib_updateSimulation();
     int cclib_copyResults(); // copy simulation results into an external opengl texture id
+
+    int cclib_setInfoTexture(void* texturePointer);
+    int cclib_setColorTexture(void* texturePointer);
+
+    int cclib_setSimulationTime(float theDeltaTime);
 
     // Unity specifics
     void SetDebugFunction(FuncPtr fp); 

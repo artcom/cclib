@@ -21,17 +21,20 @@
 #include <particles/gpuforcefield.h>
 #include <particles/gpuattractor.h>
 #include <particles/gpucurvefield.h>
+#include <particles/gpucurveline.h>
 
 // the emitters
-#include <particles/gpuindexparticleemitter.h>
+#include <particles/gpusimpleemitter.h>
 #include <particles/gpuindexparticlecurveemitter.h>
+#include <particles/gpucurvelineemitter.h>
 
 using namespace unity_plugin;
 using namespace cclib;
 
 ParticlesWrapper::ParticlesWrapper():
     _forces(), _emitters(), _emittersToCreate(),
-    _particleSystem(), _gltex(0), _componentMap()
+    _particleSystem(), _componentMap(),
+    _positionTexture(0), _infoTexture(0), _colorTexture(0)
 {
 }
 
@@ -45,6 +48,16 @@ ParticlesWrapper::setDefaultGraphicsState()
     glDepthFunc (GL_LEQUAL);
     glEnable (GL_DEPTH_TEST);
     glDepthMask (GL_FALSE);
+}
+
+void
+ParticlesWrapper::setColorTexture(void* texturePointer) {
+    _colorTexture = (GLuint)(size_t)(texturePointer); 
+}
+
+void
+ParticlesWrapper::setInfoTexture(void* texturePointer) {
+    _infoTexture = (GLuint)(size_t)(texturePointer); 
 }
 
 void
@@ -62,8 +75,8 @@ ParticlesWrapper::setup(void* texturePointer) {
     std::vector<GPUConstraintPtr> myConstraints;
     std::vector<GPUImpulsePtr> myImpulses;
     
-    _gltex = (GLuint)(size_t)(texturePointer);
-    glBindTexture (GL_TEXTURE_2D, _gltex);
+    _positionTexture = (GLuint)(size_t)(texturePointer);
+    glBindTexture (GL_TEXTURE_2D, _positionTexture);
     
     int texWidth, texHeight;
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &texWidth);
@@ -112,6 +125,7 @@ ParticlesWrapper::createForceFromString(const std::string & forceType) {
     if (forceType == "viscousdrag") return GPUViscousDrag::create();
     if (forceType == "attractor") return GPUAttractor::create();
     if (forceType == "curvefield") return GPUCurveField::create();
+    if (forceType == "curveline") return GPUCurveLine::create();
     
     throw new cclib::Exception("unknown force type.");
 }
@@ -129,7 +143,8 @@ ParticlesWrapper::addForce(const std::string & forceType, std::string & identifi
 
 GPUIndexParticleEmitterPtr
 ParticlesWrapper::createEmitterFromString(const std::string & emitterType, unsigned int texWidth, unsigned int texHeight) {
-    if (emitterType == "indexparticleemitter") return GPUIndexParticleEmitter::create(_particleSystem, 0, texWidth*texHeight);
+    if (emitterType == "simpleemitter") return GPUSimpleEmitter::create(_particleSystem, 0, texWidth*texHeight);
+    if (emitterType == "curvelineemitter") return GPUCurveLineEmitter::create(_particleSystem, 0, texWidth*texHeight);
     if (emitterType == "indexparticlecurveemitter") return GPUIndexParticleCurveEmitter::create(_particleSystem, 0, texWidth*texHeight);
     
     throw new cclib::Exception("unknown emitter type.");
@@ -146,7 +161,7 @@ ParticlesWrapper::addAnimation(const std::string & animationType) {
 }
 
 void
-ParticlesWrapper::updateSimulation() {
+ParticlesWrapper::updateSimulation(float theDeltaT) {
     glDisable (GL_BLEND);
     glDisable (GL_ALPHA_TEST);
     glDepthFunc (GL_LEQUAL);
@@ -155,10 +170,10 @@ ParticlesWrapper::updateSimulation() {
     glPointSize(1.0);
    
     // GPUIndexParticleCurveEmitterPtr e = std::tr1::dynamic_pointer_cast<GPUIndexParticleCurveEmitter>(_emitters[0]);
-    // e->update(1.0f/60.0f);
+    // e->update(theDeltaT);
     
     cclib::Graphics::noTexture();
-    _particleSystem->update(1.0f/60.0f);
+    _particleSystem->update(theDeltaT);
     
     glEnable(GL_POINT_SMOOTH);
     glEnable (GL_DEPTH_TEST);
@@ -169,9 +184,9 @@ void
 ParticlesWrapper::copyResults() {
     glEnable (GL_BLEND);
     glBlendFunc (GL_ONE, GL_ONE);
-    
+   
     _particleSystem->dataBuffer()->bindFBO(0);
-    glBindTexture (GL_TEXTURE_2D, _gltex);
+    glBindTexture (GL_TEXTURE_2D, _positionTexture);
     
     int texWidth, texHeight;
     glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &texWidth);
@@ -181,5 +196,27 @@ ParticlesWrapper::copyResults() {
     
     glBindTexture (GL_TEXTURE_2D, 0);
     _particleSystem->dataBuffer()->releaseFBO();
+    
+    Graphics::checkError();
+
+    if (_infoTexture != 0) {
+        _particleSystem->dataBuffer()->bindFBO(1);
+        glBindTexture (GL_TEXTURE_2D, _infoTexture);
+        glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, texWidth, texHeight);
+        glBindTexture (GL_TEXTURE_2D, 0);
+        _particleSystem->dataBuffer()->releaseFBO();
+    }
+    
+    Graphics::checkError();
+    
+    if (_colorTexture != 0) {
+        _particleSystem->dataBuffer()->bindFBO(3);
+        glBindTexture (GL_TEXTURE_2D, _colorTexture);
+        glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, texWidth, texHeight);
+        glBindTexture (GL_TEXTURE_2D, 0);
+        _particleSystem->dataBuffer()->releaseFBO();
+    }
+    
+    Graphics::checkError();
 }
 
