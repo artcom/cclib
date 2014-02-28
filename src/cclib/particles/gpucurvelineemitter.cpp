@@ -70,16 +70,15 @@ void cclib::GPUCurveLineEmitter::update(float theDeltaTime)
 
     float minX = _myMinX->getValue<float>();
     float maxX = _myMaxX->getValue<float>();
-    
     float radius = _myRadius->getValue<float>();
     cclib::Vector3f radiusOffset(0,0,0);
 
     cclib::Property::Ptr curvePoints = myCurveLine->getPropertyByName("curvePoints");
-    
+
     float curveMinX = myCurveLine->get<float>("minX");
     float curveMaxX = myCurveLine->get<float>("maxX");
     float outputScale = myCurveLine->get<float>("outputScale");
-    int curvePointsSize = curvePoints->getValue<std::vector<cclib::Vector2f> >().size();
+    std::vector<cclib::Vector2f> points = curvePoints->getValue<std::vector<cclib::Vector2f> >();
 
     for(int x = 0; x < numberOfParticles; x++) {
         
@@ -88,16 +87,15 @@ void cclib::GPUCurveLineEmitter::update(float theDeltaTime)
 
         // calculate where this position can be found in the curveLine list
 		float relativeX = (xPos - curveMinX) / (curveMaxX - curveMinX);
-        float index = ((float)curvePointsSize) * relativeX;
+        float index = ((float)points.size()) * relativeX;
 
         int i = (int) index;
         i = (i<0)?0:i;
-        i = (i>=curvePointsSize)?curvePointsSize-1:i;
+        i = (i>=points.size())?points.size()-1:i;
 
-        cclib::Vector2f pos2f = curvePoints->getValue<std::vector<cclib::Vector2f> >()[i];
-        pos2f.scale(1000); // outputScale);
-
-        cclib::Vector3f pos = cclib::Vector3f(xPos, pos2f.x(), pos2f.y());
+        cclib::Vector3f pos = cclib::Vector3f(xPos, 
+                points[i].x() * outputScale, points[i].y() * outputScale);
+        
         radiusOffset.randomize(radius);
 
         // velocity
