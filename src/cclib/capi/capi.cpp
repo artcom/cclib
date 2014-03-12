@@ -110,6 +110,21 @@ int cclib_updateParameterVectorOfVector2(char * componentName, char * parameterN
     return 0;
 }
 
+int cclib_updateParameterVectorOfVector3(char * componentName, char * parameterName, 
+       float x, float y, float z, int index) 
+{
+    try {
+        std::string name(componentName);
+        std::string pname(parameterName);
+        
+        // slow but simple.
+        _particlesWrapper->setVector3fIndexParameter(name, pname, x, y, z, index);
+    } catch (cclib::Exception & e) {
+        DebugLog(e.what());
+    }
+    return 0;
+}
+
 int cclib_setupParticleSystem(void* texturePointer) {
     try {
         _particlesWrapper->setup(texturePointer);

@@ -103,7 +103,7 @@ GPUCurveLine::update(float theDeltaTime) {
     float xStep = range / csize;
 
     for(int i=0; i<csize; i++) {
-        Graphics::textureCoords(0, x, points[i].x(), points[i].y());
+        Graphics::textureCoords(0, x, points[i].x(), points[i].y(), points[i].z());
         Graphics::vertex( i + 0.5f, 0.5f);
         x+=xStep;
     }

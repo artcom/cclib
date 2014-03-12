@@ -41,6 +41,8 @@ extern "C" {
     int cclib_updateParameterInt(char * componentName, char * parameterName, float parameterValue);
     int cclib_updateParameterVectorOfVector2(char * componentName, char * parameterName, 
                  float x, float y, int index); 
+    int cclib_updateParameterVectorOfVector3(char * componentName, char * parameterName, 
+                 float x, float y, float z, int index); 
     int cclib_updateParameterComponentReference(char * componentName, char * parameterName, char * referenceName);
     
     int cclib_addForce(char * forceName, char * instanceName);

@@ -52,6 +52,13 @@ namespace unity_plugin {
                 cclib::Vector2f vec(x, y);
                 _componentMap[componentName]->get<std::vector<cclib::Vector2f> >(parameterName)[index] = vec; 
             };
+            
+            void setVector3fIndexParameter(const std::string & componentName, const std::string & parameterName, 
+                    float x, float y, float z, int index) 
+            {
+                cclib::Vector3f vec(x, y, z);
+                _componentMap[componentName]->get<std::vector<cclib::Vector3f> >(parameterName)[index] = vec; 
+            };
 
             void setComponentReference(const std::string & componentName, const std::string & parameterName, const std::string & referenceName) {
                 _componentMap[componentName]->set<cclib::Component::Ptr>(parameterName, _componentMap[referenceName]);
