@@ -70,15 +70,15 @@ void cclib::GPUCurveLineEmitter::update(float theDeltaTime)
 
     float minX = _myMinX->getValue<float>();
     float maxX = _myMaxX->getValue<float>();
-    float radius = _myRadius->getValue<float>();
-    cclib::Vector3f radiusOffset(0,0,0);
+    // float radius = // _myRadius->getValue<float>();
+    cclib::Vector3f radiusOffset(0, 0, 0);
 
     cclib::Property::Ptr curvePoints = myCurveLine->getPropertyByName("curvePoints");
 
     float curveMinX = myCurveLine->get<float>("minX");
     float curveMaxX = myCurveLine->get<float>("maxX");
     float outputScale = myCurveLine->get<float>("outputScale");
-    std::vector<cclib::Vector2f> points = curvePoints->getValue<std::vector<cclib::Vector2f> >();
+    std::vector<cclib::Vector3f> points = curvePoints->getValue<std::vector<cclib::Vector3f> >();
 
     for(int x = 0; x < numberOfParticles; x++) {
         
@@ -93,6 +93,7 @@ void cclib::GPUCurveLineEmitter::update(float theDeltaTime)
         i = (i<0)?0:i;
         i = (i>=points.size())?points.size()-1:i;
 
+        float radius = points[i].z();
         cclib::Vector3f pos = cclib::Vector3f(xPos, 
                 points[i].x() * outputScale, points[i].y() * outputScale);
         

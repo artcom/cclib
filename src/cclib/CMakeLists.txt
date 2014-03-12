@@ -96,6 +96,7 @@ set(SOURCES
     particles/gpuparticlesort.cpp
     particles/gpuindexparticleemitter.cpp
     particles/gpusimpleemitter.cpp
+    particles/gpupermanentblockemitter.cpp
     particles/gpucurvelineemitter.cpp
     particles/gpuindexparticlecurveemitter.cpp
     particles/gpuparticlepointrenderer.cpp
@@ -154,6 +155,7 @@ set(HEADERS
     particles/gpuparticle.h
     particles/gpuparticlesort.h
     particles/gpusimpleemitter.h
+    particles/gpupermanentblockemitter.h
     particles/gpucurvelineemitter.h
     particles/gpuindexparticleemitter.h
     particles/gpuindexparticlecurveemitter.h

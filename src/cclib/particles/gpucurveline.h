@@ -17,7 +17,7 @@ class GPUCurveLine: public GPUForce {
         Property_<float>::Ptr _myMinX;
         Property_<float>::Ptr _myMaxX;
         Property_<float>::Ptr _myOutputScale;
-        Property_<std::vector<cclib::Vector2f> >::Ptr _myCurvePoints;
+        Property_<std::vector<cclib::Vector3f> >::Ptr _myCurvePoints;
         
         CGparameter _myPredictionParameter;
         CGparameter _myRadiusParameter;

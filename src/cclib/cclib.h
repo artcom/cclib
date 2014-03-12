@@ -123,6 +123,9 @@ typedef std::tr1::shared_ptr<GPUIndexParticleCurveEmitter> GPUIndexParticleCurve
 class GPUSimpleEmitter;
 typedef std::tr1::shared_ptr<GPUSimpleEmitter> GPUSimpleEmitterPtr;
 
+class GPUPermanentBlockEmitter;
+typedef std::tr1::shared_ptr<GPUPermanentBlockEmitter> GPUPermanentBlockEmitterPtr;
+
 class GPUCurveLineEmitter;
 typedef std::tr1::shared_ptr<GPUCurveLineEmitter> GPUCurveLineEmitterPtr;
 		

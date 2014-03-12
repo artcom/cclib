@@ -28,12 +28,12 @@ GPUCurveLine::GPUCurveLine() :
     _myCurveData(),
     _myInitValueShader()
 {
-    std::vector<cclib::Vector2f> points;
+    std::vector<cclib::Vector3f> points;
     for (int i=0; i<SAMPLES; i++) {
-        points.push_back( cclib::Vector2f(i, 0) );
+        points.push_back( cclib::Vector3f(i, 0, 1) );
     }
     
-    _myCurvePoints = Property_< std::vector<cclib::Vector2f> >::create("curvePoints", points);
+    _myCurvePoints = Property_< std::vector<cclib::Vector3f> >::create("curvePoints", points);
     
     registerProperty(_myPrediction);
     registerProperty(_myRadius);
@@ -93,7 +93,7 @@ GPUCurveLine::update(float theDeltaTime) {
     
     Graphics::beginShape(GL_POINTS);
     
-    std::vector<cclib::Vector2f> points = _myCurvePoints->getValue<std::vector<cclib::Vector2f> >();
+    std::vector<cclib::Vector3f> points = _myCurvePoints->getValue<std::vector<cclib::Vector3f> >();
     int csize = points.size();
 
     float minX = _myMinX->getValue<float>();
