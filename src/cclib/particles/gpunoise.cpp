@@ -83,7 +83,7 @@ GPUNoise::get() {
 }
 
 void 
-GPUNoise::attachFragmentNoise(CGShader * theShader) {
+GPUNoise::attachFragmentNoise(CGShaderPtr theShader) {
     CGparameter myPermTextureParam = theShader->fragmentParameter("permTexture");
     CGparameter mySimplexTextureParam = theShader->fragmentParameter("simplexTexture");
     CGparameter myGradTextureParam = theShader->fragmentParameter("gradTexture");
@@ -98,7 +98,7 @@ GPUNoise::attachFragmentNoise(CGShader * theShader) {
 }
 
 void 
-GPUNoise::attachVertexNoise(CGShader * theShader) {
+GPUNoise::attachVertexNoise(CGShaderPtr theShader) {
     CGparameter myPermTextureParam = theShader->vertexParameter("permTexture");
     CGparameter mySimplexTextureParam = theShader->vertexParameter("simplexTexture");
     CGparameter myGradTextureParam = theShader->vertexParameter("gradTexture");

@@ -260,7 +260,7 @@ Graphics::texture(unsigned int theTextureUnit, TexturePtr theTexture) {
 void
 Graphics::texture(TexturePtr theTexture) {
 
-    if(theTexture == NULL)
+    if(!theTexture)
     {
         _myTextures[0] = TexturePtr();
         return;

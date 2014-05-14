@@ -1187,7 +1187,7 @@ namespace cclib {
     };
     
     typedef Matrix4<float> Matrix4f;
-    typedef std::tr1::shared_ptr< Matrix4<float> > Matrix4fPtr;
+    typedef CC_PTR< Matrix4<float> > Matrix4fPtr;
     
 }; // namespace cclib
 

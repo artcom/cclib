@@ -4,7 +4,6 @@
 #include <math.h>
 #include <math/math.h>
 #include <iostream>
-#include <tr1/memory>
 #include "simplexnoise.h"
 
 namespace cclib {
@@ -18,7 +17,7 @@ template<typename T>
 class Vector3 {
     
     public:
-        typedef std::tr1::shared_ptr<Vector3<T> > Ptr;
+        typedef CC_PTR<Vector3<T> > Ptr;
         
         /**
          * Initializes a new vector by setting x and y to 0
@@ -308,9 +307,9 @@ typedef Vector3<float> Vector3f;
 typedef Vector3<double> Vector3d;
 typedef Vector3<int> Vector3i;
 
-typedef std::tr1::shared_ptr< Vector3f > Vector3fPtr;
-typedef std::tr1::shared_ptr< Vector3d > Vector3dPtr;
-typedef std::tr1::shared_ptr< Vector3i > Vector3iPtr;
+typedef CC_PTR< Vector3f > Vector3fPtr;
+typedef CC_PTR< Vector3d > Vector3dPtr;
+typedef CC_PTR< Vector3i > Vector3iPtr;
 
 } // namespace cclib
 

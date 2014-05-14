@@ -17,7 +17,7 @@
 namespace cclib {
     
     class GeometryBuffer;
-    typedef std::tr1::shared_ptr<GeometryBuffer> GeometryBufferPtr;
+    typedef CC_PTR<GeometryBuffer> GeometryBufferPtr;
     
     class GeometryBuffer
     {
@@ -25,11 +25,8 @@ namespace cclib {
 //        #define NORMALS 1
 //        #define COLORS 2
         
-//        cclib::RenderBufferPtr _myRenderTexture; use framebuffer instead
         cclib::FrameBufferObjectPtr _myRenderTexture;
         cclib::GLSLShaderPtr _myShader;
-        
-//        private CCGraphics _myGraphics;
         
         int _myWidth;
         int _myHeight;
@@ -47,17 +44,8 @@ namespace cclib {
         void updateMatrix();
         void updateMatrix(const std::vector<float>& matrix);
         void updateMatrix(const float* matrix);
-        
-//        CCMatrix4f inverseView(){
-//            _myRenderTexture.camera().updateProjectionInfos();
-//            return _myRenderTexture.camera().viewMatrix().invert();
-//        }
     
         void endDraw();
-    
-//        public CCRenderBuffer data() {
-//            return _myRenderTexture;
-//        }
     
         int width() { return _myWidth; };
         int height() { return _myHeight; }; 
@@ -76,8 +64,6 @@ namespace cclib {
         {
             return _myRenderTexture->attachment(2);
         }
-        
-        
     };
     
 }; // namespace cclib

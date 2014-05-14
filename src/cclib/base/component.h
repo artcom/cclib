@@ -18,8 +18,8 @@ namespace cclib
     class Component
     {
     public:
-        typedef std::tr1::shared_ptr<Component> Ptr;
-        typedef std::tr1::shared_ptr<const Component> ConstPtr;
+        typedef CC_PTR<Component> Ptr;
+        typedef CC_PTR<const Component> ConstPtr;
 
         Component(const std::string &theName = "Component");
         virtual ~Component();

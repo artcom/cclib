@@ -7,8 +7,8 @@ namespace cclib {
 
 // class FloatBuffer; // XXX
 
-class GPUParticle;
-typedef std::tr1::shared_ptr<GPUParticle> GPUParticlePtr;
+// class GPUParticle;
+// typedef std::tr1::shared_ptr<GPUParticle> GPUParticlePtr;
 
 class GPUParticles {
 
@@ -42,7 +42,11 @@ class GPUParticles {
 	
 	    GPUParticles( GPUParticleRendererPtr theRender,
 		    std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints, 
-		    std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight); 
+		    std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight);
+
+        void setup( GPUParticlesPtr theThis, GPUParticleRendererPtr theRender,
+                    std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints,
+                    std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight);
     
     public:
         static GPUParticlesPtr create( GPUParticleRendererPtr theRender,

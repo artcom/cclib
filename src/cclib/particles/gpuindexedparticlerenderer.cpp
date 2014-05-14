@@ -28,7 +28,7 @@ _myPointsize(1)
     _myShader = cclib::GLSLShader::create(vfiles, ffiles);
 }
 
-void cclib::GPUIndexedParticleRenderer::setup(cclib::GPUParticles* theParticles) {
+void cclib::GPUIndexedParticleRenderer::setup(cclib::GPUParticlesPtr theParticles) {
     
     _myParticles = cclib::GPUParticlesPtr(theParticles);
     _myMesh = cclib::VBOMesh::create(GL_POINTS, _myParticles->size());

@@ -162,8 +162,10 @@ ShaderBufferPtr
 ShaderBuffer::create(unsigned int theWidth, unsigned int theHeight, int theNumberOfBits,
         int theNumberOfChannels, int theNumberOfTextures, GLenum theTarget)
 {
+    Graphics::checkError();
     FrameBufferObjectAttributesPtr attributes = createAttributes(theNumberOfBits, theNumberOfChannels, theNumberOfTextures);
     ShaderBufferPtr shaderTex = ShaderBufferPtr(new ShaderBuffer(theWidth, theHeight, attributes, theTarget));
+    Graphics::checkError();
 
     return shaderTex;
 }
@@ -172,12 +174,14 @@ ShaderBuffer::ShaderBuffer ( unsigned int theWidth, unsigned int theHeight,
         FrameBufferObjectAttributesPtr theAttributes, GLenum theTarget) :
     FrameBufferObject(theTarget, theAttributes, theWidth, theHeight)
 {
+    Graphics::checkError();
     _numberOfChannels = theAttributes->numberOfChannels;
     _numberOfBits = theAttributes->numberOfBits;
 
     _pbo = std::vector<PBOPtr>();
     _pbo.push_back(PBO::create(_numberOfChannels * theWidth * theHeight * (_numberOfBits == 16 ? 2 : 4)));
     _pbo.push_back(PBO::create(_numberOfChannels * theWidth * theHeight * (_numberOfBits == 16 ? 2 : 4)));
+    Graphics::checkError();
 }
 
 

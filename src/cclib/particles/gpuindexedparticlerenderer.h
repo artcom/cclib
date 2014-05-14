@@ -33,7 +33,7 @@ namespace cclib {
             return cclib::GPUIndexedParticleRendererPtr(new cclib::GPUIndexedParticleRenderer());
         };
         
-        virtual void setup(cclib::GPUParticles* theParticles);
+        virtual void setup(cclib::GPUParticlesPtr theParticles);
         virtual void update(float theDeltaTime);
         virtual void draw();
         

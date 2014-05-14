@@ -1,6 +1,14 @@
 #ifndef __CCLIB_HEADER_DEFINED__
 #define __CCLIB_HEADER_DEFINED__
 
+#ifdef USE_TR1
+#include <tr1/memory>
+#define CC_PTR std::tr1::shared_ptr
+#else
+#include <memory>
+#define CC_PTR std::shared_ptr
+#endif
+
 #include <math.h>
 #include <cstdio>
 #include <string>
@@ -25,163 +33,166 @@
 namespace cclib {
 
 class FrameBufferObjectAttributes;
-typedef std::tr1::shared_ptr<FrameBufferObjectAttributes> FrameBufferObjectAttributesPtr; 
+typedef CC_PTR<FrameBufferObjectAttributes> FrameBufferObjectAttributesPtr; 
 
 class FrameBufferObject; 
-typedef std::tr1::shared_ptr<FrameBufferObject> FrameBufferObjectPtr; 
+typedef CC_PTR<FrameBufferObject> FrameBufferObjectPtr; 
 
 class PixelStorageModes;
-typedef std::tr1::shared_ptr<PixelStorageModes> PixelStorageModesPtr;
+typedef CC_PTR<PixelStorageModes> PixelStorageModesPtr;
 
 class CGShader;
-typedef std::tr1::shared_ptr<CGShader> CGShaderPtr;
+typedef CC_PTR<CGShader> CGShaderPtr;
 
 class GLSLShader;
-typedef std::tr1::shared_ptr<GLSLShader> GLSLShaderPtr;
+typedef CC_PTR<GLSLShader> GLSLShaderPtr;
     
 class PBO;
-typedef std::tr1::shared_ptr<PBO> PBOPtr;
+typedef CC_PTR<PBO> PBOPtr;
 
 class ShaderBuffer;
-typedef std::tr1::shared_ptr<ShaderBuffer> ShaderBufferPtr;
+typedef CC_PTR<ShaderBuffer> ShaderBufferPtr;
 
 class RenderBuffer;
-typedef std::tr1::shared_ptr<RenderBuffer> RenderBufferPtr;
+typedef CC_PTR<RenderBuffer> RenderBufferPtr;
 
 class Camera;
-typedef std::tr1::shared_ptr<Camera> CameraPtr;
+typedef CC_PTR<Camera> CameraPtr;
 
 class Viewport;
-typedef std::tr1::shared_ptr<Viewport> ViewportPtr;
+typedef CC_PTR<Viewport> ViewportPtr;
 
 class TextureAttributes; 
-typedef std::tr1::shared_ptr<TextureAttributes> TextureAttributesPtr; 
+typedef CC_PTR<TextureAttributes> TextureAttributesPtr; 
 
 class Texture;
-typedef std::tr1::shared_ptr<Texture> TexturePtr;
+typedef CC_PTR<Texture> TexturePtr;
 
 class TextureData;
-typedef std::tr1::shared_ptr<TextureData> TextureDataPtr;
+typedef CC_PTR<TextureData> TextureDataPtr;
 
 class Color;
-typedef std::tr1::shared_ptr<Color> ColorPtr; 
+typedef CC_PTR<Color> ColorPtr; 
 
 class Texture2D;
-typedef std::tr1::shared_ptr<Texture2D> Texture2DPtr;
+typedef CC_PTR<Texture2D> Texture2DPtr;
 
 class GPUUpdateShader;
-typedef std::tr1::shared_ptr<GPUUpdateShader> GPUUpdateShaderPtr;
+typedef CC_PTR<GPUUpdateShader> GPUUpdateShaderPtr;
 
 class GPUParticles;
-typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
+typedef CC_PTR<GPUParticles> GPUParticlesPtr;
 
 class GPUParticle;
-typedef std::tr1::shared_ptr<GPUParticle> GPUParticlePtr;
+typedef CC_PTR<GPUParticle> GPUParticlePtr;
 
 class GPUForce;
-typedef std::tr1::shared_ptr<GPUForce> GPUForcePtr;
+typedef CC_PTR<GPUForce> GPUForcePtr;
 
 class GPUConstraint;
-typedef std::tr1::shared_ptr<GPUConstraint> GPUConstraintPtr;
+typedef CC_PTR<GPUConstraint> GPUConstraintPtr;
 
 class GPUImpulse;
-typedef std::tr1::shared_ptr<GPUImpulse> GPUImpulsePtr;
+typedef CC_PTR<GPUImpulse> GPUImpulsePtr;
 
 class GPUParticleEmitter;
-typedef std::tr1::shared_ptr<GPUParticleEmitter> GPUParticleEmitterPtr;
+typedef CC_PTR<GPUParticleEmitter> GPUParticleEmitterPtr;
 
 class GPUParticleRenderer;
-typedef std::tr1::shared_ptr<GPUParticleRenderer> GPUParticleRendererPtr;
+typedef CC_PTR<GPUParticleRenderer> GPUParticleRendererPtr;
 
 class GPUNoise;
-typedef std::tr1::shared_ptr<GPUNoise> GPUNoisePtr;
+typedef CC_PTR<GPUNoise> GPUNoisePtr;
 
 class Mesh;
-typedef std::tr1::shared_ptr<Mesh> MeshPtr;
+typedef CC_PTR<Mesh> MeshPtr;
 
 class VBOMesh;
-typedef std::tr1::shared_ptr<VBOMesh> VBOMeshPtr;
+typedef CC_PTR<VBOMesh> VBOMeshPtr;
 
 class BufferObject;
-typedef std::tr1::shared_ptr<BufferObject> BufferObjectPtr;
+typedef CC_PTR<BufferObject> BufferObjectPtr;
 
 class Buffer;
-typedef std::tr1::shared_ptr<Buffer> BufferPtr;
+typedef CC_PTR<Buffer> BufferPtr;
     
 class ParticleWaitingList;
-typedef std::tr1::shared_ptr<ParticleWaitingList> ParticleWaitingListPtr;
+typedef CC_PTR<ParticleWaitingList> ParticleWaitingListPtr;
 
 class GPUIndexParticleEmitter;
-typedef std::tr1::shared_ptr<GPUIndexParticleEmitter> GPUIndexParticleEmitterPtr;
+typedef CC_PTR<GPUIndexParticleEmitter> GPUIndexParticleEmitterPtr;
+
+class GPUDummyRenderer;
+typedef CC_PTR<GPUDummyRenderer> GPUDummyRendererPtr;
 
 class GPUIndexedParticleRenderer;
-typedef std::tr1::shared_ptr<GPUIndexedParticleRenderer> GPUIndexedParticleRendererPtr;
+typedef CC_PTR<GPUIndexedParticleRenderer> GPUIndexedParticleRendererPtr;
 	
 class GPUIndexParticleCurveEmitter;
-typedef std::tr1::shared_ptr<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
+typedef CC_PTR<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
 
 class GPUSimpleEmitter;
-typedef std::tr1::shared_ptr<GPUSimpleEmitter> GPUSimpleEmitterPtr;
+typedef CC_PTR<GPUSimpleEmitter> GPUSimpleEmitterPtr;
 
 class GPUPermanentBlockEmitter;
-typedef std::tr1::shared_ptr<GPUPermanentBlockEmitter> GPUPermanentBlockEmitterPtr;
+typedef CC_PTR<GPUPermanentBlockEmitter> GPUPermanentBlockEmitterPtr;
 
 class GPUCurveLineEmitter;
-typedef std::tr1::shared_ptr<GPUCurveLineEmitter> GPUCurveLineEmitterPtr;
+typedef CC_PTR<GPUCurveLineEmitter> GPUCurveLineEmitterPtr;
 		
 class GPUParticlePointRenderer;
-typedef std::tr1::shared_ptr<GPUParticlePointRenderer> GPUParticlePointRendererPtr;
+typedef CC_PTR<GPUParticlePointRenderer> GPUParticlePointRendererPtr;
 
 class GPUDisplayShader;
-typedef std::tr1::shared_ptr<GPUDisplayShader> GPUDisplayShaderPtr;
+typedef CC_PTR<GPUDisplayShader> GPUDisplayShaderPtr;
 
 class GPUForceField;
-typedef std::tr1::shared_ptr<GPUForceField> GPUForceFieldPtr;
+typedef CC_PTR<GPUForceField> GPUForceFieldPtr;
 
 class GPUCurveField;
-typedef std::tr1::shared_ptr<GPUCurveField> GPUCurveFieldPtr;
+typedef CC_PTR<GPUCurveField> GPUCurveFieldPtr;
 
 class GPUCurveLine;
-typedef std::tr1::shared_ptr<GPUCurveLine> GPUCurveLinePtr;
+typedef CC_PTR<GPUCurveLine> GPUCurveLinePtr;
 
 class GPUGravity;
-typedef std::tr1::shared_ptr<GPUGravity> GPUGravityPtr;
+typedef CC_PTR<GPUGravity> GPUGravityPtr;
 
 class GPUAttractor;
-typedef std::tr1::shared_ptr<GPUAttractor> GPUAttractorPtr;
+typedef CC_PTR<GPUAttractor> GPUAttractorPtr;
 
 class GPUViscousDrag;
-typedef std::tr1::shared_ptr<GPUViscousDrag> GPUViscousDragPtr;
+typedef CC_PTR<GPUViscousDrag> GPUViscousDragPtr;
 
 class GPUCombinedForce;
-typedef std::tr1::shared_ptr<GPUCombinedForce> GPUCombinedForcePtr;
+typedef CC_PTR<GPUCombinedForce> GPUCombinedForcePtr;
 
 class GPUTargetForce;
-typedef std::tr1::shared_ptr<GPUTargetForce> GPUTargetForcePtr;
+typedef CC_PTR<GPUTargetForce> GPUTargetForcePtr;
     
 class GPUTargetSetup;
-typedef std::tr1::shared_ptr<GPUTargetSetup> GPUTargetSetupPtr;
+typedef CC_PTR<GPUTargetSetup> GPUTargetSetupPtr;
     
 class GPUTimeForceBlend;
-typedef std::tr1::shared_ptr<GPUTimeForceBlend> GPUTimeForceBlendPtr;
+typedef CC_PTR<GPUTimeForceBlend> GPUTimeForceBlendPtr;
 
 class GPUYForceBlend;
-typedef std::tr1::shared_ptr<GPUYForceBlend> GPUYForceBlendPtr;
+typedef CC_PTR<GPUYForceBlend> GPUYForceBlendPtr;
     
 class GPUBloom;
-typedef std::tr1::shared_ptr<GPUBloom> GPUBloomPtr;
+typedef CC_PTR<GPUBloom> GPUBloomPtr;
 	
 class SeparateGaussianBlur;
-typedef std::tr1::shared_ptr<SeparateGaussianBlur> SeparateGaussianBlurPtr;
+typedef CC_PTR<SeparateGaussianBlur> SeparateGaussianBlurPtr;
 
 class GPUParticleSort;
-typedef std::tr1::shared_ptr<GPUParticleSort> GPUParticleSortPtr;
+typedef CC_PTR<GPUParticleSort> GPUParticleSortPtr;
 	
 class GPUParticles;
-typedef std::tr1::shared_ptr<GPUParticles> GPUParticlesPtr;
+typedef CC_PTR<GPUParticles> GPUParticlesPtr;
 
 class GPUPlaneConstraint;
-typedef std::tr1::shared_ptr<GPUPlaneConstraint> GPUPlaneConstraintPtr;
+typedef CC_PTR<GPUPlaneConstraint> GPUPlaneConstraintPtr;
 	
 class Exception: public std::runtime_error
 {

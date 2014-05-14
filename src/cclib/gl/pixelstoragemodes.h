@@ -1,7 +1,6 @@
 #ifndef __CCLIB_PIXELSTORAGEMODES_INCLUDED__
 #define __CCLIB_PIXELSTORAGEMODES_INCLUDED__
 
-#include <tr1/memory>
 #include <GL/glew.h>
 
 namespace cclib {

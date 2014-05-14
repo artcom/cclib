@@ -21,15 +21,13 @@ _myPointsize(1)
 
 }
 
-#warning GPUParticleRenderer::setup() -> OHNE smart pointer ;(
-
-void cclib::GPUSortedParticleRenderer::setup(cclib::GPUParticles* theParticles)
+void cclib::GPUSortedParticleRenderer::setup(cclib::GPUParticlesPtr theParticles)
 {
     printf("%s\n\tsize %d\n",__PRETTY_FUNCTION__, theParticles->size());
 
 //     cclib::GPUIndexedParticleRenderer::setup(theParticles);
 
-	_myParticles = cclib::GPUParticlesPtr(theParticles);
+	_myParticles = theParticles;
     _myMesh = cclib::VBOMesh::create(GL_POINTS, _myParticles->size());
     _myMesh->prepareVertexData(_myParticles->size(), 3);
 
@@ -46,9 +44,7 @@ void cclib::GPUSortedParticleRenderer::setup(cclib::GPUParticles* theParticles)
 
 	_mySort = cclib::GPUParticleSort::create(theParticles);
 
-
 	// prepare color buffer
-
     _myColorBuffer = cclib::ShaderBuffer::create(_myParticles->width(), _myParticles->height()
                                                  //,CCTextureTarget.TEXTURE_RECT
                                                  );

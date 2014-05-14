@@ -7,7 +7,11 @@
 // capi calls to simplify binding to other languages
 
 unity_plugin::ParticlesWrapperPtr _particlesWrapper;
-FuncPtr DebugLog = NULL;
+
+StringFuncPtr DebugLog = ToStdOut;
+VoidFuncPtr InitializeFunction = Pass;
+VoidFuncPtr UpdateParameterFunction = Pass;
+
 float _deltaT = 0.016667f;
 
 // setup base particle system
@@ -125,18 +129,18 @@ int cclib_updateParameterVectorOfVector3(char * componentName, char * parameterN
     return 0;
 }
 
-int cclib_setupParticleSystem(void* texturePointer) {
+int cclib_setupParticleSystem(void* texture) {
     try {
-        _particlesWrapper->setup(texturePointer);
+        _particlesWrapper->setup(texture);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 };
 
-int cclib_setInfoTexture(void* texturePointer) {
+int cclib_setInfoTexture(void* texture) {
     try {
-        _particlesWrapper->setInfoTexture(texturePointer);
+        _particlesWrapper->setInfoTexture(texture);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
@@ -144,9 +148,9 @@ int cclib_setInfoTexture(void* texturePointer) {
     return 0;
 };
 
-int cclib_setColorTexture(void* texturePointer) {
+int cclib_setColorTexture(void* texture) {
     try {
-        _particlesWrapper->setColorTexture(texturePointer);
+        _particlesWrapper->setColorTexture(texture);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
@@ -187,15 +191,37 @@ int cclib_setSimulationTime(float theDeltaTime) {
     return 0;
 }
 
-
-void SetDebugFunction(FuncPtr fp) {
+void SetDebugFunction(StringFuncPtr fp) {
     DebugLog = fp;
     DebugLog("Pointer set.");
 }
 
+void SetInitializeFunction(VoidFuncPtr fp) {
+    InitializeFunction = fp;
+    DebugLog("Initialization Function Pointer set.");
+}
+
+void SetUpdateParameterFunction(VoidFuncPtr fp) {
+    UpdateParameterFunction = fp;
+    DebugLog("UpdateParameter Function Pointer set.");
+}
+
+void ToStdOut(const char * message) {
+    std::cout << "Debug: " << message << std::endl;
+}
+
+void Pass() {
+}
+
 extern "C" void UnityRenderEvent (int eventID)
 {
-	cclib_updateSimulation();
+    // calls c# function to update the particle system parameters.
+    // It has to be done that way because the update must happen in the render thread, 
+    // which we can only access the the UnityRenderEvent function
+    //  InitializeFunction(); 
+    // UpdateParameterFunction();
+	
+    cclib_updateSimulation();
     cclib_copyResults();   
 }
 

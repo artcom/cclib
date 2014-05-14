@@ -19,10 +19,10 @@ class GPUCombinedForce : public GPUForce {
     
         void setupParameter(int theWidth, int theHeight);
     
-        void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
+        void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader,
                                 int theIndex, int theWidth, int theHeight);
     
-        void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
+        void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader,
                    std::string theIndex, int theWidth, int theHeight);
         void update(float theDeltaTime);
         void setSize(int theWidth, int theHeight);

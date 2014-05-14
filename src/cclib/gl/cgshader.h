@@ -17,7 +17,7 @@ class CGShader : public Shader {
         static CGShaderPtr create(const std::vector<std::string> & vertexShaderFiles, const std::vector<std::string> & fragmentShaderFiles, 
                 const std::string & vertexEntry = "main", const std::string & fragmentEntry = "main"); 
     
-        virtual ~CGShader() {};
+        virtual ~CGShader();
 
         void init( const std::vector<std::string> & vertexShaderFiles,
              const std::vector<std::string> & fragmentShaderFiles);
@@ -76,6 +76,7 @@ class CGShader : public Shader {
 	    CGprogram _fragmentProgram;
 
         std::set<CGparameter> _usedTextureParameters;
+        std::vector<CGparameter> _cgParameters;
 };
 
 }; // namespace

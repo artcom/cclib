@@ -11,7 +11,7 @@
 #include <gl/graphics.h>
 #include <particles/gpuparticles.h>
 #include <particles/gpuindexparticleemitter.h>
-#include <particles/gpuparticlepointrenderer.h>
+#include <particles/gpudummyrenderer.h>
 #include <particles/gpugravity.h>
 #include <gl/shaderbuffer.h>
 
@@ -75,8 +75,12 @@ ParticlesWrapper::setup(void* texturePointer) {
    
     std::vector<GPUConstraintPtr> myConstraints;
     std::vector<GPUImpulsePtr> myImpulses;
-    
+
     _positionTexture = (GLuint)(size_t)(texturePointer);
+    if (!glIsTexture(_positionTexture)) {
+        throw cclib::Exception("Texture is invalid");
+    }
+    
     glBindTexture (GL_TEXTURE_2D, _positionTexture);
     
     int texWidth, texHeight;
@@ -84,7 +88,7 @@ ParticlesWrapper::setup(void* texturePointer) {
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &texHeight);
     glBindTexture(GL_TEXTURE_2D, 0);
     
-    GPUParticlePointRendererPtr myRenderer = GPUParticlePointRenderer::create();
+    GPUDummyRendererPtr myRenderer = GPUDummyRenderer::create();
     _particleSystem = GPUParticles::create(myRenderer, _forces, myConstraints, myImpulses, texWidth, texHeight);
    
     // emitters have to be created using the particle system 
@@ -164,19 +168,25 @@ ParticlesWrapper::addAnimation(const std::string & animationType) {
 
 void
 ParticlesWrapper::updateSimulation(float theDeltaT) {
+    Graphics::checkError();
     glDisable (GL_BLEND);
     glDisable (GL_ALPHA_TEST);
     glDepthFunc (GL_LEQUAL);
+    glDisable(GL_POLYGON_SMOOTH);
+    Graphics::checkError();
     
     glDisable(GL_POINT_SMOOTH);
     glPointSize(1.0);
+    Graphics::checkError();
    
     cclib::Graphics::noTexture();
     _particleSystem->update(theDeltaT);
+    Graphics::checkError();
     
     glEnable(GL_POINT_SMOOTH);
     glEnable (GL_DEPTH_TEST);
     glDepthMask (GL_TRUE);
+    Graphics::checkError();
 }
             
 void

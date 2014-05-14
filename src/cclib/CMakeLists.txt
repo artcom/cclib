@@ -160,6 +160,7 @@ set(HEADERS
     particles/gpuindexparticleemitter.h
     particles/gpuindexparticlecurveemitter.h
     particles/gpuparticlerenderer.h
+    particles/gpudummyrenderer.h
     particles/gpuparticlepointrenderer.h
     particles/gpuindexedparticlerenderer.h
     particles/gpudisplayshader.h
@@ -195,6 +196,8 @@ set(CCLIB_NAME cclib)
 add_library(${CCLIB_NAME} SHARED 
     ${SHADER_SOURCES} 
     ${SOURCES} 
+    capi/capi.cpp
+    capi/particleswrapper.cpp
     ${HEADERS})
 
 target_link_libraries(${CCLIB_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${Cg_GL_LIBRARIES} ${OPENGL_LIBRARIES})
@@ -280,6 +283,10 @@ if (GLFW_LIBRARIES)
 	
     add_executable(cclibYForceBlendDemo demo/yForceBlendDemo.cpp)
     target_link_libraries(cclibYForceBlendDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
+	
+    add_executable(cclibCapiStressTest demo/capiDemo.cpp)
+	target_link_libraries(cclibCapiStressTest ${CCLIB_NAME} ${TEST_LIBRARIES})
+
 else()
 	message("sampels are skipped because GLFW_LIBRARIES are missing")
 endif()

@@ -13,9 +13,9 @@ GPUConstraint::GPUConstraint(const std::string & theShaderTypeName, float theRes
 {}
 
 void 
-GPUConstraint::setShader(GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight)
+GPUConstraint::setShader(GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight)
 {
-    _myVelocityShader = GPUUpdateShaderPtr(theShader);
+    _myVelocityShader = theShader;
     
     std::stringstream ss;
     ss << std::string("constraints[");

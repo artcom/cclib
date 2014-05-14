@@ -28,7 +28,7 @@ GPUYForceBlend::create() {
 }
 
 void
-GPUYForceBlend::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, 
+GPUYForceBlend::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader,
         int theIndex, int theWidth, int theHeight) 
 {
     _myVelocityShader = GPUUpdateShaderPtr(theShader);
@@ -55,7 +55,7 @@ GPUYForceBlend::setShader(GPUParticles * theParticles, GPUUpdateShader * theShad
 }
 
 void
-GPUYForceBlend::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, 
+GPUYForceBlend::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader,
         std::string theIndex, int theWidth, int theHeight) 
 {
     _myVelocityShader = GPUUpdateShaderPtr(theShader);

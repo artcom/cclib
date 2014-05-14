@@ -21,7 +21,7 @@ public:
 
     static GPUParticlePointRendererPtr create();
 
-    void setup(GPUParticles * theParticles);
+    void setup(GPUParticlesPtr theParticles);
     void update(float theDeltaTime);
     void draw();
 

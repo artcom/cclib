@@ -23,7 +23,7 @@
 //    printf("%s\n",__PRETTY_FUNCTION__);
 //}
 
-cclib::GPUParticleSort::GPUParticleSort(cclib::GPUParticles* theParticles)
+cclib::GPUParticleSort::GPUParticleSort(cclib::GPUParticlesPtr theParticles)
 : _myCurrentPass(0),_myBeginPass(0),_myEndPass(0)
 {
 //    _myGraphics = theGraphics;

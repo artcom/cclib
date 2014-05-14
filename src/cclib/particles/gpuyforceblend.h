@@ -30,8 +30,8 @@ class GPUYForceBlend : public GPUForce {
     
         void initialize(GPUForcePtr theForce1, GPUForcePtr theForce2); 
 
-        void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight);
-        void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, std::string theIndex, int theWidth, int theHeight);
+        void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight);
+        void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, std::string theIndex, int theWidth, int theHeight);
     
 	    void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);

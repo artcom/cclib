@@ -11,15 +11,8 @@ namespace cclib
 class Property
 {
 public:
-    typedef std::tr1::shared_ptr<Property> Ptr;
-    typedef std::tr1::shared_ptr<const Property> ConstPtr;
-
-    // class Observer
-    // {
-    // public:
-    //     typedef std::tr1::shared_ptr<Observer> Ptr;
-    //     virtual void updateProperty(const Property::ConstPtr &theProperty) = 0;
-    // };
+    typedef CC_PTR<Property> Ptr;
+    typedef CC_PTR<const Property> ConstPtr;
 
     inline boost::any getValue() const {return m_value;};
     inline const std::string& getName() const {return m_name;};
@@ -141,7 +134,7 @@ template<typename T>
 class Property_ : public Property
 {
 public:
-    typedef std::tr1::shared_ptr< Property_<T> > Ptr;
+    typedef CC_PTR< Property_<T> > Ptr;
 
     static Ptr create(const std::string &theName, const T &theValue)
     {
@@ -295,7 +288,7 @@ class RangedProperty : public Property_<T>
 {
 public:
 
-    typedef std::tr1::shared_ptr< RangedProperty<T> > Ptr;
+    typedef CC_PTR< RangedProperty<T> > Ptr;
 
     inline RangedProperty<T>& operator=(T const& theVal)
     {

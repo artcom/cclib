@@ -27,9 +27,7 @@ GPUUpdateShader::deltaTime(float theDeltaTime) {
     parameter(_myDeltaTimeParameter, theDeltaTime);
 }
 
-GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUForcePtr> & theForces ,
-        std::vector<GPUConstraintPtr> & theConstrains, std::vector<GPUImpulsePtr> & theImpulses,
-        const std::vector<std::string> & theShaderFile, int theWidth, int theHeight) 
+GPUUpdateShader::GPUUpdateShader(const std::vector<std::string> & theShaderFile)
 : CGShader(std::vector<std::string>(), theShaderFile),
     _myVelocityTextureParameter(),
     _myPositionTextureParameter(),
@@ -40,6 +38,11 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
     _myConstraintsParameter(),
     _myImpulsesParameter()
 {
+};
+
+void GPUUpdateShader::setup(GPUUpdateShaderPtr theThis, GPUParticlesPtr theParticles, std::vector<GPUForcePtr> & theForces ,
+        std::vector<GPUConstraintPtr> & theConstrains, std::vector<GPUImpulsePtr> & theImpulses, int theWidth, int theHeight)
+{
     checkCGError("created velocity shader");
 
     _myForcesParameter = fragmentParameter("forces");
@@ -48,7 +51,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
     int myIndex = 0;
     for(std::vector<GPUForcePtr>::size_type f=0; f<theForces.size(); f++) {
         GPUForcePtr myForce = theForces[f];
-        myForce->setShader(theParticles,  this, myIndex++, theWidth, theHeight);
+        myForce->setShader(theParticles, theThis, myIndex++, theWidth, theHeight);
     }
 
     _myConstraintsParameter = fragmentParameter("constraints");
@@ -57,7 +60,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
     int myConstraintIndex = 0;
     for(std::vector<GPUConstraintPtr>::size_type c=0; c<theConstrains.size(); c++) {
         GPUConstraintPtr myConstraint = theConstrains[c];
-        myConstraint->setShader(this, myConstraintIndex++, theWidth, theHeight);
+        myConstraint->setShader(theThis, myConstraintIndex++, theWidth, theHeight);
     }
 
     _myImpulsesParameter = fragmentParameter("impulses");
@@ -66,7 +69,7 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
     int myImpulseIndex = 0;
     for(std::vector<GPUImpulsePtr>::size_type i=0; i<theImpulses.size(); i++) {
         GPUImpulsePtr myImpulse = theImpulses[i];
-        myImpulse->setShader(this, myImpulseIndex++, theWidth, theHeight);
+        myImpulse->setShader(theThis, myImpulseIndex++, theWidth, theHeight);
     }
 
     _myPositionTextureParameter = fragmentParameter("positionTexture");
@@ -77,12 +80,11 @@ GPUUpdateShader::GPUUpdateShader( GPUParticles * theParticles, std::vector<GPUFo
 
     load();
 
-    GPUNoise::attachFragmentNoise(this);
-    
+    GPUNoise::attachFragmentNoise(theThis);
 }
 
 GPUUpdateShaderPtr 
-GPUUpdateShader::create( GPUParticles * theParticles, std::vector<GPUForcePtr> theForces,
+GPUUpdateShader::create( GPUParticlesPtr theParticles, std::vector<GPUForcePtr> theForces,
         std::vector<GPUConstraintPtr> theConstrains, std::vector<GPUImpulsePtr> theImpulses,
         std::vector<std::string> theShaderFile, int theWidth, int theHeight) 
 {
@@ -94,7 +96,9 @@ GPUUpdateShader::create( GPUParticles * theParticles, std::vector<GPUForcePtr> t
         theShaderFile.push_back(std::string(velocity_fp));
     }
 
-    GPUUpdateShaderPtr result = GPUUpdateShaderPtr(new GPUUpdateShader(theParticles, theForces, theConstrains, theImpulses, theShaderFile, theWidth, theHeight));        
-    return result;
+    GPUUpdateShaderPtr obj = GPUUpdateShaderPtr(new GPUUpdateShader(theShaderFile));
+    obj->setup(obj, theParticles, theForces, theConstrains, theImpulses, theWidth, theHeight);
+    
+    return obj;
 }
 

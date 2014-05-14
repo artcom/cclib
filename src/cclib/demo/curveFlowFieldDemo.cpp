@@ -43,7 +43,6 @@ class CurveFlowFieldDemo {
         GPUForceFieldPtr _myForceField;
         GPUGravityPtr _myGravity;
         GPUAttractorPtr _myAttractor;
-        GPUBloomPtr _myBloom;
 
         int frame;
 
@@ -52,7 +51,7 @@ class CurveFlowFieldDemo {
 
         CurveFlowFieldDemo() :
             _cFieldStrength(1.46666f),
-            _cAttractorStrength(18.53334f),
+            _cAttractorStrength(-18.53334f),
             _cAttractorRadius(242.0f),
             _cGravityStrength(0.6666f),
             _cCurveStrength(10.0f),
@@ -92,7 +91,6 @@ class CurveFlowFieldDemo {
 
             std::vector<GPUForcePtr> myForces;
             myForces.push_back(GPUViscousDrag::create(0.25f));
-            // myForces.push_back(_myCurveField);
             myForces.push_back(_myGravity);
             myForces.push_back(_myForceField);
             myForces.push_back(_myAttractor);
@@ -104,13 +102,6 @@ class CurveFlowFieldDemo {
             _myParticles = GPUParticles::create( myRenderer, myForces, myConstraints, myImpulses, 800, 800);
             _myEmitter = GPUIndexParticleEmitter::create(_myParticles);
             _myParticles->addEmitter(_myEmitter);
-
-            _myBloom = GPUBloom::create(1400, 750);
-            _myBloom->setApplyBloom(true);
-            _myBloom->setDebugBloom(false);
-            
-            _myBloom->setBlurRadius(15);
-
             Graphics::smooth();
         }
 
@@ -119,6 +110,7 @@ class CurveFlowFieldDemo {
         }
 
         void update(double theDeltaTime) {
+            glDisable(GL_POLYGON_SMOOTH);
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
             Graphics::clearColor(0.0f, 0.0f, 0.0f, 1.0f);
             Graphics::clear();
@@ -169,24 +161,16 @@ class CurveFlowFieldDemo {
             _myCurveField->setPrediction(_cPrediction);
 
             // draw
-            _myBloom->start();
+            // _myBloom->start();
             Graphics::pointSize(1.0f);
 
             Graphics::clear();
             Graphics::noDepthTest();
-            // Graphics::pushMatrix();
-            // _myArcball.draw(g);
             Graphics::color(1.0f, 1.0f, 1.0f, 50.0f/255.0f);
             Graphics::blend();
-            //		g.pointSprite(_mySpriteTexture);
-            //		g.smooth();
             Graphics::blend();
             _myParticles->draw();
-            //		g.noSmooth();
-            //		g.noPointSprite();
-            // g.popMatrix();
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
-            _myBloom->end();
 
             Graphics::color(1.0f, 1.0f, 1.0f, 1.0f);
             glfwSwapBuffers();

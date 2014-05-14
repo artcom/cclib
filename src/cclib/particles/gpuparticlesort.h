@@ -17,13 +17,13 @@ namespace cclib {
 
     public:
 //        GPUParticleSort();
-        GPUParticleSort(cclib::GPUParticles* theParticles);
+        GPUParticleSort(cclib::GPUParticlesPtr theParticles);
 
 //        static GPUParticleSortPtr create() {
 //            return cclib::GPUParticleSortPtr(new cclib::GPUParticleSort());
 //        };
 
-        static GPUParticleSortPtr create(cclib::GPUParticles* theParticles) {
+        static GPUParticleSortPtr create(cclib::GPUParticlesPtr theParticles) {
             return cclib::GPUParticleSortPtr(new cclib::GPUParticleSort(theParticles));
         };
 

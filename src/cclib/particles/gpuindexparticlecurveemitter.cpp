@@ -68,7 +68,7 @@ cclib::GPUIndexParticleCurveEmitter::GPUIndexParticleCurveEmitter(cclib::GPUPart
     _myOutputScaleParameter = _myCurveEmitShader->fragmentParameter("outputScale");
     _myCurveEmitShader->load();
 
-    cclib::GPUNoise::attachFragmentNoise((cclib::CGShader*)_myCurveEmitShader.get());
+    cclib::GPUNoise::attachFragmentNoise(_myCurveEmitShader);
 }
 
 void cclib::GPUIndexParticleCurveEmitter::update(float theDeltaTime)

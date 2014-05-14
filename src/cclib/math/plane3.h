@@ -1,17 +1,9 @@
-//
-//  Plane.h
-//  Project
-//
-//  Created by Frank Eickhoff on 23.05.13.
-//  Copyright (c) 2013 Project. All rights reserved.
-//
 
 #ifndef __Project__Plane__
 #define __Project__Plane__
 
 #include <math.h>
 #include <math/math.h>
-#include <tr1/memory>
 
 /**
  * A plane in 3D space.
@@ -19,8 +11,6 @@
  * The plane is defined by a vector, <i>N</i> which is normal to the plane; and a constant, <i>C</i>, representing the
  * distance of the plane from the origin. The plane can be represented by the equation <i>C = N‚àôp</i> where <i>p</i>
  * is a point on the plane.
- *
- * @author Christian Riekoff
  */
 
 namespace cclib {
@@ -276,7 +266,7 @@ namespace cclib {
     };
 
     typedef Plane3<float> Plane3f;
-    typedef std::tr1::shared_ptr< Plane3f > Plane3fPtr;
+    typedef CC_PTR< Plane3f > Plane3fPtr;
 
 }; // namespace cclib
 

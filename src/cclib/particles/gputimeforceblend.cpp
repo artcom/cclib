@@ -58,7 +58,7 @@ GPUTimeForceBlend::create(float theStartTime,float theEndTime,GPUForcePtr theFor
 }
 
 void
-GPUTimeForceBlend::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight) {
+GPUTimeForceBlend::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight) {
     _myVelocityShader = GPUUpdateShaderPtr(theShader);
     
     std::stringstream ss;
@@ -82,7 +82,7 @@ GPUTimeForceBlend::setShader(GPUParticles * theParticles, GPUUpdateShader * theS
 }
 
 void
-GPUTimeForceBlend::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader, std::string theIndex, int theWidth, int theHeight) {
+GPUTimeForceBlend::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, std::string theIndex, int theWidth, int theHeight) {
     _myVelocityShader = GPUUpdateShaderPtr(theShader);
     _myParameterIndex = theIndex;
     _myVelocityShader->checkCGError("Problem creating force.");

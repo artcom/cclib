@@ -29,7 +29,7 @@ CGShader::create(const std::vector<std::string> & vertexShaderFiles, const std::
 
 CGShader::CGShader()
     : Shader(),
-   _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
+   _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters(), _cgParameters()
 {
     
 }
@@ -38,10 +38,27 @@ CGShader::CGShader(const std::vector<std::string> & vertexShaderFiles,
         const std::vector<std::string> & fragmentShaderFiles,
         const std::string & vertexEntry, const std::string & fragmentEntry) :
    Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry),
-   _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters()
+   _vertexProgram(0), _fragmentProgram(0), _usedTextureParameters(), _cgParameters()
 {
     init(vertexShaderFiles, fragmentShaderFiles);
 }
+
+CGShader::~CGShader() {
+    for (unsigned int i=0; i<_cgParameters.size(); i++) {
+        cgDestroyParameter(_cgParameters[i]);
+        _cgParameters[i] = 0;
+    }
+    _cgParameters.clear();
+
+    if (_vertexProgram != 0) {
+        cgDestroyProgram(_vertexProgram);
+    }
+
+    if (_fragmentProgram != 0) {
+        cgDestroyProgram(_fragmentProgram);
+    }
+}
+
 
 void
 CGShader::init( const std::vector<std::string> & vertexShaderFiles,
@@ -138,6 +155,8 @@ CGShader::checkCGError(const std::string & message) {
 
 void 
 CGShader::load() {
+    checkCGError("loading programs");
+
     if(_fragmentProgram) { //  != NULL) {
         cgGLLoadProgram(_fragmentProgram); 
         checkCGError("loading fragment program");
@@ -272,14 +291,18 @@ CGShader::fragmentParameter(const std::string & name) {
 	
 CGparameter 
 CGShader::createFragmentParameter(const std::string & typestring) {
-    CGtype type = cgGetNamedUserType(fragmentProgram() /*.getBuffer()*/, typestring.c_str());
-    return cgCreateParameter(cg_context, type);
+    CGtype type = cgGetNamedUserType(fragmentProgram(), typestring.c_str());
+    CGparameter parameter = cgCreateParameter(cg_context, type);
+    _cgParameters.push_back(parameter);
+    return parameter;
 }
 
 CGparameter 
 CGShader::createVertexParameter(const std::string & typestring) {
-    CGtype type = cgGetNamedUserType(vertexProgram() /*.getBuffer()*/, typestring.c_str());
-    return cgCreateParameter(cg_context, type);
+    CGtype type = cgGetNamedUserType(vertexProgram(), typestring.c_str());
+    CGparameter parameter = cgCreateParameter(cg_context, type);
+    _cgParameters.push_back(parameter);
+    return parameter;
 }
 	
 void 

@@ -381,16 +381,11 @@ VBOMesh::disable() {
 void
 VBOMesh::draw() {
     
-    // std::cout << "draw1 ";
     enable();
-    // std::cout << "2 ";
     Graphics::checkError();
-    // std::cout << "3 ";
     Mesh::drawArray();
-    // std::cout << "4 ";
     Graphics::checkError();
     disable();    
-    // std::cout << "5 ";
 }
 
 

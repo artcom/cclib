@@ -48,19 +48,13 @@ class Shader {
                const std::string & fragmentEntry = "main");
     
     public:   
-        virtual ~Shader() {};
+        virtual ~Shader() {
+            std::cout << "erase me " << this << std::endl;
+            _vertexEntry = "";
+            _fragmentEntry = "";
+        };
         
         static std::string combineSources(const std::vector<std::string> & shaders);
-
-        // virtual void start() = 0;
-        // virtual void end() = 0;
-
-        // virtual void destroy() = 0;
-        // virtual void finalize() = 0;
-    
-        // virtual void load() = 0;
-        // virtual void loadVertexShader(const std::vector<std::string> & vertexPrograms) = 0;
-        // virtual void loadFragmentShader(const std::vector<std::string> & fragmentPrograms) = 0;
     
 };
 } // namespace

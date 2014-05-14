@@ -22,7 +22,7 @@ GPUCombinedForce::setupParameter(int theWidth, int theHeight) {
 }
 
 void
-GPUCombinedForce::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
+GPUCombinedForce::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader,
                             int theIndex, int theWidth, int theHeight)
 {
     
@@ -34,7 +34,7 @@ GPUCombinedForce::setShader(GPUParticles * theParticles, GPUUpdateShader * theSh
 }
 
 void
-GPUCombinedForce::setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
+GPUCombinedForce::setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader,
                              std::string theIndex, int theWidth, int theHeight)
 {
     _myParticles = GPUParticlesPtr(theParticles);

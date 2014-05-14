@@ -1,5 +1,5 @@
 
-#include <cfloat>
+#include <float.h>
 
 #include "gpuparticles.h"
 #include <particles/gpuforce.h>
@@ -22,6 +22,11 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     _myForces(theForces), _myConstraints(theConstraints),
     _myImpulses(theImpulse), _myWidth(theWidth), 
     _myHeight(theHeight), _myCurrentTime(0.0)
+{};
+
+void GPUParticles::setup( GPUParticlesPtr theThis, GPUParticleRendererPtr theRender,
+            std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints,
+            std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight)
 {
     for (std::vector<GPUForcePtr>::size_type f=0; f<theForces.size(); f++) {
         theForces[f]->setSize(theWidth, theHeight);
@@ -33,7 +38,8 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     _myInitValue01Shader = CGShader::create(vfiles, ffiles, "main", "main");
     _myInitValue01Shader->load();
 
-    ffiles.clear(); ffiles.push_back(std::string(initvalue_fp));
+    ffiles.clear();
+    ffiles.push_back(std::string(initvalue_fp));
     _myInitValue0Shader = CGShader::create(vfiles, ffiles);
     _myInitValue0Shader->load();
 
@@ -65,20 +71,23 @@ GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
     _myCurrentDataTexture->endDraw();
 
     _myParticleRender = theRender;
-    _myParticleRender->setup( this );
+    _myParticleRender->setup( theThis );
     
     std::vector<std::string> myNoShaders;
-    _myUpdateShader = GPUUpdateShader::create( this, theForces, theConstraints, theImpulse, myNoShaders, _myWidth, _myHeight );
+    _myUpdateShader = GPUUpdateShader::create( theThis, theForces, theConstraints, theImpulse, myNoShaders, _myWidth, _myHeight );
 
     reset();
 }
     
 GPUParticlesPtr 
-GPUParticles::create( GPUParticleRendererPtr theRender,
+GPUParticles::create(GPUParticleRendererPtr theRender,
         std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints, 
         std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight) 
 {
-    return GPUParticlesPtr(new GPUParticles(theRender, theForces, theConstraints, theImpulse, theWidth, theHeight));
+    GPUParticlesPtr obj =  GPUParticlesPtr(new GPUParticles(theRender, theForces, theConstraints, theImpulse, theWidth, theHeight));
+    obj->setup(obj, theRender, theForces, theConstraints, theImpulse, theWidth, theHeight);
+    
+    return obj;
 }
 
 void 
@@ -303,12 +312,15 @@ GPUParticles::update(float theDeltaTime) {
     Graphics::checkError();
 
     swapDataTextures();
+    Graphics::checkError();
 
     afterUpdate();
     _myCurrentTime += theDeltaTime;
     _myParticleRender->update(theDeltaTime);
-
+    
+    Graphics::checkError();
     Graphics::blend();
+    Graphics::checkError();
 }
 
 void 

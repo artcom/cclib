@@ -9,7 +9,7 @@ GPUImpulse::GPUImpulse(const std::string &theShaderTypeName, float theStrength) 
 }
 
 void 
-GPUImpulse::setShader(GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight) {
+GPUImpulse::setShader(GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight) {
     _myVelocityShader = GPUUpdateShaderPtr(theShader);
     std::stringstream ss;
     ss << std::string("impulses[");

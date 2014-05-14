@@ -14,7 +14,7 @@ namespace cclib {
 	class GPUSortedParticleRenderer : public cclib::GPUParticleRenderer
 	{
 	public:
-		typedef std::tr1::shared_ptr<GPUSortedParticleRenderer> GPUSortedParticleRendererPtr;
+		typedef CC_PTR<GPUSortedParticleRenderer> GPUSortedParticleRendererPtr;
 		
 		GPUSortedParticleRenderer();
 		
@@ -22,7 +22,7 @@ namespace cclib {
 			return GPUSortedParticleRendererPtr(new GPUSortedParticleRenderer());
 		};
 		
-		void setup(cclib::GPUParticles* theParticles);
+		void setup(cclib::GPUParticlesPtr theParticles);
 		void update(float theDeltaTime);
 		void draw();
 		cclib::VBOMeshPtr mesh(){ return _myMesh; };

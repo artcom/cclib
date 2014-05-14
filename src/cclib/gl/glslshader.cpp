@@ -27,7 +27,6 @@ GLSLShader::GLSLShader(const std::vector<std::string> & vertexShaderFiles,
     Shader(vertexShaderFiles, fragmentShaderFiles, vertexEntry, fragmentEntry),
     _program(0)
 {
-    //printf("%s\n\tvertexShaderFiles %d, fragmentShaderFiles %d\n",__PRETTY_FUNCTION__, (int)vertexShaderFiles.size(), (int)fragmentShaderFiles.size());
     initShader();
     
     if (!vertexShaderFiles.empty()) {
@@ -49,14 +48,11 @@ void GLSLShader::initShader()
 {
     _program = glCreateProgramObjectARB();
     CHECK_GL_ERROR;
-    
-//    printf("%s\n\tprogram %d\n",__PRETTY_FUNCTION__,_program);
 }
 
 void GLSLShader::loadVertexShader(const std::vector<std::string> & vertexPrograms)
 {
     std::string shaderSource = combineSources(vertexPrograms);
-//    printf("%s\n%s\n",__PRETTY_FUNCTION__,shaderSource.c_str());
     
     loadShader(shaderSource, GL_VERTEX_SHADER);
 }
@@ -64,8 +60,6 @@ void GLSLShader::loadVertexShader(const std::vector<std::string> & vertexProgram
 void GLSLShader::loadFragmentShader(const std::vector<std::string> & fragmentPrograms)
 {
     std::string shaderSource = combineSources(fragmentPrograms);
-//    printf("%s\n%s\n",__PRETTY_FUNCTION__,shaderSource.c_str());
-    
     loadShader(shaderSource, GL_FRAGMENT_SHADER);
 }
 
@@ -109,8 +103,6 @@ bool GLSLShader::loadShader(const std::string & source, GLenum shaderType)
     
     glLinkProgramARB(_program);
     CHECK_GL_ERROR;
-   
-//    printf("%s\n\tSUCCESS\n",__PRETTY_FUNCTION__);
     
     return true;
 }

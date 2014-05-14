@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <map>
-#include <tr1/memory>
 #include <GL/glew.h>
 
 #include <base/property.h>
@@ -30,12 +29,14 @@ namespace cclib {
         CGparameter _myStrengthParameter;
 	
     public: 
-        typedef std::tr1::shared_ptr<GPUForce> Ptr;
+        typedef CC_PTR<GPUForce> Ptr;
         
-        virtual ~GPUForce() {};	
-	    virtual void setShader(GPUParticles * theParticles, GPUUpdateShader *  theShader,
+        virtual ~GPUForce() {
+        };
+	   
+        virtual void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader,
                 int theIndex, int theWidth, int theHeight); 
-        virtual void setShader(GPUParticles * theParticles, GPUUpdateShader * theShader,
+        virtual void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader,
                 std::string theIndex, int theWidth, int theHeight);
         virtual void setSize(int theWidth, int theHeight);
         virtual void update(float theDeltaTime);

@@ -27,8 +27,12 @@ enum GfxDeviceEventType {
 	kGfxDeviceEventAfterReset,
 };
 
-typedef void (*FuncPtr)( const char * );
-extern FuncPtr DebugLog;
+typedef void (*StringFuncPtr)( const char * );
+typedef void (*VoidFuncPtr)();
+
+extern StringFuncPtr DebugLog;
+extern VoidFuncPtr InitializeFunction;
+extern VoidFuncPtr UpdateParameterFunction;
 
 // capi calls to simplify binding to other languages
 extern "C" {
@@ -58,9 +62,14 @@ extern "C" {
     int cclib_setSimulationTime(float theDeltaTime);
 
     // Unity specifics
-    void SetDebugFunction(FuncPtr fp); 
+    void SetDebugFunction(StringFuncPtr fp); 
+    void SetInitializeFunction(VoidFuncPtr fp); 
+    void SetUpdateParameterFunction(VoidFuncPtr fp); 
+    
     void UnitySetGraphicsDevice (void* device, int deviceType, int eventType);
     void UnityRenderEvent (int eventID);
+    void ToStdOut(const char * message);
+    void Pass();
 }
 
 #endif

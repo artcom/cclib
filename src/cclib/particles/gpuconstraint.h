@@ -17,7 +17,7 @@ class GPUConstraint : public Component {
         GPUConstraint(const std::string & theShaderTypeName, float theResilience, float theFriction, 
                 float theMinimalVelocity); 
         virtual ~GPUConstraint() {};
-        virtual void setShader(GPUUpdateShader * theShader, int theIndex, int theWidth, int theHeight);
+        virtual void setShader(GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight);
 	
         virtual CGparameter parameter(const std::string & theName);
         virtual void resilience(float theResilience);

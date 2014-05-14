@@ -15,7 +15,7 @@
 namespace cclib {
     
     class GPUYConstraint;
-    typedef std::tr1::shared_ptr<GPUYConstraint> GPUYConstraintPtr;
+    typedef CC_PTR<GPUYConstraint> GPUYConstraintPtr;
     
     class GPUYConstraint : public cclib::GPUPlaneConstraint
     {

@@ -32,16 +32,6 @@ FrameBufferObject::FrameBufferObject(GLenum theTarget, FrameBufferObjectAttribut
         Graphics::checkError();
     }
 
-   //  printf("%s\n\t%d x %d\n\ttheTarget %s%#x\n\tmyFramebuffers %d, %d\n\tnumberOfAttachments %d\n\tnumberOfSamples %d\n\tnumberOfBits %d\n\tnumberOfChannels %d\n\tuse Multisampling %d\n",
-   //         __PRETTY_FUNCTION__,
-   //         theWidth,theHeight,
-   //         (theTarget == GL_TEXTURE_2D) ? "GL_TEXTURE_2D " : ( (theTarget == GL_TEXTURE_RECTANGLE) ? "GL_TEXTURE_RECTANGLE " : "" ),
-   //         theTarget,
-   //         _myFramebuffers[0],_myFramebuffers[1],
-   //         _myNumberOfAttachments,
-   //         _myAttributes->numberOfSamples,_myAttributes->numberOfBits,_myAttributes->numberOfChannels,
-   //         (int)_myUseMultisampling);
-    
     if( !(_myUseMultisampling) || !initMultisampling()) {
         _myUseMultisampling = false;
         init();
@@ -51,6 +41,13 @@ FrameBufferObject::FrameBufferObject(GLenum theTarget, FrameBufferObjectAttribut
     Graphics::checkError();
 
     // releaseFBO();
+}
+
+FrameBufferObject::~FrameBufferObject() {
+    releaseFBO();
+    glDeleteFramebuffers(_myFramebuffers.size(), &(_myFramebuffers[0]));
+    
+    _myAttachments.clear(); 
 }
 
 unsigned int
@@ -114,7 +111,6 @@ void
 FrameBufferObject::init() {
     // allocate and attach depth texture
     if(_myAttributes->depthBuffer) {
-//        TextureAttributesPtr depthTextureAttributes = TextureAttributes::create(24, 1); // not supported ?
         TextureAttributesPtr depthTextureAttributes = TextureAttributes::create(32, 4);
         depthTextureAttributes->filter = GL_LINEAR;
         depthTextureAttributes->wrapS = GL_CLAMP_TO_EDGE;

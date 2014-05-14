@@ -4,7 +4,6 @@
 #include <math.h>
 #include <math/math.h>
 #include <iostream>
-#include <tr1/memory>
 
 namespace cclib {
 
@@ -17,7 +16,7 @@ template<typename T>
 class Vector2 {
     
     public:
-        typedef std::tr1::shared_ptr<Vector2<T> > Ptr;
+        typedef CC_PTR<Vector2<T> > Ptr;
         /**
          * Initializes a new vector by setting x and y to 0
          */
@@ -269,9 +268,9 @@ typedef Vector2<float> Vector2f;
 typedef Vector2<double> Vector2d;
 typedef Vector2<int> Vector2i;
         
-typedef std::tr1::shared_ptr<Vector2f> Vector2fPtr;
-typedef std::tr1::shared_ptr<Vector2i> Vector2iPtr;
-typedef std::tr1::shared_ptr<Vector2d> Vector2dPtr;
+typedef CC_PTR<Vector2f> Vector2fPtr;
+typedef CC_PTR<Vector2i> Vector2iPtr;
+typedef CC_PTR<Vector2d> Vector2dPtr;
         
 
 } // namespace cclib

@@ -8,7 +8,7 @@ namespace cclib {
 
 class Color {
     public:
-        typedef std::tr1::shared_ptr<Color> Ptr;
+        typedef CC_PTR<Color> Ptr;
         Color(unsigned int red=255, unsigned int green=255, unsigned int blue=255, unsigned int alpha=255) 
             : _red(red/255.0f), _green(green/255.0f), _blue(blue/255.0f), _alpha(alpha/255.0f) {};
 

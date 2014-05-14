@@ -59,8 +59,7 @@ class FrameBufferObject {
         FrameBufferObject(GLenum target, FrameBufferObjectAttributesPtr attributes,
                           unsigned int width, unsigned int height);
     
-        virtual ~FrameBufferObject() {
-        };
+        virtual ~FrameBufferObject();
     
         static FrameBufferObjectPtr create(GLenum target, FrameBufferObjectAttributesPtr attributes,
                                                   unsigned int width, unsigned int height) {

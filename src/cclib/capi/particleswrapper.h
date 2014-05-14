@@ -13,7 +13,6 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include <tr1/memory>
 #include <cclib.h>
 
 // cclib stuff
@@ -23,7 +22,7 @@
 namespace unity_plugin {
 
     class ParticlesWrapper;
-    typedef std::tr1::shared_ptr<ParticlesWrapper> ParticlesWrapperPtr;
+    typedef CC_PTR<ParticlesWrapper> ParticlesWrapperPtr;
     
     class ParticlesWrapper {
         private:
@@ -35,7 +34,7 @@ namespace unity_plugin {
             }
             virtual ~ParticlesWrapper() {};
 
-            void setup(void* texturePointer);
+            void setup(void* texture);
             void addForce(const std::string & forceType, std::string & identifier);
             void addEmitter(const std::string & emitterType, std::string & identifier);
             void addAnimation(const std::string & animationType);
@@ -65,8 +64,8 @@ namespace unity_plugin {
             };
 
             void copyResults();
-            void setColorTexture(void* texturePointer);
-            void setInfoTexture(void* texturePointer);
+            void setColorTexture(void* texture);
+            void setInfoTexture(void* texture);
 
         private:
             void setDefaultGraphicsState();
