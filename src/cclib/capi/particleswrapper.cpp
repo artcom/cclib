@@ -7,6 +7,7 @@
 //
 
 #include "capi/particleswrapper.h"
+#include "capi/capi.h"
 #include <cclib.h>
 #include <gl/graphics.h>
 #include <particles/gpuparticles.h>
@@ -49,6 +50,10 @@ ParticlesWrapper::setDefaultGraphicsState()
     glDepthFunc (GL_LEQUAL);
     glEnable (GL_DEPTH_TEST);
     glDepthMask (GL_FALSE);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glReadBuffer(GL_BACK);
+	glDrawBuffer(GL_BACK);
 }
 
 void
@@ -168,6 +173,9 @@ ParticlesWrapper::addAnimation(const std::string & animationType) {
 
 void
 ParticlesWrapper::updateSimulation(float theDeltaT) {
+    
+    setDefaultGraphicsState();
+
     Graphics::checkError();
     glDisable (GL_BLEND);
     glDisable (GL_ALPHA_TEST);
@@ -191,12 +199,14 @@ ParticlesWrapper::updateSimulation(float theDeltaT) {
             
 void
 ParticlesWrapper::copyResults() {
+    setDefaultGraphicsState();
+    
     glEnable (GL_BLEND);
     glBlendFunc (GL_ONE, GL_ONE);
    
     _particleSystem->dataBuffer()->bindFBO(0);
     glBindTexture (GL_TEXTURE_2D, _positionTexture);
-    
+
     int texWidth, texHeight;
     glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &texWidth);
     glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &texHeight);

@@ -218,7 +218,7 @@ extern "C" void UnityRenderEvent (int eventID)
     // calls c# function to update the particle system parameters.
     // It has to be done that way because the update must happen in the render thread, 
     // which we can only access the the UnityRenderEvent function
-    //  InitializeFunction(); 
+    // InitializeFunction(); 
     // UpdateParameterFunction();
 	
     cclib_updateSimulation();
