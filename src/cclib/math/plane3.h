@@ -4,6 +4,7 @@
 
 #include <math.h>
 #include <math/math.h>
+#include <math/vec3.h>
 
 /**
  * A plane in 3D space.

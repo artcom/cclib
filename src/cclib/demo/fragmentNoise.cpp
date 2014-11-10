@@ -59,7 +59,7 @@ class FragmentNoiseDemo {
             _myNoiseScaleParameter = _myShader->fragmentParameter("noiseScale");
             _myNoiseOffsetParameter = _myShader->fragmentParameter("noiseOffset");
        
-            GPUNoise::attachFragmentNoise(_myShader.get());
+            GPUNoise::attachFragmentNoise(CGShaderPtr(_myShader.get()));
         }
 
         ~FragmentNoiseDemo() { 

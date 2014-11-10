@@ -2,6 +2,7 @@
 #define __CCLIB_VEC2_INCLUDED__
 
 #include <math.h>
+#include <base/ptr.h>
 #include <math/math.h>
 #include <iostream>
 

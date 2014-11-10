@@ -1,14 +1,6 @@
 #ifndef __CCLIB_HEADER_DEFINED__
 #define __CCLIB_HEADER_DEFINED__
 
-#ifdef USE_TR1
-#include <tr1/memory>
-#define CC_PTR std::tr1::shared_ptr
-#else
-#include <memory>
-#define CC_PTR std::shared_ptr
-#endif
-
 #include <math.h>
 #include <cstdio>
 #include <string>
@@ -25,6 +17,7 @@
 #include <Cg/cg.h>
 #include <Cg/cgGL.h>
 
+#include <base/ptr.h>
 #include <math/vec2.h>
 #include <math/vec3.h>
 #include <math/plane3.h>
