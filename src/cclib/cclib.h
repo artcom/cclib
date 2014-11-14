@@ -139,6 +139,9 @@ typedef CC_PTR<GPUPermanentBlockEmitter> GPUPermanentBlockEmitterPtr;
 
 class GPUCurveLineEmitter;
 typedef CC_PTR<GPUCurveLineEmitter> GPUCurveLineEmitterPtr;
+
+class GPUGBufferEmitter;
+typedef CC_PTR<GPUGBufferEmitter> GPUGBufferEmitterPtr;
 		
 class GPUParticlePointRenderer;
 typedef CC_PTR<GPUParticlePointRenderer> GPUParticlePointRendererPtr;

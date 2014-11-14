@@ -99,6 +99,7 @@ set(SOURCES
     particles/gpupermanentblockemitter.cpp
     particles/gpucurvelineemitter.cpp
     particles/gpuindexparticlecurveemitter.cpp
+    particles/gpugbufferemitter.cpp
     particles/gpuparticlepointrenderer.cpp
     particles/gpuindexedparticlerenderer.cpp
     particles/gpudisplayshader.cpp
@@ -117,7 +118,7 @@ set(SOURCES
     particles/gpuplaneconstraint.cpp
     particles/gpusortedparticlerenderer.cpp
 )
- 
+
 set(HEADERS
     cclib.h
     base/property.h
@@ -159,6 +160,7 @@ set(HEADERS
     particles/gpucurvelineemitter.h
     particles/gpuindexparticleemitter.h
     particles/gpuindexparticlecurveemitter.h
+    particles/gpugbufferemitter.h
     particles/gpuparticlerenderer.h
     particles/gpudummyrenderer.h
     particles/gpuparticlepointrenderer.h
@@ -234,7 +236,7 @@ install(TARGETS ${CCLIB_BUNDLE_NAME}
 set(TEST_LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Cg_LIBRARIES} ${GLEW_LIBRARY} ${GLFW_LIBRARIES}) # ${CCLIB_NAME} 
 
 if (Boost_UNIT_TEST_FRAMEWORK_LIBRARY AND GLFW_LIBRARIES)
-	add_executable(vec2 test/vec2.tst.cpp)
+    add_executable(vec2 test/vec2.tst.cpp)
 	target_link_libraries(vec2 ${CCLIB_NAME} ${TEST_LIBRARIES})
 	add_test(vec2 vec2) 
 
@@ -263,7 +265,7 @@ endif()
 
 # samples
 if (GLFW_LIBRARIES)
-	add_executable(cclibEmitDemo demo/emitDemo.cpp)
+    add_executable(cclibEmitDemo demo/emitDemo.cpp)
 	target_link_libraries(cclibEmitDemo ${CCLIB_NAME} ${TEST_LIBRARIES})
 
 	add_executable(cclibCurveFlowField demo/curveFlowFieldDemo.cpp)
@@ -286,7 +288,6 @@ if (GLFW_LIBRARIES)
 	
     add_executable(cclibCapiStressTest demo/capiDemo.cpp)
 	target_link_libraries(cclibCapiStressTest ${CCLIB_NAME} ${TEST_LIBRARIES})
-
 else()
 	message("sampels are skipped because GLFW_LIBRARIES are missing")
 endif()

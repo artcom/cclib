@@ -45,7 +45,7 @@ GPUCurveLine::GPUCurveLine() :
     std::vector<std::string> vfiles;
     std::vector<std::string> ffiles;
     ffiles.push_back(initvalue_fp);
-        
+
     _myCurveData = cclib::ShaderBuffer::create(SAMPLES, 1, 32, 4, 1,  GL_TEXTURE_2D);
     _myCurveData->attachment(0)->textureFilter(GL_LINEAR);
 

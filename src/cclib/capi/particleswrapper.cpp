@@ -29,6 +29,7 @@
 #include <particles/gpuindexparticlecurveemitter.h>
 #include <particles/gpucurvelineemitter.h>
 #include <particles/gpupermanentblockemitter.h>
+#include <particles/gpugbufferemitter.h>
 
 using namespace unity_plugin;
 using namespace cclib;
@@ -157,7 +158,8 @@ ParticlesWrapper::createEmitterFromString(const std::string & emitterType, unsig
     if (emitterType == "curvelineemitter") return GPUCurveLineEmitter::create(_particleSystem, 0, texWidth*texHeight);
     if (emitterType == "indexparticlecurveemitter") return GPUIndexParticleCurveEmitter::create(_particleSystem, 0, texWidth*texHeight);
     if (emitterType == "permanentblockemitter") return GPUPermanentBlockEmitter::create(_particleSystem, 0, texWidth, texHeight);
-    
+    if (emitterType == "gbufferemitter") return GPUGBufferEmitter::create(_particleSystem);
+
     throw new cclib::Exception("unknown emitter type.");
 }
             
