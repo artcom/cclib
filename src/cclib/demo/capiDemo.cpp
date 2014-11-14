@@ -3,6 +3,7 @@
 #include <GL/glfw.h>
 #include <capi/capi.h>
 #include <cclib.h>
+#include <unistd.h>
 
 using namespace cclib;
 

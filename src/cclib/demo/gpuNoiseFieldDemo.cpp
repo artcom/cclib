@@ -102,7 +102,7 @@ class NoiseFieldDemo {
             
             _myNoiseScaleParameter = _myShader->vertexParameter("noiseScale");
             _myNoiseOffsetParameter = _myShader->vertexParameter("noiseOffset");
-            GPUNoise::attachVertexNoise(_myShader.get());
+            GPUNoise::attachVertexNoise(CGShaderPtr(_myShader.get()));
             
             Graphics::checkError();
             // _myArcball = new CCArcball(this);

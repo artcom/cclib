@@ -78,7 +78,7 @@ BOOST_FIXTURE_TEST_CASE(testShaderConstruction, GL_Fixture)
         "    return float4(0.6, 1.0, 0.0, 1.0);\n" 
         " } "));
     CGShaderPtr compiled = CGShader::create(vfiles, ffiles); 
-    BOOST_CHECK(compiled != NULL);
+    BOOST_CHECK(compiled != CGShaderPtr(NULL));
 }
 
 #define COMPILE_FP(x) vfiles.clear(); ffiles.clear();  \

@@ -2,6 +2,7 @@
 #define __CCLIB_VEC3_INCLUDED__
 
 #include <math.h>
+#include <base/ptr.h>
 #include <math/math.h>
 #include <iostream>
 #include "simplexnoise.h"

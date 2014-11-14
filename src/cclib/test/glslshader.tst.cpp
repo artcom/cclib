@@ -59,7 +59,7 @@ BOOST_FIXTURE_TEST_CASE(testShaderUniform, GL_Fixture)
          "  gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;\n"
          " } "));
     GLSLShaderPtr compiled = GLSLShader::create(vfiles, ffiles);
-    BOOST_CHECK(compiled != NULL);
+    BOOST_CHECK(compiled != GLSLShaderPtr(NULL));
     
     compiled->start();
     compiled->setUniform1f("testValue", 99.f);
