@@ -36,6 +36,7 @@ namespace unity_plugin {
 
             void setup(void* texture);
             void addForce(const std::string & forceType, std::string & identifier);
+            void addCombinedForce(const std::string & forceType, std::string & identifier, std::string & force1, std::string & force2); 
             void addEmitter(const std::string & emitterType, std::string & identifier);
             void addAnimation(const std::string & animationType);
             void updateSimulation(float theDeltaT);

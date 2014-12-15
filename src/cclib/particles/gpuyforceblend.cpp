@@ -6,9 +6,9 @@ using namespace cclib;
 
 GPUYForceBlend::GPUYForceBlend() : 
     GPUForce("YForceBlend"),
-    _myY1(Property_<float>::create("y1", 0.0f)),
-    _myY2(Property_<float>::create("y2", 0.0f)),
-    _myBlendWidth(Property_<float>::create("blendWidth", 0.0f))
+    _myY1(Property_<float>::create("y1", 20.0f)),
+    _myY2(Property_<float>::create("y2", -20.0f)),
+    _myBlendWidth(Property_<float>::create("blendWidth", 5.0f))
 {
     registerProperty(_myY1);
     registerProperty(_myY2);

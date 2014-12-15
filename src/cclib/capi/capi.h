@@ -50,6 +50,7 @@ extern "C" {
     int cclib_updateParameterComponentReference(char * componentName, char * parameterName, char * referenceName);
     
     int cclib_addForce(char * forceName, char * instanceName);
+    int cclib_addCombinedForce(char * forceName, char * instanceName, char * force1, char * force2);
     int cclib_addEmitter(char * emitterName, char * instanceName);
     
     int cclib_runParticleSystem();

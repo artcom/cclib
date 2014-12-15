@@ -23,6 +23,7 @@
 #include <particles/gpuattractor.h>
 #include <particles/gpucurvefield.h>
 #include <particles/gpucurveline.h>
+#include <particles/gpuyforceblend.h>
 
 // the emitters
 #include <particles/gpusimpleemitter.h>
@@ -93,7 +94,8 @@ ParticlesWrapper::setup(void* texturePointer) {
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &texWidth);
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &texHeight);
     glBindTexture(GL_TEXTURE_2D, 0);
-    
+  
+
     GPUDummyRendererPtr myRenderer = GPUDummyRenderer::create();
     _particleSystem = GPUParticles::create(myRenderer, _forces, myConstraints, myImpulses, texWidth, texHeight);
    
@@ -137,10 +139,49 @@ ParticlesWrapper::createForceFromString(const std::string & forceType) {
     if (forceType == "attractor") return GPUAttractor::create();
     if (forceType == "curvefield") return GPUCurveField::create();
     if (forceType == "curveline") return GPUCurveLine::create();
+    if (forceType == "yforceblend") return GPUYForceBlend::create();
     
     throw new cclib::Exception("unknown force type.");
 }
-            
+    
+void 
+ParticlesWrapper::addCombinedForce(const std::string & forceType, std::string & identifier, 
+        std::string & force1, std::string & force2) 
+{
+    GPUForcePtr force = createForceFromString(forceType);
+    
+    // initialize forces the are blending other nested forces, like YForceBlend (the only one for now)
+    GPUForcePtr f1;
+    GPUForcePtr f2;
+
+    if (_componentMap.find(force1) != _componentMap.end()) {
+        f1 = CC_DYN_PTR_CAST<GPUForce>(_componentMap[force1]);     
+    }
+    if (_componentMap.find(force2) != _componentMap.end()) {
+        f2 = CC_DYN_PTR_CAST<GPUForce>(_componentMap[force2]);     
+    }
+
+    GPUYForceBlendPtr blendPtr = CC_DYN_PTR_CAST<GPUYForceBlend>(force); 
+
+    blendPtr->initialize(f1, f2); 
+   
+    std::vector<GPUForcePtr>::iterator pos = std::find(_forces.begin(), _forces.end(), f1);
+    if (pos != _forces.end()) {
+        _forces.erase(pos); 
+    }
+
+    pos = std::find(_forces.begin(), _forces.end(), f2);
+    if (pos != _forces.end()) {
+        _forces.erase(pos); 
+    }
+
+    // add the force to the component map to be able to access the parameters later
+    _componentMap[identifier] = force;
+    
+    // add the force to the initialization list
+    _forces.push_back(force);
+}
+
 void
 ParticlesWrapper::addForce(const std::string & forceType, std::string & identifier) {
     GPUForcePtr force = createForceFromString(forceType);
