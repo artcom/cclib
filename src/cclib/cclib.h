@@ -127,6 +127,9 @@ typedef CC_PTR<GPUIndexParticleCurveEmitter> GPUIndexParticleCurveEmitterPtr;
 class GPUSimpleEmitter;
 typedef CC_PTR<GPUSimpleEmitter> GPUSimpleEmitterPtr;
 
+class GPUTargetEmitter;
+typedef CC_PTR<GPUTargetEmitter> GPUTargetEmitterPtr;
+
 class GPUPermanentBlockEmitter;
 typedef CC_PTR<GPUPermanentBlockEmitter> GPUPermanentBlockEmitterPtr;
 

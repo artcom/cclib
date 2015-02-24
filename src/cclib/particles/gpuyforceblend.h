@@ -28,7 +28,7 @@ class GPUYForceBlend : public GPUForce {
     public:
         static GPUYForceBlendPtr create();
     
-        void initialize(GPUForcePtr theForce1, GPUForcePtr theForce2); 
+        void initializeCombinedForces(GPUForcePtr theForce1, GPUForcePtr theForce2); 
 
         void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, int theIndex, int theWidth, int theHeight);
         void setShader(GPUParticlesPtr theParticles, GPUUpdateShaderPtr theShader, std::string theIndex, int theWidth, int theHeight);

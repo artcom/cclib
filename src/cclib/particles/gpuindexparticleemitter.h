@@ -3,6 +3,7 @@
 
 #include <cclib.h>
 #include <particles/gpuparticleemitter.h>
+#include <capi/particleswrapper.h>
 
 namespace cclib {
 
@@ -42,6 +43,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter, public Component {
 	    MeshPtr _myEmitMesh;
         double _myCurrentTime; // = 0;
         std::vector<GPUParticlePtr> _myAllocatedParticles; // = new ArrayList<GPUParticle>();
+        Property_<unity_plugin::ParticlesWrapperPtr>::Ptr _myParticlesWrapper;
 
     private:
 	    std::vector<GPUParticlePtr> _myDeadParticles; // = new ArrayList<GPUParticle>();

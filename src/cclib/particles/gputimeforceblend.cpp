@@ -28,7 +28,7 @@ GPUTimeForceBlend::GPUTimeForceBlend() :
     _myBlendInfos->data(_myBlendInfoData);
 }
 
-GPUTimeForceBlend::GPUTimeForceBlend(float theStartTime,float theEndTime,GPUForcePtr theForce1,GPUForcePtr theForce2)
+GPUTimeForceBlend::GPUTimeForceBlend(float theStartTime, float theEndTime, GPUForcePtr theForce1, GPUForcePtr theForce2)
 : GPUForce("TimeForceBlend")
 {
     GPUTimeForceBlend();
@@ -41,10 +41,13 @@ GPUTimeForceBlend::GPUTimeForceBlend(float theStartTime,float theEndTime,GPUForc
 }
 
 void
-GPUTimeForceBlend::initialize(GPUForcePtr theForce1, GPUForcePtr theForce2) 
+GPUTimeForceBlend::initializeCombinedForces(GPUForcePtr theForce1, GPUForcePtr theForce2) 
 {
     _myForce1 = theForce1;
     _myForce2 = theForce2;
+
+    setBlend(0, 0.0f, 1.0f);
+    setBlend(1, 1.0f, 0.0f);
 }
 
 GPUTimeForceBlendPtr

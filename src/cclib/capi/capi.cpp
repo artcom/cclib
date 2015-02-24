@@ -29,7 +29,7 @@ int cclib_addForce(char * forceName, char * instanceName) {
     try {
         std::string name(forceName);
         std::string iname(instanceName);
-        _particlesWrapper->addForce(name, iname); 
+        _particlesWrapper->addForce(name, iname, _particlesWrapper); 
     
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
@@ -44,7 +44,7 @@ int cclib_addCombinedForce(char * forceName, char * instanceName, char * force1,
         std::string force2Name(force2);
 
         std::string iname(instanceName);
-        _particlesWrapper->addCombinedForce(name, iname, force1Name, force2Name); 
+        _particlesWrapper->addCombinedForce(name, iname, force1Name, force2Name, _particlesWrapper); 
     
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
@@ -56,7 +56,7 @@ int cclib_addEmitter(char * emitterName, char * instanceName) {
     try {
         std::string name(emitterName);
         std::string iname(instanceName);
-        _particlesWrapper->addEmitter(name, iname); 
+        _particlesWrapper->addEmitter(name, iname, _particlesWrapper); 
     
     } catch (cclib::Exception & e) {
         DebugLog(e.what());

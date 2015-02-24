@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 artcom. All rights reserved.
 //
 
+#include <memory>
+
 #include "capi/particleswrapper.h"
 #include "capi/capi.h"
 #include <cclib.h>
@@ -24,6 +26,8 @@
 #include <particles/gpucurvefield.h>
 #include <particles/gpucurveline.h>
 #include <particles/gpuyforceblend.h>
+#include <particles/gputimeforceblend.h>
+#include <particles/gputargetforce.h>
 
 // the emitters
 #include <particles/gpusimpleemitter.h>
@@ -31,6 +35,7 @@
 #include <particles/gpucurvelineemitter.h>
 #include <particles/gpupermanentblockemitter.h>
 #include <particles/gpugbufferemitter.h>
+#include <particles/gputargetemitter.h>
 
 using namespace unity_plugin;
 using namespace cclib;
@@ -95,7 +100,6 @@ ParticlesWrapper::setup(void* texturePointer) {
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &texHeight);
     glBindTexture(GL_TEXTURE_2D, 0);
   
-
     GPUDummyRendererPtr myRenderer = GPUDummyRenderer::create();
     _particleSystem = GPUParticles::create(myRenderer, _forces, myConstraints, myImpulses, texWidth, texHeight);
    
@@ -127,26 +131,32 @@ ParticlesWrapper::createEmitters(unsigned int texWidth, unsigned int texHeight) 
             GPUIndexParticleEmitterPtr emitter = createEmitterFromString(typeName[0], texWidth, texHeight);
             _emitters.push_back(emitter);
             _componentMap[typeName[1]] = emitter;
+            
+            // add reference to particle wrapper to be able to access other components later
+            unity_plugin::ParticlesWrapperPtr wrapperReference = shared_from_this(); // unity_plugin::ParticlesWrapperPtr(this);
+            emitter->set<unity_plugin::ParticlesWrapperPtr>("wrapper", wrapperReference);
         }
     }
 }
 
 GPUForcePtr
 ParticlesWrapper::createForceFromString(const std::string & forceType) {
-    if (forceType == "gravity") return GPUGravity::create();
-    if (forceType == "forcefield") return GPUForceField::create();
-    if (forceType == "viscousdrag") return GPUViscousDrag::create();
-    if (forceType == "attractor") return GPUAttractor::create();
-    if (forceType == "curvefield") return GPUCurveField::create();
-    if (forceType == "curveline") return GPUCurveLine::create();
-    if (forceType == "yforceblend") return GPUYForceBlend::create();
-    
+    if (forceType == "gravity")        return GPUGravity::create();
+    if (forceType == "forcefield")     return GPUForceField::create();
+    if (forceType == "viscousdrag")    return GPUViscousDrag::create();
+    if (forceType == "attractor")      return GPUAttractor::create();
+    if (forceType == "curvefield")     return GPUCurveField::create();
+    if (forceType == "curveline")      return GPUCurveLine::create();
+    if (forceType == "yforceblend")    return GPUYForceBlend::create();
+    if (forceType == "timeforceblend") return GPUTimeForceBlend::create();
+    if (forceType == "targetforce")    return GPUTargetForce::create();
+
     throw new cclib::Exception("unknown force type.");
 }
     
 void 
 ParticlesWrapper::addCombinedForce(const std::string & forceType, std::string & identifier, 
-        std::string & force1, std::string & force2) 
+        std::string & force1, std::string & force2, unity_plugin::ParticlesWrapperPtr particlesWrapperPtr) 
 {
     GPUForcePtr force = createForceFromString(forceType);
     
@@ -160,11 +170,14 @@ ParticlesWrapper::addCombinedForce(const std::string & forceType, std::string & 
     if (_componentMap.find(force2) != _componentMap.end()) {
         f2 = CC_DYN_PTR_CAST<GPUForce>(_componentMap[force2]);     
     }
+    
+    // add reference to particle wrapper to be able to access other components later
+    force->set<unity_plugin::ParticlesWrapperPtr>("wrapper", particlesWrapperPtr);
 
-    GPUYForceBlendPtr blendPtr = CC_DYN_PTR_CAST<GPUYForceBlend>(force); 
-
-    blendPtr->initialize(f1, f2); 
-   
+    // GPUYForceBlendPtr blendPtr = CC_DYN_PTR_CAST<GPUYForceBlend>(force); 
+    force->initializeCombinedForces(f1, f2); 
+  
+    // remove the combined forces from the original force list
     std::vector<GPUForcePtr>::iterator pos = std::find(_forces.begin(), _forces.end(), f1);
     if (pos != _forces.end()) {
         _forces.erase(pos); 
@@ -183,29 +196,33 @@ ParticlesWrapper::addCombinedForce(const std::string & forceType, std::string & 
 }
 
 void
-ParticlesWrapper::addForce(const std::string & forceType, std::string & identifier) {
+ParticlesWrapper::addForce(const std::string & forceType, std::string & identifier, unity_plugin::ParticlesWrapperPtr particlesWrapperPtr) {
     GPUForcePtr force = createForceFromString(forceType);
 
     // add the force to the component map to be able to access the parameters later
     _componentMap[identifier] = force;
     
+    // add reference to particle wrapper to be able to access other components later
+    force->set<unity_plugin::ParticlesWrapperPtr>("wrapper", particlesWrapperPtr);
+
     // add the force to the initialization list
     _forces.push_back(force);
 }
 
 GPUIndexParticleEmitterPtr
 ParticlesWrapper::createEmitterFromString(const std::string & emitterType, unsigned int texWidth, unsigned int texHeight) {
-    if (emitterType == "simpleemitter") return GPUSimpleEmitter::create(_particleSystem, 0, texWidth*texHeight);
-    if (emitterType == "curvelineemitter") return GPUCurveLineEmitter::create(_particleSystem, 0, texWidth*texHeight);
+    if (emitterType == "simpleemitter")             return GPUSimpleEmitter::create(_particleSystem, 0, texWidth*texHeight);
+    if (emitterType == "curvelineemitter")          return GPUCurveLineEmitter::create(_particleSystem, 0, texWidth*texHeight);
     if (emitterType == "indexparticlecurveemitter") return GPUIndexParticleCurveEmitter::create(_particleSystem, 0, texWidth*texHeight);
-    if (emitterType == "permanentblockemitter") return GPUPermanentBlockEmitter::create(_particleSystem, 0, texWidth, texHeight);
-    if (emitterType == "gbufferemitter") return GPUGBufferEmitter::create(_particleSystem);
+    if (emitterType == "permanentblockemitter")     return GPUPermanentBlockEmitter::create(_particleSystem, 0, texWidth, texHeight);
+    if (emitterType == "gbufferemitter")            return GPUGBufferEmitter::create(_particleSystem);
+    if (emitterType == "targetemitter")             return GPUTargetEmitter::create(_particleSystem, 0, texWidth*texHeight);
 
     throw new cclib::Exception("unknown emitter type.");
 }
-            
+
 void
-ParticlesWrapper::addEmitter(const std::string & emitterType, std::string & identifier) {
+ParticlesWrapper::addEmitter(const std::string & emitterType, std::string & identifier, unity_plugin::ParticlesWrapperPtr particlesWrapperPtr) {
     std::string emitterKey = emitterType + std::string(":") + identifier;
     _emittersToCreate.push_back(emitterKey);
 }
@@ -282,3 +299,7 @@ ParticlesWrapper::copyResults() {
     Graphics::checkError();
 }
 
+cclib::Component::Ptr
+ParticlesWrapper::getComponentByName(std::string componentName) {
+    return _componentMap[componentName];
+}

@@ -6,6 +6,7 @@
 #include <gl/cgshader.h>
 #include <particles/gpuforce.h>
 #include <particles/gputargetsetup.h>
+#include <gl/shaderbuffer.h>
 
 namespace cclib {
 
@@ -21,15 +22,17 @@ class GPUTargetForce : public GPUForce {
         CGparameter _myNearMaxForceParameter;
 
         int _myInitialTargetTextures;
-        CGShaderPtr _myInitValueShader;
         std::vector<ShaderBufferPtr> _myTargetPositionTextures;
+        ShaderBufferPtr _myTargetBuffer;
         Property_<float>::Ptr _myScale;
         Property_<Vector3f>::Ptr _myCenter;
         Property_<float>::Ptr _myLookAhead;
         Property_<float>::Ptr _myMaxForce; 
         Property_<float>::Ptr _myNearDistance; 
         Property_<float>::Ptr _myNearMaxForce;
-        
+
+        CGShaderPtr _myInitValueShader;
+    
         int _myWidth;
         int _myHeight;
         int _myCurrentIndex;
@@ -40,18 +43,7 @@ class GPUTargetForce : public GPUForce {
     
         void setupParameter(int theWidth, int theHeight);
         void update(float theDeltaTime);
-        
-        // void setScale(float theScale);
-        // float getScale();
-        // void setLookAhead(float theLookAhead);
-        // void setMaxForce(float theMaxForce);
-        // void setCenter(Vector3f & theCenter);
-        // void setCenter(float theX, float theY, float theZ);
-        // void setNearDistance(float theNearMaxDistance);
-        // void setNearMaxForce(float theNearMaxForce);
-        
         void setSize(int theWidth, int theHeight);
-        
         void setTargets(ShaderBufferPtr theTargetTexture, GPUTargetSetupPtr theSetup,
                     int theX, int theY, int theWidth, int theHeight);
         void setTargets(ShaderBufferPtr theTargetTexture, GPUTargetSetupPtr theSetup,
@@ -64,7 +56,7 @@ class GPUTargetForce : public GPUForce {
         void addTargetSetup(ShaderBufferPtr theShaderTexture);
         // void addTargetSetup(int theTextureID);
         void changeSetup(int theIndex);
-
+        ShaderBufferPtr getTargetBuffer(); 
 };
 };
 

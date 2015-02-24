@@ -12,7 +12,6 @@ GPUTargetForce::GPUTargetForce(int theTargetTextures) :
     GPUForce("TargetForce"),
     _myInitialTargetTextures(theTargetTextures),
     _myTargetPositionTextures(),
-    _myInitValueShader(),
     _myWidth(0),
     _myHeight(0),
     _myCurrentIndex(0),
@@ -31,6 +30,7 @@ GPUTargetForce::GPUTargetForce(int theTargetTextures) :
     registerProperty(_myMaxForce);
     registerProperty(_myNearDistance);
     registerProperty(_myNearMaxForce);
+
 }
 
 GPUTargetForcePtr
@@ -48,6 +48,19 @@ GPUTargetForce::setupParameter(int theWidth, int theHeight) {
     _myMaxForceParameter = parameter("maxForce");
     _myNearDistanceParameter = parameter("nearDistance");
     _myNearMaxForceParameter = parameter("nearMaxForce");
+
+    _myTargetBuffer = ShaderBuffer::create(theWidth, theHeight, 16, 4, 2);
+    _myTargetBuffer->beginDraw();
+    Graphics::clear();
+    _myTargetBuffer->endDraw();
+
+    addTargetSetup(_myTargetBuffer);
+}
+
+ 
+ShaderBufferPtr 
+GPUTargetForce::getTargetBuffer() {
+    return _myTargetBuffer;  
 }
 
 void 

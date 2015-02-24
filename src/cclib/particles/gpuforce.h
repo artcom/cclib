@@ -12,6 +12,7 @@
 
 #include <particles/gpuparticles.h>
 #include <particles/gpuupdateshader.h>
+#include <capi/particleswrapper.h>
 
 namespace cclib {
 
@@ -26,6 +27,7 @@ namespace cclib {
         GPUParticlesPtr _myParticles;
 	
         Property_<float>::Ptr _myStrength; 
+        Property_<unity_plugin::ParticlesWrapperPtr>::Ptr _myParticlesWrapper;
         CGparameter _myStrengthParameter;
 	
     public: 
@@ -45,6 +47,7 @@ namespace cclib {
         virtual void setStrength(float theStrength);
         virtual CGparameter parameter(const std::string & theName);
         virtual void setupParameter(int theWidth, int theHeight);
+        virtual void initializeCombinedForces(GPUForcePtr force1, GPUForcePtr force2);
 };
 
 }; // namespace

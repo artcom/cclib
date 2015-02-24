@@ -95,11 +95,14 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
 
 GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles) :
     Component("emitter"),
+    _myParticlesWrapper(Property_<unity_plugin::ParticlesWrapperPtr>::create("wrapper", unity_plugin::ParticlesWrapperPtr(0))),
     _myCurrentTime(0)
 {
     if (theNumberParticles == -1) {
         theNumberParticles = theParticles->size();
     }
+    
+    registerProperty(_myParticlesWrapper);
 
     _myParticles = theParticles;
     _myStart = theStart;

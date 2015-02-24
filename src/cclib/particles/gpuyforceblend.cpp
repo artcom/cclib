@@ -16,7 +16,7 @@ GPUYForceBlend::GPUYForceBlend() :
 }
 
 void
-GPUYForceBlend::initialize(GPUForcePtr theForce1, GPUForcePtr theForce2) 
+GPUYForceBlend::initializeCombinedForces(GPUForcePtr theForce1, GPUForcePtr theForce2) 
 {
     _myForce1 = theForce1;
     _myForce2 = theForce2;

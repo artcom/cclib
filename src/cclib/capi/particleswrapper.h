@@ -24,7 +24,7 @@ namespace unity_plugin {
     class ParticlesWrapper;
     typedef CC_PTR<ParticlesWrapper> ParticlesWrapperPtr;
     
-    class ParticlesWrapper {
+    class ParticlesWrapper : public std::enable_shared_from_this<ParticlesWrapper> {
         private:
             ParticlesWrapper();
 
@@ -35,9 +35,9 @@ namespace unity_plugin {
             virtual ~ParticlesWrapper() {};
 
             void setup(void* texture);
-            void addForce(const std::string & forceType, std::string & identifier);
-            void addCombinedForce(const std::string & forceType, std::string & identifier, std::string & force1, std::string & force2); 
-            void addEmitter(const std::string & emitterType, std::string & identifier);
+            void addForce(const std::string & forceType, std::string & identifier, ParticlesWrapperPtr particlesWrapperPtr=ParticlesWrapperPtr());
+            void addCombinedForce(const std::string & forceType, std::string & identifier, std::string & force1, std::string & force2, ParticlesWrapperPtr particlesWrapperPtr=ParticlesWrapperPtr()); 
+            void addEmitter(const std::string & emitterType, std::string & identifier, ParticlesWrapperPtr particlesWrapperPtr=ParticlesWrapperPtr());
             void addAnimation(const std::string & animationType);
             void updateSimulation(float theDeltaT);
            
@@ -67,6 +67,7 @@ namespace unity_plugin {
             void copyResults();
             void setColorTexture(void* texture);
             void setInfoTexture(void* texture);
+            cclib::Component::Ptr getComponentByName(std::string componentName);
 
         private:
             void setDefaultGraphicsState();

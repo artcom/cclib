@@ -96,6 +96,7 @@ set(SOURCES
     particles/gpuparticlesort.cpp
     particles/gpuindexparticleemitter.cpp
     particles/gpusimpleemitter.cpp
+    particles/gputargetemitter.cpp
     particles/gpupermanentblockemitter.cpp
     particles/gpucurvelineemitter.cpp
     particles/gpuindexparticlecurveemitter.cpp
@@ -112,7 +113,7 @@ set(SOURCES
     particles/gpucombinedforce.cpp        
     particles/gputargetforce.cpp        
     particles/gputimeforceblend.cpp 
-    particles/gpuyforceblend.cpp 
+    particles/gpuyforceblend.cpp
     # particles/gpubloom.cpp
     particles/gpuyconstraint.cpp
     particles/gpuplaneconstraint.cpp
@@ -156,6 +157,7 @@ set(HEADERS
     particles/gpuparticle.h
     particles/gpuparticlesort.h
     particles/gpusimpleemitter.h
+    particles/gputargetemitter.h
     particles/gpupermanentblockemitter.h
     particles/gpucurvelineemitter.h
     particles/gpuindexparticleemitter.h

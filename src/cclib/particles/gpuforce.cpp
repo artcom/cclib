@@ -7,9 +7,11 @@ GPUForce::GPUForce(const std::string & theShaderTypeName) :
     _myShaderTypeName(theShaderTypeName),
     _myParticles(),
     _myStrength(Property_<float>::create("strength", 1.0f)),
+    _myParticlesWrapper(Property_<unity_plugin::ParticlesWrapperPtr>::create("wrapper", unity_plugin::ParticlesWrapperPtr())),
     _myStrengthParameter()
 {
     registerProperty(_myStrength);
+    registerProperty(_myParticlesWrapper);
     _myShaderTypeName = theShaderTypeName;
 }
 
@@ -78,4 +80,6 @@ GPUForce::parameter(const std::string & theName){
     return _myVelocityShader->fragmentParameter(_myParameterIndex+"."+theName);
 }
 
-
+void
+GPUForce::initializeCombinedForces(GPUForcePtr force1, GPUForcePtr force2) {
+}
