@@ -37,30 +37,30 @@ extern VoidFuncPtr UpdateParameterFunction;
 // capi calls to simplify binding to other languages
 extern "C" {
     int cclib_initializeParticleSystem();
-    int cclib_setupParticleSystem(void * texturePointer);
-    int cclib_teardownParticleSystem();
+    int cclib_setupParticleSystem(int wrapper, void * texturePointer);
+    int cclib_teardownParticleSystem(int wrapper);
     
-    int cclib_updateParameterFloat(char * componentName, char * parameterName, float parameterValue);
-    int cclib_updateParameterVector3(char * componentName, char * parameterName, float x, float y, float z);
-    int cclib_updateParameterInt(char * componentName, char * parameterName, float parameterValue);
-    int cclib_updateParameterVectorOfVector2(char * componentName, char * parameterName, 
+    int cclib_updateParameterFloat(int wrapper, char * componentName, char * parameterName, float parameterValue);
+    int cclib_updateParameterVector3(int wrapper, char * componentName, char * parameterName, float x, float y, float z);
+    int cclib_updateParameterInt(int wrapper, char * componentName, char * parameterName, float parameterValue);
+    int cclib_updateParameterVectorOfVector2(int wrapper, char * componentName, char * parameterName, 
                  float x, float y, int index); 
-    int cclib_updateParameterVectorOfVector3(char * componentName, char * parameterName, 
+    int cclib_updateParameterVectorOfVector3(int wrapper, char * componentName, char * parameterName, 
                  float x, float y, float z, int index); 
-    int cclib_updateParameterComponentReference(char * componentName, char * parameterName, char * referenceName);
+    int cclib_updateParameterComponentReference(int wrapper, char * componentName, char * parameterName, char * referenceName);
     
-    int cclib_addForce(char * forceName, char * instanceName);
-    int cclib_addCombinedForce(char * forceName, char * instanceName, char * force1, char * force2);
-    int cclib_addEmitter(char * emitterName, char * instanceName);
+    int cclib_addForce(int wrapper, char * forceName, char * instanceName);
+    int cclib_addCombinedForce(int wrapper, char * forceName, char * instanceName, char * force1, char * force2);
+    int cclib_addEmitter(int wrapper, char * emitterName, char * instanceName);
     
-    int cclib_runParticleSystem();
-    int cclib_updateSimulation();
-    int cclib_copyResults(); // copy simulation results into an external opengl texture id
+    int cclib_runParticleSystem(int wrapper);
+    int cclib_updateSimulation(int wrapper);
+    int cclib_copyResults(int wrapper); // copy simulation results into an external opengl texture id
 
-    int cclib_setInfoTexture(void* texturePointer);
-    int cclib_setColorTexture(void* texturePointer);
+    int cclib_setInfoTexture(int wrapper, void* texturePointer);
+    int cclib_setColorTexture(int wrapper, void* texturePointer);
 
-    int cclib_setSimulationTime(float theDeltaTime);
+    int cclib_setSimulationTime(int wrapper, float theDeltaTime);
 
     // Unity specifics
     void SetDebugFunction(StringFuncPtr fp); 

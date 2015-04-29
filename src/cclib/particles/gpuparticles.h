@@ -35,6 +35,19 @@ class GPUParticles {
 	    
 	    // FloatBuffer _myPositionBuffer;
 	    // FloatBuffer _myVelocityBuffer;
+    
+    public:
+        // shared among emitters
+        ParticleWaitingListPtr particleWaitingList;
+        std::vector<int> freeIndices;
+        std::vector<GPUParticlePtr> activeParticlesArray;
+        std::vector<GPUParticlePtr> allocatedParticles;
+        std::vector<GPUParticlePtr> deadParticles;
+        std::vector<GPUParticlePtr> pendingParticles;
+        std::vector<GPUParticlePtr> stateChanges;
+        bool staticsInitialized;
+        
+        virtual ~GPUParticles();
 	
     private:
         std::vector<GPUParticleEmitterPtr> _myEmitter; 
@@ -43,6 +56,7 @@ class GPUParticles {
 	    GPUParticles( GPUParticleRendererPtr theRender,
 		    std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints, 
 		    std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight);
+
 
         void setup( GPUParticlesPtr theThis, GPUParticleRendererPtr theRender,
                     std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints,
@@ -65,7 +79,8 @@ class GPUParticles {
         ShaderBufferPtr destinationDataTexture();
         void setPosition(int theIndex, Vector3fPtr thePosition);
         void updateLifecyle(GPUParticlePtr theParticle);
-    
+        void teardown();
+
     private:
         void updateManualPositionChanges();
         void initializeNewParticles();

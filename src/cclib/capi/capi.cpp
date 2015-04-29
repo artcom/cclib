@@ -6,30 +6,35 @@
 
 // capi calls to simplify binding to other languages
 
-unity_plugin::ParticlesWrapperPtr _particlesWrapper;
+std::map<int, unity_plugin::ParticlesWrapperPtr> _particlesWrappers;
 
 StringFuncPtr DebugLog = ToStdOut;
 VoidFuncPtr InitializeFunction = Pass;
 VoidFuncPtr UpdateParameterFunction = Pass;
 
+int pCounter = 0;
+
 float _deltaT = 0.016667f;
 
 // setup base particle system
 int cclib_initializeParticleSystem() {
+    pCounter++;
+    
     try {
-        _particlesWrapper = unity_plugin::ParticlesWrapper::create();
+        unity_plugin::ParticlesWrapperPtr particlesWrapper = unity_plugin::ParticlesWrapper::create();
+        _particlesWrappers[pCounter] = particlesWrapper;
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     
-    return 0;
+    return pCounter;
 }
 
-int cclib_addForce(char * forceName, char * instanceName) {
+int cclib_addForce(int wrapper, char * forceName, char * instanceName) {
     try {
         std::string name(forceName);
         std::string iname(instanceName);
-        _particlesWrapper->addForce(name, iname, _particlesWrapper); 
+        _particlesWrappers[wrapper]->addForce(name, iname);
     
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
@@ -37,14 +42,14 @@ int cclib_addForce(char * forceName, char * instanceName) {
     return 0;
 }
 
-int cclib_addCombinedForce(char * forceName, char * instanceName, char * force1, char * force2) {
+int cclib_addCombinedForce(int wrapper, char * forceName, char * instanceName, char * force1, char * force2) {
     try {
         std::string name(forceName);
         std::string force1Name(force1);
         std::string force2Name(force2);
 
         std::string iname(instanceName);
-        _particlesWrapper->addCombinedForce(name, iname, force1Name, force2Name, _particlesWrapper); 
+        _particlesWrappers[wrapper]->addCombinedForce(name, iname, force1Name, force2Name);
     
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
@@ -52,11 +57,11 @@ int cclib_addCombinedForce(char * forceName, char * instanceName, char * force1,
     return 0;
 }
 
-int cclib_addEmitter(char * emitterName, char * instanceName) {
+int cclib_addEmitter(int wrapper, char * emitterName, char * instanceName) {
     try {
         std::string name(emitterName);
         std::string iname(instanceName);
-        _particlesWrapper->addEmitter(name, iname, _particlesWrapper); 
+        _particlesWrappers[wrapper]->addEmitter(name, iname);
     
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
@@ -64,57 +69,57 @@ int cclib_addEmitter(char * emitterName, char * instanceName) {
     return 0;
 }
     
-int cclib_updateParameterFloat(char * componentName, char * parameterName, float parameterValue) {
+int cclib_updateParameterFloat(int wrapper, char * componentName, char * parameterName, float parameterValue) {
     try {
         std::string name(componentName);
         std::string pname(parameterName);
         
-        _particlesWrapper->setParameter<float>(name, pname, parameterValue);
+        _particlesWrappers[wrapper]->setParameter<float>(name, pname, parameterValue);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 }
 
-int cclib_updateParameterVector3(char * componentName, char * parameterName, float x, float y, float z) {
+int cclib_updateParameterVector3(int wrapper, char * componentName, char * parameterName, float x, float y, float z) {
     try {
         std::string name(componentName);
         std::string pname(parameterName);
         cclib::Vector3f value(x, y, z);
 
-        _particlesWrapper->setParameter<cclib::Vector3f>(name, pname, value);
+        _particlesWrappers[wrapper]->setParameter<cclib::Vector3f>(name, pname, value);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 }
 
-int cclib_updateParameterComponentReference(char * componentName, char * parameterName, char * referenceName) {
+int cclib_updateParameterComponentReference(int wrapper, char * componentName, char * parameterName, char * referenceName) {
     try {
         std::string name(componentName);
         std::string pname(parameterName);
         std::string value(referenceName);
         
-        _particlesWrapper->setComponentReference(name, pname, value);
+        _particlesWrappers[wrapper]->setComponentReference(name, pname, value);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 }
 
-int cclib_updateParameterInt(char * componentName, char * parameterName, int parameterValue) {
+int cclib_updateParameterInt(int wrapper, char * componentName, char * parameterName, int parameterValue) {
     try {
         std::string name(componentName);
         std::string pname(parameterName);
         
-        _particlesWrapper->setParameter<int>(name, pname, parameterValue);
+        _particlesWrappers[wrapper]->setParameter<int>(name, pname, parameterValue);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 }
 
-int cclib_updateParameterVectorOfVector2(char * componentName, char * parameterName, 
+int cclib_updateParameterVectorOfVector2(int wrapper, char * componentName, char * parameterName, 
        float x, float y, int index) 
 {
     try {
@@ -122,14 +127,14 @@ int cclib_updateParameterVectorOfVector2(char * componentName, char * parameterN
         std::string pname(parameterName);
         
         // slow but simple.
-        _particlesWrapper->setVector2fIndexParameter(name, pname, x, y, index);
+        _particlesWrappers[wrapper]->setVector2fIndexParameter(name, pname, x, y, index);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 }
 
-int cclib_updateParameterVectorOfVector3(char * componentName, char * parameterName, 
+int cclib_updateParameterVectorOfVector3(int wrapper, char * componentName, char * parameterName, 
        float x, float y, float z, int index) 
 {
     try {
@@ -137,35 +142,25 @@ int cclib_updateParameterVectorOfVector3(char * componentName, char * parameterN
         std::string pname(parameterName);
         
         // slow but simple.
-        _particlesWrapper->setVector3fIndexParameter(name, pname, x, y, z, index);
+        _particlesWrappers[wrapper]->setVector3fIndexParameter(name, pname, x, y, z, index);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 }
 
-int cclib_setupParticleSystem(void* texture) {
+int cclib_setupParticleSystem(int wrapper, void* texture) {
     try {
-        _particlesWrapper->setup(texture);
+        _particlesWrappers[wrapper]->setup(texture);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 };
 
-int cclib_setInfoTexture(void* texture) {
+int cclib_setInfoTexture(int wrapper, void* texture) {
     try {
-        _particlesWrapper->setInfoTexture(texture);
-    } catch (cclib::Exception & e) {
-        DebugLog(e.what());
-    }
-
-    return 0;
-};
-
-int cclib_setColorTexture(void* texture) {
-    try {
-        _particlesWrapper->setColorTexture(texture);
+        _particlesWrappers[wrapper]->setInfoTexture(texture);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
@@ -173,18 +168,28 @@ int cclib_setColorTexture(void* texture) {
     return 0;
 };
 
-int cclib_updateSimulation() {
+int cclib_setColorTexture(int wrapper, void* texture) {
     try {
-        _particlesWrapper->updateSimulation(_deltaT);
+        _particlesWrappers[wrapper]->setColorTexture(texture);
+    } catch (cclib::Exception & e) {
+        DebugLog(e.what());
+    }
+
+    return 0;
+};
+
+int cclib_updateSimulation(int wrapper) {
+    try {
+        _particlesWrappers[wrapper]->updateSimulation(_deltaT);
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 }
 
-int cclib_copyResults() {
+int cclib_copyResults(int wrapper) {
     try {
-        _particlesWrapper->copyResults();
+        _particlesWrappers[wrapper]->copyResults();
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
@@ -192,16 +197,17 @@ int cclib_copyResults() {
 }
 
 // and then teardown again
-int cclib_teardownParticleSystem() {
+int cclib_teardownParticleSystem(int wrapper) {
     try {
-        _particlesWrapper = unity_plugin::ParticlesWrapperPtr();
+        _particlesWrappers[wrapper]->teardown();
+        _particlesWrappers[wrapper] = unity_plugin::ParticlesWrapperPtr();
     } catch (cclib::Exception & e) {
         DebugLog(e.what());
     }
     return 0;
 }
 
-int cclib_setSimulationTime(float theDeltaTime) {
+int cclib_setSimulationTime(int wrapper, float theDeltaTime) {
     _deltaT = theDeltaTime;
     return 0;
 }
@@ -211,12 +217,12 @@ void SetDebugFunction(StringFuncPtr fp) {
     DebugLog("Pointer set.");
 }
 
-void SetInitializeFunction(VoidFuncPtr fp) {
+void SetInitializeFunction(int wrapper, VoidFuncPtr fp) {
     InitializeFunction = fp;
     DebugLog("Initialization Function Pointer set.");
 }
 
-void SetUpdateParameterFunction(VoidFuncPtr fp) {
+void SetUpdateParameterFunction(int wrapper, VoidFuncPtr fp) {
     UpdateParameterFunction = fp;
     DebugLog("UpdateParameter Function Pointer set.");
 }
@@ -236,8 +242,8 @@ extern "C" void UnityRenderEvent (int eventID)
     // InitializeFunction(); 
     // UpdateParameterFunction();
 	
-    cclib_updateSimulation();
-    cclib_copyResults();   
+    cclib_updateSimulation(eventID);
+    cclib_copyResults(eventID);   
 }
 
 extern "C" void UnitySetGraphicsDevice (void* device, int deviceType, int eventType)

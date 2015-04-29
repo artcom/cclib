@@ -13,10 +13,17 @@ class CapiDemoStresstest {
         bool running;
         int counter;
         GLuint texture;
-
+        int wrapperId;
+    
+    
+        void teardown() {
+            cclib_teardownParticleSystem(wrapperId);
+        }
+ 
         CapiDemoStresstest() :
             running(true),
-            counter(0)
+            counter(0),
+            wrapperId(0)
         {
             if( !glfwInit() ) {
                 running = false;
@@ -28,11 +35,18 @@ class CapiDemoStresstest {
                 running = false;
             }
 
+            glfwSwapInterval(1);
+
+            glGenTextures(1, &texture);
+            glBindTexture(GL_TEXTURE_2D, texture);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 512, 512, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+            glBindTexture(GL_TEXTURE_2D, 0);
+            
             GLenum err = glewInit();
             if (GLEW_OK != err) {
                 running = false;
             }
-
+            
             setup();
         }
 
@@ -44,31 +58,50 @@ class CapiDemoStresstest {
             glfwTerminate();
         }
 
+        void setupParticleSystem() {
+            void* texturePtr = (void*)texture;
+
+            wrapperId = cclib_initializeParticleSystem();
+            cclib_addForce(wrapperId, "targetforce", "targetforce");
+            cclib_addForce(wrapperId, "forcefield", "noise");
+            cclib_addForce(wrapperId, "viscousdrag", "drag");
+            
+            cclib_addEmitter(wrapperId, "targetemitter", "lineEmitter1");
+            cclib_addEmitter(wrapperId, "targetemitter", "lineEmitter2");
+            cclib_addEmitter(wrapperId, "targetemitter", "lineEmitter3");
+
+            cclib_addEmitter(wrapperId, "targetemitter", "targetEmitter1");
+            cclib_addEmitter(wrapperId, "targetemitter", "targetEmitter2");
+            cclib_addEmitter(wrapperId, "targetemitter", "targetEmitter3");
+    
+            cclib_setupParticleSystem(wrapperId,  texturePtr);
+            cclib_setInfoTexture(wrapperId,  texturePtr);
+            cclib_setColorTexture(wrapperId,  texturePtr);
+        }
+    
         void update(double theDeltaTime) {
            
             if (counter == 0) {
-                std::cout << "Setup Particle System" << std::endl;
-                glGenTextures(1, &texture);
-                glBindTexture(GL_TEXTURE_2D, texture);
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 512, 512, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-                void* texturePtr = (void*)texture;
-
-                cclib_initializeParticleSystem();
-                // add some forces
-                cclib_addForce("gravity", "gravity");
-                cclib_setupParticleSystem(texturePtr);
+                setupParticleSystem();
             }
+ 
             
-            cclib_updateSimulation();
+            cclib_updateParameterComponentReference(wrapperId, "lineEmitter1", "targetForce", "targetforce");
+            cclib_updateParameterComponentReference(wrapperId, "lineEmitter2", "targetForce", "targetforce");
+            cclib_updateParameterComponentReference(wrapperId, "lineEmitter3", "targetForce", "targetforce");
+
+            cclib_updateParameterComponentReference(wrapperId, "targetEmitter1", "targetForce", "targetforce");
+            cclib_updateParameterComponentReference(wrapperId, "targetEmitter2", "targetForce", "targetforce");
+            cclib_updateParameterComponentReference(wrapperId, "targetEmitter3", "targetForce", "targetforce");
+        
+            
+            cclib_updateSimulation(wrapperId);
             counter++;
-            
-            if (counter == 120) { 
-                std::cout << "Teardown Particle System" << std::endl;
-                glDeleteTextures(1, &texture);
-                
-                cclib_teardownParticleSystem();
+ 
+            if (counter > 200) {
                 counter = 0;
-                sleep(3);
+                teardown();
+                std::cout << "teardown.. " << std::endl;
             }
         }
 };

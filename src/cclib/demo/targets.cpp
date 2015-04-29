@@ -123,8 +123,8 @@ class TargetsDemo {
 			_myTimeBlendForce->set<float>("power", power);
 			
             //   _myTimeBlendForce->initialize(_myTargetForce, _myForceField);
-            _myTimeBlendForce->initialize(_myForceField, _myTargetForce);
-
+            _myTimeBlendForce->initializeCombinedForces(_myForceField, _myTargetForce);
+            
             std::vector<GPUForcePtr> myForces;
             std::vector<GPUImpulsePtr> myImpulses;
             std::vector<GPUConstraintPtr> myConstraints;

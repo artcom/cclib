@@ -6,6 +6,7 @@
 #include <particles/gpuparticlerenderer.h>
 #include <particles/gpuparticle.h>
 #include <particles/gpuparticleemitter.h>
+#include <particles/gpuindexparticleemitter.h>
 #include <particles/gpuconstraint.h>
 #include <particles/gpuimpulse.h>
 #include <gl/graphics.h>
@@ -19,15 +20,47 @@ using namespace cclib;
 GPUParticles::GPUParticles( GPUParticleRendererPtr theRender,
         std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints, 
         std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight) :
-    _myForces(theForces), _myConstraints(theConstraints),
-    _myImpulses(theImpulse), _myWidth(theWidth), 
-    _myHeight(theHeight), _myCurrentTime(0.0)
-{};
+        _myForces(theForces), _myConstraints(theConstraints),
+        _myImpulses(theImpulse), _myWidth(theWidth), 
+        _myHeight(theHeight), _myCurrentTime(0.0),
+        // shared indexemitter stuff
+        particleWaitingList(),
+        freeIndices(),
+        activeParticlesArray(),
+        allocatedParticles(),
+        deadParticles(),
+        pendingParticles(),
+        stateChanges()
+{
+    freeIndices = std::vector<int>(theWidth * theHeight, 0);
+    particleWaitingList = ParticleWaitingList::create(0.5f);
+    activeParticlesArray = std::vector<GPUParticlePtr>();
 
-void GPUParticles::setup( GPUParticlesPtr theThis, GPUParticleRendererPtr theRender,
+};
+
+void
+GPUParticles::teardown() {
+    _myForces.clear();
+    _myImpulses.clear();
+    _myConstraints.clear();
+    freeIndices.clear();
+}
+
+GPUParticles::~GPUParticles() {
+    std::cout << " -- destroying particles" << std::endl;
+    teardown();
+}
+
+void GPUParticles::setup(GPUParticlesPtr theThis, GPUParticleRendererPtr theRender,
             std::vector<GPUForcePtr> & theForces, std::vector<GPUConstraintPtr> & theConstraints,
             std::vector<GPUImpulsePtr> & theImpulse, int theWidth, int theHeight)
 {
+    for(int i = 0; i < theWidth * theHeight; i++) {
+        int myIndex = /*_myStart +*/ i;
+        activeParticlesArray.push_back(GPUParticle::create(theThis, myIndex));
+        freeIndices[i] = myIndex;
+    }
+    
     for (std::vector<GPUForcePtr>::size_type f=0; f<theForces.size(); f++) {
         theForces[f]->setSize(theWidth, theHeight);
     }

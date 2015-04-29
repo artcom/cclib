@@ -32,12 +32,13 @@ namespace unity_plugin {
             static ParticlesWrapperPtr create() {
                 return ParticlesWrapperPtr(new ParticlesWrapper());
             }
+        
             virtual ~ParticlesWrapper() {};
 
             void setup(void* texture);
-            void addForce(const std::string & forceType, std::string & identifier, ParticlesWrapperPtr particlesWrapperPtr=ParticlesWrapperPtr());
-            void addCombinedForce(const std::string & forceType, std::string & identifier, std::string & force1, std::string & force2, ParticlesWrapperPtr particlesWrapperPtr=ParticlesWrapperPtr()); 
-            void addEmitter(const std::string & emitterType, std::string & identifier, ParticlesWrapperPtr particlesWrapperPtr=ParticlesWrapperPtr());
+            void addForce(const std::string & forceType, std::string & identifier);
+            void addCombinedForce(const std::string & forceType, std::string & identifier, std::string & force1, std::string & force2);
+            void addEmitter(const std::string & emitterType, std::string & identifier);
             void addAnimation(const std::string & animationType);
             void updateSimulation(float theDeltaT);
            
@@ -68,6 +69,8 @@ namespace unity_plugin {
             void setColorTexture(void* texture);
             void setInfoTexture(void* texture);
             cclib::Component::Ptr getComponentByName(std::string componentName);
+            void reset();
+            void teardown();
 
         private:
             void setDefaultGraphicsState();

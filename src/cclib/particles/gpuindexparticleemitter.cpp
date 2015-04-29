@@ -56,9 +56,9 @@ ParticleWaitingList::handleCurrentWaitList(float theDeltaTime, GPUIndexParticleE
         GPUParticlePtr myParticle = _myWaitLists[_myCurrentIdx][_myCurrentWorkedIndex];
 
         if(myParticle->isPermanent()) {
-            thePE->pendingParticles().push_back(myParticle);
+            thePE->_myParticles->pendingParticles.push_back(myParticle);
         } else {
-            thePE->freeIndices().push_back(myParticle->index());
+            thePE->_myParticles->freeIndices.push_back(myParticle->index());
         }
     }
 }
@@ -76,9 +76,9 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
                 GPUParticlePtr myParticle = _myWaitLists[_myCurrentIdx][_myCurrentWorkedIndex];
 
                 if(myParticle->isPermanent()) {
-                    thePE->pendingParticles().push_back(myParticle);
+                    thePE->_myParticles->pendingParticles.push_back(myParticle);
                 } else {
-                    thePE->freeIndices().push_back(myParticle->index());
+                    thePE->_myParticles->freeIndices.push_back(myParticle->index());
                 }
             }
             _myCurrentWorkedIndex = 0;
@@ -95,29 +95,19 @@ ParticleWaitingList::update(float theDeltaTime, GPUIndexParticleEmitter * thePE)
 
 GPUIndexParticleEmitter::GPUIndexParticleEmitter(GPUParticlesPtr theParticles, int theStart, int theNumberParticles) :
     Component("emitter"),
-    _myParticlesWrapper(Property_<unity_plugin::ParticlesWrapperPtr>::create("wrapper", unity_plugin::ParticlesWrapperPtr(0))),
     _myCurrentTime(0)
 {
     if (theNumberParticles == -1) {
         theNumberParticles = theParticles->size();
     }
-    
-    registerProperty(_myParticlesWrapper);
-
+     
     _myParticles = theParticles;
     _myStart = theStart;
 
+    // init statics only once
+    
     _myNumberOfParticles = theNumberParticles;
-    _myFreeIndices = std::vector<int>(_myNumberOfParticles, 0);
-
-    _myParticleWaitingList = ParticleWaitingList::create(0.5f);
-    _myActiveParticlesArray = std::vector<GPUParticlePtr>();
-    for(int i = 0; i < _myNumberOfParticles; i++) {
-        int myIndex = _myStart + i;
-        _myActiveParticlesArray.push_back(GPUParticle::create(_myParticles, myIndex));
-        _myFreeIndices[i] = myIndex;
-    }
-
+    
     _myEmitMesh = Mesh::create(GL_POINTS);
     _myVertexBuffer = Buffer::create(1000*3); 
     _myPositionBuffer = Buffer::create(1000*3); 
@@ -133,39 +123,29 @@ GPUIndexParticleEmitter::create(GPUParticlesPtr theParticles, int theStart, int 
     return GPUIndexParticleEmitterPtr(new GPUIndexParticleEmitter(theParticles, theStart, theNumberParticles));
 }
 
-std::vector<GPUParticlePtr> &
-GPUIndexParticleEmitter::pendingParticles() {
-    return _myPendingParticles;
-}
-
 int
 GPUIndexParticleEmitter::nextFreeId() {
-    if (_myFreeIndices.empty()) {
+    if (_myParticles->freeIndices.empty()) {
         return -1;
     }
 
-    return _myFreeIndices.back();
-}
-
-std::vector<int> &
-GPUIndexParticleEmitter::freeIndices() {
-    return _myFreeIndices;
+    return _myParticles->freeIndices.back();
 }
 
 void
 GPUIndexParticleEmitter::changeParticle(GPUParticlePtr theParticle) {
-    _myParticleWaitingList->add(theParticle);
-    _myStateChanges.push_back(theParticle);
+    _myParticles->particleWaitingList->add(theParticle);
+    _myParticles->stateChanges.push_back(theParticle);
 }
 
 GPUParticlePtr
 GPUIndexParticleEmitter::emit(const Color & theColor, const Vector3f & thePosition, const Vector3f & theVelocity, float theLifeTime, bool theIsPermanent) {
-    if (_myFreeIndices.empty()) {
+    if (_myParticles->freeIndices.empty()) {
         return GPUParticlePtr();
     }
 
     int myFreeIndex = nextFreeId();
-    _myFreeIndices.pop_back();
+    _myParticles->freeIndices.pop_back();
     return emit(myFreeIndex, theColor, thePosition, theVelocity, theLifeTime, theIsPermanent);
 }
 
@@ -173,12 +153,12 @@ GPUParticlePtr
 GPUIndexParticleEmitter::emit(const Vector3f & thePosition, const Vector3f & theVelocity,
         float theLifeTime, bool theIsPermanent)
 {
-    if(_myFreeIndices.empty()) {
+    if(_myParticles->freeIndices.empty()) {
         return GPUParticlePtr();
     }
 
     int myFreeIndex = nextFreeId();
-    _myFreeIndices.pop_back();
+    _myParticles->freeIndices.pop_back();
     Color myColor(1.0f, 1.0f, 1.0f, 1.0);
     return emit(myFreeIndex, myColor, thePosition, theVelocity, theLifeTime, theIsPermanent);
 }
@@ -188,7 +168,7 @@ GPUIndexParticleEmitter::emit(int theIndex, const Color & theColor, const Vector
         float theLifeTime, bool theIsPermanent)
 {
     int myIndex = theIndex - _myStart;
-    GPUParticlePtr myActiveParticle = _myActiveParticlesArray[myIndex];
+    GPUParticlePtr myActiveParticle = _myParticles->activeParticlesArray[myIndex];
     myActiveParticle->color()->set( theColor );
     myActiveParticle->position()->set( thePosition );
     myActiveParticle->velocity()->set( theVelocity );
@@ -197,8 +177,8 @@ GPUIndexParticleEmitter::emit(int theIndex, const Color & theColor, const Vector
     myActiveParticle->isPermanent(theIsPermanent);
     myActiveParticle->step(0);
 
-    _myAllocatedParticles.push_back(myActiveParticle);
-    _myParticleWaitingList->add(myActiveParticle);
+    _myParticles->allocatedParticles.push_back(myActiveParticle);
+    _myParticles->particleWaitingList->add(myActiveParticle);
 
     return myActiveParticle;
 }
@@ -210,18 +190,18 @@ GPUIndexParticleEmitter::emit(const Vector3f & thePosition, const Vector3f & the
 
 void
 GPUIndexParticleEmitter::update(float theDeltaTime) {
-    _myParticleWaitingList->update(theDeltaTime, this);
+    _myParticles->particleWaitingList->update(theDeltaTime, this);
 }
 
 void 
 GPUIndexParticleEmitter::reset() {
-    _myAllocatedParticles.clear();
-    _myFreeIndices.clear();
-    _myPendingParticles.clear();
-    _myParticleWaitingList = ParticleWaitingList::create(0.5f);
-    for(int i = 0; i < _myActiveParticlesArray.size(); ++i) {
+    _myParticles->allocatedParticles.clear();
+    _myParticles->freeIndices.clear();
+    _myParticles->pendingParticles.clear();
+    _myParticles->particleWaitingList = ParticleWaitingList::create(0.5f);
+    for(int i = 0; i < _myParticles->activeParticlesArray.size(); ++i) {
         int myIndex = _myStart + i;
-        _myFreeIndices.push_back(myIndex);
+        _myParticles->freeIndices.push_back(myIndex);
     }
 }
 
@@ -232,7 +212,7 @@ GPUIndexParticleEmitter::size() {
 
 GPUParticlePtr
 GPUIndexParticleEmitter::particle(int theID) {
-    return _myActiveParticlesArray[theID - _myStart];
+    return _myParticles->activeParticlesArray[theID - _myStart];
 }
 
 void GPUIndexParticleEmitter::fillPositionData(BufferPtr theBuffer, std::vector<cclib::GPUParticlePtr> & theParticles) {
@@ -340,7 +320,7 @@ GPUIndexParticleEmitter::setData() {
 
 void
 GPUIndexParticleEmitter::transferChanges() {
-    int myStateChangeSize = _myStateChanges.size();
+    int myStateChangeSize = _myParticles->stateChanges.size();
     if (myStateChangeSize == 0) {
         return;
     }
@@ -350,15 +330,15 @@ GPUIndexParticleEmitter::transferChanges() {
     _myInfoBuffer = Buffer::create(myStateChangeSize * 4, true);
     _myColorBuffer = Buffer::create(myStateChangeSize * 4, true);
 
-    for (unsigned int i = 0; i < _myStateChanges.size(); ++i) {
-        GPUParticlePtr myParticle = _myStateChanges[i];
+    for (unsigned int i = 0; i < _myParticles->stateChanges.size(); ++i) {
+        GPUParticlePtr myParticle = _myParticles->stateChanges[i];
         _myVertexBuffer->put(myParticle->x() + 0.5f);
         _myVertexBuffer->put(myParticle->y() + 0.5f);
         _myVertexBuffer->put(0.0f);
     }
 
-    fillInfoData(_myInfoBuffer, _myStateChanges);
-    fillColorData(_myColorBuffer, _myStateChanges);
+    fillInfoData(_myInfoBuffer, _myParticles->stateChanges);
+    fillColorData(_myColorBuffer, _myParticles->stateChanges);
 
     _myVertexBuffer->rewind();
     _myInfoBuffer->rewind();
@@ -372,12 +352,12 @@ GPUIndexParticleEmitter::transferChanges() {
     transferInfoData();
     transferColorData();
 
-    _myStateChanges.clear();
+    _myParticles->stateChanges.clear();
 }
 
 void
 GPUIndexParticleEmitter::transferEmits() {
-    int myEmitSize = _myAllocatedParticles.size();
+    int myEmitSize = _myParticles->allocatedParticles.size();
     if (myEmitSize == 0) {
         return;
     }
@@ -390,17 +370,17 @@ GPUIndexParticleEmitter::transferEmits() {
     _myVelocityBuffer = Buffer::create(myEmitSize * 3, true);
     _myColorBuffer = Buffer::create(myEmitSize * 4, true);
 
-    for (unsigned int i=0; i<_myAllocatedParticles.size(); i++) {
-        GPUParticlePtr myParticle = _myAllocatedParticles[i];
+    for (unsigned int i=0; i<_myParticles->allocatedParticles.size(); i++) {
+        GPUParticlePtr myParticle = _myParticles->allocatedParticles[i];
         _myVertexBuffer->put(myParticle->x() + 0.5f);
         _myVertexBuffer->put(myParticle->y() + 0.5f);
         _myVertexBuffer->put(0.0f);
     }
 
-    fillPositionData(_myPositionBuffer, _myAllocatedParticles);
-    fillColorData(_myColorBuffer, _myAllocatedParticles);
-    fillInfoData(_myInfoBuffer, _myAllocatedParticles);
-    fillVelocityData(_myVelocityBuffer, _myAllocatedParticles);
+    fillPositionData(_myPositionBuffer, _myParticles->allocatedParticles);
+    fillColorData(_myColorBuffer, _myParticles->allocatedParticles);
+    fillInfoData(_myInfoBuffer, _myParticles->allocatedParticles);
+    fillVelocityData(_myVelocityBuffer, _myParticles->allocatedParticles);
 
     _myVertexBuffer->rewind();
     _myColorBuffer->rewind();
@@ -417,7 +397,7 @@ GPUIndexParticleEmitter::transferEmits() {
 
     transferEmitData();
 
-    _myAllocatedParticles.clear();
+    _myParticles->allocatedParticles.clear();
 }
 
 //std::vector<GPUParticlePtr> &

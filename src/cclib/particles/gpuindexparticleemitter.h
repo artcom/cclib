@@ -34,25 +34,17 @@ class ParticleWaitingList {
 
 class GPUIndexParticleEmitter : public GPUParticleEmitter, public Component {
 
+    public:
+        GPUParticlesPtr _myParticles;
+
     private:
         int _myNumberOfParticles;
 
     protected:
-        GPUParticlesPtr _myParticles;
-        std::vector<GPUParticlePtr> _myActiveParticlesArray;
 	    MeshPtr _myEmitMesh;
         double _myCurrentTime; // = 0;
-        std::vector<GPUParticlePtr> _myAllocatedParticles; // = new ArrayList<GPUParticle>();
-        Property_<unity_plugin::ParticlesWrapperPtr>::Ptr _myParticlesWrapper;
-
+    
     private:
-	    std::vector<GPUParticlePtr> _myDeadParticles; // = new ArrayList<GPUParticle>();
-	    std::vector<GPUParticlePtr> _myPendingParticles; // = new ArrayList<GPUParticle>();
-	    std::vector<GPUParticlePtr> _myStateChanges; // = new ArrayList<GPUParticle>();
-	    std::vector<int> _myFreeIndices;
-
-        ParticleWaitingListPtr _myParticleWaitingList;
-
         BufferPtr _myVertexBuffer;
 	    BufferPtr _myColorBuffer;
 	    BufferPtr _myPositionBuffer;
@@ -66,7 +58,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter, public Component {
 
         virtual ~GPUIndexParticleEmitter() {}
         static GPUIndexParticleEmitterPtr create(GPUParticlesPtr theParticles, int theStart=0, int theNumberParticles=-1);
-        std::vector<GPUParticlePtr> & pendingParticles();
+        // std::vector<GPUParticlePtr> & pendingParticles();
 //        std::vector<GPUParticlePtr> & stateChangedParticles();
 //        std::vector<GPUParticlePtr> & allocatedParticles();
 //        int particlesInUse();
@@ -101,7 +93,7 @@ class GPUIndexParticleEmitter : public GPUParticleEmitter, public Component {
         void transferChanges();
 
         // added due to the nested class private member access thing in the java original
-        std::vector<int> & freeIndices();
+        // std::vector<int> & freeIndices();
 };
 }; // namespace
 

@@ -27,7 +27,6 @@ namespace cclib {
         GPUParticlesPtr _myParticles;
 	
         Property_<float>::Ptr _myStrength; 
-        Property_<unity_plugin::ParticlesWrapperPtr>::Ptr _myParticlesWrapper;
         CGparameter _myStrengthParameter;
 	
     public: 

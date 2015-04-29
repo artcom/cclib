@@ -131,10 +131,6 @@ ParticlesWrapper::createEmitters(unsigned int texWidth, unsigned int texHeight) 
             GPUIndexParticleEmitterPtr emitter = createEmitterFromString(typeName[0], texWidth, texHeight);
             _emitters.push_back(emitter);
             _componentMap[typeName[1]] = emitter;
-            
-            // add reference to particle wrapper to be able to access other components later
-            unity_plugin::ParticlesWrapperPtr wrapperReference = shared_from_this(); // unity_plugin::ParticlesWrapperPtr(this);
-            emitter->set<unity_plugin::ParticlesWrapperPtr>("wrapper", wrapperReference);
         }
     }
 }
@@ -156,7 +152,7 @@ ParticlesWrapper::createForceFromString(const std::string & forceType) {
     
 void 
 ParticlesWrapper::addCombinedForce(const std::string & forceType, std::string & identifier, 
-        std::string & force1, std::string & force2, unity_plugin::ParticlesWrapperPtr particlesWrapperPtr) 
+        std::string & force1, std::string & force2)
 {
     GPUForcePtr force = createForceFromString(forceType);
     
@@ -170,9 +166,6 @@ ParticlesWrapper::addCombinedForce(const std::string & forceType, std::string & 
     if (_componentMap.find(force2) != _componentMap.end()) {
         f2 = CC_DYN_PTR_CAST<GPUForce>(_componentMap[force2]);     
     }
-    
-    // add reference to particle wrapper to be able to access other components later
-    force->set<unity_plugin::ParticlesWrapperPtr>("wrapper", particlesWrapperPtr);
 
     // GPUYForceBlendPtr blendPtr = CC_DYN_PTR_CAST<GPUYForceBlend>(force); 
     force->initializeCombinedForces(f1, f2); 
@@ -196,15 +189,12 @@ ParticlesWrapper::addCombinedForce(const std::string & forceType, std::string & 
 }
 
 void
-ParticlesWrapper::addForce(const std::string & forceType, std::string & identifier, unity_plugin::ParticlesWrapperPtr particlesWrapperPtr) {
+ParticlesWrapper::addForce(const std::string & forceType, std::string & identifier) {
     GPUForcePtr force = createForceFromString(forceType);
 
     // add the force to the component map to be able to access the parameters later
     _componentMap[identifier] = force;
     
-    // add reference to particle wrapper to be able to access other components later
-    force->set<unity_plugin::ParticlesWrapperPtr>("wrapper", particlesWrapperPtr);
-
     // add the force to the initialization list
     _forces.push_back(force);
 }
@@ -222,7 +212,7 @@ ParticlesWrapper::createEmitterFromString(const std::string & emitterType, unsig
 }
 
 void
-ParticlesWrapper::addEmitter(const std::string & emitterType, std::string & identifier, unity_plugin::ParticlesWrapperPtr particlesWrapperPtr) {
+ParticlesWrapper::addEmitter(const std::string & emitterType, std::string & identifier) {
     std::string emitterKey = emitterType + std::string(":") + identifier;
     _emittersToCreate.push_back(emitterKey);
 }
@@ -302,4 +292,26 @@ ParticlesWrapper::copyResults() {
 cclib::Component::Ptr
 ParticlesWrapper::getComponentByName(std::string componentName) {
     return _componentMap[componentName];
+}
+
+void
+ParticlesWrapper::teardown() {
+    _particleSystem->teardown();
+    _particleSystem.reset();
+}
+
+void
+ParticlesWrapper::reset() {
+    _particleSystem->reset();
+    
+    // reset emitters
+    // reset forces
+    // 
+    
+    // TODO: Reset.
+    // _myEmitter->reset();
+    // _myTargetBuffer->clear();
+    // _myEmittedParticles.clear();
+    // _myAnimations.clear();
+    
 }

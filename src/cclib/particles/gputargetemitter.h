@@ -10,6 +10,8 @@
 
 #include <cclib.h>
 #include <vector>
+#include <random>
+#include <cmath>
 #include "particles/gpuindexparticleemitter.h"
 #include "gl/shader.h"
 #include "particles/gpunoise.h"
@@ -31,11 +33,25 @@ namespace cclib {
         
         Property_<float>::Ptr _myLifetime;
         Property_<float>::Ptr _myLifetimeSpread;
-        Property_<std::string>::Ptr _myTargetForceName;
-       
+        Property_<cclib::Component::Ptr>::Ptr _myTargetForce;
+        Property_<float>::Ptr _myTextureId;
+
+        Property_<float>::Ptr _myTextureScale;
+        Property_<Vector3f>::Ptr _myTextureOffset;
+
         int _myNumberOfParticles;
         CGShaderPtr _myInitValueShader;
-
+        
+        GLuint _myLastTextureId;
+        std::vector<unsigned char> _myTextureData;
+        int _myTextureWidth;
+        int _myTextureHeight;
+        
+    private:
+        void refreshTextureData();
+        Color getPixel(float x, float y, float scale, Vector3f offset);
+        float clip(float n, float lower, float upper);
+        
     public:
         GPUTargetEmitter(cclib::GPUParticlesPtr theParticles, int theStart, int theNumberParticles);
         
