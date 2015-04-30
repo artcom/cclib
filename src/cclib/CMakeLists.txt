@@ -217,13 +217,22 @@ add_library(${CCLIB_BUNDLE_NAME} MODULE
     ${SOURCES} 
     capi/capi.cpp
     capi/particleswrapper.cpp
-)
+    )
 
-set_target_properties(${CCLIB_BUNDLE_NAME} PROPERTIES 
-    MACOSX_BUNDLE TRUE
-    SUFFIX .bundle
-    PREFIX ""  
-)
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set_target_properties(${CCLIB_BUNDLE_NAME} PROPERTIES 
+        MACOSX_BUNDLE TRUE
+        SUFFIX ".bundle"
+        PREFIX ""  
+    )
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    set_target_properties(${CCLIB_BUNDLE_NAME} PROPERTIES 
+        SUFFIX ".so"
+        PREFIX "lib"  
+    )
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 target_link_libraries(${CCLIB_BUNDLE_NAME} ${GLEW_LIBRARY} ${Cg_LIBRARIES} ${Cg_GL_LIBRARIES} ${OPENGL_LIBRARIES})
 install(TARGETS ${CCLIB_BUNDLE_NAME} 
